@@ -1,0 +1,35 @@
+tavlen.bizyman.com, centralen.bizyman.com {
+    # Rod-mappe for frontend
+    root * /var/www/opgaver/frontend
+    encode zstd gzip
+
+    # 1. Backend API
+    handle /api* {
+        reverse_proxy unix//var/www/opgaver/opgaver.sock
+    }
+
+    # 2. Django Admin
+    handle /admin* {
+        reverse_proxy unix//var/www/opgaver/opgaver.sock
+    }
+
+    # 3. Statiske filer fra Django
+    handle_path /static/* {
+        root * /var/www/opgaver/backend/staticfiles
+        file_server
+    }
+    handle_path /media/* {
+        root * /var/www/opgaver/media
+        file_server
+    }
+
+    # 4. Frontend (SPA fallback)
+    handle {
+        try_files {path} {path}/ /index.html
+        file_server
+    }
+
+    log {
+        output file /var/log/caddy/opgaver_access.log
+    }
+}

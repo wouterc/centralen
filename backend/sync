@@ -1,0 +1,182 @@
+#!/usr/bin/env bash
+
+# ------------------------------------------------------------------------------
+# Logging Setup
+# ------------------------------------------------------------------------------
+LOG_FILE="sync_log.txt"
+echo "Logger til: $LOG_FILE"
+# Redirect stdout and stderr to the log file AND the console
+exec > >(tee -i "$LOG_FILE") 2>&1
+
+# ------------------------------------------------------------------------------
+# Configuration
+# ------------------------------------------------------------------------------
+REMOTE_USER="root"
+REMOTE_HOST="193.104.202.65"
+REMOTE_BACKEND_BASE="/var/www/opgaver"
+REMOTE_BACKEND_DIR="${REMOTE_BACKEND_BASE}/backend"
+REMOTE_STATIC_DIR="${REMOTE_BACKEND_BASE}/static"
+REMOTE_FRONTEND_DIR="${REMOTE_BACKEND_BASE}/frontend"
+SSH_IDENTITY="~/.ssh/id_wsl"
+
+# Ensure script is run from the Centralen backend directory
+if [ ! -f "manage.py" ]; then
+    echo "Error: Please run this script from the Centralen backend directory (where manage.py is located)."
+    exit 1
+fi
+
+echo "========================================================"
+echo "Starting Synchronization to ${REMOTE_HOST} (centralen.bizyman.com)"
+echo "========================================================"
+
+# ------------------------------------------------------------------------------
+# 0. Pre-flight: Ensure Directories Exist
+# ------------------------------------------------------------------------------
+echo "Ensuring remote directories exist..."
+ssh -i "$SSH_IDENTITY" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p '${REMOTE_BACKEND_DIR}' '${REMOTE_FRONTEND_DIR}' '${REMOTE_STATIC_DIR}' '${REMOTE_BACKEND_BASE}/logs' '${REMOTE_BACKEND_BASE}/media' '/var/log/caddy'"
+
+# ------------------------------------------------------------------------------
+# 1. Backend Sync & Setup
+# ------------------------------------------------------------------------------
+echo ""
+echo "[Backend] Syncing Centralen code..."
+
+rsync -avz -e "ssh -i $SSH_IDENTITY" --delete \
+    --exclude='.git' \
+    --exclude='.agent' \
+    --exclude='node_modules' \
+    --exclude='venv' \
+    --exclude='__pycache__' \
+    --exclude='*.pyc' \
+    --exclude='db.sqlite3' \
+    --exclude='.env' \
+    ./ "${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_BACKEND_DIR}"
+
+echo "[Backend] Executing remote setup tasks..."
+ssh -i "$SSH_IDENTITY" "${REMOTE_USER}@${REMOTE_HOST}" "bash -s" <<EOF
+    set -e
+    cd "${REMOTE_BACKEND_DIR}"
+
+    if ! dpkg -s python3-venv >/dev/null 2>&1; then
+        echo "Installing python3-venv package..."
+        apt-get update
+        apt-get install -y python3-venv
+    fi
+
+    if [ ! -d "venv" ]; then
+        echo "Creating virtual environment on remote server..."
+        python3 -m venv venv
+    else
+        if [ ! -f "venv/bin/activate" ]; then
+             echo "Found broken venv directory. Recreating..."
+             rm -rf venv
+             python3 -m venv venv
+        fi
+    fi
+
+    source venv/bin/activate
+
+    if [ -f "requirements.txt" ]; then
+        echo "Installing Python requirements..."
+        pip install -r requirements.txt
+    fi
+
+    echo "Running database migrations..."
+    python manage.py migrate --noinput
+
+    echo "Running collectstatic..."
+    python manage.py collectstatic --noinput --clear
+
+    echo "Fixing ownership and permissions..."
+    chown -R www-data:www-data "${REMOTE_BACKEND_BASE}"
+    chmod -R 775 "${REMOTE_BACKEND_BASE}"
+    
+    echo "Updating Systemd service configuration..."
+    if [ -f "${REMOTE_BACKEND_DIR}/deployment/opgaver.service" ]; then
+        cp "${REMOTE_BACKEND_DIR}/deployment/opgaver.service" /etc/systemd/system/opgaver.service
+    fi
+
+    echo "Restarting services..."
+    mkdir -p /var/log/caddy
+    chown caddy:caddy /var/log/caddy
+    
+    # Sikr at caddy brugeren kan læse socket-filen
+    usermod -aG www-data caddy || true
+    
+    echo "  > Restarting Opgaver Service..."
+    systemctl daemon-reload
+    systemctl restart opgaver
+    
+    echo "  > Restarting Caddy..."
+    mkdir -p /etc/caddy/conf.d
+    if ! grep -q "import /etc/caddy/conf.d/\*" /etc/caddy/Caddyfile 2>/dev/null; then
+        echo "    Migrating to Caddy conf.d structure..."
+        echo "import /etc/caddy/conf.d/*.caddy" > /etc/caddy/Caddyfile
+    fi
+    if [ -f "${REMOTE_BACKEND_DIR}/centralen.caddy" ]; then
+        echo "    Updating Centralen Caddy configuration..."
+        cp "${REMOTE_BACKEND_DIR}/centralen.caddy" /etc/caddy/conf.d/centralen.caddy
+    fi
+    if [ -f "${REMOTE_BACKEND_DIR}/drejeskiven_kvittering.caddy" ]; then
+        echo "    Updating experimental apps Caddy configuration..."
+        cp "${REMOTE_BACKEND_DIR}/drejeskiven_kvittering.caddy" /etc/caddy/conf.d/drejeskiven_kvittering.caddy
+    fi
+    systemctl restart caddy
+    
+    # Wait a bit for startup
+    sleep 2
+    
+    echo "Checking status..."
+    systemctl status opgaver --no-pager
+    
+    echo "Latest log entries (if any):"
+    tail -n 20 "${REMOTE_BACKEND_BASE}/logs/django.log" || echo "Logfil ikke fundet endnu."
+    
+    echo "Services restarted successfully."
+EOF
+
+# ------------------------------------------------------------------------------
+# 2. Frontend Sync & Setup (OpgaverStandalone structure has frontend as sibling)
+# ------------------------------------------------------------------------------
+echo ""
+echo "[Frontend] Syncing frontend code..."
+
+if [ -d "../frontend" ]; then
+    rsync -avz -e "ssh -i $SSH_IDENTITY" --delete \
+        --exclude='.git' \
+        --exclude='node_modules' \
+        --exclude='dist' \
+        --exclude='.env' \
+        ../frontend/ "${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_FRONTEND_DIR}"
+else
+    echo "Error: Frontend directory ../frontend not found!"
+    exit 1
+fi
+
+echo "[Frontend] Executing remote build tasks..."
+ssh -i "$SSH_IDENTITY" "${REMOTE_USER}@${REMOTE_HOST}" "bash -s" <<EOF
+    set -e
+    cd "${REMOTE_FRONTEND_DIR}"
+
+    echo "Installing frontend dependencies..."
+    npm install
+
+    echo "Building frontend..."
+    npm run build
+
+    echo "Deploying build artifacts..."
+    find . -maxdepth 1 -type f -not -name "package.json" -not -name "package-lock.json" -delete
+    rm -rf assets
+
+    cp -a dist/. .
+    rm -rf dist
+
+    echo "Fixing ownership for frontend files..."
+    chown -R www-data:www-data "${REMOTE_FRONTEND_DIR}"
+    echo "Frontend deployment complete."
+EOF
+
+echo ""
+echo "========================================================"
+echo "Sync & Deployment Complete!"
+echo "========================================================"

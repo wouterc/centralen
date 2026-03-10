@@ -1,0 +1,27 @@
+drejeskiven.codebakery.dk {
+    root * /var/www/drejeskiven/dist
+    encode zstd gzip
+    try_files {path} {path}/ /index.html
+    file_server
+}
+
+drejeskiven.bizyman.com {
+    root * /var/www/drejeskiven_bizyman/dist
+    encode zstd gzip
+    try_files {path} {path}/ /index.html
+    file_server
+}
+
+kvittering.codebakery.dk {
+    root * /var/www/kvittering
+    encode zstd gzip
+    try_files {path} {path}/ /index.html
+    file_server
+}
+
+kvittering.bizyman.com {
+    root * /var/www/kvittering_bizyman
+    encode zstd gzip
+    try_files {path} {path}/ /index.html
+    file_server
+}

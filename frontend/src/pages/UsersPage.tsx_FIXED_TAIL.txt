@@ -1,0 +1,84 @@
+                                    {state.teams.filter(t => t.navn.toLowerCase().includes(teamSearchQuery.toLowerCase())).map(team => {
+                                        const isEditing = editingTeamId === team.id;
+                                        return (
+                                            <div key={team.id} className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col group transition-all hover:shadow-lg hover:border-indigo-100">
+                                                <div className="px-6 py-4 bg-gray-50/50 border-b border-gray-100 flex justify-between items-center">
+                                                    {isEditing ? (
+                                                        <div className="flex gap-2 items-center flex-1 mr-2">
+                                                            <input
+                                                                value={editTeamForm.navn || ''}
+                                                                onChange={e => setEditTeamForm({ ...editTeamForm, navn: e.target.value })}
+                                                                onClick={e => e.stopPropagation()}
+                                                                className="bg-white border border-indigo-200 rounded px-2 py-1 text-sm font-bold flex-1 outline-none focus:ring-2 focus:ring-indigo-400"
+                                                            />
+                                                            <input
+                                                                type="color"
+                                                                value={editTeamForm.color || '#3b82f6'}
+                                                                onChange={e => setEditTeamForm({ ...editTeamForm, color: e.target.value })}
+                                                                onClick={e => e.stopPropagation()}
+                                                                className="w-8 h-8 rounded-lg border border-indigo-200 cursor-pointer p-1"
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex items-center gap-2">
+                                                            <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: team.color || '#3b82f6' }} />
+                                                            <span className="font-black text-gray-800 tracking-tight">{team.navn}</span>
+                                                        </div>
+                                                    )}
+                                                    <div className="flex gap-1 shrink-0">
+                                                        {isEditing ? (
+                                                            <button onClick={handleTeamEditSave} className="p-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700"><Save size={14} /></button>
+                                                        ) : (
+                                                            <button onClick={() => { setEditingTeamId(team.id); setEditTeamForm(team); }} className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-white rounded-lg transition-all"><Palette size={14} /></button>
+                                                        )}
+                                                        <button onClick={() => handleTeamDelete(team.id)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-all"><Trash2 size={14} /></button>
+                                                    </div>
+                                                </div>
+                                                <div className="p-6 flex-1">
+                                                    <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Medlemmer</div>
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {team.medlemmer.map(uid => {
+                                                            const u = state.users.find(x => x.id === uid);
+                                                            if (!u) return null;
+                                                            return (
+                                                                <div
+                                                                    key={uid}
+                                                                    className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors shadow-sm"
+                                                                    style={{
+                                                                        backgroundColor: `${team.color || '#3b82f6'}10`,
+                                                                        borderColor: `${team.color || '#3b82f6'}30`,
+                                                                        color: team.color || '#3b82f6'
+                                                                    }}
+                                                                >
+                                                                    <span>{u.username}</span>
+                                                                    <button
+                                                                        onClick={() => toggleMember(team, uid)}
+                                                                        className="transition-colors hover:opacity-70"
+                                                                        style={{ color: team.color || '#3b82f6' }}
+                                                                    >
+                                                                        <X size={12} />
+                                                                    </button>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                        {team.medlemmer.length === 0 && <span className="text-xs text-gray-300 italic">Ingen medlemmer endnu</span>}
+                                                    </div>
+                                                </div>
+                                                <div className="px-6 py-3 bg-gray-50/30 border-t border-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                                                    {team.medlemmer.length} MEDLEMMER
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default UsersPage;

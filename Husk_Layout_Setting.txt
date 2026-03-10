@@ -1,0 +1,45 @@
+# Layout og Design Opsamling (Dansk)
+
+Her er en oversigt over de layout-settings og klasser vi bruger på tværs af applikationen (baseret på Tailwind CSS).
+
+## Generelt Layout
+*   **Hovedbaggrund:** `bg-gray-100` (Bruges på main content area)
+*   **Sidebar (Venstre Menu):**
+    *   Baggrund: `bg-gray-800`
+    *   Tekst: `text-white`
+    *   Hover effekt: `hover:bg-gray-700`
+    *   Aktivt menupunkt: `bg-gray-900`
+*   **Sideoverskrifter:** `text-2xl font-bold text-gray-800`
+*   **Container Padding:** Ofte `p-4` (eller `p-4 sm:p-6 lg:p-8` på detaljesider)
+
+## Tabeller og Lister (f.eks. Sagsoversigt)
+*   **Tabel Header:** `bg-gray-800 text-white text-xs uppercase font-semibold`
+*   **Tabel Indhold:** `text-gray-700 text-xs`
+*   **Rækker:**
+    *   Generelt: `border-b border-gray-200`
+    *   Hover: `hover:bg-gray-100`
+    *   Deadline (Tæt på): `bg-orange-50 border-l-4 border-l-orange-500`
+    *   Deadline (Overskredet): `bg-red-50 border-l-4 border-l-red-500`
+
+## Filtrering og Værktøjslinjer
+*   **Filter Boks (Sagsoversigt):** `bg-gray-300 rounded-lg border border-gray-400 p-2`
+*   **Toolbar (Opgaver):** `bg-white shadow-sm`
+*   **Input felter:**
+    *   Standard: `border border-gray-300 rounded-md px-2 py-1 h-[30px] text-sm`
+    *   Baggrund ofte: `bg-white` eller `bg-gray-50`
+
+## Knapper
+*   **Primær (Opret/Gem):** `bg-blue-600 text-white hover:bg-blue-700` (Ofte `rounded-full` eller `rounded-md`)
+*   **Sekundær / Ikoner:**
+    *   Neutral: `text-gray-500`
+    *   Hover actions: `hover:text-blue-600` (Edit), `hover:text-green-600` (View), `hover:text-red-700` (Delete/Warning)
+*   **Nulstil/Luk:** `text-gray-700 hover:bg-gray-400/50`
+
+## Tabs (Sagsdetaljer)
+*   **Menu Container:** `bg-white border-r border-gray-200`
+*   **Aktiv Fane:** `bg-blue-50 text-blue-700 border-l-4 border-blue-600`
+*   **Inaktiv Fane:** `text-gray-600 hover:bg-gray-50`
+
+## Modaler
+*   **Overlay:** `bg-black bg-opacity-50`
+*   **Boks:** `bg-white rounded-lg shadow-xl`

@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+    --app-input-border-color: #94a3b8;
+    --app-input-border-focus: #3b82f6;
+    --app-input-bg: #ffffff;
+}
+
+input,
+select,
+textarea {
+    border-color: var(--app-input-border-color) !important;
+    background-color: var(--app-input-bg);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--app-input-border-focus) !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+/* Quill Editor Customization */
+.quill-editor {
+    display: flex;
+    flex-direction: column;
+}
+
+.quill-editor .ql-container {
+    flex: 1;
+    font-size: 0.875rem !important;
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.ql-toolbar.ql-snow {
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+    background-color: #f8fafc;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Premium Scrollbar */
+.custom-scrollbar::-webkit-scrollbar,
+main::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+main::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+main::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.4);
+    border-radius: 10px;
+    transition: background 0.2s;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+main::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.6);
+    background-clip: padding-box;
+}
+
+/* Support for ReactQuill Read-Only View in Vidensbank */
+.vidensbank-view-read-only .ql-container {
+    font-family: inherit !important;
+    font-size: 1.05rem !important;
+    border: none !important;
+}
+
+.vidensbank-view-read-only .ql-editor {
+    padding: 1.25rem !important;
+    line-height: 1.6;
+    color: #1f2937;
+    /* gray-800 */
+}
+
+.vidensbank-view-read-only .ql-editor p {
+    margin-bottom: 0.875rem !important;
+}
+
+.vidensbank-view-read-only .ql-editor h1,
+.vidensbank-view-read-only .ql-editor h2,
+.vidensbank-view-read-only .ql-editor h3 {
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 800 !important;
+    color: #111827;
+}
+
+/* Premium Table Styling for Vidensbank content */
+.vidensbank-view-read-only .ql-editor table {
+    width: auto !important;
+    min-width: 300px;
+    max-width: 100% !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    margin: 1.5rem 0 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+.vidensbank-view-read-only .ql-editor table td {
+    border: 1px solid #f3f4f6 !important;
+    padding: 8px 12px !important;
+}
+
+.vidensbank-view-read-only .ql-editor table th {
+    background-color: #f9fafb !important;
+    color: #374151 !important;
+    font-weight: 700 !important;
+    padding: 10px 12px !important;
+    border-bottom: 2px solid #e5e7eb !important;
+    text-align: left !important;
+}

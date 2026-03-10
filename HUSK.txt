@@ -1,0 +1,100 @@
+
+# 🚀 PROJEKT: Centralen (Tidligere OpgaverStandalone)
+
+# Start din agent med at sige: 
+Husk at tjekke patterns.md, især omkring N+1 og localization." Når du eksplicit nævner filen, vægter jeg de instruktioner meget højere i min nuværende kontekst.
+
+##################################################################################################
+######### du kan bruge ctrl+shift+f4 eller ctrl+alt+a til at starte det hele op ##################
+######### (Genvejen kører nu det universelle 'Start Project' task automatisk) ####################
+######### Du kan også køre ./startlocal.ps1 i en terminal ########################################
+##################################################################################################
+
+
+### *** Daglig Opstart (Lokal Udvikling) ***
+Åbn 2 terminaler:
+
+1. **Terminal (Backend):**
+   ```powershell
+   cd c:\DEV\Centralen\backend
+   ..\venv\Scripts\Activate.ps1
+   python manage.py runserver 8030
+   ```
+   *Admin:* [http://127.0.0.1:8030/admin/](http://127.0.0.1:8030/admin/)
+
+2. **Terminal (Frontend):**
+   ```powershell
+   cd c:\DEV\Centralen\frontend
+   npm run dev
+   ```
+   *App:* [http://localhost:5180/](http://localhost:5180/)
+
+---
+
+### 🔄 SYNKRONISERING & DEPLOYMENT
+
+**Fra Windows:**
+- Kør filen `c:\DEV\Centralen\backend\Kør_WSL_Sync.bat`
+- Eller brug **Ctrl+Shift+B** (Default Build Task) i VS Code.
+
+**Fra WSL (Terminal):**
+```bash
+cd /mnt/c/DEV/Centralen/backend
+./sync
+```
+*Dette synkroniserer både backend og frontend til serveren.*
+
+---
+
+### 🌐 SERVER FORBINDELSE (PRODUKTION)
+
+**SSH Login:**
+```bash
+ssh -i ~/.ssh/id_wsl root@193.104.202.65
+```
+*Domæne:* [https://centralen.bizyman.com](https://centralen.bizyman.com)
+
+**Stier på serveren:**
+- Base: `/var/www/opgaver`
+- Backend: `/var/www/opgaver/backend`
+- Frontend: `/var/www/opgaver/frontend` (build result)
+- Logs: `/var/www/opgaver/logs/django.log`
+
+**Systemd Service:**
+- `systemctl status opgaver`
+- `systemctl restart opgaver`
+
+---
+
+### 📊 DATA SYNKRONISERING (DUMP/LOAD)
+
+**1. Dump data fra produktion:**
+```bash
+python manage.py dumpdata --output=data_dump.json --indent=2 --exclude=contenttypes --exclude=auth.permission
+```
+
+**2. Reset lokal database (valgfrit):**
+```bash
+python manage.py flush
+```
+
+**3. Indlæs data lokalt:**
+```bash
+python manage.py loaddata data_dump.json
+```
+
+---
+
+### 🛠️ KODESTANDARDER (VIGTIGT!)
+
+**1. DJANGO PERFORMANCE (The "N+1 Problem")**
+Hver gang du tilføjer en relation (ForeignKey eller ManyToMany) i en Serializer (f.eks. i `opgaver/serializers.py` eller `vidensbank/serializers.py`), SKAL du opdatere ViewSet'et.
+
+- **ForeignKey:** Tilføj `.select_related('feltnavn')` til queryset.
+- **ManyToMany / Reverse Relation:** Tilføj `.prefetch_related('feltnavn')` til queryset.
+
+*Eksempel:* Hvis `ejer` tilføjes til `OpgaveSerializer`:
+Gå til `OpgaveViewSet.get_queryset()` og tilføj `.select_related('ejer')`.
+
+**2. Frontend Ikoner**
+Brug [lucide.dev](https://lucide.dev) til ikoner via `lucide-react`.

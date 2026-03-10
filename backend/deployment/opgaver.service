@@ -1,0 +1,22 @@
+[Unit]
+Description=gunicorn daemon for Opgaver Standalone Project
+After=network.target
+
+[Service]
+# Bruger og gruppe der kører processen.
+User=www-data
+Group=www-data
+
+# Arbejdsmappe
+WorkingDirectory=/var/www/opgaver/backend
+
+# Kommando til at starte serveren
+Environment="DJANGO_SETTINGS_MODULE=config.settings"
+ExecStart=/var/www/opgaver/backend/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 5 \
+          --bind unix:/var/www/opgaver/opgaver.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

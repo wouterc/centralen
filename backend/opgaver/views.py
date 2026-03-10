@@ -9,8 +9,9 @@ from .serializers import (
     PinboardPostSerializer, PinboardPostEvaluationSerializer,
     PinboardPostListSerializer
 )
+from core.mixins import CompanyFilterMixin
 
-class OpgaveViewSet(viewsets.ModelViewSet):
+class OpgaveViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = Opgave.objects.all() # Required for router basename
     filterset_fields = ['status', 'ansvarlige', 'prioritet']
 
@@ -22,8 +23,8 @@ class OpgaveViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         
-        # Base query with common optimizations
-        qs = Opgave.objects.prefetch_related(
+        # Base query with common optimizations and company filtering from mixin
+        qs = super().get_queryset().prefetch_related(
             'ansvarlige', 
             'oprettet_af',
             'team',
@@ -63,7 +64,8 @@ class OpgaveViewSet(viewsets.ModelViewSet):
         )
 
     def perform_create(self, serializer):
-        serializer.save(oprettet_af=self.request.user)
+        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        serializer.save(oprettet_af=self.request.user, company=company)
 
     def perform_update(self, serializer):
         print("PERFORM_UPDATE data:", self.request.data)
@@ -155,7 +157,8 @@ class OpgaveKommentarViewSet(viewsets.ModelViewSet):
             raise permissions.PermissionDenied("Du kan kun slette dine egne kommentarer.")
         instance.delete()
 
-class PinboardPostViewSet(viewsets.ModelViewSet):
+class PinboardPostViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
+    queryset = PinboardPost.objects.all()
     def get_serializer_class(self):
         if self.action == 'list':
             return PinboardPostListSerializer
@@ -167,7 +170,7 @@ class PinboardPostViewSet(viewsets.ModelViewSet):
         
         # Optimize fetch according to patterns.md
         # Annotate counts to avoid N+1 in evaluation_summary
-        qs = PinboardPost.objects.annotate(
+        qs = super().get_queryset().annotate(
             eval_count=Count('evalueringer', distinct=True),
             good_idea_count=Count('evalueringer', filter=Q(evalueringer__evaluering='GOD_IDE'), distinct=True),
             dont_know_count=Count('evalueringer', filter=Q(evalueringer__evaluering='INGEN_MENING'), distinct=True),
@@ -215,7 +218,8 @@ class PinboardPostViewSet(viewsets.ModelViewSet):
         return qs
 
     def perform_create(self, serializer):
-        serializer.save(oprettet_af=self.request.user)
+        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        serializer.save(oprettet_af=self.request.user, company=company)
 
     @action(detail=True, methods=['post'])
     def archive(self, request, pk=None):

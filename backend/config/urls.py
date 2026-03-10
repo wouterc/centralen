@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from core.views import UserViewSet, TeamViewSet, login_view, logout_view, global_search
+from core.views import UserViewSet, TeamViewSet, login_view, logout_view, global_search, get_translations_view
 from opgaver.views import OpgaveViewSet, OpgaveKommentarViewSet, PinboardPostViewSet
 
 router = DefaultRouter()
@@ -17,6 +17,7 @@ urlpatterns = [
     path('api/login/', login_view, name='api-login'),
     path('api/logout/', logout_view, name='api-logout'),
     path('api/search/', global_search, name='global-search'),
+    path('api/translations/', get_translations_view, name='get-translations'),
     path('api/', include(router.urls)),
     path('api/vidensbank/', include('vidensbank.urls')),
     path('api/tidsregistrering/', include('tidsregistrering.urls')),

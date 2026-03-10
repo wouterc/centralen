@@ -3,11 +3,13 @@ import { Download, Calendar, Edit, ChevronLeft, ChevronRight } from 'lucide-reac
 import type { Tidreg } from '../../types/tidsregistrering';
 import { api } from '../../api';
 import EditRegistrationModal from './EditRegistrationModal';
+import { useTranslation } from '../../services/translationService';
 
 interface OverviewViewProps {
 }
 
 const OverviewView: React.FC<OverviewViewProps> = () => {
+    const { t } = useTranslation();
     // Utilities
     const getWeekNumber = (d: Date) => {
         const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -227,13 +229,13 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                             onClick={() => setActiveTab('weekly')}
                             className={`px-4 py-2 text-xs font-black rounded-lg transition-all ${activeTab === 'weekly' ? 'bg-gray-800 text-white shadow-md' : 'text-gray-400 hover:text-gray-800'}`}
                         >
-                            UGEOVERSIGT
+                            {t('time.overview_weekly', 'WEEKLY OVERVIEW')}
                         </button>
                         <button
                             onClick={() => setActiveTab('period')}
                             className={`px-4 py-2 text-xs font-black rounded-lg transition-all ${activeTab === 'period' ? 'bg-gray-800 text-white shadow-md' : 'text-gray-400 hover:text-gray-800'}`}
                         >
-                            PERIODE
+                            {t('time.overview_period', 'PERIOD')}
                         </button>
                     </div>
 
@@ -306,7 +308,7 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                     className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md transition-all"
                 >
                     {loading ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Download size={16} />}
-                    EKSPORTER CSV
+                    {t('time.overview_export_csv', 'EXPORT CSV')}
                 </button>
             </div>
 
@@ -316,11 +318,11 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                     <table className="w-full text-left border-collapse">
                         <thead className="sticky top-0 bg-gray-50 border-b border-gray-100 z-10">
                             <tr>
-                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Dato</th>
-                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Tid</th>
-                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Kode</th>
-                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">Beskrivelse</th>
-                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Handling</th>
+                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('time.overview_col_date', 'Date')}</th>
+                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('time.overview_col_time', 'Time')}</th>
+                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('time.overview_col_code', 'Code')}</th>
+                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('time.overview_col_desc', 'Description')}</th>
+                                <th className="px-6 py-1 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">{t('time.overview_col_action', 'Action')}</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-50">
@@ -358,7 +360,7 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                             {registrations.length === 0 && (
                                 <tr>
                                     <td colSpan={5} className="px-6 py-20 text-center">
-                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">Ingen registreringer fundet for denne periode</p>
+                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">{t('time.overview_no_registrations', 'No registrations found for this period')}</p>
                                     </td>
                                 </tr>
                             )}
@@ -368,17 +370,17 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                     <table className="w-full text-left border-collapse tabular-nums">
                         <thead className="sticky top-0 bg-gray-50 border-b border-gray-100 z-10 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                             <tr>
-                                <th className="px-4 py-4">Gruppe</th>
-                                <th className="px-4 py-4">Kode</th>
-                                <th className="px-4 py-4">Beskrivelse</th>
-                                <th className="px-2 py-4 text-right">Man</th>
-                                <th className="px-2 py-4 text-right">Tir</th>
-                                <th className="px-2 py-4 text-right">Ons</th>
-                                <th className="px-2 py-4 text-right">Tor</th>
-                                <th className="px-2 py-4 text-right">Fre</th>
-                                <th className="px-2 py-4 text-right text-red-400">Lør</th>
-                                <th className="px-2 py-4 text-right text-red-400">Søn</th>
-                                <th className="px-4 py-4 text-right text-gray-800">Total</th>
+                                <th className="px-4 py-4">{t('time.overview_col_group', 'Group')}</th>
+                                <th className="px-4 py-4">{t('time.overview_col_code', 'Code')}</th>
+                                <th className="px-4 py-4">{t('time.overview_col_desc', 'Description')}</th>
+                                <th className="px-2 py-4 text-right">{t('time.overview_col_mon', 'Mon')}</th>
+                                <th className="px-2 py-4 text-right">{t('time.overview_col_tue', 'Tue')}</th>
+                                <th className="px-2 py-4 text-right">{t('time.overview_col_wed', 'Wed')}</th>
+                                <th className="px-2 py-4 text-right">{t('time.overview_col_thu', 'Thu')}</th>
+                                <th className="px-2 py-4 text-right">{t('time.overview_col_fri', 'Fri')}</th>
+                                <th className="px-2 py-4 text-right text-red-400">{t('time.overview_col_sat', 'Sat')}</th>
+                                <th className="px-2 py-4 text-right text-red-400">{t('time.overview_col_sun', 'Sun')}</th>
+                                <th className="px-4 py-4 text-right text-gray-800">{t('time.overview_col_total', 'Total')}</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-50 whitespace-nowrap">
@@ -406,14 +408,14 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                             {processedWeekly.length === 0 && (
                                 <tr>
                                     <td colSpan={11} className="px-6 py-20 text-center">
-                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">Ingen data for denne uge</p>
+                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">{t('time.overview_no_data', 'No data for this week')}</p>
                                     </td>
                                 </tr>
                             )}
                         </tbody>
                         <tfoot className="sticky bottom-0 bg-gray-100 border-t-2 border-gray-200 font-black text-xs text-gray-700">
                             <tr>
-                                <td colSpan={3} className="px-4 py-3 text-right uppercase tracking-widest text-[10px]">Weekly Total:</td>
+                                <td colSpan={3} className="px-4 py-3 text-right uppercase tracking-widest text-[10px]">{t('time.overview_weekly_total', 'Weekly Total:')}</td>
                                 <td className="px-2 py-3 text-right">{minToDecimal(weekTotals[1])}</td>
                                 <td className="px-2 py-3 text-right">{minToDecimal(weekTotals[2])}</td>
                                 <td className="px-2 py-3 text-right">{minToDecimal(weekTotals[3])}</td>

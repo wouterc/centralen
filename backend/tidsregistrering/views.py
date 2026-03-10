@@ -4,18 +4,20 @@ from .serializers import (
     KoderGrupperSerializer, OpgaverKodeSerializer, TidregSerializer, 
     BrugerProfilTimeSerializer, BrugerIndstillingTimeSerializer
 )
+from core.mixins import CompanyFilterMixin
 
-class KoderGrupperViewSet(viewsets.ModelViewSet):
+class KoderGrupperViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = KoderGrupper.objects.all()
     serializer_class = KoderGrupperSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class OpgaverKodeViewSet(viewsets.ModelViewSet):
+class OpgaverKodeViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = OpgaverKode.objects.select_related('gruppe').all()
     serializer_class = OpgaverKodeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class TidregViewSet(viewsets.ModelViewSet):
+class TidregViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
+    queryset = Tidreg.objects.all()
     serializer_class = TidregSerializer
     permission_classes = [permissions.IsAuthenticated]
     filterset_fields = {
@@ -23,10 +25,11 @@ class TidregViewSet(viewsets.ModelViewSet):
     }
 
     def get_queryset(self):
-        return Tidreg.objects.select_related('bruger', 'opgave_kode').filter(bruger=self.request.user)
+        return super().get_queryset().select_related('bruger', 'opgave_kode').filter(bruger=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(bruger=self.request.user)
+        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        serializer.save(bruger=self.request.user, company=company)
 
 class BrugerProfilTimeViewSet(viewsets.ModelViewSet):
     serializer_class = BrugerProfilTimeSerializer

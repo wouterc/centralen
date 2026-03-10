@@ -3,9 +3,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Users, LogOut, LibraryBig, Clock, Calendar, Pin, Briefcase } from 'lucide-react';
 import { useAppState } from '../StateContext';
 import GlobalSearch from './GlobalSearch';
+import { useTranslation } from '../services/translationService';
 
 const Navigation: React.FC = () => {
     const { state, logout } = useAppState();
+    const { t } = useTranslation();
     const location = useLocation();
 
     const [showUserDropdown, setShowUserDropdown] = React.useState(false);
@@ -45,7 +47,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <LayoutDashboard size={18} />
-                        Tavlen
+                        {t('nav.board', 'Board')}
                     </NavLink>
                     <NavLink
                         to="/vidensbank"
@@ -55,7 +57,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <LibraryBig size={18} />
-                        Vidensbank
+                        {t('nav.knowledge', 'Knowledge Base')}
                     </NavLink>
                     <NavLink
                         to="/tidsregistrering"
@@ -65,7 +67,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <Clock size={18} />
-                        Tidsregistrering
+                        {t('nav.time', 'Time Tracking')}
                     </NavLink>
                     <NavLink
                         to="/aarshjul"
@@ -75,7 +77,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <Calendar size={18} />
-                        Årshjul
+                        {t('nav.calendar', 'Annual Calendar')}
                     </NavLink>
                     <NavLink
                         to="/prikbord"
@@ -85,7 +87,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <Pin size={18} />
-                        Prikbord
+                        {t('nav.pinboard', 'Pinboard')}
                     </NavLink>
                     <NavLink
                         to="/apps"
@@ -95,7 +97,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <Briefcase size={18} />
-                        Apps
+                        {t('nav.apps', 'Apps')}
                     </NavLink>
                     <NavLink
                         to="/users"
@@ -105,7 +107,7 @@ const Navigation: React.FC = () => {
                         `}
                     >
                         <Users size={18} />
-                        Brugere & Teams
+                        {t('nav.users', 'Users & Teams')}
                     </NavLink>
                 </div>
             </div>
@@ -142,8 +144,8 @@ const Navigation: React.FC = () => {
                                                 {state.currentUser.username}
                                             </div>
                                             <div className="text-[10px] font-black text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded uppercase tracking-widest inline-block">
-                                                {state.currentUser.role === 'ADMIN' ? 'Administrator' :
-                                                    state.currentUser.role === 'SUPERUSER' ? 'Superbruger' : 'Medlem'}
+                                                {state.currentUser.role === 'ADMIN' ? t('role.admin', 'Administrator') :
+                                                    state.currentUser.role === 'SUPERUSER' ? t('role.superuser', 'Superuser') : t('role.member', 'Member')}
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +159,7 @@ const Navigation: React.FC = () => {
                                         className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
                                     >
                                         <LogOut size={18} />
-                                        Log ud
+                                        {t('nav.logout', 'Log Out')}
                                     </button>
                                 </div>
                             </div>

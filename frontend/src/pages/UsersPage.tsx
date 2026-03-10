@@ -26,9 +26,11 @@ import {
 import type { AarshjulGruppe } from '../types';
 import ConfirmModal from '../components/ui/ConfirmModal';
 import Toast, { type ToastType } from '../components/ui/Toast';
+import { useTranslation } from '../services/translationService';
 
 const UsersPage: React.FC = () => {
     const { state, refreshUsers, refreshTeams, refreshGrupper } = useAppState();
+    const { t } = useTranslation();
 
     const ROLE_LEVELS = {
         'ADMIN': 3,
@@ -417,7 +419,7 @@ const UsersPage: React.FC = () => {
             {/* Left Sidebar Menu */}
             <div className={`bg-gray-900 flex flex-col transition-all duration-300 ${sidebarCollapsed ? 'w-16' : 'w-64'}`}>
                 <div className="h-14 flex items-center px-4 border-b border-gray-800 shrink-0">
-                    {!sidebarCollapsed && <span className="font-black text-white text-lg tracking-tight truncate">Admin Panel</span>}
+                    {!sidebarCollapsed && <span className="font-black text-white text-lg tracking-tight truncate">{t('users.admin_panel', 'Admin Panel')}</span>}
                     <button
                         onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
                         className={`text-gray-400 hover:text-white transition-colors ${sidebarCollapsed ? 'mx-auto' : 'ml-auto'}`}
@@ -432,21 +434,21 @@ const UsersPage: React.FC = () => {
                         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all font-bold text-sm ${activeTab === 'users' ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}
                     >
                         <UserIcon size={20} className="shrink-0" />
-                        {!sidebarCollapsed && <span>Brugere</span>}
+                        {!sidebarCollapsed && <span>{t('users.users_menu', 'Users')}</span>}
                     </button>
                     <button
                         onClick={() => setActiveTab('teams')}
                         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all font-bold text-sm ${activeTab === 'teams' ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}
                     >
                         <Shield size={20} className="shrink-0" />
-                        {!sidebarCollapsed && <span>Teams</span>}
+                        {!sidebarCollapsed && <span>{t('users.teams_menu', 'Teams')}</span>}
                     </button>
                     <button
                         onClick={() => setActiveTab('groups')}
                         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all font-bold text-sm ${activeTab === 'groups' ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}
                     >
                         <Layers size={20} className="shrink-0" />
-                        {!sidebarCollapsed && <span>Årshjul Grupper</span>}
+                        {!sidebarCollapsed && <span>{t('users.groups_menu', 'Annual Cycle Groups')}</span>}
                     </button>
 
                     <div className="mt-auto pt-4 border-t border-gray-800">
@@ -455,7 +457,7 @@ const UsersPage: React.FC = () => {
                             className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-all font-bold text-sm"
                         >
                             <ArrowLeft size={20} className="shrink-0" />
-                            {!sidebarCollapsed && <span>Tilbage til Tavlen</span>}
+                            {!sidebarCollapsed && <span>{t('users.back_to_board', 'Back to Board')}</span>}
                         </Link>
                     </div>
                 </div>
@@ -469,14 +471,14 @@ const UsersPage: React.FC = () => {
                             {activeTab === 'users' && <Users className="text-blue-600" size={24} />}
                             {activeTab === 'teams' && <Shield className="text-indigo-600" size={24} />}
                             {activeTab === 'groups' && <Layers className="text-emerald-600" size={24} />}
-                            {activeTab === 'users' ? 'Brugeradministration' : activeTab === 'teams' ? 'Teamadministration' : 'Årshjul Grupper'}
+                            {t('users.title', 'Users & Teams')}
                         </h2>
 
                         <div className="relative w-full max-w-md">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                             <input
                                 type="text"
-                                placeholder={activeTab === 'users' ? "Søg efter navn eller team..." : activeTab === 'teams' ? "Søg efter team..." : "Søg efter gruppe..."}
+                                placeholder={activeTab === 'users' ? t('users.search_users', "Search for users or teams...") : activeTab === 'teams' ? t('users.search_teams', "Search for team...") : t('users.search_groups', "Search for group...")}
                                 value={activeTab === 'users' ? userSearchQuery : activeTab === 'teams' ? teamSearchQuery : groupSearchQuery}
                                 onChange={e => {
                                     if (activeTab === 'users') setUserSearchQuery(e.target.value);

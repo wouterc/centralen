@@ -29,6 +29,7 @@ import VidensbankViewModal from '../components/vidensbank/VidensbankViewModal';
 import ConfirmModal from '../components/ui/ConfirmModal';
 import Toast, { type ToastType } from '../components/ui/Toast';
 import DOMPurify from 'dompurify';
+import { useTranslation } from '../services/translationService';
 
 interface VidensbankPageProps {
     standalone?: boolean;
@@ -45,7 +46,7 @@ const DraggableArticleCard: React.FC<{
     onRestore?: (v: Viden) => void;
     onPermanentDelete?: (v: Viden) => void;
 }> = ({ viden, onClick, onCopy, onEdit, onDelete, onArchive, onToggleFavorite, onRestore, onPermanentDelete }) => {
-
+    const { t } = useTranslation();
     const isArchived = viden.arkiveret && !viden.slettet;
 
     return (
@@ -64,7 +65,7 @@ const DraggableArticleCard: React.FC<{
                                 color: viden.slettet ? '#ef4444' : isArchived ? '#64748b' : viden.kategori_details?.farve || '#2563eb'
                             }}
                         >
-                            {viden.slettet ? 'Papirkurv' : viden.kategori_details?.navn || 'Ukendt kategori'}
+                            {viden.slettet ? t('vidensbank.trash', 'Trash') : viden.kategori_details?.navn || t('vidensbank.unknown_category', 'Unknown category')}
                         </span>
                         {isArchived && (
                             <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-amber-100 text-amber-700 border border-amber-200">
@@ -203,6 +204,7 @@ const SortableCategoryItem: React.FC<{
 
 const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) => {
     const { state, setState } = useAppState();
+    const { t } = useTranslation();
     const isAdmin = state.currentUser?.role === 'ADMIN' || state.currentUser?.username === 'admin';
 
     const sensors = useSensors(
@@ -403,7 +405,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
         try {
             await api.delete(`/vidensbank/artikler/${targetId}/`);
             setVidensbank(prev => prev.filter(v => v.id !== targetId));
-            showToast("Artikel er nu flyttet til papirkurven", "success");
+            showToast(t('vidensbank.toast_moved_to_trash', 'Article is now moved to trash'), "success");
             loadInitialData(); // Refresh category counts
         } catch (error) {
             console.error("Sletning fejlede", error);
@@ -429,7 +431,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
         try {
             await api.post(`/vidensbank/artikler/${v.id}/restore/`);
             setVidensbank(prev => prev.filter(item => item.id !== v.id));
-            showToast("Artikel er gendannet og flyttet fra papirkurven", "success");
+            showToast(t('vidensbank.toast_restored', 'Article restored from trash'), "success");
             loadInitialData();
         } catch (error) {
             showToast("Kunne ikke gendanne artikel", "error");
@@ -589,17 +591,17 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                         <div>
                             <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3">
                                 <LibraryBig className="text-blue-600" size={32} />
-                                Vidensbank
+                                {t('kb.title', 'Knowledge Base')}
                                 <HelpButton helpPointCode="VIDENSBANK_HELP" className="ml-2" />
                             </h1>
-                            <p className="text-gray-500 mt-1">Samling af viden, skabeloner og vejledninger til sagsbehandling.</p>
+                            <p className="text-gray-500 mt-1">{t('kb.subtitle', 'Collection of knowledge, templates, and guides for case processing.')}</p>
                         </div>
                         <button
                             onClick={() => { setEditingViden(undefined); setIsModalOpen(true); }}
                             className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 shadow-md transition-all font-semibold"
                         >
                             <Plus size={20} />
-                            Tilføj ny viden
+                            {t('kb.add_new', 'Add new knowledge')}
                         </button>
                     </header>
 
@@ -608,13 +610,13 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                             <div className="bg-white p-4 rounded-xl shadow-md border border-gray-300 overflow-y-auto custom-scrollbar flex-1 flex flex-col">
                                 <h2 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
                                     <Filter size={14} />
-                                    Filtre
+                                    {t('kb.filters', 'Filters')}
                                     {(valgtKategoriId || showArchived || showTrash) && (
                                         <button
                                             onClick={() => { setValgtKategoriId(null); setShowArchived(false); setShowTrash(false); }}
                                             className="ml-auto text-blue-600 hover:text-blue-800 normal-case text-xs font-medium"
                                         >
-                                            Ryd
+                                            {t('kb.clear_filters', 'Clear')}
                                         </button>
                                     )}
                                 </h2>
@@ -631,7 +633,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                             <div className={`block w-9 h-5 rounded-full transition-colors ${showArchived ? 'bg-amber-500' : 'bg-gray-300'}`}></div>
                                             <div className={`absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-transform ${showArchived ? 'translate-x-4' : ''}`}></div>
                                         </div>
-                                        <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900 transition-colors">Vis arkiverede</span>
+                                        <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900 transition-colors">{t('kb.show_archived', 'Show archived')}</span>
                                     </label>
 
                                     {isAdmin && (
@@ -640,12 +642,12 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                             className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-lg transition-all border-2 ${showTrash ? 'bg-red-50 border-red-200 text-red-700 font-bold' : 'bg-white border-transparent text-gray-500 hover:bg-gray-50'}`}
                                         >
                                             <Trash2 size={16} className={showTrash ? 'text-red-600' : 'text-gray-400'} />
-                                            <span className="text-xs">Papirkurv (Slettede)</span>
+                                            <span className="text-xs">{t('vidensbank.trash_deleted', 'Trash (Deleted)')}</span>
                                         </button>
                                     )}
                                 </div>
 
-                                <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-2">Kategorier</h3>
+                                <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-2">{t('kb.categories', 'Categories')}</h3>
                                 <DndContext
                                     sensors={sensors}
                                     collisionDetection={closestCenter}
@@ -658,7 +660,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                         >
                                             <div className="flex items-center gap-2">
                                                 <div className="w-5 h-5 shrink-0" /> {/* Spacer to align with draggable items */}
-                                                Alle kategorier
+                                                {t('kb.all_categories', 'All categories')}
                                             </div>
                                         </li>
                                         <SortableContext
@@ -686,7 +688,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                 <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                                 <input
                                     type="text"
-                                    placeholder={showTrash ? "Søg i slettede artikler..." : "Søg i titel eller tekst..."}
+                                    placeholder={showTrash ? t('kb.search_deleted_placeholder', "Search in deleted articles...") : t('kb.search_placeholder', "Search title or text...")}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="w-full pl-12 pr-12 py-3 bg-gray-50 border-0 rounded-lg focus:ring-2 focus:ring-blue-500/20 text-gray-700 outline-none"
@@ -727,15 +729,15 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                         {(!searchTerm && !valgtKategoriId && !showTrash) ? (
                                             <p className="text-gray-400 font-medium">Indtast et emne i søgefeltet eller vælg en kategori for at komme i gang.</p>
                                         ) : showTrash && vidensbank.length === 0 ? (
-                                            <p className="text-gray-400 font-medium">Papirkurven er tom.</p>
+                                            <p className="text-gray-400 font-medium">{t('kb.trash_empty', 'The trash is empty.')}</p>
                                         ) : (
                                             <>
-                                                <p className="text-gray-400 font-medium">Vi fandt ikke noget, der matchede din søgning. Prøv med andre søgeord.</p>
+                                                <p className="text-gray-400 font-medium">{t('kb.no_results', 'We found no results matching your search. Try different keywords.')}</p>
                                                 <button
                                                     onClick={() => { setSearchTerm(''); setValgtKategoriId(null); setShowTrash(false); }}
                                                     className="text-blue-600 hover:underline mt-2 text-sm"
                                                 >
-                                                    Ryd alle filtre
+                                                    {t('kb.clear_all_filters', 'Clear all filters')}
                                                 </button>
                                             </>
                                         )}
@@ -786,9 +788,9 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                         isOpen={!!deletingViden}
                         onClose={() => setDeletingViden(null)}
                         onConfirm={handleDelete}
-                        title="Flyt til papirkurv"
-                        message={`Er du sikker på at du vil slette "${deletingViden?.titel}"? Den vil blive flyttet til papirkurven og kan gendannes af en administrator.`}
-                        confirmText="Slet (flyt til papirkurv)"
+                        title={t('vidensbank.modal_delete_title', "Move to trash")}
+                        message={t('vidensbank.modal_delete_confirm', "Are you sure you want to delete \"{{title}}\"? It will be moved to the trash and can be restored by an administrator.", { title: deletingViden?.titel })}
+                        confirmText={t('vidensbank.modal_delete_button', "Delete (move to trash)")}
                         isDestructive={true}
                     />
 

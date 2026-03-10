@@ -3,9 +3,11 @@ import type { AppLink, AppPurpose } from '../types';
 import { appLinkService } from '../services/appLinkService';
 import { useAppState } from '../StateContext';
 import { Search, Plus, X, ExternalLink, Folder, FileText, Tag, Briefcase, Link, Pencil, Trash2, AlertTriangle, ChevronDown, ChevronUp } from 'lucide-react';
+import { useTranslation } from '../services/translationService';
 
 const AppsPage: React.FC = () => {
     const { state } = useAppState();
+    const { t } = useTranslation();
     const [apps, setApps] = useState<AppLink[]>([]);
     const [purposes, setPurposes] = useState<AppPurpose[]>([]);
     const [loading, setLoading] = useState(true);
@@ -215,8 +217,8 @@ const AppsPage: React.FC = () => {
                                 <Briefcase size={24} />
                             </div>
                             <div>
-                                <h1 className="text-2xl font-black text-gray-800 tracking-tighter leading-none uppercase">Apps & Dokumenter</h1>
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Direkte adgang til drevet</p>
+                                <h1 className="text-2xl font-black text-gray-800 tracking-tighter leading-none uppercase">{t('apps.title', 'Applications')}</h1>
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">{t('apps.subtitle', 'Links to external systems and tools.')}</p>
                             </div>
                         </div>
 
@@ -225,7 +227,7 @@ const AppsPage: React.FC = () => {
                                 <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/search:text-indigo-600 transition-colors" />
                                 <input
                                     type="text"
-                                    placeholder="Søg i apps, teams eller formål..."
+                                    placeholder={t('apps.search_placeholder', "Search apps, teams, or purposes...")}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-2 text-sm font-medium text-gray-700 focus:border-indigo-500 focus:bg-white focus:outline-none transition-all w-80 focus:w-96"
@@ -409,7 +411,7 @@ const AppsPage: React.FC = () => {
                                         {showTeamDropdown && (
                                             <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl py-2 z-120 max-h-60 overflow-y-auto custom-scrollbar animate-in slide-in-from-top-2 duration-200">
                                                 {state.teams.filter(t => !formData.teams.includes(t.id)).length === 0 ? (
-                                                    <div className="px-4 py-3 text-xs font-bold text-gray-400 text-center uppercase tracking-widest">Alle teams er valgt</div>
+                                                    <div className="px-4 py-3 text-xs font-bold text-gray-400 text-center uppercase tracking-widest">{t('apps.teams.all_selected', 'All teams selected')}</div>
                                                 ) : (
                                                     state.teams.filter(t => !formData.teams.includes(t.id)).map(team => (
                                                         <button

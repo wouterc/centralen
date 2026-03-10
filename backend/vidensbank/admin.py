@@ -3,14 +3,14 @@ from .models import VidensKategori, Viden, HjaelpPunkt
 
 @admin.register(VidensKategori)
 class VidensKategoriAdmin(admin.ModelAdmin):
-    list_display = ('navn', 'farve', 'er_privat', 'beskrivelse')
-    list_filter = ('er_privat',)
+    list_display = ('navn', 'company', 'farve', 'er_privat')
+    list_filter = ('company', 'er_privat')
     search_fields = ('navn',)
 
 @admin.register(Viden)
 class VidenAdmin(admin.ModelAdmin):
-    list_display = ('titel', 'kategori', 'oprettet_af', 'arkiveret', 'slettet', 'oprettet')
-    list_filter = ('kategori', 'arkiveret', 'slettet', 'oprettet')
+    list_display = ('titel', 'company', 'kategori', 'oprettet_af', 'arkiveret')
+    list_filter = ('company', 'kategori', 'arkiveret', 'slettet')
     search_fields = ('titel', 'indhold', 'slug')
     prepopulated_fields = {'slug': ('titel',)}
     autocomplete_fields = ('kategori',)

@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from core.models import Company
 
 def vidensbank_dokument_path(instance, filename):
     return f'vidensbank/{instance.id}/{filename}'
 
 class VidensKategori(models.Model):
-    navn = models.CharField(max_length=100, unique=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='videnskategorier', null=True, blank=True)
+    navn = models.CharField(max_length=100)
     beskrivelse = models.TextField(blank=True, null=True)
     farve = models.CharField(max_length=7, default='#2563eb', help_text="Hex farvekode (f.eks. #2563eb)")
     er_privat = models.BooleanField(default=False, verbose_name=_('Privat kategori'), help_text="Hvis markeret, kan artikler i denne kategori kun ses af den person der har oprettet dem.")
@@ -40,6 +42,7 @@ class VidensKategori(models.Model):
         ordering = ['navn']
 
 class Viden(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='viden_artikler', null=True, blank=True)
     titel = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True, help_text="Unik identifikator til brug i links (f.eks. 'gem-chat-app')")
     kategori = models.ForeignKey(VidensKategori, on_delete=models.PROTECT, related_name='artikler')

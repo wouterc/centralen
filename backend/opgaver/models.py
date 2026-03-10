@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from core.models import Team
+from core.models import Team, Company
 from django.utils.translation import gettext_lazy as _
 
 class OpgaveStatus(models.TextChoices):
@@ -27,6 +27,7 @@ STATUS_ORDER = {
 }
 
 class Opgave(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='opgaver', null=True, blank=True)
     titel = models.CharField(max_length=200)
     beskrivelse = models.TextField(blank=True, verbose_name=_('Beskrivelse (HTML)'))
     
@@ -128,6 +129,7 @@ from django.dispatch import receiver
 
 
 class PinboardPost(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='prikbord_posts', null=True, blank=True)
     titel = models.CharField(max_length=200)
     beskrivelse = models.TextField(blank=True)
     oprettet_af = models.ForeignKey(

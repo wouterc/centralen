@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from core.models import Team
+from django.utils.translation import gettext_lazy as _
+from core.models import Team, Company
 
 class AarshjulGruppe(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='aarshjul_grupper', null=True, blank=True)
     navn = models.CharField(max_length=100)
     raekkefoelge = models.IntegerField(default=0)
     teams = models.ManyToManyField(Team, related_name='aarshjul_grupper', blank=True)
@@ -17,6 +19,7 @@ class AarshjulGruppe(models.Model):
         return self.navn
 
 class Aktivitet(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='aktiviteter', null=True, blank=True)
     navn = models.CharField(max_length=200)
     beskrivelse = models.TextField(blank=True)
     start_dato = models.DateField()

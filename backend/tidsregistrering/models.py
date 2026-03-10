@@ -1,34 +1,40 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from core.models import Company
 
 class KoderGrupper(models.Model):
-    gruppe = models.CharField(max_length=6, unique=True, verbose_name=_('Gruppe'))
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='kodegrupper', null=True, blank=True)
+    gruppe = models.CharField(max_length=6, verbose_name=_('Gruppe'))
     beskrivelse = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Beskrivelse'))
 
     class Meta:
         verbose_name = _('Kodegruppe')
         verbose_name_plural = _('Kodegrupper')
+        unique_together = ('company', 'gruppe')
         ordering = ['gruppe']
 
     def __str__(self):
         return f"{self.gruppe} - {self.beskrivelse}"
 
 class OpgaverKode(models.Model):
-    kode_nr = models.CharField(max_length=50, unique=True, verbose_name=_('KodeNr'))
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='opgavekoder', null=True, blank=True)
+    kode_nr = models.CharField(max_length=50, verbose_name=_('KodeNr'))
     beskrivelse = models.CharField(max_length=255, verbose_name=_('Beskrivelse'))
     mtime = models.CharField(max_length=15, blank=True, null=True, verbose_name=_('Mtime'))
-    gruppe = models.ForeignKey(KoderGrupper, to_field='gruppe', on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('Gruppe'))
+    gruppe = models.ForeignKey(KoderGrupper, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('Gruppe'))
 
     class Meta:
         verbose_name = _('Opgavekode')
         verbose_name_plural = _('Opgavekoder')
+        unique_together = ('company', 'kode_nr')
         ordering = ['kode_nr']
 
     def __str__(self):
         return f"{self.kode_nr} - {self.beskrivelse}"
 
 class Tidreg(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='tidsregistreringer', null=True, blank=True)
     bruger = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tidsregistreringer', verbose_name=_('Bruger'))
     opgave_kode = models.ForeignKey(OpgaverKode, on_delete=models.CASCADE, related_name='registreringer', verbose_name=_('Opgavekode'))
     alias = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Alias'))

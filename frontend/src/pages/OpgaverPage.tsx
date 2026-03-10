@@ -28,6 +28,7 @@ import TaskDetailModal from '../components/opgaver/TaskDetailModal';
 import { Plus, Filter, Search, X, User as UserIcon, ChevronLeft, ChevronRight, PauseCircle, LayoutDashboard, Users } from 'lucide-react';
 import ArchiveDropZone from '../components/opgaver/ArchiveDropZone';
 import ArchiveModal from '../components/opgaver/ArchiveModal';
+import { useTranslation } from '../services/translationService';
 
 const OpgaverBoardContent: React.FC<{
     tasks: Opgave[];
@@ -52,6 +53,7 @@ const OpgaverBoardContent: React.FC<{
     currentTeamId: number | null;
     setCurrentTeamId: (id: number | null) => void;
 }> = (props) => {
+    const { t } = useTranslation();
 
     const handleTaskClick = async (t: Opgave) => {
         props.setEditingTask(t);
@@ -79,9 +81,9 @@ const OpgaverBoardContent: React.FC<{
                     <div>
                         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                             <LayoutDashboard className="text-blue-600" size={28} />
-                            Tavlen
+                            {t('board.title', 'Board')}
                         </h1>
-                        <p className="text-xs text-gray-500">Udvikling og fejlrettelser</p>
+                        <p className="text-xs text-gray-500">{t('board.subtitle', 'Development and bug fixes')}</p>
                     </div>
 
                     {/* Team Selector moved here */}
@@ -99,7 +101,7 @@ const OpgaverBoardContent: React.FC<{
                                 props.setCurrentTeamId(val ? Number(val) : 0);
                             }}
                         >
-                            <option value={0}>Alle teams</option>
+                            <option value={0}>{t('board.all_teams', 'All teams')}</option>
                             {props.teams.map(team => (
                                 <option key={team.id} value={team.id}>{team.navn}</option>
                             ))}
@@ -113,7 +115,7 @@ const OpgaverBoardContent: React.FC<{
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors" size={16} />
                         <input
                             type="text"
-                            placeholder="Søg i opgaver..."
+                            placeholder={t('board.search_placeholder', 'Search tasks...')}
                             className="w-full pl-10 pr-4 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
                             value={props.searchQuery}
                             onChange={(e) => props.setSearchQuery(e.target.value)}
@@ -143,7 +145,7 @@ const OpgaverBoardContent: React.FC<{
                                 ? 'bg-blue-100 text-blue-600 border-blue-200'
                                 : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'
                                 }`}
-                            title="Mine opgaver"
+                            title={t('board.my_tasks', 'My tasks')}
                         >
                             <UserIcon size={16} />
                         </button>
@@ -156,7 +158,7 @@ const OpgaverBoardContent: React.FC<{
                             value={props.filterAnsvarlig}
                             onChange={(e) => props.setFilterAnsvarlig(e.target.value)}
                         >
-                            <option value="">Alle ansvarlige</option>
+                            <option value="">{t('board.all_assignees', 'All assignees')}</option>
                             {props.users.map(u => (
                                 <option key={u.id} value={u.id}>{u.first_name || u.username}</option>
                             ))}
@@ -173,7 +175,7 @@ const OpgaverBoardContent: React.FC<{
                         className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-bold shadow-md hover:bg-blue-700 transition"
                     >
                         <Plus size={18} />
-                        Ny Opgave
+                        {t('board.new_task', 'New Task')}
                     </button>
                 </div>
             </div>
@@ -185,7 +187,7 @@ const OpgaverBoardContent: React.FC<{
                     <TaskColumn
                         key={OpgaveStatus.BACKLOG}
                         id={OpgaveStatus.BACKLOG}
-                        title="Indbakke"
+                        title={t('board.column.backlog', 'Backlog')}
                         tasks={props.getFilteredTasks(OpgaveStatus.BACKLOG)}
                         onTaskClick={handleTaskClick}
                         users={props.users}
@@ -194,7 +196,7 @@ const OpgaverBoardContent: React.FC<{
                             <button
                                 onClick={() => props.setShowOnHold(!props.showOnHold)}
                                 className="p-1 hover:bg-gray-200 rounded-full transition-colors flex items-center"
-                                title={props.showOnHold ? "Skjul On Hold" : "Vis On Hold"}
+                                title={props.showOnHold ? t('board.hide_on_hold', 'Hide On Hold') : t('board.show_on_hold', 'Show On Hold')}
                             >
                                 <span className="flex items-center justify-center w-4 h-4 bg-blue-600 text-white rounded text-[10px] font-bold mr-1 leading-none shadow-sm">P</span>
                                 {props.showOnHold ?
@@ -213,7 +215,7 @@ const OpgaverBoardContent: React.FC<{
                             title={
                                 <div className="flex items-center gap-2">
                                     <PauseCircle size={18} className="text-gray-500" />
-                                    <span>On Hold</span>
+                                    <span>{t('board.column.on_hold', 'On Hold')}</span>
                                 </div>
                             }
                             tasks={props.getFilteredTasks(OpgaveStatus.ON_HOLD)}
@@ -228,9 +230,9 @@ const OpgaverBoardContent: React.FC<{
                         <TaskColumn
                             key={status}
                             id={status}
-                            title={status === OpgaveStatus.TODO ? 'Klar til start' :
-                                status === OpgaveStatus.IN_PROGRESS ? 'Igang' :
-                                    status === OpgaveStatus.TEST ? 'Test' : 'Færdig'}
+                            title={status === OpgaveStatus.TODO ? t('board.column.todo', 'Ready to start') :
+                                status === OpgaveStatus.IN_PROGRESS ? t('board.column.in_progress', 'In progress') :
+                                    status === OpgaveStatus.TEST ? t('board.column.test', 'Testing') : t('board.column.done', 'Done')}
                             tasks={props.getFilteredTasks(status)}
                             onTaskClick={handleTaskClick}
                             users={props.users}

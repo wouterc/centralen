@@ -5,8 +5,10 @@ from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import VidensKategori, Viden, HjaelpPunkt, HjaelpPunktViden
 from .serializers import VidensKategoriSerializer, VidenSerializer, HjaelpPunktSerializer
+from core.mixins import CompanyFilterMixin
 
-class VidensKategoriViewSet(viewsets.ModelViewSet):
+class VidensKategoriViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
+    queryset = VidensKategori.objects.all()
     serializer_class = VidensKategoriSerializer
 
     def get_queryset(self):
@@ -25,13 +27,14 @@ class VidensKategoriViewSet(viewsets.ModelViewSet):
             article_filter = Q(artikler__arkiveret=False, artikler__slettet=False) & Q(artikler__kategori__er_privat=False)
             
         # 2. Annoter kategorier med sikker optælling
-        qs = VidensKategori.objects.annotate(
+        qs = super().get_queryset().annotate(
             artikler_count=Count('artikler', filter=article_filter)
         )
         
         return qs
 
-class VidenViewSet(viewsets.ModelViewSet):
+class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
+    queryset = Viden.objects.all()
     serializer_class = VidenSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['kategori', 'slug', 'arkiveret']
@@ -43,8 +46,8 @@ class VidenViewSet(viewsets.ModelViewSet):
         user = self.request.user
         from django.db.models import Q, Exists, OuterRef
         
-        # 1. Start med alle
-        qs = Viden.objects.all().select_related('kategori', 'oprettet_af')
+        # 1. Start med alle, derfra hvor Mixin lader os se dem
+        qs = super().get_queryset().select_related('kategori', 'oprettet_af')
         
         # 2. Hårdt filter på artikler (Privacy & Slettede)
         if user.is_authenticated:
@@ -109,7 +112,8 @@ class VidenViewSet(viewsets.ModelViewSet):
         instance.save()
 
     def perform_create(self, serializer):
-        serializer.save(oprettet_af=self.request.user)
+        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        serializer.save(oprettet_af=self.request.user, company=company)
 
     @action(detail=True, methods=['post'])
     def toggle_archive(self, request, pk=None):
@@ -131,22 +135,29 @@ class VidenViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def restore(self, request, pk=None):
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and not (hasattr(request.user, 'profile') and request.user.profile.role == 'ADMIN'):
             return Response({'error': 'Unauthorized'}, status=403)
-        instance = Viden.objects.get(pk=pk) # Use direct objects to find slettet=True
+        company = request.user.profile.company if hasattr(request.user, 'profile') else None
+        instance = Viden.objects.filter(pk=pk, company=company).first()
+        if not instance:
+            return Response({'error': 'Not found'}, status=404)
         instance.slettet = False
         instance.save()
         return Response({'status': 'restored'})
 
     @action(detail=True, methods=['delete'])
     def permanent_delete(self, request, pk=None):
-        if not request.user.is_superuser:
+        if not request.user.is_superuser and not (hasattr(request.user, 'profile') and request.user.profile.role == 'ADMIN'):
             return Response({'error': 'Unauthorized'}, status=403)
-        instance = Viden.objects.get(pk=pk)
+        company = request.user.profile.company if hasattr(request.user, 'profile') else None
+        instance = Viden.objects.filter(pk=pk, company=company).first()
+        if not instance:
+            return Response({'error': 'Not found'}, status=404)
         instance.delete()
         return Response({'status': 'deleted permanently'})
 
-class HjaelpPunktViewSet(viewsets.ModelViewSet):
+class HjaelpPunktViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
+    queryset = HjaelpPunkt.objects.all()
     serializer_class = HjaelpPunktSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['kode_navn']
@@ -161,7 +172,7 @@ class HjaelpPunktViewSet(viewsets.ModelViewSet):
         else:
             v_filter = Q(arkiveret=False, slettet=False) & Q(kategori__er_privat=False)
             
-        return HjaelpPunkt.objects.all().prefetch_related(
+        return super().get_queryset().prefetch_related(
             Prefetch(
                 'artikler', 
                 queryset=Viden.objects.filter(v_filter).select_related('kategori', 'oprettet_af')

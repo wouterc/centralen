@@ -4,6 +4,14 @@
 # Start din agent med at sige: 
 Husk at tjekke patterns.md, især omkring N+1 og localization." Når du eksplicit nævner filen, vægter jeg de instruktioner meget højere i min nuværende kontekst.
 
+Hver gang du fremover har lavet ændringer og vil uploade dem, skal du bare køre:
+git add .
+git commit -m "Beskrivelse af ændringer"
+git push
+
+eller ctrl+alt+g
+
+
 ##################################################################################################
 ######### du kan bruge ctrl+shift+f4 eller ctrl+alt+a til at starte det hele op ##################
 ######### (Genvejen kører nu det universelle 'Start Project' task automatisk) ####################

@@ -2,13 +2,14 @@ from rest_framework import viewsets
 from .models import Aktivitet, AarshjulGruppe
 from .serializers import AktivitetSerializer, AarshjulGruppeSerializer
 from django.db.models import Q
+from core.mixins import CompanyFilterMixin
 
-class AarshjulGruppeViewSet(viewsets.ModelViewSet):
+class AarshjulGruppeViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = AarshjulGruppe.objects.all()
     serializer_class = AarshjulGruppeSerializer
 
     def get_queryset(self):
-        queryset = AarshjulGruppe.objects.all()
+        queryset = super().get_queryset()
         team_id = self.request.query_params.get('team_id')
         user = self.request.user
         
@@ -20,12 +21,12 @@ class AarshjulGruppeViewSet(viewsets.ModelViewSet):
             
         return queryset
 
-class AktivitetViewSet(viewsets.ModelViewSet):
+class AktivitetViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = Aktivitet.objects.all()
     serializer_class = AktivitetSerializer
 
     def get_queryset(self):
-        queryset = Aktivitet.objects.all()
+        queryset = super().get_queryset()
         team_id = self.request.query_params.get('team_id')
         user = self.request.user
         

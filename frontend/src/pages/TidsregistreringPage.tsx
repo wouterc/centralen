@@ -7,6 +7,7 @@ import OverviewView from '../components/tidsregistrering/OverviewView';
 import EditRegistrationModal from '../components/tidsregistrering/EditRegistrationModal';
 import { Edit } from 'lucide-react';
 import Toast, { type ToastType } from '../components/ui/Toast';
+import { useTranslation } from '../services/translationService';
 
 type View = 'dashboard' | 'setup' | 'overview';
 
@@ -33,6 +34,7 @@ const ActiveTimer: React.FC<{ startTime: string }> = ({ startTime }) => {
 };
 
 const TidsregistreringPage: React.FC = () => {
+    const { t } = useTranslation();
     const [view, setView] = useState<View>('dashboard');
     const [registreringer, setRegistreringer] = useState<Tidreg[]>([]);
     const [profiler, setProfiler] = useState<BrugerProfilTime[]>([]);
@@ -143,9 +145,9 @@ const TidsregistreringPage: React.FC = () => {
                     <div>
                         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                             <Clock className="text-blue-600" size={24} />
-                            Tidshusker
+                            {t('time.title', 'Time Tracking')}
                         </h1>
-                        <p className="text-xs text-gray-500">Tidsregistrering og overblik</p>
+                        <p className="text-xs text-gray-500">{t('time.subtitle', 'Register your hours and track your time.')}</p>
                     </div>
 
                     <nav className="flex bg-gray-100 rounded-xl p-1 gap-1 border border-gray-200">
@@ -153,19 +155,19 @@ const TidsregistreringPage: React.FC = () => {
                             onClick={() => setView('dashboard')}
                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${view === 'dashboard' ? 'bg-white text-blue-600 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-800'}`}
                         >
-                            ⏱️ Tid
+                            ⏱️ {t('time.add_entry', 'Time')}
                         </button>
                         <button
                             onClick={() => setView('setup')}
                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${view === 'setup' ? 'bg-white text-blue-600 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-800'}`}
                         >
-                            ⚙️ Opsætning
+                            ⚙️ {t('time.setup_tab', 'Setup')}
                         </button>
                         <button
                             onClick={() => setView('overview')}
                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${view === 'overview' ? 'bg-white text-blue-600 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-800'}`}
                         >
-                            📊 Oversigt
+                            📊 {t('time.overview_tab', 'Overview')}
                         </button>
                     </nav>
                 </div>
@@ -176,7 +178,7 @@ const TidsregistreringPage: React.FC = () => {
                     {loading && (
                         <div className="flex flex-col items-center justify-center h-64 text-slate-400">
                             <div className="w-12 h-12 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin mb-4" />
-                            <span className="font-bold text-sm uppercase tracking-widest">Henter dine opgaver...</span>
+                            <span className="font-bold text-sm uppercase tracking-widest">{t('time.loading_tasks', 'Fetching your tasks...')}</span>
                         </div>
                     )}
 
@@ -211,7 +213,7 @@ const TidsregistreringPage: React.FC = () => {
                                             <button
                                                 onClick={(e) => handleEditClick(e, profil)}
                                                 className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-gray-100 rounded-lg transition-all"
-                                                title="Ret tid"
+                                                title={t('time.edit_time', 'Edit time')}
                                             >
                                                 <Edit size={14} />
                                             </button>
@@ -228,7 +230,7 @@ const TidsregistreringPage: React.FC = () => {
                                             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{profil.kode_nr}</p>
                                             <div className="flex items-center gap-1.5">
                                                 <span className={`text-[9px] font-bold uppercase tracking-widest ${isActive ? 'text-emerald-600' : 'text-gray-400'}`}>
-                                                    {isActive ? 'Aktiv' : (latestReg ? 'Sidst registreret' : 'Klar')}
+                                                    {isActive ? t('time.status_active', 'Active') : (latestReg ? t('time.status_last_registered', 'Last registered') : t('time.status_ready', 'Ready'))}
                                                 </span>
                                                 <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-emerald-500 animate-pulse' : 'bg-gray-200'}`} />
                                             </div>
@@ -242,13 +244,13 @@ const TidsregistreringPage: React.FC = () => {
                             {profiler.length === 0 && (
                                 <div className="col-span-full py-20 text-center border-2 border-dashed border-gray-200 rounded-3xl">
                                     <div className="text-gray-300 mb-4 flex justify-center"><Plus size={48} /></div>
-                                    <h3 className="text-gray-500 font-bold text-xl mb-2">Ingen favoritter endnu</h3>
-                                    <p className="text-gray-400 text-sm font-semibold max-w-xs mx-auto">Gå til "Opsætning" for at tilføje dine mest brugte opgavekoder til din oversigt.</p>
+                                    <h3 className="text-gray-500 font-bold text-xl mb-2">{t('time.no_favorites_title', 'No favorites yet')}</h3>
+                                    <p className="text-gray-400 text-sm font-semibold max-w-xs mx-auto">{t('time.no_favorites_desc', 'Go to "Setup" to add your most used task codes to your dashboard.')}</p>
                                     <button
                                         onClick={() => setView('setup')}
-                                        className="mt-6 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md transition-all"
+                                        className="mt-6 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md transition-all uppercase"
                                     >
-                                        OPSÆT NU
+                                        {t('time.setup_now', 'SETUP NOW')}
                                     </button>
                                 </div>
                             )}

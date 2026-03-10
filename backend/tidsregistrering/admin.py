@@ -3,19 +3,20 @@ from .models import KoderGrupper, OpgaverKode, Tidreg, BrugerProfilTime, BrugerI
 
 @admin.register(KoderGrupper)
 class KoderGrupperAdmin(admin.ModelAdmin):
-    list_display = ('gruppe', 'beskrivelse')
+    list_display = ('gruppe', 'company', 'beskrivelse')
+    list_filter = ('company',)
     search_fields = ('gruppe', 'beskrivelse')
 
 @admin.register(OpgaverKode)
 class OpgaverKodeAdmin(admin.ModelAdmin):
-    list_display = ('kode_nr', 'beskrivelse', 'mtime', 'gruppe')
+    list_display = ('kode_nr', 'company', 'beskrivelse', 'gruppe')
+    list_filter = ('company', 'gruppe')
     search_fields = ('kode_nr', 'beskrivelse')
-    list_filter = ('gruppe',)
 
 @admin.register(Tidreg)
 class TidregAdmin(admin.ModelAdmin):
-    list_display = ('bruger', 'opgave_kode', 'fra_tid', 'til_tid', 'aktiv')
-    list_filter = ('aktiv', 'bruger', 'opgave_kode')
+    list_display = ('bruger', 'company', 'opgave_kode', 'fra_tid', 'til_tid', 'aktiv')
+    list_filter = ('company', 'aktiv', 'bruger')
     search_fields = ('kommentar', 'alias')
 
 @admin.register(BrugerProfilTime)

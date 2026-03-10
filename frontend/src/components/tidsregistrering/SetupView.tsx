@@ -3,6 +3,7 @@ import { Search, Plus, Trash2, GripVertical, Pencil } from 'lucide-react';
 import type { OpgaverKode, BrugerProfilTime } from '../../types/tidsregistrering';
 import { api } from '../../api';
 import Toast, { type ToastType } from '../ui/Toast';
+import { useTranslation } from '../../services/translationService';
 
 interface SetupViewProps {
     favorites: BrugerProfilTime[];
@@ -10,6 +11,7 @@ interface SetupViewProps {
 }
 
 const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh }) => {
+    const { t } = useTranslation();
     const [allKoder, setAllKoder] = useState<OpgaverKode[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [localFavorites, setLocalFavorites] = useState<BrugerProfilTime[]>(favorites);
@@ -107,13 +109,13 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh }) => {
                 <div className="p-6 border-b border-gray-100 bg-white">
                     <div className="flex items-center gap-2 mb-4">
                         <div className="w-1 h-4 bg-blue-600 rounded-full" />
-                        <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest">Alle Opgavekoder</h3>
+                        <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest">{t('time.setup_all_codes', 'All Task Codes')}</h3>
                     </div>
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                         <input
                             type="text"
-                            placeholder="Søg i koder..."
+                            placeholder={t('time.setup_search_placeholder', 'Search codes...')}
                             className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-semibold focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -142,8 +144,8 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh }) => {
                     <div className="flex items-center gap-3">
                         <div className="w-1 h-4 bg-emerald-500 rounded-full" />
                         <div>
-                            <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest">Mine Favoritter (Dashboard)</h3>
-                            <p className="text-[10px] text-gray-400 font-semibold">Flyt koderne for at ændre rækkefølgen på din forside.</p>
+                            <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest">{t('time.setup_my_favorites', 'My Favorites (Dashboard)')}</h3>
+                            <p className="text-[10px] text-gray-400 font-semibold">{t('time.setup_drag_info', 'Drag codes to change the sorting order on your dashboard.')}</p>
                         </div>
                     </div>
                 </div>
@@ -169,12 +171,12 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh }) => {
                                     className="flex-1 text-sm font-bold text-gray-700 bg-transparent border-none p-0 focus:ring-0 placeholder-gray-200 truncate"
                                     value={fav.alias || ''}
                                     onChange={(e) => handleUpdateAlias(fav.id, e.target.value)}
-                                    placeholder="Giv opgaven et navn..."
+                                    placeholder={t('time.setup_alias_placeholder', 'Give the task a name...')}
                                 />
                                 <Pencil size={12} className="text-blue-600 transition-opacity" />
                             </div>
                             <div className="flex items-center gap-2 shrink-0">
-                                <span className="h-8 w-[1px] bg-gray-100 mr-2" />
+                                <span className="h-8 w-px bg-gray-100 mr-2" />
                                 <button
                                     onClick={() => handleRemoveFavorite(fav.id)}
                                     className="text-blue-600 hover:text-red-500 p-2 rounded-xl hover:bg-red-50 transition-all"
@@ -187,7 +189,7 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh }) => {
                     {localFavorites.length === 0 && (
                         <div className="h-full flex flex-col items-center justify-center text-gray-300 py-20">
                             <Plus size={48} className="mb-4 opacity-50" />
-                            <p className="font-bold text-sm uppercase tracking-widest">Tilføj koder fra venstre side</p>
+                            <p className="font-bold text-sm uppercase tracking-widest">{t('time.setup_add_hint', 'Add codes from the left side')}</p>
                         </div>
                     )}
                 </div>

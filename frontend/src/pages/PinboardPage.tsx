@@ -6,11 +6,13 @@ import PostIt from '../components/Pinboard/PostIt';
 import { Plus, X, Pin, MessageSquare, ThumbsUp, HelpCircle, CheckCircle, Clock, User, Search, Archive } from 'lucide-react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { useTranslation } from '../services/translationService';
 
 dayjs.extend(relativeTime);
 
 const PinboardPage: React.FC = () => {
     const { state, setState } = useAppState();
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(state.pinboardPosts.length === 0);
     const [creating, setCreating] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -165,9 +167,9 @@ const PinboardPage: React.FC = () => {
                             </div>
                             <div>
                                 <h1 className="text-2xl font-black text-gray-800 tracking-tighter leading-none">
-                                    PRIKBORDET
+                                    {t('pinboard.title', 'PINBOARD')}
                                 </h1>
-                                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Idéer & dialog</p>
+                                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">{t('pinboard.subtitle', 'Ideas & dialogue')}</p>
                             </div>
                         </div>
 
@@ -177,7 +179,7 @@ const PinboardPage: React.FC = () => {
                                 onChange={(e) => setFilterTeam(e.target.value)}
                                 className="bg-white/80 border border-gray-400/10 rounded-xl px-4 py-2 text-[10px] font-black text-gray-700 focus:border-blue-500 focus:outline-none transition-all shadow-sm"
                             >
-                                <option value="0">ALLE TEAMS</option>
+                                <option value="0">{t('common.all_teams', 'ALL TEAMS').toUpperCase()}</option>
                                 {state.teams.map(t => (
                                     <option key={t.id} value={t.id}>{t.navn.toUpperCase()}</option>
                                 ))}
@@ -195,7 +197,7 @@ const PinboardPage: React.FC = () => {
                                 `}
                             >
                                 <User size={12} className={onlyMine ? 'fill-white' : ''} />
-                                KUN MINE
+                                {t('common.only_mine', 'ONLY MINE').toUpperCase()}
                             </button>
                         </div>
 
@@ -204,7 +206,7 @@ const PinboardPage: React.FC = () => {
                                 <Search size={12} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/search:text-blue-500 transition-colors" />
                                 <input
                                     type="text"
-                                    placeholder="SØG..."
+                                    placeholder={t('common.search_placeholder', 'SEARCH...')}
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="bg-white/80 border border-gray-400/10 rounded-xl pl-9 pr-4 py-2 text-[10px] font-black text-gray-700 focus:border-blue-500 focus:outline-none transition-all shadow-sm w-64 focus:w-96"

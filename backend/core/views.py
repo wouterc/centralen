@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from .models import Team
 from .serializers import UserSerializer, TeamSerializer
+from .mixins import CompanyFilterMixin
 
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view, permission_classes
@@ -37,23 +38,16 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        # Admins see all users
-        if user.is_superuser or (hasattr(user, 'profile') and user.profile.role == 'ADMIN'):
-            queryset = User.objects.all().prefetch_related('teams')
-        elif hasattr(user, 'profile') and user.profile.role == 'SUPERUSER':
-            # Superusers also see all users to manage them
-            queryset = User.objects.all().prefetch_related('teams')
-        else:
-            # Regular users only see active users or themselves
-            # Actually, for the user list to work, they might need to see everyone they share a team with,
-            # but to keep it simple and follow "can only change its own profile", 
-            # let's allow them to see all but only edit themselves.
-            queryset = User.objects.filter(is_active=True) | User.objects.filter(id=user.id)
+        base_qs = User.objects.all().prefetch_related('teams')
+        
+        if hasattr(user, 'profile') and user.profile.company:
+            base_qs = base_qs.filter(profile__company=user.profile.company)
             
         is_active = self.request.query_params.get('is_active')
         if is_active is not None:
-            queryset = queryset.filter(is_active=is_active.lower() == 'true')
-        return queryset.distinct()
+            base_qs = base_qs.filter(is_active=is_active.lower() == 'true')
+            
+        return base_qs.distinct()
 
     def get_permissions(self):
         if self.action == 'create':
@@ -71,19 +65,21 @@ class IsAdminOrSuperUser(permissions.BasePermission):
         user = request.user
         return user.is_superuser or (hasattr(user, 'profile') and user.profile.role in ['ADMIN', 'SUPERUSER'])
 
-class TeamViewSet(viewsets.ModelViewSet):
+class TeamViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TeamSerializer
+    queryset = Team.objects.all()
 
     def get_queryset(self):
-        # Allow all authenticated users to see all teams
-        # This is useful for things like the Pinboard where you can post to any team
-        return Team.objects.all().prefetch_related('medlemmer')
+        return super().get_queryset().prefetch_related('medlemmer')
 
     def perform_create(self, serializer):
-        # Automatically add the creator to the team
         team = serializer.save()
         team.medlemmer.add(self.request.user)
+        # Apply company to team will be handled in perform_create but since we override it, we need to explicitly call mixin or just set it:
+        if hasattr(self.request.user, 'profile') and self.request.user.profile.company:
+            team.company = self.request.user.profile.company
+            team.save()
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
@@ -103,6 +99,9 @@ def global_search(request):
     from django.db.models import Q
     
     opgave_qs = Opgave.objects.prefetch_related('team')
+    if hasattr(user, 'profile') and user.profile.company:
+        opgave_qs = opgave_qs.filter(company=user.profile.company)
+        
     if not is_admin:
         opgave_qs = opgave_qs.filter(Q(team__medlemmer=user) | Q(team__isnull=True)).distinct()
         
@@ -130,6 +129,8 @@ def global_search(request):
     # 2. SEARCH KNOWLEDGE BASE (VIDENSBANK)
     from vidensbank.models import Viden
     viden_qs = Viden.objects.filter(arkiveret=False, slettet=False).select_related('kategori')
+    if hasattr(user, 'profile') and user.profile.company:
+        viden_qs = viden_qs.filter(company=user.profile.company)
     
     # Private filtering: Only see public OR own private
     viden_qs = viden_qs.filter(
@@ -179,3 +180,17 @@ def global_search(request):
     results.sort(key=lambda x: x['score'], reverse=True)
     
     return Response(results[:30])
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_translations_view(request):
+    lang = request.query_params.get('lang', 'da')
+    translations = UITranslation.objects.all()
+    
+    data = {}
+    for t in translations:
+        # Fallback to English if the requested language is missing
+        val = getattr(t, lang, None) or t.en
+        data[t.key] = val
+        
+    return Response(data)

@@ -5,6 +5,7 @@ import { useAppState } from '../StateContext';
 import Timeline from '../components/aarshjul/Timeline';
 import AktivitetModal from '../components/aarshjul/AktivitetModal';
 import dayjs from 'dayjs';
+import { useTranslation } from '../services/translationService';
 
 export interface LastAction {
     type: 'update' | 'create';
@@ -14,6 +15,7 @@ export interface LastAction {
 
 const AarshjulPage: React.FC = () => {
     const { state } = useAppState();
+    const { t } = useTranslation();
     const [aktiviteter, setAktiviteter] = useState<Aktivitet[]>([]);
     const [grupper, setGrupper] = useState<Gruppe[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -104,8 +106,8 @@ const AarshjulPage: React.FC = () => {
                             <Calendar size={24} />
                         </div>
                         <div>
-                            <h1 className="text-2xl font-black text-slate-800 tracking-tight leading-none bg-clip-text">Årshjul</h1>
-                            <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1.5 opacity-70">Overblik & Planlægning</p>
+                            <h1 className="text-2xl font-black text-slate-800 tracking-tight leading-none bg-clip-text">{t('calendar.title', 'Annual Calendar')}</h1>
+                            <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest mt-1.5 opacity-70">{t('calendar.subtitle', 'Annual overview of activities and deadlines.')}</p>
                         </div>
                     </div>
 
@@ -142,7 +144,7 @@ const AarshjulPage: React.FC = () => {
                             onChange={(e) => setCurrentTeamId(Number(e.target.value))}
                             className="bg-transparent text-sm font-bold text-slate-600 outline-none cursor-pointer pr-2"
                         >
-                            <option value={0}>Alle teams</option>
+                            <option value={0}>{t('common.all_teams', 'All teams')}</option>
                             {state.teams.map(team => (
                                 <option key={team.id} value={team.id}>{team.navn}</option>
                             ))}

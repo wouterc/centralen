@@ -3,14 +3,15 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import AppLink, AppPurpose
 from .serializers import AppLinkSerializer, AppPurposeSerializer
+from core.mixins import CompanyFilterMixin
 import os
 
-class AppPurposeViewSet(viewsets.ModelViewSet):
+class AppPurposeViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = AppPurpose.objects.all()
     serializer_class = AppPurposeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class AppLinkViewSet(viewsets.ModelViewSet):
+class AppLinkViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = AppLink.objects.all()
     serializer_class = AppLinkSerializer
     permission_classes = [permissions.IsAuthenticated]

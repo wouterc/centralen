@@ -15,10 +15,7 @@ import RequestWorkspacePage from './pages/RequestWorkspacePage';
 import ConfirmWorkspacePage from './pages/ConfirmWorkspacePage';
 import SettingsPage from './pages/SettingsPage';
 import FlowchartPage from './pages/FlowchartPage';
-import dayjs from 'dayjs';
-import 'dayjs/locale/da';
 
-dayjs.locale('da');
 
 const AppRoutes: React.FC = () => {
   const { state } = useAppState();

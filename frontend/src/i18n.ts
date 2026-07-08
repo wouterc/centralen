@@ -2,6 +2,12 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { API_BASE_URL } from './config';
+import dayjs from 'dayjs';
+import 'dayjs/locale/da';
+import 'dayjs/locale/en';
+import 'dayjs/locale/nl';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/de';
 
 const fetchTranslations = async (lng: string) => {
     try {
@@ -32,10 +38,17 @@ i18n
 // Initial load
 const loadInitialTranslations = async () => {
     const lng = i18n.language || 'da';
+    dayjs.locale(lng);
     const translations = await fetchTranslations(lng);
     i18n.addResourceBundle(lng, 'translation', translations, true, true);
 };
 
 loadInitialTranslations();
+
+i18n.on('languageChanged', async (lng) => {
+    dayjs.locale(lng);
+    const translations = await fetchTranslations(lng);
+    i18n.addResourceBundle(lng, 'translation', translations, true, true);
+});
 
 export default i18n;

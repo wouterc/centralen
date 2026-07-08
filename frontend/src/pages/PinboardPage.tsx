@@ -242,7 +242,7 @@ const PinboardPage: React.FC = () => {
                             <div className="bg-white/20 p-12 rounded-full inline-block mb-6">
                                 <Pin size={64} className="text-gray-400/50 rotate-45" />
                             </div>
-                            <p className="text-gray-500 font-black text-xl italic drop-shadow-sm">Tavlen er tom... Hæng noget op!</p>
+                            <p className="text-gray-500 font-black text-xl italic drop-shadow-sm">{t('pinboard.empty_state', 'Tavlen er tom... Hæng noget op!')}</p>
                         </div>
                     ) : (
                         posts.map((post, idx) => {

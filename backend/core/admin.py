@@ -20,5 +20,5 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(UITranslation)
 class UITranslationAdmin(admin.ModelAdmin):
-    list_display = ('key', 'en', 'da', 'updated_at')
-    search_fields = ('key', 'en', 'da')
+    list_display = ('key', 'en', 'da', 'nl', 'fr', 'de', 'updated_at')
+    search_fields = ('key', 'en', 'da', 'nl', 'fr', 'de')

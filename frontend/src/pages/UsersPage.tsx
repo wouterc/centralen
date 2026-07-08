@@ -524,24 +524,24 @@ const UsersPage: React.FC = () => {
                             <>
                                 <button
                                     onClick={() => setShowInactiveUsers(!showInactiveUsers)}
-                                    className={`px-3 py-2 rounded-lg font-bold text-xs flex items-center gap-2 border transition-all ${showInactiveUsers ? 'bg-gray-100 border-gray-300 text-gray-700' : 'bg-white border-gray-200 text-gray-400 hover:text-gray-600'}`}
+                                    className={`px-3 py-2 rounded-lg font-bold text-xs flex items-center gap-2 border transition-all whitespace-nowrap ${showInactiveUsers ? 'bg-gray-100 border-gray-300 text-gray-700' : 'bg-white border-gray-200 text-gray-400 hover:text-gray-600'}`}
                                 >
                                     {showInactiveUsers ? <Eye size={16} /> : <EyeOff size={16} />}
-                                    {showInactiveUsers ? 'Viser Alle' : 'Kun Aktive'}
+                                    {showInactiveUsers ? t('users.filter.show_all', 'Viser Alle') : t('users.filter.only_active', 'Kun Aktive')}
                                 </button>
                                 <button
                                     onClick={() => setIsCreating(true)}
-                                    className="bg-white text-blue-600 border border-blue-200 px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-50 transition shadow-sm hover:shadow-md active:scale-95"
+                                    className="bg-white text-blue-600 border border-blue-200 px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-50 transition shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap"
                                 >
                                     <UserPlus size={18} />
-                                    Ny Bruger
+                                    {t('users.button.new_user', 'Ny Bruger')}
                                 </button>
                                 <button
                                     onClick={() => setIsInviting(true)}
-                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-700 transition shadow-sm hover:shadow-md active:scale-95"
+                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-700 transition shadow-sm hover:shadow-md active:scale-95 whitespace-nowrap"
                                 >
                                     <MailPlus size={18} />
-                                    Inviter Medlem
+                                    {t('users.button.invite_member', 'Inviter Medlem')}
                                 </button>
                             </>
                         )}
@@ -577,23 +577,23 @@ const UsersPage: React.FC = () => {
                                     <div className="bg-white border-2 border-blue-500 rounded-2xl p-6 shadow-xl mb-8 slide-in-from-top-4 animate-in">
                                         <div className="flex justify-between items-center mb-6">
                                             <h3 className="text-lg font-black text-blue-900 flex items-center gap-2">
-                                                <UserPlus className="text-blue-600" /> Opret Ny Bruger
+                                                <UserPlus className="text-blue-600" /> {t('users.create_modal.title', 'Opret Ny Bruger')}
                                             </h3>
                                             <button onClick={() => setIsCreating(false)} className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full"><X size={20} /></button>
                                         </div>
                                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Brugernavn*</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.username_label', 'Brugernavn*')}</label>
                                                 <input
                                                     type="text"
                                                     value={newForm.username}
                                                     onChange={e => setNewForm({ ...newForm, username: e.target.value })}
-                                                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all focus:bg-white"
-                                                    placeholder="Brugernavn"
+                                                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all focus:bg-white"
+                                                    placeholder={t('users.create_modal.username_placeholder', 'Brugernavn')}
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Password*</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.password_label', 'Password*')}</label>
                                                 <input
                                                     type="password"
                                                     value={newForm.password}
@@ -603,7 +603,7 @@ const UsersPage: React.FC = () => {
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Email</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.email_label', 'Email')}</label>
                                                 <input
                                                     type="email"
                                                     value={newForm.email}
@@ -612,7 +612,7 @@ const UsersPage: React.FC = () => {
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Fornavn</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.first_name_label', 'Fornavn')}</label>
                                                 <input
                                                     type="text"
                                                     value={newForm.first_name}
@@ -621,7 +621,7 @@ const UsersPage: React.FC = () => {
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Efternavn</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.last_name_label', 'Efternavn')}</label>
                                                 <input
                                                     type="text"
                                                     value={newForm.last_name}
@@ -630,7 +630,7 @@ const UsersPage: React.FC = () => {
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Farve</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.color_label', 'Farve')}</label>
                                                 <input
                                                     type="color"
                                                     value={newForm.color}
@@ -639,26 +639,26 @@ const UsersPage: React.FC = () => {
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[10px] font-black text-blue-600 uppercase">Niveau</label>
+                                                <label className="text-[10px] font-black text-blue-600 uppercase">{t('users.create_modal.level_label', 'Niveau')}</label>
                                                 <select
                                                     value={newForm.role}
                                                     onChange={e => setNewForm({ ...newForm, role: e.target.value as UserRole })}
                                                     className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all focus:bg-white cursor-pointer"
                                                 >
-                                                    <option value="MEMBER">Medlem</option>
-                                                    {currentUserLevel >= ROLE_LEVELS.SUPERUSER && <option value="SUPERUSER">Superbruger</option>}
-                                                    {currentUserLevel >= ROLE_LEVELS.ADMIN && <option value="ADMIN">Administrator</option>}
+                                                    <option value="MEMBER">{t('users.role.member', 'Medlem')}</option>
+                                                    {currentUserLevel >= ROLE_LEVELS.SUPERUSER && <option value="SUPERUSER">{t('users.role.superuser', 'Superbruger')}</option>}
+                                                    {currentUserLevel >= ROLE_LEVELS.ADMIN && <option value="ADMIN">{t('users.role.admin', 'Administrator')}</option>}
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="mt-6 flex justify-end gap-3">
-                                            <button onClick={() => setIsCreating(false)} className="px-6 py-2 text-gray-500 hover:text-gray-700 font-bold text-sm">Annuller</button>
+                                            <button onClick={() => setIsCreating(false)} className="px-6 py-2 text-gray-500 hover:text-gray-700 font-bold text-sm">{t('users.button.cancel', 'Annuller')}</button>
                                             <button
                                                 onClick={handleCreate}
                                                 disabled={!newForm.username || !newForm.password}
                                                 className="px-8 py-2 bg-blue-600 text-white rounded-xl font-black text-sm hover:bg-blue-700 shadow-lg shadow-blue-200 disabled:opacity-50 transition-all active:scale-95"
                                             >
-                                                Opret Bruger
+                                                {t('users.create_modal.submit', 'Opret Bruger')}
                                             </button>
                                         </div>
                                     </div>
@@ -715,11 +715,11 @@ const UsersPage: React.FC = () => {
                                     <table className="w-full text-left border-collapse">
                                         <thead>
                                             <tr className="bg-gray-50/50 border-b border-gray-100">
-                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Bruger</th>
-                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Niveau</th>
-                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Teams</th>
-                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Status</th>
-                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Handlinger</th>
+                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('users.table.user', 'Bruger')}</th>
+                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('users.table.level', 'Niveau')}</th>
+                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('users.table.teams', 'Teams')}</th>
+                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('users.table.status', 'Status')}</th>
+                                                <th className="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">{t('users.table.actions', 'Handlinger')}</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-50">
@@ -756,7 +756,7 @@ const UsersPage: React.FC = () => {
                                                                         {isEditing ? (
                                                                             <div className="grid grid-cols-2 gap-2 mb-1">
                                                                                 <div className="flex flex-col gap-0.5">
-                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">Brugernavn</label>
+                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">{t('users.create_modal.username', 'Brugernavn')}</label>
                                                                                     <input
                                                                                         value={editForm.username || ''}
                                                                                         onChange={e => setEditForm({ ...editForm, username: e.target.value })} onClick={e => e.stopPropagation()}
@@ -764,16 +764,16 @@ const UsersPage: React.FC = () => {
                                                                                     />
                                                                                 </div>
                                                                                 <div className="flex flex-col gap-0.5">
-                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">Nyt Password</label>
+                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">{t('users.create_modal.password', 'Nyt Password')}</label>
                                                                                     <input
                                                                                         type="password"
-                                                                                        placeholder="Skift?"
+                                                                                        placeholder={t('users.edit.change_password_placeholder', 'Skift?')}
                                                                                         onChange={e => setEditForm({ ...editForm, password: e.target.value })} onClick={e => e.stopPropagation()}
                                                                                         className="font-bold text-gray-800 bg-white border border-blue-200 rounded px-2 py-0.5 text-xs outline-none focus:ring-2 focus:ring-blue-400"
                                                                                     />
                                                                                 </div>
                                                                                 <div className="flex flex-col gap-0.5">
-                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">Fornavn</label>
+                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">{t('users.create_modal.first_name', 'Fornavn')}</label>
                                                                                     <input
                                                                                         value={editForm.first_name || ''}
                                                                                         onChange={e => setEditForm({ ...editForm, first_name: e.target.value })} onClick={e => e.stopPropagation()}
@@ -781,7 +781,7 @@ const UsersPage: React.FC = () => {
                                                                                     />
                                                                                 </div>
                                                                                 <div className="flex flex-col gap-0.5">
-                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">Efternavn</label>
+                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">{t('users.create_modal.last_name', 'Efternavn')}</label>
                                                                                     <input
                                                                                         value={editForm.last_name || ''}
                                                                                         onChange={e => setEditForm({ ...editForm, last_name: e.target.value })} onClick={e => e.stopPropagation()}
@@ -789,7 +789,7 @@ const UsersPage: React.FC = () => {
                                                                                     />
                                                                                 </div>
                                                                                 <div className="flex flex-col gap-0.5 col-span-2">
-                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">Email</label>
+                                                                                    <label className="text-[8px] font-black text-blue-600 uppercase">{t('users.create_modal.email', 'Email')}</label>
                                                                                     <input
                                                                                         value={editForm.email || ''}
                                                                                         onChange={e => setEditForm({ ...editForm, email: e.target.value })} onClick={e => e.stopPropagation()}
@@ -808,7 +808,7 @@ const UsersPage: React.FC = () => {
                                                                             </div>
                                                                         )}
                                                                     </div>
-                                                                    {!isEditing && <span className="text-xs text-gray-400 truncate">{user.email || 'Ingen email'}</span>}
+                                                                    {!isEditing && <span className="text-xs text-gray-400 truncate">{user.email || t('users.table.no_email', 'Ingen email')}</span>}
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -826,9 +826,9 @@ const UsersPage: React.FC = () => {
                                                                     }}
                                                                     className="text-xs font-bold px-3 py-1 bg-white border border-blue-200 rounded-lg outline-none cursor-pointer hover:border-blue-400 transition-all"
                                                                 >
-                                                                    <option value="MEMBER">Medlem</option>
-                                                                    {currentUserLevel >= ROLE_LEVELS.SUPERUSER && (user.id !== state.currentUser?.id || currentUserRole === 'SUPERUSER') && <option value="SUPERUSER">Superbruger</option>}
-                                                                    {currentUserLevel >= ROLE_LEVELS.ADMIN && (user.id !== state.currentUser?.id || currentUserRole === 'ADMIN') && <option value="ADMIN">Administrator</option>}
+                                                                    <option value="MEMBER">{t('users.role.member', 'Medlem')}</option>
+                                                                    {currentUserLevel >= ROLE_LEVELS.SUPERUSER && (user.id !== state.currentUser?.id || currentUserRole === 'SUPERUSER') && <option value="SUPERUSER">{t('users.role.superuser', 'Superbruger')}</option>}
+                                                                    {currentUserLevel >= ROLE_LEVELS.ADMIN && (user.id !== state.currentUser?.id || currentUserRole === 'ADMIN') && <option value="ADMIN">{t('users.role.admin', 'Administrator')}</option>}
                                                                 </select>
                                                             ) : (
                                                                 <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black border uppercase tracking-wider ${role.color}`}>
@@ -888,8 +888,8 @@ const UsersPage: React.FC = () => {
                                                                         <div className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl border border-gray-100 p-5 animate-in zoom-in-95 duration-200">
                                                                             <div className="flex justify-between items-center mb-4">
                                                                                 <div>
-                                                                                    <h3 className="text-lg font-black text-gray-800 tracking-tight">Tildel Teams</h3>
-                                                                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">For {user.username}</p>
+                                                                                    <h3 className="text-lg font-black text-gray-800 tracking-tight">{t('users.teams_modal.title', 'Tildel Teams')}</h3>
+                                                                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">{t('users.teams_modal.subtitle', 'For {{username}}', { username: user.username })}</p>
                                                                                 </div>
                                                                                 <button
                                                                                     onClick={() => { setOpenUserTeamId(null); setTeamSearchQuery(''); }}
@@ -898,23 +898,23 @@ const UsersPage: React.FC = () => {
                                                                                     <X size={18} className="text-gray-400" />
                                                                                 </button>
                                                                             </div>
-
+ 
                                                                             <div className="relative mb-4">
                                                                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
                                                                                 <input
                                                                                     type="text"
-                                                                                    placeholder="Søg efter team..."
+                                                                                    placeholder={t('users.teams_modal.search_placeholder', 'Søg efter team...')}
                                                                                     value={teamSearchQuery}
                                                                                     onChange={e => setTeamSearchQuery(e.target.value)}
                                                                                     className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-100 rounded-xl text-xs focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
                                                                                     autoFocus
                                                                                 />
                                                                             </div>
-
+ 
                                                                             <div className="space-y-1 max-h-[300px] overflow-y-auto custom-scrollbar -mx-1 px-1">
                                                                                 {state.teams.filter(t => t.navn.toLowerCase().includes(teamSearchQuery.toLowerCase())).length === 0 && (
                                                                                     <div className="text-xs text-gray-400 italic py-6 text-center bg-gray-50/50 rounded-xl">
-                                                                                        Ingen teams fundet
+                                                                                        {t('users.teams_modal.no_teams_found', 'Ingen teams fundet')}
                                                                                     </div>
                                                                                 )}
                                                                                 {state.teams
@@ -941,7 +941,7 @@ const UsersPage: React.FC = () => {
                                                                                 onClick={() => { setOpenUserTeamId(null); setTeamSearchQuery(''); }}
                                                                                 className="w-full mt-4 py-2.5 bg-gray-900 text-white rounded-xl font-black text-xs hover:bg-gray-800 transition-all active:scale-[0.98]"
                                                                             >
-                                                                                Færdig
+                                                                                {t('users.teams_modal.done', 'Færdig')}
                                                                             </button>
                                                                         </div>
                                                                     </div>
@@ -955,7 +955,7 @@ const UsersPage: React.FC = () => {
                                                                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black transition-all ${user.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-500'} ${currentUserLevel < ROLE_LEVELS.SUPERUSER ? 'cursor-default' : 'hover:opacity-80'}`}
                                                             >
                                                                 {user.is_active ? <Check size={12} /> : <X size={12} />}
-                                                                {user.is_active ? 'AKTIV' : 'DEAKTIVERET'}
+                                                                {user.is_active ? t('users.status.active', 'AKTIV') : t('users.status.deactivated', 'DEAKTIVERET')}
                                                             </button>
                                                         </td>
                                                         <td className="px-6 py-4 text-right">

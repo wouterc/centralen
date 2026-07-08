@@ -13,8 +13,20 @@ import {
     LogOut,
     Plus,
     Loader2,
-    RefreshCcw
+    RefreshCcw,
+    ChevronDown,
+    Search
 } from 'lucide-react';
+import Modal from '../components/Modal';
+
+const languages = [
+    { code: 'da', label: 'Dansk', flag: '🇩🇰' },
+    { code: 'en', label: 'English', flag: '🇬🇧' },
+    { code: 'nl', label: 'Nederlands', flag: '🇳🇱' },
+    { code: 'fr', label: 'Français', flag: '🇫🇷' },
+    { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+];
+
 import { useTranslation } from '../services/translationService';
 import type { Invitation } from '../types';
 
@@ -27,8 +39,15 @@ const SettingsPage: React.FC = () => {
     const [alias, setAlias] = useState('');
     const [userColor, setUserColor] = useState('#3b82f6');
     const [language, setLanguage] = useState(i18n.language || 'da');
+    const [showLangModal, setShowLangModal] = useState(false);
+    const [langSearch, setLangSearch] = useState('');
     const [profileLoading, setProfileLoading] = useState(false);
     const [profileSuccess, setProfileSuccess] = useState(false);
+
+    const filteredLanguages = languages.filter(lang => 
+        lang.label.toLowerCase().includes(langSearch.toLowerCase()) ||
+        lang.code.toLowerCase().includes(langSearch.toLowerCase())
+    );
 
     // Workspace states
     const [workspaceName, setWorkspaceName] = useState('');
@@ -196,9 +215,9 @@ const SettingsPage: React.FC = () => {
     ];
 
     return (
-        <div className="flex-1 bg-gray-300 overflow-y-auto p-8">
+        <div className="h-full bg-gray-300 overflow-y-auto p-4 md:p-6">
             <div className="max-w-4xl mx-auto">
-                <header className="mb-10 flex items-center justify-between">
+                <header className="mb-4 flex items-center justify-between">
                     <div>
                         <h1 className="text-3xl font-black text-gray-900 tracking-tight flex items-center gap-3">
                             <Settings className="text-blue-600" size={32} />
@@ -208,7 +227,7 @@ const SettingsPage: React.FC = () => {
                     </div>
                 </header>
 
-                <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row min-h-[600px]">
+                <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row min-h-0">
                     {/* Sidebar Tabs */}
                     <aside className="w-full md:w-64 bg-gray-400 border-r border-gray-500 p-4">
                         <nav className="space-y-1">
@@ -263,67 +282,188 @@ const SettingsPage: React.FC = () => {
                     </aside>
 
                     {/* Main Content */}
-                    <main className="flex-1 p-8">
+                    <main className="flex-1 p-3 md:p-4">
                         {activeTab === 'profile' && (
                             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                                <h2 className="text-xl font-black text-gray-900 mb-6">{t('settings.profile.title', 'Personlig Profil')}</h2>
-                                <form onSubmit={handleUpdateProfile} className="space-y-8 bg-gray-400 p-8 rounded-4xl border-2 border-gray-500 shadow-sm">
-                                    <div className="space-y-4">
-                                        <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">{t('settings.profile.alias_label', 'Dit Alias i')} {activeMembership?.company.navn}</label>
-                                        <input
-                                            type="text"
-                                            value={alias}
-                                            onChange={e => setAlias(e.target.value)}
-                                            className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold"
-                                            placeholder={t('settings.profile.alias_placeholder', 'Indtast dit foretrukne navn')}
-                                        />
-                                        <p className="text-xs text-gray-700 font-bold">{t('settings.profile.alias_help', 'Dette navn vises kun i det nuværende arbejdsrum.')}</p>
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">{t('settings.profile.color_label', 'Din Farve')}</label>
-                                        <div className="flex flex-wrap gap-3">
-                                            {colors.map(color => (
-                                                <button
-                                                    key={color}
-                                                    type="button"
-                                                    onClick={() => setUserColor(color)}
-                                                    className={`w-10 h-10 rounded-xl transition-all ${userColor === color ? 'ring-4 ring-blue-600/20 scale-110 shadow-lg' : 'hover:scale-105 opacity-70 hover:opacity-100'}`}
-                                                    style={{ backgroundColor: color }}
-                                                >
-                                                    {userColor === color && <Check className="text-white mx-auto" size={16} />}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">{t('settings.profile.language_label', 'Sprog')}</label>
-                                        <div className="flex gap-4">
-                                            <button 
-                                                type="button"
-                                                onClick={() => setLanguage('da')}
-                                                className={`flex-1 py-4 rounded-2xl font-bold transition-all border-2 flex items-center justify-center gap-2 ${language === 'da' ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200' : 'bg-white text-gray-600 border-gray-100 hover:border-blue-200'}`}
-                                            >
-                                                🇩🇰 Dansk
-                                            </button>
-                                            <button 
-                                                type="button"
-                                                onClick={() => setLanguage('en')}
-                                                className={`flex-1 py-4 rounded-2xl font-bold transition-all border-2 flex items-center justify-center gap-2 ${language === 'en' ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200' : 'bg-white text-gray-600 border-gray-100 hover:border-blue-200'}`}
-                                            >
-                                                🇬🇧 English
-                                            </button>
-                                        </div>
-                                    </div>
-                                  <div className="pt-6 border-t border-gray-500/30">
+                                <form onSubmit={handleUpdateProfile} className="space-y-3">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <h2 className="text-lg font-black text-gray-900">{t('settings.profile.title', 'Personlig Profil')}</h2>
                                         <button
                                             type="submit"
                                             disabled={profileLoading}
-                                            className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-2 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-100 transition-all active:scale-[0.98] disabled:opacity-70"
+                                            className="bg-blue-600 text-white px-4 py-1.5 rounded-xl font-black text-xs flex items-center gap-1.5 hover:bg-blue-700 hover:shadow-lg transition-all active:scale-[0.98] disabled:opacity-70"
                                         >
-                                            {profileLoading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
-                                            {profileSuccess ? t('settings.profile.saved', 'Gemt!') : t('settings.profile.save', 'Gem ændringer')}
+                                            {profileLoading ? <Loader2 className="animate-spin" size={14} /> : <Save size={14} />}
+                                            {profileSuccess ? t('settings.profile.saved', 'Gemt!') : t('settings.profile.save', 'Gem alle ændringer')}
+                                        </button>
+                                    </div>
+
+                                    {/* Arbejdsrum Profil Frame */}
+                                    <div className="bg-gray-400 p-3 rounded-2xl border-2 border-gray-500 shadow-sm space-y-3">
+                                        <h3 className="text-xs font-black text-blue-600 uppercase tracking-widest pl-1">
+                                            {t('settings.profile.workspace_section', 'Arbejdsrum Profil')} ({activeMembership?.company.navn})
+                                        </h3>
+                                        
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">{t('settings.profile.alias_label', 'Dit Alias')}</label>
+                                            <input
+                                                type="text"
+                                                value={alias}
+                                                onChange={e => {
+                                                    setAlias(e.target.value);
+                                                    setProfileSuccess(false);
+                                                }}
+                                                className="w-full px-4 py-2 bg-white border border-gray-100 rounded-xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold text-sm"
+                                                placeholder={t('settings.profile.alias_placeholder', 'Indtast dit foretrukne navn')}
+                                            />
+                                            <p className="text-[11px] text-gray-700 font-bold">{t('settings.profile.alias_help', 'Dette navn vises kun i det nuværende arbejdsrum.')}</p>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">{t('settings.profile.color_label', 'Din Farve')}</label>
+                                            <div className="flex flex-wrap gap-2 items-center">
+                                                {colors.map(color => (
+                                                    <button
+                                                        key={color}
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setUserColor(color);
+                                                            setProfileSuccess(false);
+                                                        }}
+                                                        className={`w-8 h-8 rounded-lg transition-all ${userColor === color ? 'ring-3 ring-blue-600/30 scale-110 shadow-lg' : 'hover:scale-105 opacity-70 hover:opacity-100'}`}
+                                                        style={{ backgroundColor: color }}
+                                                    >
+                                                        {userColor === color && <Check className="text-white mx-auto" size={14} />}
+                                                    </button>
+                                                ))}
+                                                <div className="w-px h-6 bg-gray-500/30 mx-1"></div>
+                                                <label 
+                                                    className={`w-8 h-8 rounded-lg border-2 border-gray-500/50 flex items-center justify-center cursor-pointer transition-all hover:scale-105 overflow-hidden relative ${!colors.includes(userColor) ? 'ring-3 ring-blue-600/30 scale-110 shadow-lg' : 'opacity-70 hover:opacity-100'}`}
+                                                    title={t('settings.profile.custom_color', 'Vælg egen farve')}
+                                                    style={{ backgroundColor: !colors.includes(userColor) ? userColor : '#ffffff' }}
+                                                >
+                                                    <input 
+                                                        type="color" 
+                                                        value={colors.includes(userColor) ? '#3b82f6' : userColor} 
+                                                        onChange={e => {
+                                                            setUserColor(e.target.value);
+                                                            setProfileSuccess(false);
+                                                        }} 
+                                                        className="absolute inset-[-10px] w-[200%] h-[200%] cursor-pointer border-0 p-0 opacity-0"
+                                                    />
+                                                    {!colors.includes(userColor) ? (
+                                                        <Check className="text-white drop-shadow-md z-10" size={14} />
+                                                    ) : (
+                                                        <Plus className="text-gray-500 z-10" size={14} />
+                                                    )}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Globale Indstillinger Frame */}
+                                    <div className="bg-gray-400 p-3 rounded-2xl border-2 border-gray-500 shadow-sm space-y-3">
+                                        <h3 className="text-xs font-black text-blue-600 uppercase tracking-widest pl-1">
+                                            {t('settings.profile.global_section', 'Globale Indstillinger')}
+                                        </h3>
+                                        
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">{t('settings.profile.language_label', 'Sprog')}</label>
+                                            <div className="flex gap-2">
+                                                {/* Button showing current choice */}
+                                                <div className="flex-1 py-2 px-4 rounded-xl font-bold border-2 border-blue-600 bg-blue-600 text-white flex items-center justify-center gap-2 text-sm select-none">
+                                                    {languages.find(l => l.code === language)?.flag || '🇩🇰'} {languages.find(l => l.code === language)?.label || 'Dansk'}
+                                                </div>
+                                                
+                                                {/* Button to toggle list */}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setShowLangModal(true)}
+                                                    className="py-2 px-4 rounded-xl font-bold border-2 border-gray-100 bg-white text-gray-600 hover:border-blue-200 hover:text-blue-600 flex items-center justify-center gap-2 text-sm transition-all"
+                                                >
+                                                    <span>{t('settings.profile.change_language', 'Vælg fra liste')}</span>
+                                                    <ChevronDown size={16} />
+                                                </button>
+                                            </div>
+
+                                            {/* Modal Language Selection popup */}
+                                            <Modal
+                                                isOpen={showLangModal}
+                                                onClose={() => {
+                                                    setShowLangModal(false);
+                                                    setLangSearch('');
+                                                }}
+                                                title={t('settings.profile.language_modal_title', 'Vælg Sprog')}
+                                                maxWidth="max-w-sm"
+                                            >
+                                                <div className="space-y-2">
+                                                    {/* Search input */}
+                                                    <div className="relative group">
+                                                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors" size={16} />
+                                                        <input
+                                                            type="text"
+                                                            value={langSearch}
+                                                            onChange={e => setLangSearch(e.target.value)}
+                                                            placeholder={t('settings.profile.search_languages', 'Søg efter sprog...')}
+                                                            className="w-full pl-9 pr-4 py-1.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-bold"
+                                                            autoFocus
+                                                        />
+                                                        {langSearch && (
+                                                            <button
+                                                                onClick={() => setLangSearch('')}
+                                                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                                            >
+                                                                <X size={14} />
+                                                            </button>
+                                                        )}
+                                                    </div>
+
+                                                    {/* Language list */}
+                                                    <div className="space-y-0.5 max-h-60 overflow-y-auto">
+                                                        {filteredLanguages.length === 0 ? (
+                                                            <div className="py-4 text-center text-gray-400 text-xs font-bold">
+                                                                {t('settings.profile.no_languages_found', 'Ingen sprog fundet')}
+                                                            </div>
+                                                        ) : (
+                                                            filteredLanguages.map(lang => (
+                                                                <button
+                                                                    key={lang.code}
+                                                                    type="button"
+                                                                    onClick={() => {
+                                                                        setLanguage(lang.code);
+                                                                        setProfileSuccess(false);
+                                                                        setShowLangModal(false);
+                                                                        setLangSearch('');
+                                                                    }}
+                                                                    className={`w-full text-left px-3 py-1.5 text-sm font-bold flex items-center justify-between rounded-lg transition-all ${
+                                                                        language === lang.code 
+                                                                            ? 'bg-blue-50 text-blue-600 border border-blue-100 shadow-sm' 
+                                                                            : 'text-gray-700 hover:bg-gray-50 border border-transparent'
+                                                                    }`}
+                                                                >
+                                                                    <span className="flex items-center gap-2">
+                                                                        <span className="text-lg select-none">{lang.flag}</span>
+                                                                        <span>{lang.label}</span>
+                                                                    </span>
+                                                                    {language === lang.code && <Check size={14} className="text-blue-600" />}
+                                                                </button>
+                                                            ))
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </Modal>
+                                        </div>
+                                    </div>
+
+                                    {/* Submit button */}
+                                    <div className="pt-2">
+                                        <button
+                                            type="submit"
+                                            disabled={profileLoading}
+                                            className="bg-blue-600 text-white px-6 py-2 rounded-xl font-black text-sm flex items-center gap-2 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-100 transition-all active:scale-[0.98] disabled:opacity-70"
+                                        >
+                                            {profileLoading ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
+                                            {profileSuccess ? t('settings.profile.saved', 'Gemt!') : t('settings.profile.save', 'Gem alle ændringer')}
                                         </button>
                                     </div>
                                 </form>
@@ -332,25 +472,25 @@ const SettingsPage: React.FC = () => {
 
                         {activeTab === 'workspace' && isAdmin && (
                             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                                <h2 className="text-xl font-black text-gray-900 mb-6">Arbejdsrum Indstillinger</h2>
-                                <form onSubmit={handleUpdateWorkspace} className="space-y-8 bg-gray-400 p-8 rounded-4xl border-2 border-gray-500 shadow-sm">
-                                    <div className="space-y-4">
+                                <h2 className="text-lg font-black text-gray-900 mb-3">Arbejdsrum Indstillinger</h2>
+                                <form onSubmit={handleUpdateWorkspace} className="space-y-4 bg-gray-400 p-4 rounded-3xl border-2 border-gray-500 shadow-sm">
+                                    <div className="space-y-2">
                                         <label className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1">Arbejdsrum Navn</label>
                                         <input
                                             type="text"
                                             value={workspaceName}
                                             onChange={e => setWorkspaceName(e.target.value)}
-                                            className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold"
+                                            className="w-full px-4 py-2 bg-white border border-gray-100 rounded-xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold text-sm"
                                         />
                                     </div>
 
-                                    <div className="pt-6 border-t border-gray-500/30">
+                                    <div className="pt-4 border-t border-gray-500/30">
                                         <button
                                             type="submit"
                                             disabled={workspaceLoading}
-                                            className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-2 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-100 transition-all active:scale-[0.98] disabled:opacity-70"
+                                            className="bg-blue-600 text-white px-6 py-2 rounded-xl font-black text-sm flex items-center gap-2 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-100 transition-all active:scale-[0.98] disabled:opacity-70"
                                         >
-                                            {workspaceLoading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
+                                            {workspaceLoading ? <Loader2 className="animate-spin" size={16} /> : <Save size={16} />}
                                             {workspaceSuccess ? t('settings.workspace.updated', 'Opdateret!') : t('settings.workspace.update', 'Opdater arbejdsrum')}
                                         </button>
                                     </div>
@@ -360,23 +500,23 @@ const SettingsPage: React.FC = () => {
 
                         {activeTab === 'invitations' && isAdmin && (
                             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                                <h2 className="text-xl font-black text-gray-900 mb-6">{t('settings.invitations.title', 'Invitationer')}</h2>
+                                <h2 className="text-lg font-black text-gray-900 mb-3">{t('settings.invitations.title', 'Invitationer')}</h2>
 
-                                <form onSubmit={handleInvite} className="mb-10 bg-gray-400 p-6 rounded-3xl border-2 border-gray-500 transition-all focus-within:border-blue-500">
-                                    <label className="block text-xs font-black text-blue-600 uppercase tracking-widest mb-4">{t('settings.invitations.invite_label', 'Inviter nyt medlem')}</label>
-                                    <div className="flex gap-3">
+                                <form onSubmit={handleInvite} className="mb-4 bg-gray-400 p-4 rounded-3xl border-2 border-gray-500 transition-all focus-within:border-blue-500">
+                                    <label className="block text-xs font-black text-blue-600 uppercase tracking-widest mb-2">{t('settings.invitations.invite_label', 'Inviter nyt medlem')}</label>
+                                    <div className="flex gap-2">
                                         <input
                                             type="email"
                                             value={inviteEmail}
                                             onChange={e => setInviteEmail(e.target.value)}
                                             placeholder="email@eksempel.dk"
-                                            className="flex-1 px-6 py-4 bg-white border border-blue-200 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold"
+                                            className="flex-1 px-4 py-2 bg-white border border-blue-200 rounded-xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold text-sm"
                                             required
                                         />
                                         <select
                                             value={inviteRole}
                                             onChange={e => setInviteRole(e.target.value as any)}
-                                            className="px-4 py-4 bg-white border border-blue-200 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold text-gray-600"
+                                            className="px-3 py-2 bg-white border border-blue-200 rounded-xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 transition-all font-bold text-gray-600 text-sm"
                                         >
                                             <option value="MEMBER">{t('settings.invitations.role.member', 'Medlem')}</option>
                                             <option value="ADMIN">{t('settings.invitations.role.admin', 'Administrator')}</option>
@@ -384,9 +524,9 @@ const SettingsPage: React.FC = () => {
                                         <button
                                             type="submit"
                                             disabled={inviteLoading}
-                                            className="bg-blue-600 text-white px-6 py-4 rounded-2xl font-black flex items-center gap-2 hover:bg-blue-700 transition-all active:scale-[0.98] disabled:opacity-70"
+                                            className="bg-blue-600 text-white px-4 py-2 rounded-xl font-black text-sm flex items-center gap-2 hover:bg-blue-700 transition-all active:scale-[0.98] disabled:opacity-70"
                                         >
-                                            {inviteLoading ? <Loader2 className="animate-spin" size={20} /> : <Plus size={20} />}
+                                            {inviteLoading ? <Loader2 className="animate-spin" size={16} /> : <Plus size={16} />}
                                             {t('settings.invitations.send', 'Send')}
                                         </button>
                                     </div>

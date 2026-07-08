@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import { useTranslation } from '../../services/translationService';
 
 dayjs.extend(isBetween);
 dayjs.extend(weekOfYear);
@@ -37,6 +38,7 @@ interface ContextMenuState {
 }
 
 const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, grupper, onAktivitetClick, onRefresh, viewStartDate, onAction }) => {
+    const { i18n } = useTranslation();
     const containerRef = useRef<HTMLDivElement>(null);
     const [interaction, setInteraction] = useState<InteractionState | null>(null);
     const [hoveredGroupId, setHoveredGroupId] = useState<number | null | undefined>(undefined);
@@ -58,7 +60,7 @@ const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, gruppe
             });
         }
         return months;
-    }, [viewStartDate]);
+    }, [viewStartDate, i18n.language]);
 
     // Generate group-based rows
     const groupedRows = useMemo(() => {

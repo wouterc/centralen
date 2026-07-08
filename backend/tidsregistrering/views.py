@@ -28,7 +28,8 @@ class TidregViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         return super().get_queryset().select_related('bruger', 'opgave_kode').filter(bruger=self.request.user)
 
     def perform_create(self, serializer):
-        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        from core.mixins import get_active_company
+        company = get_active_company(self.request)
         serializer.save(bruger=self.request.user, company=company)
 
 class BrugerProfilTimeViewSet(viewsets.ModelViewSet):

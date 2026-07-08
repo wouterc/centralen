@@ -27,6 +27,21 @@ export interface Team {
 
 export type UserRole = 'ADMIN' | 'SUPERUSER' | 'MEMBER';
 
+export interface Company {
+    id: string; // UUID
+    navn: string;
+    cvr?: string;
+    slug?: string;
+}
+
+export interface WorkspaceMembership {
+    id: number;
+    company: Company;
+    role: UserRole;
+    alias?: string;
+    color: string;
+}
+
 export interface User {
     id: number;
     username: string;
@@ -37,8 +52,10 @@ export interface User {
     role?: UserRole;
     is_active?: boolean;
     teams?: Team[];
+    memberships?: WorkspaceMembership[];
     password?: string;
     vidensbank_category_order?: number[];
+    language?: string;
 }
 
 export interface Opgave {
@@ -192,4 +209,51 @@ export interface AppLink {
     purposes_details?: string[];
     created_at: string;
     updated_at: string;
+}
+
+export interface Invitation {
+    id: number;
+    email: string;
+    role: UserRole;
+    token: string;
+    created_at: string;
+}
+
+// Flowchart
+
+export type FlowchartNodeShape = 'rectangle' | 'diamond' | 'oval';
+
+export interface FlowchartNode {
+    id: number;
+    node_id: string;
+    navn: string;
+    beskrivelse: string;
+    farve: string;
+    form_type: FlowchartNodeShape;
+    x_pos: number;
+    y_pos: number;
+    bredde: number;
+    hoejde: number;
+}
+
+export interface FlowchartEdge {
+    id: number;
+    edge_id: string;
+    source: number;
+    target: number;
+    source_node_id: string;
+    target_node_id: string;
+    label: string;
+}
+
+export interface Flowchart {
+    id: number;
+    navn: string;
+    beskrivelse: string;
+    team: number | null;
+    team_details?: { id: number; navn: string; color: string } | null;
+    oprettet: string;
+    opdateret: string;
+    nodes: FlowchartNode[];
+    edges: FlowchartEdge[];
 }

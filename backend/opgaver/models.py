@@ -191,12 +191,16 @@ class PinboardPostComment(models.Model):
 @receiver(post_save, sender=OpgaveKommentar)
 @receiver(post_delete, sender=OpgaveKommentar)
 def update_kommentar_antal(sender, instance, **kwargs):
+    if kwargs.get('raw', False):
+        return
     opgave = instance.opgave
     opgave.kommentar_antal = opgave.kommentarer.count()
     opgave.save(update_fields=['kommentar_antal'])
 
 @receiver(post_save, sender=OpgaveStatusLog)
 def update_status_direction(sender, instance, created, **kwargs):
+    if kwargs.get('raw', False):
+        return
     if created:
         direction_val = instance.direction
         opgave = instance.opgave

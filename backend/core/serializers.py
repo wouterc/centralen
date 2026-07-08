@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import UserProfile, Team
+from .models import UserProfile, Team, Company, WorkspaceMembership, Invitation, WorkspaceRequest
 
 class TeamSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,24 +12,96 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ['color', 'vidensbank_category_order']
 
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ['id', 'navn', 'cvr', 'slug']
+
+class WorkspaceMembershipSerializer(serializers.ModelSerializer):
+    company = CompanySerializer(read_only=True)
+    
+    class Meta:
+        model = WorkspaceMembership
+        fields = ['id', 'company', 'role', 'alias', 'color']
+
+class InvitationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Invitation
+        fields = ['id', 'email', 'role', 'token', 'created_at']
+        read_only_fields = ['id', 'token', 'created_at']
+
+class WorkspaceRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkspaceRequest
+        fields = ['id', 'email', 'company_name', 'token', 'created_at']
+        read_only_fields = ['id', 'token', 'created_at']
+
 class UserMinimalSerializer(serializers.ModelSerializer):
-    color = serializers.CharField(source='profile.color', read_only=True)
-    role = serializers.CharField(source='profile.role', read_only=True)
+    color = serializers.SerializerMethodField()
+    role = serializers.SerializerMethodField()
+    display_name = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'color', 'role']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'color', 'role', 'display_name']
+
+    def get_membership(self, obj):
+        request = self.context.get('request')
+        if not request: return None
+        workspace_id = request.headers.get('X-Workspace-Id')
+        if not workspace_id: return None
+        return obj.memberships.filter(company_id=workspace_id).first()
+
+    def get_color(self, obj):
+        m = self.get_membership(obj)
+        return m.color if m else getattr(obj, 'profile', None).color if hasattr(obj, 'profile') else '#3b82f6'
+
+    def get_role(self, obj):
+        m = self.get_membership(obj)
+        return m.role if m else getattr(obj, 'profile', None).role if hasattr(obj, 'profile') else 'MEMBER'
+
+    def get_display_name(self, obj):
+        m = self.get_membership(obj)
+        if m and m.alias: return m.alias
+        return f"{obj.first_name} {obj.last_name}".strip() or obj.username
 
 class UserSerializer(serializers.ModelSerializer):
-    color = serializers.CharField(source='profile.color', required=False)
-    role = serializers.CharField(source='profile.role', required=False)
+    color = serializers.SerializerMethodField()
+    role = serializers.SerializerMethodField()
+    display_name = serializers.SerializerMethodField()
     vidensbank_category_order = serializers.JSONField(source='profile.vidensbank_category_order', required=False)
+    language = serializers.CharField(source='profile.language', required=False, default='da')
     password = serializers.CharField(write_only=True, required=False)
     teams = TeamSerializer(many=True, read_only=True)
+    memberships = WorkspaceMembershipSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'color', 'role', 'vidensbank_category_order', 'is_active', 'password', 'teams']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'color', 'role', 'display_name', 'vidensbank_category_order', 'language', 'is_active', 'password', 'teams', 'memberships']
+
+    def get_membership(self, obj):
+        request = self.context.get('request')
+        if not request: return None
+        workspace_id = request.headers.get('X-Workspace-Id')
+        if not workspace_id: return None
+        # We assume the memberships are prefetched
+        for m in obj.memberships.all():
+            if str(m.company_id) == workspace_id:
+                return m
+        return None
+
+    def get_color(self, obj):
+        m = self.get_membership(obj)
+        return m.color if m else getattr(obj, 'profile', None).color if hasattr(obj, 'profile') else '#3b82f6'
+
+    def get_role(self, obj):
+        m = self.get_membership(obj)
+        return m.role if m else getattr(obj, 'profile', None).role if hasattr(obj, 'profile') else 'MEMBER'
+
+    def get_display_name(self, obj):
+        m = self.get_membership(obj)
+        if m and m.alias: return m.alias
+        return f"{obj.first_name} {obj.last_name}".strip() or obj.username
 
     def create(self, validated_data):
         # Extract profile data (source='profile.color' puts it under 'profile' key)
@@ -47,10 +119,12 @@ class UserSerializer(serializers.ModelSerializer):
         color = profile_data.get('color')
         role = profile_data.get('role')
         vidensbank_category_order = profile_data.get('vidensbank_category_order')
+        language = profile_data.get('language')
         
-        if color or role or vidensbank_category_order is not None:
+        if color or role or vidensbank_category_order is not None or language:
             profile, _ = UserProfile.objects.get_or_create(user=user)
             if color: profile.color = color
+            if language: profile.language = language
             if vidensbank_category_order is not None: profile.vidensbank_category_order = vidensbank_category_order
             if role: 
                 profile.role = role
@@ -81,7 +155,12 @@ class UserSerializer(serializers.ModelSerializer):
         # Security checks
         is_admin_or_superuser = False
         if current_user:
-            is_admin_or_superuser = current_user.is_superuser or (hasattr(current_user, 'profile') and current_user.profile.role in ['ADMIN', 'SUPERUSER'])
+            if current_user.is_superuser:
+                is_admin_or_superuser = True
+            else:
+                from .mixins import get_active_membership
+                m = get_active_membership(request)
+                is_admin_or_superuser = m and m.role in ['ADMIN', 'SUPERUSER']
 
         # Only admins/superusers can change is_active
         if 'is_active' in validated_data and not is_admin_or_superuser:
@@ -111,14 +190,38 @@ class UserSerializer(serializers.ModelSerializer):
         # Update profile color and role
         color = profile_data.get('color')
         vidensbank_category_order = profile_data.get('vidensbank_category_order')
+        language = profile_data.get('language')
         
-        if color or role or vidensbank_category_order is not None:
-            profile, _ = UserProfile.objects.get_or_create(user=instance)
-            if color: profile.color = color
-            if vidensbank_category_order is not None: profile.vidensbank_category_order = vidensbank_category_order
+        if color or role or vidensbank_category_order is not None or language:
+            # Check if we should update a specific membership
+            workspace_id = request.headers.get('X-Workspace-Id') if request else None
+            membership = None
+            if workspace_id:
+                membership = WorkspaceMembership.objects.filter(user=instance, company_id=workspace_id).first()
+            
+            if membership:
+                if color: membership.color = color
+                if role: membership.role = role
+                membership.save()
+            else:
+                # Fallback to global profile
+                profile, _ = UserProfile.objects.get_or_create(user=instance)
+                if color: profile.color = color
+                if role: profile.role = role
+                profile.save()
+
+            if vidensbank_category_order is not None:
+                profile, _ = UserProfile.objects.get_or_create(user=instance)
+                profile.vidensbank_category_order = vidensbank_category_order
+                profile.save()
+
+            if language:
+                profile, _ = UserProfile.objects.get_or_create(user=instance)
+                profile.language = language
+                profile.save()
+
             if role: 
-                profile.role = role
-                # Sync with Django internal flags
+                # Sync with Django internal flags (Admin/Superuser flags are still global for now)
                 if role == 'ADMIN':
                     instance.is_superuser = True
                     instance.is_staff = True
@@ -129,6 +232,5 @@ class UserSerializer(serializers.ModelSerializer):
                     instance.is_superuser = False
                     instance.is_staff = False
                 instance.save()
-            profile.save()
             
         return instance

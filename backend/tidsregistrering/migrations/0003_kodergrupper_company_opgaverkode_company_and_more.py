@@ -28,14 +28,14 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='tidsregistreringer', to='core.company'),
         ),
         migrations.AlterField(
-            model_name='kodergrupper',
-            name='gruppe',
-            field=models.CharField(max_length=6, verbose_name='Gruppe'),
-        ),
-        migrations.AlterField(
             model_name='opgaverkode',
             name='gruppe',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='tidsregistrering.kodergrupper', verbose_name='Gruppe'),
+        ),
+        migrations.AlterField(
+            model_name='kodergrupper',
+            name='gruppe',
+            field=models.CharField(max_length=6, verbose_name='Gruppe'),
         ),
         migrations.AlterField(
             model_name='opgaverkode',

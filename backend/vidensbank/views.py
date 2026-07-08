@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import VidensKategori, Viden, HjaelpPunkt, HjaelpPunktViden
 from .serializers import VidensKategoriSerializer, VidenSerializer, HjaelpPunktSerializer
-from core.mixins import CompanyFilterMixin
+from core.mixins import CompanyFilterMixin, get_active_membership
 
 class VidensKategoriViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = VidensKategori.objects.all()
@@ -16,7 +16,8 @@ class VidensKategoriViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         from django.db.models import Q, Count
         
         # 1. Definer filter (hvad må brugeren se?)
-        is_admin = user.is_superuser or (hasattr(user, 'profile') and user.profile.role == 'ADMIN')
+        membership = get_active_membership(self.request)
+        is_admin = user.is_superuser or (membership and membership.role == 'ADMIN')
         
         # Almindelige brugere ser: (Ikke-arkiveret AND (Offentlig Kat OR Eget dokument))
         if is_admin:
@@ -47,7 +48,7 @@ class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         from django.db.models import Q, Exists, OuterRef
         
         # 1. Start med alle, derfra hvor Mixin lader os se dem
-        qs = super().get_queryset().select_related('kategori', 'oprettet_af')
+        qs = super().get_queryset().select_related('kategori', 'oprettet_af').prefetch_related('oprettet_af__memberships')
         
         # 2. Hårdt filter på artikler (Privacy & Slettede)
         if user.is_authenticated:
@@ -112,7 +113,8 @@ class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         instance.save()
 
     def perform_create(self, serializer):
-        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        from core.mixins import get_active_company
+        company = get_active_company(self.request)
         serializer.save(oprettet_af=self.request.user, company=company)
 
     @action(detail=True, methods=['post'])
@@ -135,9 +137,11 @@ class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def restore(self, request, pk=None):
-        if not request.user.is_superuser and not (hasattr(request.user, 'profile') and request.user.profile.role == 'ADMIN'):
+        membership = get_active_membership(request)
+        if not request.user.is_superuser and not (membership and membership.role == 'ADMIN'):
             return Response({'error': 'Unauthorized'}, status=403)
-        company = request.user.profile.company if hasattr(request.user, 'profile') else None
+        # company is handled by CompanyFilterMixin or manual filter below
+        company = get_active_company(request)
         instance = Viden.objects.filter(pk=pk, company=company).first()
         if not instance:
             return Response({'error': 'Not found'}, status=404)
@@ -147,9 +151,10 @@ class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
 
     @action(detail=True, methods=['delete'])
     def permanent_delete(self, request, pk=None):
-        if not request.user.is_superuser and not (hasattr(request.user, 'profile') and request.user.profile.role == 'ADMIN'):
+        membership = get_active_membership(request)
+        if not request.user.is_superuser and not (membership and membership.role == 'ADMIN'):
             return Response({'error': 'Unauthorized'}, status=403)
-        company = request.user.profile.company if hasattr(request.user, 'profile') else None
+        company = get_active_company(request)
         instance = Viden.objects.filter(pk=pk, company=company).first()
         if not instance:
             return Response({'error': 'Not found'}, status=404)

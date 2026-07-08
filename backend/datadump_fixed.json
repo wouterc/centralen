@@ -1,0 +1,6358 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$aXnPlrxBMsXvnhnZvbbKf6$i7WuV1IBfbdXXu5YHDthE9dPqfUjgTCm/z2nkwwUdIM=",
+        "last_login": "2026-02-23T19:27:16.109Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-02-13T17:44:45.134Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$EZQuDbP6h3bTvTFd6t1Y7a$Dcfrhzo7kBU/9BTxLzbp6YLbIobRkOPTN+E+kATGbM4=",
+        "last_login": "2026-03-20T14:54:46.643Z",
+        "is_superuser": true,
+        "username": "WC",
+        "first_name": "Wouter",
+        "last_name": "C",
+        "email": "wouter.cuyvers@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-02-13T17:46:19Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$SiQKx7fxNCIYfQotTiyiav$2eUt8/fm/Sqh3KIfCYadKUUYWmtR7VejE9oyi8ZeXMI=",
+        "last_login": "2026-03-31T12:47:13.546Z",
+        "is_superuser": false,
+        "username": "wouter",
+        "first_name": "Wouter 2",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-02-13T19:26:22Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$gVcRKreiAupBdCFjfx5xWy$wCgymgvWDFfXGxpyEYM+WI4ZmwPUAFr3OADR/8Y5hG0=",
+        "last_login": "2026-02-14T17:31:49.588Z",
+        "is_superuser": false,
+        "username": "Rikke",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-14T16:49:51.399Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Ty0NsrVuIlca5dkCV3nrMy$ff0TBepmuojJhPqMN2MU1GtaK3V9jARVNLTThfdMQc8=",
+        "last_login": "2026-02-16T08:05:04.111Z",
+        "is_superuser": false,
+        "username": "Zarah",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-14T16:54:42.216Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$a5msaue9KgY37dt31bli7Y$IuXC4AwHTsR4bOGbx/R3KAK4wJwyh9gDeWtabu7siXM=",
+        "last_login": "2026-03-16T09:47:10.811Z",
+        "is_superuser": false,
+        "username": "AM",
+        "first_name": "Anne Marie",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-16T07:37:40.153Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$L69FjWjRHcP8qNaukghy6X$swVwzfIFBcxSWWlEemsV/c22dXkpTLDeJ6APWUd5YPE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Cecilie",
+        "first_name": "Cecilie",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-16T07:38:29.309Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$TuM645lm4duTUIRmByD0kQ$IrDP4C6hO+qvunZEkOfnPH97LxTKOf+aWalrOsxNaGo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Jonas",
+        "first_name": "Jonas",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-16T07:55:21.730Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Tg1FzooTiJjutdCtn1UpAk$B+bEoyw/Oe/1A/iei230c8oEmifOZ/r/m/CEDlvYcCQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Emil",
+        "first_name": "Emil",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-16T11:18:27.617Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$CJbjkeZuLzMsHkBg1u4RlA$VVWYMAQ34PTvViuPSa+SdHdSJEmjgGV5bWrQvZ0XFjw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Paul",
+        "first_name": "Paul",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-02-16T11:18:50.553Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Y5C5tBm79Vm8WBM82ju3gg$OQcWRSPWn6X9q0QgQL94liiSwKdCh+BlbOR4MSaik0Q=",
+        "last_login": "2026-02-16T17:53:17.050Z",
+        "is_superuser": false,
+        "username": "TC",
+        "first_name": "Thomas",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2026-02-16T17:51:22.659Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$IhaV859XZHzPnidnyawbYf$kDKhWQBMWo7zW9+3CWkG4RKAr90D34bltkoQrRGZqTk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "CS",
+        "first_name": "Christian",
+        "last_name": "Seehusen",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-03-09T21:31:54.123Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$C9kPzSsyNAthz3GZFXrhL2$9IDONRSTMpf4BO4xAXHbTapgIfEy7n+mPA0IcBzlg5o=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "cb_user1",
+        "first_name": "User 1",
+        "last_name": "CB",
+        "email": "cb_user1@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-10T18:59:02.683Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$720000$Gm8eMD0Xsbrj4ZPIr69G56$piAil+p4NW0rMGfnjtdx1SdpuwXGV9Hjqs5bAl894GQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "cb_user2",
+        "first_name": "User 2",
+        "last_name": "CB",
+        "email": "cb_user2@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-10T18:59:05.189Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$hceCf7A8CFZQaEccNN1DtB$ZpVklboN1hERtHH4FEInz6gLQJh9sW3Gvh/ct+zhQHM=",
+        "last_login": "2026-03-11T21:21:12.036Z",
+        "is_superuser": true,
+        "username": "amelie.kirkegaard",
+        "first_name": "Amelie",
+        "last_name": "Kirkegaard",
+        "email": "amelie.kirkegaard@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-03-11T20:34:29.941Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "23og5ky0gxk8l54rkps7x8st7vsbd6m8",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-ZddLSc8ZLK_t4ABypDipEHeHSCmgfTPzXiLEba1h62UJUxZnoa04_Y4c06O0neR7bLdZprmty8RyV-RBu7zOuTwvh_t3UGOv37owgKaUB4uGiCIkp0weUDE6rTIlVqQ8ErsymtFa8t5jwWi0ZgcA4v0B60w3AQ:1vs2mb:sKEzjbdkLuRxYNqk9Nsty79vUAF6RPFGmpW3ETwRG9k",
+        "expire_date": "2026-03-02T17:53:17.066Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2gm8l0qubhzt82yaqotm8ha9xedzy62w",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQBf-FsyFFYAGP3v0GsrAgVQNJaU_Gf5cmPej1zcx7M4_bWvzW0-JnYhd2ZqffLWB8proDemC9Nx5bXZc58F3hB-381ii9rof7d1Cwl1HLEDFMNicnSaCBlDVInDQqyAKEAJAEOhmRzQBRaMqYlbU0MnROsc8X8HE4OQ:1vubaO:-s7PkJwuHL_6pBlTcMwS4aDMF1sLYiIFLU9UMgcwYTM",
+        "expire_date": "2026-03-09T19:27:16.270Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2gs0gphyb6zu2akdkk4bajotpvune0m6",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vrHO0:6nJQKKzDmbfHix-X0xSyj4vlak2szvMbpHOf7no0LiE",
+        "expire_date": "2026-02-28T15:16:44.330Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2m4r46bzv1y07bxkwb1vc8psklgwc1hx",
+    "fields": {
+        "session_data": ".eJxVi0sOwjAMBe-SNarsfIjNjkqcI3KcoFT8pIauEHenSF3A8s2beZkky7Olpdc5TcUcDJLZ_cIseqn376OPuQ7b7MPpJtP1uGrjJvxVTXpbk8x7kbN14IQ4iFZPwNGRV7ZoUcFyLjGSBvROvIIKENjISMUHrOb9AT70Ms8:1w0QzQ:Hy13zRWmtU5LOmVzzCKroYOqdAy_VAvCaeicbR0o72g",
+        "expire_date": "2026-03-25T21:21:12.246Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "51h2i1cz6glr3mdjscxll6mnl6i652vs",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vrIlg:UdaHRGGkrPJSgegopQkK3SjXgCdZ3V1ZnrlIQnhKtjI",
+        "expire_date": "2026-02-28T16:45:16.462Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5koolsvrlook74pcfzoglho9m6oq3mpg",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vx610:OSw5RcVrLUWhTkB94tuT29QcdkUZvrW8PTmdZ7k_oLA",
+        "expire_date": "2026-03-16T16:21:02.206Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "66umv1h8wta6ems2ys9nz1s4mw48jnlx",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-4Q8lfc5grb1rHEC2FCcV4u4QKQW0b2bei0XY1hq3QUuckV2YZ6ffLUF-UNsB3qHdOs-9rcuc-K7wgw4-daTn9XD_DiqM-q0hgdRCBvIlGRBIpDWeS3YBKGXjnCpCyiy1VymYUnwQFq01yhsRigT2_gACdzgD:1w24XW:wmzuOjcZ8PIHQVQqjHuuvmuDn0hrg8n-6blXqfQdvkM",
+        "expire_date": "2026-03-30T09:47:10.862Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "a3qeb0osjc7mddsu6qadqchzc59gqrtk",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vrazc:1XdiO_EZ75vPaPW1J1-h7HyrSeS_ZttrIdn0Oo3Jixs",
+        "expire_date": "2026-03-01T12:12:52.463Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ais5aqan1dh7t541tyf963tzh68yezmm",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vuYVS:0ielZHgkrdKSMWLFx8csNFZPxJ6aT1gmwE0MwMetztE",
+        "expire_date": "2026-03-09T16:09:58.699Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ci30l05y1bz77cmr4n716457al7n1i3r",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vw1te:gw1xohhAcNdNbdx10Bq7J2NOHAHfBvJQlr8mdFRlwdA",
+        "expire_date": "2026-03-13T17:45:02.881Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "dah5oqa373uk8bpa7xpv32883g89qlpn",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vuCTJ:V998-ncAbAF3rrUZwK-EbVA9kZaVJClTDbMqeD6_6wg",
+        "expire_date": "2026-03-08T16:38:17.082Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "dem31khngcak6iu5bnymzbmdep8qe6u9",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vziBh:Y3evwECTFPJpgx29wHOQXwfnhsTGgn20EhNQq8GDkzc",
+        "expire_date": "2026-03-23T21:30:53.307Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "e2lmk15jk7ow4f9ubgkiwi8wz7dtleqr",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGllZ_zampOcM1jq7wQHkSHFSIe4OkVJA-2bmvVSibS1pa7KkidVZoTr9bpmGh9Qd8J3qbdbDXNdlynpX9EGbvs4sz8vh_h0UauVb94Y7E9CONjqELjrfM9hgwHtywh7FRbLgZQQJgACEVgCDB85kANT7A6KaNkw:1vrtbM:GXkeIBj5R7S8Ai4kiWKcKD4D6tdB6seYR6Lx_b1fgO0",
+        "expire_date": "2026-03-02T08:05:04.138Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "exqn3bci2cscbrvq0u4idr8fh2x0mgky",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vxK58:h5rbRGlRej1ekeJbGGHeFVV6RqrfI6XyL0jrsT0Jrxk",
+        "expire_date": "2026-03-17T07:22:14.003Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hidf8d93bydp99x1qa7y9q2ezh8xkwup",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vrHSz:rggFwSIAqDeMO2FMlU7M0ZLFIjcaVcwFVU3XWPNL2ac",
+        "expire_date": "2026-02-28T15:21:53.589Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hprlflqmvp4gendylao8ag0axkzl0vx5",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vuXdi:kSYk9E8tsQcjR2Vqv7YyYNTJm6rmEEwgIjNH80A0GKI",
+        "expire_date": "2026-03-09T15:14:26.424Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jj27lanve7xvg4myxaalp74hf8b7ogv1",
+    "fields": {
+        "session_data": ".eJxVi0sKAyEQBe_iOgz-WtvsMpBzSKstDvnBmFmF3D0GZpEsX72ql4i0PVvcOq9xKeIojDj8skT5wvfvkR8rT_vs0_lGy_U0tHkX_qpGvY2kVgxUwATtENBA0gm8CZSAa62-ZEKwiB4kSUbP1rmipJJaJRqGFe8PM6szqw:1w3bFP:lCaJvnapYc2JekR_19i4dsFoW7xUC84M7W6FxIsZx6c",
+        "expire_date": "2026-04-03T14:54:47.074Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jzmj12scmq55tzixe8xgw3wubuo53cnl",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-xHZESc8ZrLe7NgmgRIqTCnF3iJQC2jcz76UytnXIWytLHkWdVVSn343AjzLtQO6YbrPmeVqXkfSu6IM2fZ2lPC-H-3cwoA3fOhVx6HtwAKxlIg4dOkkeCCEYYVN7S1SMmMQSXfTFwwmq8y5xder9ARSaOPo:1vrJUj:YUzaz6sZ2h6X4Pz-l0bOciTJOL2FAAP2le0Y5E-NIwU",
+        "expire_date": "2026-02-28T17:31:49.785Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "lg27m78xdwtzubz2ik4pu4baqeakqcpa",
+    "fields": {
+        "session_data": "e30:1w0PNJ:UkBCdvClnYQHSStLjI5ctU5kgII_o6RU8EKawdTuxu0",
+        "expire_date": "2026-03-25T19:37:45.572Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ls3ik3ogpbwjm9y7dt2aj5jd95tbpq99",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vrClE:QV-oLdAD9aJ4l5PteXqDfXcaMGaOiC1f6cIjeFrnYMc",
+        "expire_date": "2026-02-28T10:20:24.756Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "m4nj3vjl8t3i9uioyytnbzhx15627652",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGln-4Q8lfc5grb1rHEC2FCcV4u4QKQW0b2bei0XY1hq3QUuckV2YZ6ffLUF-UNsB3qHdOs-9rcuc-K7wgw4-daTn9XD_DiqM-q0hgdRCBvIlGRBIpDWeS3YBKGXjnCpCyiy1VymYUnwQFq01yhsRigT2_gACdzgD:1vur2p:242VjbARNUzSVHm2L111xa-QjZNj_g3o3nAeCmM0BhI",
+        "expire_date": "2026-03-10T11:57:39.409Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "niao2za9wyhxx36owz4abvhszaceei4j",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAUBf-FtSEiXASX7vsNzX2AVA0kpV0Z_12bdKHbMzPnpUZclzKuPc3jJOqinDr8boT8SHUDcsd6a5pbXeaJ9KbonXY9NEnP6-7-HRTs5VtHis5gELCGThwMB5uTlejomANk58FET2crDNFZAPHZI6MBCtk4L-r9AdqhN7g:1vrBzP:TvxZe7ZZmFnRvDPUk1zlVVAf_CsM2EN2IamtjAS-ZTI",
+        "expire_date": "2026-02-28T09:30:59.091Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nsou6grqw09vnrvzpfn3uefaxv8glxko",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAUBf-FtSEiXASX7vsNzX2AVA0kpV0Z_12bdKHbMzPnpUZclzKuPc3jJOqinDr8boT8SHUDcsd6a5pbXeaJ9KbonXY9NEnP6-7-HRTs5VtHis5gELCGThwMB5uTlejomANk58FET2crDNFZAPHZI6MBCtk4L-r9AdqhN7g:1vuD37:nARN-UW46xX6v0vUYmBJmGh2Bd8C6_LkpGVVED9z0pc",
+        "expire_date": "2026-03-08T17:15:17.171Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "py9o9us8uoosv2iif91ibj3eg5r3zyse",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vuaYS:GP3TtEqMFY4wGkvcMOKNVu4ETg5gULMpQ3Mhlm57ZiU",
+        "expire_date": "2026-03-09T18:21:12.887Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "t6ny1k1rxy2jd9vyzlmegev7r1hbq5hn",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAUBf-FtSEiXASX7vsNzX2AVA0kpV0Z_12bdKHbMzPnpUZclzKuPc3jJOqinDr8boT8SHUDcsd6a5pbXeaJ9KbonXY9NEnP6-7-HRTs5VtHis5gELCGThwMB5uTlejomANk58FET2crDNFZAPHZI6MBCtk4L-r9AdqhN7g:1vrJDI:vEYUFQwl3Y7VT-3-ndR-KWhHIGNl4hj7CPlPGM4zBUw",
+        "expire_date": "2026-02-28T17:13:48.528Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "t71c0t7j9aih1ulsfjjkuzzvlfojjd93",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vrsaW:Y3CtfZj8r-jFlgH1JC3S0B3LXWP2oYEjsTUMje3JznY",
+        "expire_date": "2026-03-02T07:00:08.579Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "w1vk31n404vh82081jbx1e4vu44rh5nx",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAUBf-FtSEiXASX7vsNzX2AVA0kpV0Z_12bdKHbMzPnpUZclzKuPc3jJOqinDr8boT8SHUDcsd6a5pbXeaJ9KbonXY9NEnP6-7-HRTs5VtHis5gELCGThwMB5uTlejomANk58FET2crDNFZAPHZI6MBCtk4L-r9AdqhN7g:1w7YUz:dFo8gq2aea_0GtGhZlsi3QsMb1GqcXG_Zbaa4-BWHXE",
+        "expire_date": "2026-04-14T12:47:13.589Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "wkg6qq454d0b37tmrtsteg1e27qmkdev",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyEgCwWP3v0GsrCsVA1NSnsy_rtt0oPeJvPezFtEXJca117mOJK4CCNOv13C_CxtB_TAdp9kntoyj0nuijxol7eJyut6uH8HFXvd1s54DIhOGWJ2NjETOw2-ZEoegmaTMSUY-GyzRcdggtpiBu2VHsCKzxcJGTg4:1vriA2:0reMgkCx7g-CSttVCguVfjQGaMjlcVx1yXYdF_IKl-Y",
+        "expire_date": "2026-03-01T19:52:06.160Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "y0kvtaij479c3usm3sbkkpzzo15bkkvc",
+    "fields": {
+        "session_data": ".eJxVjDEOgzAMRe-SuYpCghPTsTtnQDZ2Cm0FEoGp6t0LEkO7_vfef5uOtnXotqJLN4q5mmAuvxtT_9TpAPKg6T7bfp7WZWR7KPakxbaz6Ot2un8HA5Vhr3PGhgRC4yMCBmDPkEJDDJpzTtITQo2YwJFTTFrHKJWrnK-YdqM2ny_kRTfr:1w3Zag:JicPBdK0574eTm-RgU-IoTx5_ZTeMvFH-CI3j2ev890",
+        "expire_date": "2026-04-03T13:08:38.774Z"
+    }
+},
+{
+    "model": "core.company",
+    "pk": "29e9b227-b876-4b7a-9478-b9993d578db4",
+    "fields": {
+        "navn": "Amelie",
+        "cvr": null,
+        "slug": null,
+        "is_active": true,
+        "created_at": "2026-03-11T20:39:18.732Z",
+        "updated_at": "2026-03-11T20:39:18.732Z"
+    }
+},
+{
+    "model": "core.company",
+    "pk": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+    "fields": {
+        "navn": "KFST",
+        "cvr": "12345678",
+        "slug": "kfst",
+        "is_active": true,
+        "created_at": "2026-03-10T18:27:57.461Z",
+        "updated_at": "2026-03-10T18:27:57.461Z"
+    }
+},
+{
+    "model": "core.company",
+    "pk": "f155d525-231f-4b27-ba24-e55790444e5a",
+    "fields": {
+        "navn": "CB2",
+        "cvr": null,
+        "slug": null,
+        "is_active": true,
+        "created_at": "2026-03-11T20:48:49.549Z",
+        "updated_at": "2026-03-11T20:50:29.596Z"
+    }
+},
+{
+    "model": "core.team",
+    "pk": 1,
+    "fields": {
+        "navn": "Home",
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#ea3bf7",
+        "oprettet": "2026-02-13T19:27:36.784Z",
+        "medlemmer": [
+            [
+                "WC"
+            ],
+            [
+                "wouter"
+            ]
+        ]
+    }
+},
+{
+    "model": "core.team",
+    "pk": 2,
+    "fields": {
+        "navn": "Vand",
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#3b82f6",
+        "oprettet": "2026-02-13T19:30:24.631Z",
+        "medlemmer": [
+            [
+                "WC"
+            ],
+            [
+                "Zarah"
+            ],
+            [
+                "AM"
+            ],
+            [
+                "Cecilie"
+            ],
+            [
+                "Emil"
+            ],
+            [
+                "Paul"
+            ]
+        ]
+    }
+},
+{
+    "model": "core.team",
+    "pk": 3,
+    "fields": {
+        "navn": "Jura",
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#5a7196",
+        "oprettet": "2026-02-14T16:47:08.606Z",
+        "medlemmer": [
+            [
+                "WC"
+            ],
+            [
+                "Rikke"
+            ],
+            [
+                "Cecilie"
+            ]
+        ]
+    }
+},
+{
+    "model": "core.team",
+    "pk": 4,
+    "fields": {
+        "navn": "konomer",
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#b51d0d",
+        "oprettet": "2026-02-14T16:49:15.732Z",
+        "medlemmer": [
+            [
+                "Rikke"
+            ],
+            [
+                "Zarah"
+            ],
+            [
+                "AM"
+            ],
+            [
+                "Emil"
+            ],
+            [
+                "Paul"
+            ]
+        ]
+    }
+},
+{
+    "model": "core.team",
+    "pk": 5,
+    "fields": {
+        "navn": "Wouter team",
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#914303",
+        "oprettet": "2026-02-14T17:23:39.013Z",
+        "medlemmer": [
+            [
+                "WC"
+            ],
+            [
+                "Rikke"
+            ],
+            [
+                "Zarah"
+            ]
+        ]
+    }
+},
+{
+    "model": "core.team",
+    "pk": 6,
+    "fields": {
+        "navn": "Benchmarking",
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#a23bf7",
+        "oprettet": "2026-02-16T11:17:58.975Z",
+        "medlemmer": [
+            [
+                "WC"
+            ],
+            [
+                "Emil"
+            ],
+            [
+                "Paul"
+            ]
+        ]
+    }
+},
+{
+    "model": "core.team",
+    "pk": 17,
+    "fields": {
+        "navn": "Generelt",
+        "company": "29e9b227-b876-4b7a-9478-b9993d578db4",
+        "color": "#3b82f6",
+        "oprettet": "2026-03-11T20:39:18.852Z",
+        "medlemmer": []
+    }
+},
+{
+    "model": "core.team",
+    "pk": 18,
+    "fields": {
+        "navn": "Generelt",
+        "company": "f155d525-231f-4b27-ba24-e55790444e5a",
+        "color": "#3b82f6",
+        "oprettet": "2026-03-11T20:48:49.647Z",
+        "medlemmer": []
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#115f07",
+        "role": "ADMIN",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "WC"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#da2916",
+        "role": "ADMIN",
+        "vidensbank_category_order": [
+            8,
+            1,
+            4,
+            10,
+            2,
+            7,
+            9,
+            5,
+            3,
+            6
+        ],
+        "language": "en"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "wouter"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#bb1ebe",
+        "role": "SUPERUSER",
+        "vidensbank_category_order": [
+            6,
+            9,
+            4,
+            10,
+            2,
+            8,
+            7,
+            1,
+            5,
+            3
+        ],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "Rikke"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#b1689a",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "Zarah"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#6d3bf7",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "AM"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#0ec846",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "Cecilie"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#c337a5",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "Jonas"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#f79f3b",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "Emil"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#3b82f6",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "Paul"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#3b82f6",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "TC"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#3b82f6",
+        "role": "MEMBER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "CS"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "color": "#733bf7",
+        "role": "SUPERUSER",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.userprofile",
+    "pk": 17,
+    "fields": {
+        "user": [
+            "amelie.kirkegaard"
+        ],
+        "company": null,
+        "color": "#3b82f6",
+        "role": "ADMIN",
+        "vidensbank_category_order": [],
+        "language": "da"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "ADMIN",
+        "alias": "admin",
+        "color": "#115f07",
+        "oprettet": "2026-03-10T20:58:03.758Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "WC"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "ADMIN",
+        "alias": "Wouter C",
+        "color": "#da2916",
+        "oprettet": "2026-03-10T20:58:03.951Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "wouter"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "SUPERUSER",
+        "alias": "Wouter 2",
+        "color": "#bb1ebe",
+        "oprettet": "2026-03-10T20:58:04.146Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "Rikke"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Rikke",
+        "color": "#b1689a",
+        "oprettet": "2026-03-10T20:58:04.351Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "Zarah"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Zarah",
+        "color": "#6d3bf7",
+        "oprettet": "2026-03-10T20:58:04.535Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "AM"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Anne Marie",
+        "color": "#0ec846",
+        "oprettet": "2026-03-10T20:58:04.712Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "Cecilie"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Cecilie",
+        "color": "#c337a5",
+        "oprettet": "2026-03-10T20:58:04.891Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "Jonas"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Jonas",
+        "color": "#f79f3b",
+        "oprettet": "2026-03-10T20:58:05.082Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "Emil"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Emil",
+        "color": "#3b82f6",
+        "oprettet": "2026-03-10T20:58:05.266Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "Paul"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Paul",
+        "color": "#3b82f6",
+        "oprettet": "2026-03-10T20:58:05.461Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "TC"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "MEMBER",
+        "alias": "Thomas",
+        "color": "#3b82f6",
+        "oprettet": "2026-03-10T20:58:05.642Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "CS"
+        ],
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "role": "SUPERUSER",
+        "alias": "Christian Seehusen",
+        "color": "#733bf7",
+        "oprettet": "2026-03-10T20:58:05.815Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 22,
+    "fields": {
+        "user": [
+            "amelie.kirkegaard"
+        ],
+        "company": "29e9b227-b876-4b7a-9478-b9993d578db4",
+        "role": "ADMIN",
+        "alias": "Amelie",
+        "color": "#06b6d4",
+        "oprettet": "2026-03-11T20:39:18.825Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 23,
+    "fields": {
+        "user": [
+            "WC"
+        ],
+        "company": "f155d525-231f-4b27-ba24-e55790444e5a",
+        "role": "ADMIN",
+        "alias": "Wouter C",
+        "color": "#f59e0b",
+        "oprettet": "2026-03-11T20:48:49.619Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 24,
+    "fields": {
+        "user": [
+            "amelie.kirkegaard"
+        ],
+        "company": "f155d525-231f-4b27-ba24-e55790444e5a",
+        "role": "MEMBER",
+        "alias": "Amelie Kirkegaard",
+        "color": "#ec4899",
+        "oprettet": "2026-03-11T20:57:14.732Z"
+    }
+},
+{
+    "model": "core.workspacemembership",
+    "pk": 25,
+    "fields": {
+        "user": [
+            "WC"
+        ],
+        "company": "29e9b227-b876-4b7a-9478-b9993d578db4",
+        "role": "MEMBER",
+        "alias": "Wouter C",
+        "color": "#ef4444",
+        "oprettet": "2026-03-11T21:06:39.308Z"
+    }
+},
+{
+    "model": "core.invitation",
+    "pk": 4,
+    "fields": {
+        "email": "amelie.kirkegaard@gmail.com",
+        "company": "f155d525-231f-4b27-ba24-e55790444e5a",
+        "role": "MEMBER",
+        "token": "6344e9ed-9434-40bd-821e-15e1ea2e721c",
+        "invited_by": [
+            "WC"
+        ],
+        "created_at": "2026-03-11T20:56:29.087Z",
+        "used_at": "2026-03-11T20:57:14.812Z"
+    }
+},
+{
+    "model": "core.invitation",
+    "pk": 8,
+    "fields": {
+        "email": "wouter.cuyvers@gmail.com",
+        "company": "29e9b227-b876-4b7a-9478-b9993d578db4",
+        "role": "MEMBER",
+        "token": "acd1275b-745f-4758-8797-9923379f997a",
+        "invited_by": [
+            "amelie.kirkegaard"
+        ],
+        "created_at": "2026-03-11T21:03:42.314Z",
+        "used_at": "2026-03-11T21:06:39.451Z"
+    }
+},
+{
+    "model": "core.workspacerequest",
+    "pk": 8,
+    "fields": {
+        "email": "amelie.kirkegaard@gmail.com",
+        "company_name": "Amelie",
+        "token": "5ff91107-b8c2-4b9b-8d6c-08c532532be0",
+        "created_at": "2026-03-11T20:39:11.072Z",
+        "confirmed_at": "2026-03-11T20:39:18.935Z"
+    }
+},
+{
+    "model": "core.workspacerequest",
+    "pk": 9,
+    "fields": {
+        "email": "wouter.cuyvers@gmail.com",
+        "company_name": "CB",
+        "token": "78801a47-8861-4d80-852d-ebf0cd427e29",
+        "created_at": "2026-03-11T20:48:41.275Z",
+        "confirmed_at": "2026-03-11T20:48:49.738Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 1,
+    "fields": {
+        "key": "nav.board",
+        "en": "Board",
+        "da": "Tavlen",
+        "description": null,
+        "created_at": "2026-03-10T17:45:10.563Z",
+        "updated_at": "2026-03-10T17:45:56.119Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 2,
+    "fields": {
+        "key": "nav.knowledge",
+        "en": "Knowledge Base",
+        "da": "Vidensbank",
+        "description": null,
+        "created_at": "2026-03-10T17:45:10.714Z",
+        "updated_at": "2026-03-10T17:45:56.189Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 3,
+    "fields": {
+        "key": "nav.time",
+        "en": "Time Tracking",
+        "da": "Tidsregistrering",
+        "description": null,
+        "created_at": "2026-03-10T17:45:10.845Z",
+        "updated_at": "2026-03-10T17:45:56.242Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 4,
+    "fields": {
+        "key": "nav.calendar",
+        "en": "Annual Calendar",
+        "da": "rshjul",
+        "description": null,
+        "created_at": "2026-03-10T17:45:10.984Z",
+        "updated_at": "2026-03-10T17:45:56.308Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 5,
+    "fields": {
+        "key": "nav.pinboard",
+        "en": "Pinboard",
+        "da": "Prikbord",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.116Z",
+        "updated_at": "2026-03-10T17:45:56.360Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 6,
+    "fields": {
+        "key": "nav.apps",
+        "en": "Apps",
+        "da": "Apps",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.267Z",
+        "updated_at": "2026-03-10T17:45:56.428Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 7,
+    "fields": {
+        "key": "nav.users",
+        "en": "Users & Teams",
+        "da": "Brugere & Teams",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.394Z",
+        "updated_at": "2026-03-10T17:45:56.484Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 8,
+    "fields": {
+        "key": "nav.logout",
+        "en": "Log Out",
+        "da": "Log ud",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.516Z",
+        "updated_at": "2026-03-10T17:45:56.542Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 9,
+    "fields": {
+        "key": "role.admin",
+        "en": "Administrator",
+        "da": "Administrator",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.671Z",
+        "updated_at": "2026-03-10T17:45:56.605Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 10,
+    "fields": {
+        "key": "role.superuser",
+        "en": "Superuser",
+        "da": "Superbruger",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.825Z",
+        "updated_at": "2026-03-10T17:45:56.674Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 11,
+    "fields": {
+        "key": "role.member",
+        "en": "Member",
+        "da": "Medlem",
+        "description": null,
+        "created_at": "2026-03-10T17:45:11.975Z",
+        "updated_at": "2026-03-10T17:45:56.742Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 12,
+    "fields": {
+        "key": "action.save",
+        "en": "Save",
+        "da": "Gem",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.126Z",
+        "updated_at": "2026-03-10T17:45:56.800Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 13,
+    "fields": {
+        "key": "action.cancel",
+        "en": "Cancel",
+        "da": "Annuller",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.255Z",
+        "updated_at": "2026-03-10T17:45:56.864Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 14,
+    "fields": {
+        "key": "action.delete",
+        "en": "Delete",
+        "da": "Slet",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.393Z",
+        "updated_at": "2026-03-10T17:45:56.927Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 15,
+    "fields": {
+        "key": "action.edit",
+        "en": "Edit",
+        "da": "Rediger",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.531Z",
+        "updated_at": "2026-03-10T17:45:56.984Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 16,
+    "fields": {
+        "key": "action.create",
+        "en": "Create",
+        "da": "Opret",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.668Z",
+        "updated_at": "2026-03-10T17:45:57.039Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 17,
+    "fields": {
+        "key": "action.search",
+        "en": "Search...",
+        "da": "Sg...",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.804Z",
+        "updated_at": "2026-03-10T17:45:57.107Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 18,
+    "fields": {
+        "key": "global.loading",
+        "en": "Loading...",
+        "da": "Indlser...",
+        "description": null,
+        "created_at": "2026-03-10T17:45:12.931Z",
+        "updated_at": "2026-03-10T17:45:57.169Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 19,
+    "fields": {
+        "key": "global.error",
+        "en": "An error occurred",
+        "da": "Der opstod en fejl",
+        "description": null,
+        "created_at": "2026-03-10T17:45:13.066Z",
+        "updated_at": "2026-03-10T17:45:57.224Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 20,
+    "fields": {
+        "key": "board.title",
+        "en": "Board",
+        "da": "Tavlen",
+        "description": null,
+        "created_at": "2026-03-10T17:45:57.297Z",
+        "updated_at": "2026-03-10T17:45:57.297Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 21,
+    "fields": {
+        "key": "board.subtitle",
+        "en": "Development and bug fixes",
+        "da": "Udvikling og fejlrettelser",
+        "description": null,
+        "created_at": "2026-03-10T17:45:57.467Z",
+        "updated_at": "2026-03-10T17:45:57.467Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 22,
+    "fields": {
+        "key": "board.all_teams",
+        "en": "All teams",
+        "da": "Alle teams",
+        "description": null,
+        "created_at": "2026-03-10T17:45:57.595Z",
+        "updated_at": "2026-03-10T17:45:57.595Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 23,
+    "fields": {
+        "key": "board.search_placeholder",
+        "en": "Search tasks...",
+        "da": "Sg i opgaver...",
+        "description": null,
+        "created_at": "2026-03-10T17:45:57.724Z",
+        "updated_at": "2026-03-10T17:45:57.724Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 24,
+    "fields": {
+        "key": "board.my_tasks",
+        "en": "My tasks",
+        "da": "Mine opgaver",
+        "description": null,
+        "created_at": "2026-03-10T17:45:57.846Z",
+        "updated_at": "2026-03-10T17:45:57.846Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 25,
+    "fields": {
+        "key": "board.all_assignees",
+        "en": "All assignees",
+        "da": "Alle ansvarlige",
+        "description": null,
+        "created_at": "2026-03-10T17:45:57.990Z",
+        "updated_at": "2026-03-10T17:45:57.990Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 26,
+    "fields": {
+        "key": "board.new_task",
+        "en": "New Task",
+        "da": "Ny Opgave",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.121Z",
+        "updated_at": "2026-03-10T17:45:58.121Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 27,
+    "fields": {
+        "key": "board.column.backlog",
+        "en": "Backlog",
+        "da": "Indbakke",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.256Z",
+        "updated_at": "2026-03-10T17:45:58.256Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 28,
+    "fields": {
+        "key": "board.column.todo",
+        "en": "Ready to start",
+        "da": "Klar til start",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.388Z",
+        "updated_at": "2026-03-10T17:45:58.388Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 29,
+    "fields": {
+        "key": "board.column.in_progress",
+        "en": "In progress",
+        "da": "Igang",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.526Z",
+        "updated_at": "2026-03-10T17:45:58.526Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 30,
+    "fields": {
+        "key": "board.column.test",
+        "en": "Testing",
+        "da": "Test",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.660Z",
+        "updated_at": "2026-03-10T17:45:58.661Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 31,
+    "fields": {
+        "key": "board.column.done",
+        "en": "Done",
+        "da": "Frdig",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.795Z",
+        "updated_at": "2026-03-10T17:45:58.795Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 32,
+    "fields": {
+        "key": "board.column.on_hold",
+        "en": "On Hold",
+        "da": "On Hold",
+        "description": null,
+        "created_at": "2026-03-10T17:45:58.947Z",
+        "updated_at": "2026-03-10T17:45:58.947Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 33,
+    "fields": {
+        "key": "board.hide_on_hold",
+        "en": "Hide On Hold",
+        "da": "Skjul On Hold",
+        "description": null,
+        "created_at": "2026-03-10T17:45:59.085Z",
+        "updated_at": "2026-03-10T17:45:59.085Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 34,
+    "fields": {
+        "key": "board.show_on_hold",
+        "en": "Show On Hold",
+        "da": "Vis On Hold",
+        "description": null,
+        "created_at": "2026-03-10T17:45:59.217Z",
+        "updated_at": "2026-03-10T17:45:59.217Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 35,
+    "fields": {
+        "key": "kb.title",
+        "en": "Knowledge Base",
+        "da": "Vidensbank",
+        "description": null,
+        "created_at": "2026-03-10T17:46:43.764Z",
+        "updated_at": "2026-03-20T15:19:56.367Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 36,
+    "fields": {
+        "key": "kb.subtitle",
+        "en": "Collection of knowledge, templates, and guides for case processing.",
+        "da": "Samling af viden, skabeloner og vejledninger til sagsbehandling.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:43.901Z",
+        "updated_at": "2026-03-20T15:19:56.425Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 37,
+    "fields": {
+        "key": "kb.add_new",
+        "en": "Add new knowledge",
+        "da": "Tilfj ny viden",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.025Z",
+        "updated_at": "2026-03-20T15:19:56.486Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 38,
+    "fields": {
+        "key": "kb.filters",
+        "en": "Filters",
+        "da": "Filtre",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.152Z",
+        "updated_at": "2026-03-20T15:19:56.544Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 39,
+    "fields": {
+        "key": "kb.clear_filters",
+        "en": "Clear",
+        "da": "Ryd",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.292Z",
+        "updated_at": "2026-03-20T15:19:56.605Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 40,
+    "fields": {
+        "key": "kb.show_archived",
+        "en": "Show archived",
+        "da": "Vis arkiverede",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.420Z",
+        "updated_at": "2026-03-20T15:19:56.667Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 41,
+    "fields": {
+        "key": "kb.trash",
+        "en": "Trash (Deleted)",
+        "da": "Papirkurv (Slettede)",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.564Z",
+        "updated_at": "2026-03-20T15:19:56.736Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 42,
+    "fields": {
+        "key": "kb.categories",
+        "en": "Categories",
+        "da": "Kategorier",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.698Z",
+        "updated_at": "2026-03-20T15:19:56.796Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 43,
+    "fields": {
+        "key": "kb.all_categories",
+        "en": "All categories",
+        "da": "Alle kategorier",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.827Z",
+        "updated_at": "2026-03-20T15:19:56.856Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 44,
+    "fields": {
+        "key": "kb.search_placeholder",
+        "en": "Search title or text...",
+        "da": "Sg i titel eller tekst...",
+        "description": null,
+        "created_at": "2026-03-10T17:46:44.982Z",
+        "updated_at": "2026-03-20T15:19:56.910Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 45,
+    "fields": {
+        "key": "kb.search_deleted_placeholder",
+        "en": "Search in deleted articles...",
+        "da": "Sg i slettede artikler...",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.139Z",
+        "updated_at": "2026-03-20T15:19:56.966Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 46,
+    "fields": {
+        "key": "kb.trash_empty",
+        "en": "The trash is empty.",
+        "da": "Papirkurven er tom.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.262Z",
+        "updated_at": "2026-03-20T15:19:57.032Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 47,
+    "fields": {
+        "key": "kb.no_results",
+        "en": "We found no results matching your search. Try different keywords.",
+        "da": "Vi fandt ikke noget, der matchede din sgning. Prv med andre sgeord.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.386Z",
+        "updated_at": "2026-03-20T15:19:57.101Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 48,
+    "fields": {
+        "key": "kb.clear_all_filters",
+        "en": "Clear all filters",
+        "da": "Ryd alle filtre",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.525Z",
+        "updated_at": "2026-03-20T15:19:57.167Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 49,
+    "fields": {
+        "key": "time.title",
+        "en": "Time Tracking",
+        "da": "Tidsregistrering",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.646Z",
+        "updated_at": "2026-03-20T15:19:57.230Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 50,
+    "fields": {
+        "key": "time.subtitle",
+        "en": "Register your hours and track your time.",
+        "da": "Registrer dine timer og hold styr p din tid.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.779Z",
+        "updated_at": "2026-03-20T15:19:57.289Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 51,
+    "fields": {
+        "key": "time.add_entry",
+        "en": "Add Entry",
+        "da": "Tilfj registrering",
+        "description": null,
+        "created_at": "2026-03-10T17:46:45.902Z",
+        "updated_at": "2026-03-20T15:19:57.346Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 52,
+    "fields": {
+        "key": "calendar.title",
+        "en": "Annual Calendar",
+        "da": "rshjul",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.033Z",
+        "updated_at": "2026-03-20T15:19:57.405Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 53,
+    "fields": {
+        "key": "calendar.subtitle",
+        "en": "Annual overview of activities and deadlines.",
+        "da": "rligt overblik over aktiviteter og deadlines.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.142Z",
+        "updated_at": "2026-03-20T15:19:57.464Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 54,
+    "fields": {
+        "key": "apps.title",
+        "en": "Applications",
+        "da": "Applikationer",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.261Z",
+        "updated_at": "2026-03-20T15:19:57.517Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 55,
+    "fields": {
+        "key": "apps.subtitle",
+        "en": "Links to external systems and tools.",
+        "da": "Links til eksterne systemer og vrktjer.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.413Z",
+        "updated_at": "2026-03-20T15:19:57.578Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 56,
+    "fields": {
+        "key": "users.title",
+        "en": "Users & Teams",
+        "da": "Brugere & Teams",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.542Z",
+        "updated_at": "2026-03-20T15:19:57.640Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 57,
+    "fields": {
+        "key": "users.subtitle",
+        "en": "Manage users, roles, and teams.",
+        "da": "Administrer brugere, roller og teams.",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.667Z",
+        "updated_at": "2026-03-20T15:19:57.701Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 58,
+    "fields": {
+        "key": "common.save",
+        "en": "Save",
+        "da": "Gem",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.792Z",
+        "updated_at": "2026-03-20T15:19:57.759Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 59,
+    "fields": {
+        "key": "common.cancel",
+        "en": "Cancel",
+        "da": "Annuller",
+        "description": null,
+        "created_at": "2026-03-10T17:46:46.929Z",
+        "updated_at": "2026-03-20T15:19:57.820Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 60,
+    "fields": {
+        "key": "common.delete",
+        "en": "Delete",
+        "da": "Slet",
+        "description": null,
+        "created_at": "2026-03-10T17:46:47.065Z",
+        "updated_at": "2026-03-20T15:19:57.879Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 61,
+    "fields": {
+        "key": "common.edit",
+        "en": "Edit",
+        "da": "Rediger",
+        "description": null,
+        "created_at": "2026-03-10T17:46:47.200Z",
+        "updated_at": "2026-03-20T15:19:57.939Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 62,
+    "fields": {
+        "key": "common.close",
+        "en": "Close",
+        "da": "Luk",
+        "description": null,
+        "created_at": "2026-03-10T17:46:47.333Z",
+        "updated_at": "2026-03-20T15:19:58.001Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 63,
+    "fields": {
+        "key": "pinboard.title",
+        "en": "PINBOARD",
+        "da": "PRIKBORDET",
+        "description": null,
+        "created_at": "2026-03-10T18:01:34.497Z",
+        "updated_at": "2026-03-10T18:01:34.497Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 64,
+    "fields": {
+        "key": "pinboard.subtitle",
+        "en": "Ideas & dialogue",
+        "da": "Ider & dialog",
+        "description": null,
+        "created_at": "2026-03-10T18:01:34.619Z",
+        "updated_at": "2026-03-10T18:01:34.619Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 65,
+    "fields": {
+        "key": "common.all_teams",
+        "en": "ALL TEAMS",
+        "da": "ALLE TEAMS",
+        "description": null,
+        "created_at": "2026-03-10T18:01:34.748Z",
+        "updated_at": "2026-03-10T18:01:34.748Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 66,
+    "fields": {
+        "key": "common.only_mine",
+        "en": "ONLY MINE",
+        "da": "KUN MINE",
+        "description": null,
+        "created_at": "2026-03-10T18:01:34.902Z",
+        "updated_at": "2026-03-10T18:01:34.902Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 67,
+    "fields": {
+        "key": "common.search_placeholder",
+        "en": "SEARCH...",
+        "da": "SG...",
+        "description": null,
+        "created_at": "2026-03-10T18:01:35.051Z",
+        "updated_at": "2026-03-10T18:01:35.051Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 68,
+    "fields": {
+        "key": "users.search_users",
+        "en": "Search for users or teams...",
+        "da": "Sg efter navn eller team...",
+        "description": null,
+        "created_at": "2026-03-10T18:01:35.193Z",
+        "updated_at": "2026-03-10T18:01:35.193Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 69,
+    "fields": {
+        "key": "users.search_teams",
+        "en": "Search for team...",
+        "da": "Sg efter team...",
+        "description": null,
+        "created_at": "2026-03-10T18:01:35.351Z",
+        "updated_at": "2026-03-10T18:01:35.351Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 70,
+    "fields": {
+        "key": "users.search_groups",
+        "en": "Search for group...",
+        "da": "Sg efter gruppe...",
+        "description": null,
+        "created_at": "2026-03-10T18:01:35.490Z",
+        "updated_at": "2026-03-10T18:01:35.490Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 71,
+    "fields": {
+        "key": "apps.search_placeholder",
+        "en": "Search apps, teams, or purposes...",
+        "da": "Sg i apps, teams eller forml...",
+        "description": null,
+        "created_at": "2026-03-10T18:01:35.634Z",
+        "updated_at": "2026-03-10T18:01:35.634Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 72,
+    "fields": {
+        "key": "apps.teams.all_selected",
+        "en": "All teams selected",
+        "da": "Alle teams er valgt",
+        "description": null,
+        "created_at": "2026-03-10T18:01:35.776Z",
+        "updated_at": "2026-03-10T18:01:35.776Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 73,
+    "fields": {
+        "key": "users.admin_panel",
+        "en": "Admin Panel",
+        "da": "Admin Panel",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.038Z",
+        "updated_at": "2026-03-10T18:04:29.038Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 74,
+    "fields": {
+        "key": "users.users_menu",
+        "en": "Users",
+        "da": "Brugere",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.161Z",
+        "updated_at": "2026-03-10T18:04:29.161Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 75,
+    "fields": {
+        "key": "users.teams_menu",
+        "en": "Teams",
+        "da": "Teams",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.290Z",
+        "updated_at": "2026-03-10T18:04:29.290Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 76,
+    "fields": {
+        "key": "users.groups_menu",
+        "en": "Annual Cycle Groups",
+        "da": "rshjul Grupper",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.420Z",
+        "updated_at": "2026-03-10T18:04:29.420Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 77,
+    "fields": {
+        "key": "users.back_to_board",
+        "en": "Back to Board",
+        "da": "Tilbage til Tavlen",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.565Z",
+        "updated_at": "2026-03-10T18:04:29.565Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 78,
+    "fields": {
+        "key": "vidensbank.trash",
+        "en": "Trash",
+        "da": "Papirkurv",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.697Z",
+        "updated_at": "2026-03-10T18:04:29.697Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 79,
+    "fields": {
+        "key": "vidensbank.trash_deleted",
+        "en": "Trash (Deleted)",
+        "da": "Papirkurv (Slettede)",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.825Z",
+        "updated_at": "2026-03-10T18:04:29.825Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 80,
+    "fields": {
+        "key": "vidensbank.unknown_category",
+        "en": "Unknown category",
+        "da": "Ukendt kategori",
+        "description": null,
+        "created_at": "2026-03-10T18:04:29.953Z",
+        "updated_at": "2026-03-10T18:04:29.953Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 81,
+    "fields": {
+        "key": "vidensbank.toast_moved_to_trash",
+        "en": "Article is now moved to trash",
+        "da": "Artikel er nu flyttet til papirkurven",
+        "description": null,
+        "created_at": "2026-03-10T18:04:30.107Z",
+        "updated_at": "2026-03-10T18:04:30.107Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 82,
+    "fields": {
+        "key": "vidensbank.toast_restored",
+        "en": "Article restored from trash",
+        "da": "Artikel er gendannet og flyttet fra papirkurven",
+        "description": null,
+        "created_at": "2026-03-10T18:04:30.246Z",
+        "updated_at": "2026-03-10T18:04:30.246Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 83,
+    "fields": {
+        "key": "vidensbank.modal_delete_title",
+        "en": "Move to trash",
+        "da": "Flyt til papirkurv",
+        "description": null,
+        "created_at": "2026-03-10T18:04:30.381Z",
+        "updated_at": "2026-03-10T18:04:30.381Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 84,
+    "fields": {
+        "key": "vidensbank.modal_delete_confirm",
+        "en": "Are you sure you want to delete \"{{title}}\"? It will be moved to the trash and can be restored by an administrator.",
+        "da": "Er du sikker p at du vil slette \"{{title}}\"? Den vil blive flyttet til papirkurven og kan gendannes af en administrator.",
+        "description": null,
+        "created_at": "2026-03-10T18:04:30.506Z",
+        "updated_at": "2026-03-10T18:04:30.506Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 85,
+    "fields": {
+        "key": "vidensbank.modal_delete_button",
+        "en": "Delete (move to trash)",
+        "da": "Slet (flyt til papirkurv)",
+        "description": null,
+        "created_at": "2026-03-10T18:04:30.623Z",
+        "updated_at": "2026-03-10T18:04:30.623Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 86,
+    "fields": {
+        "key": "time.setup_tab",
+        "en": "Setup",
+        "da": "Opstning",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.194Z",
+        "updated_at": "2026-03-10T18:42:07.194Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 87,
+    "fields": {
+        "key": "time.overview_tab",
+        "en": "Overview",
+        "da": "Oversigt",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.331Z",
+        "updated_at": "2026-03-10T18:42:07.331Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 88,
+    "fields": {
+        "key": "time.loading_tasks",
+        "en": "Fetching your tasks...",
+        "da": "Henter dine opgaver...",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.456Z",
+        "updated_at": "2026-03-10T18:42:07.456Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 89,
+    "fields": {
+        "key": "time.edit_time",
+        "en": "Edit time",
+        "da": "Ret tid",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.582Z",
+        "updated_at": "2026-03-10T18:42:07.582Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 90,
+    "fields": {
+        "key": "time.status_active",
+        "en": "Active",
+        "da": "Aktiv",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.714Z",
+        "updated_at": "2026-03-10T18:42:07.715Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 91,
+    "fields": {
+        "key": "time.status_last_registered",
+        "en": "Last registered",
+        "da": "Sidst registreret",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.856Z",
+        "updated_at": "2026-03-10T18:42:07.856Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 92,
+    "fields": {
+        "key": "time.status_ready",
+        "en": "Ready",
+        "da": "Klar",
+        "description": null,
+        "created_at": "2026-03-10T18:42:07.983Z",
+        "updated_at": "2026-03-10T18:42:07.983Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 93,
+    "fields": {
+        "key": "time.no_favorites_title",
+        "en": "No favorites yet",
+        "da": "Ingen favoritter endnu",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.122Z",
+        "updated_at": "2026-03-10T18:42:08.122Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 94,
+    "fields": {
+        "key": "time.no_favorites_desc",
+        "en": "Go to \"Setup\" to add your most used task codes to your dashboard.",
+        "da": "G til \"Opstning\" for at tilfje dine mest brugte opgavekoder til din oversigt.",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.256Z",
+        "updated_at": "2026-03-10T18:42:08.256Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 95,
+    "fields": {
+        "key": "time.setup_now",
+        "en": "SETUP NOW",
+        "da": "OPST NU",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.384Z",
+        "updated_at": "2026-03-10T18:42:08.384Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 96,
+    "fields": {
+        "key": "time.setup_all_codes",
+        "en": "All Task Codes",
+        "da": "Alle Opgavekoder",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.517Z",
+        "updated_at": "2026-03-10T18:42:08.517Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 97,
+    "fields": {
+        "key": "time.setup_search_placeholder",
+        "en": "Search codes...",
+        "da": "Sg i koder...",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.654Z",
+        "updated_at": "2026-03-10T18:42:08.654Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 98,
+    "fields": {
+        "key": "time.setup_my_favorites",
+        "en": "My Favorites (Dashboard)",
+        "da": "Mine Favoritter (Dashboard)",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.777Z",
+        "updated_at": "2026-03-10T18:42:08.777Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 99,
+    "fields": {
+        "key": "time.setup_drag_info",
+        "en": "Drag codes to change the sorting order on your dashboard.",
+        "da": "Flyt koderne for at ndre rkkeflgen p din forside.",
+        "description": null,
+        "created_at": "2026-03-10T18:42:08.908Z",
+        "updated_at": "2026-03-10T18:42:08.908Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 100,
+    "fields": {
+        "key": "time.setup_alias_placeholder",
+        "en": "Give the task a name...",
+        "da": "Giv opgaven et navn...",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.039Z",
+        "updated_at": "2026-03-10T18:42:09.039Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 101,
+    "fields": {
+        "key": "time.setup_add_hint",
+        "en": "Add codes from the left side",
+        "da": "Tilfj koder fra venstre side",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.182Z",
+        "updated_at": "2026-03-10T18:42:09.182Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 102,
+    "fields": {
+        "key": "time.overview_weekly",
+        "en": "WEEKLY OVERVIEW",
+        "da": "UGEOVERSIGT",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.302Z",
+        "updated_at": "2026-03-10T18:42:09.302Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 103,
+    "fields": {
+        "key": "time.overview_period",
+        "en": "PERIOD",
+        "da": "PERIODE",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.420Z",
+        "updated_at": "2026-03-10T18:42:09.420Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 104,
+    "fields": {
+        "key": "time.overview_export_csv",
+        "en": "EXPORT CSV",
+        "da": "EKSPORTER CSV",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.546Z",
+        "updated_at": "2026-03-10T18:42:09.546Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 105,
+    "fields": {
+        "key": "time.overview_col_date",
+        "en": "Date",
+        "da": "Dato",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.678Z",
+        "updated_at": "2026-03-10T18:42:09.678Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 106,
+    "fields": {
+        "key": "time.overview_col_time",
+        "en": "Time",
+        "da": "Tid",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.806Z",
+        "updated_at": "2026-03-10T18:42:09.808Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 107,
+    "fields": {
+        "key": "time.overview_col_code",
+        "en": "Code",
+        "da": "Kode",
+        "description": null,
+        "created_at": "2026-03-10T18:42:09.933Z",
+        "updated_at": "2026-03-10T18:42:09.933Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 108,
+    "fields": {
+        "key": "time.overview_col_desc",
+        "en": "Description",
+        "da": "Beskrivelse",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.054Z",
+        "updated_at": "2026-03-10T18:42:10.054Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 109,
+    "fields": {
+        "key": "time.overview_col_action",
+        "en": "Action",
+        "da": "Handling",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.210Z",
+        "updated_at": "2026-03-10T18:42:10.210Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 110,
+    "fields": {
+        "key": "time.overview_col_group",
+        "en": "Group",
+        "da": "Gruppe",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.339Z",
+        "updated_at": "2026-03-10T18:42:10.339Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 111,
+    "fields": {
+        "key": "time.overview_col_mon",
+        "en": "Mon",
+        "da": "Man",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.471Z",
+        "updated_at": "2026-03-10T18:42:10.471Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 112,
+    "fields": {
+        "key": "time.overview_col_tue",
+        "en": "Tue",
+        "da": "Tir",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.617Z",
+        "updated_at": "2026-03-10T18:42:10.617Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 113,
+    "fields": {
+        "key": "time.overview_col_wed",
+        "en": "Wed",
+        "da": "Ons",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.761Z",
+        "updated_at": "2026-03-10T18:42:10.761Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 114,
+    "fields": {
+        "key": "time.overview_col_thu",
+        "en": "Thu",
+        "da": "Tor",
+        "description": null,
+        "created_at": "2026-03-10T18:42:10.888Z",
+        "updated_at": "2026-03-10T18:42:10.888Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 115,
+    "fields": {
+        "key": "time.overview_col_fri",
+        "en": "Fri",
+        "da": "Fre",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.021Z",
+        "updated_at": "2026-03-10T18:42:11.021Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 116,
+    "fields": {
+        "key": "time.overview_col_sat",
+        "en": "Sat",
+        "da": "Lr",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.167Z",
+        "updated_at": "2026-03-10T18:42:11.167Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 117,
+    "fields": {
+        "key": "time.overview_col_sun",
+        "en": "Sun",
+        "da": "Sn",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.293Z",
+        "updated_at": "2026-03-10T18:42:11.293Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 118,
+    "fields": {
+        "key": "time.overview_col_total",
+        "en": "Total",
+        "da": "Total",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.418Z",
+        "updated_at": "2026-03-10T18:42:11.418Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 119,
+    "fields": {
+        "key": "time.overview_no_registrations",
+        "en": "No registrations found for this period",
+        "da": "Ingen registreringer fundet for denne periode",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.576Z",
+        "updated_at": "2026-03-10T18:42:11.576Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 120,
+    "fields": {
+        "key": "time.overview_no_data",
+        "en": "No data for this week",
+        "da": "Ingen data for denne uge",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.712Z",
+        "updated_at": "2026-03-10T18:42:11.712Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 121,
+    "fields": {
+        "key": "time.overview_weekly_total",
+        "en": "Weekly Total:",
+        "da": "Ugentlig Total:",
+        "description": null,
+        "created_at": "2026-03-10T18:42:11.840Z",
+        "updated_at": "2026-03-10T18:42:11.840Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 122,
+    "fields": {
+        "key": "common.back",
+        "en": "Back",
+        "da": "Tilbage",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.103Z",
+        "updated_at": "2026-03-20T15:19:58.053Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 123,
+    "fields": {
+        "key": "common.copy_link",
+        "en": "Copy Link",
+        "da": "Kopir link",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.244Z",
+        "updated_at": "2026-03-20T15:19:58.116Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 124,
+    "fields": {
+        "key": "workspace.title",
+        "en": "Workspace",
+        "da": "Arbejdsrum",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.375Z",
+        "updated_at": "2026-03-20T15:19:58.182Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 125,
+    "fields": {
+        "key": "workspace.settings",
+        "en": "Workspace Settings",
+        "da": "Indstillinger",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.511Z",
+        "updated_at": "2026-03-20T15:19:58.239Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 126,
+    "fields": {
+        "key": "workspace.leave",
+        "en": "Leave Workspace",
+        "da": "Forlad arbejdsrum",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.640Z",
+        "updated_at": "2026-03-20T15:19:58.293Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 127,
+    "fields": {
+        "key": "workspace.remove_member",
+        "en": "Remove Member",
+        "da": "Fjern Medlem",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.800Z",
+        "updated_at": "2026-03-20T15:19:58.355Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 128,
+    "fields": {
+        "key": "workspace.switch",
+        "en": "Switch Workspace",
+        "da": "Skift Arbejdsrum",
+        "description": null,
+        "created_at": "2026-03-11T19:19:27.942Z",
+        "updated_at": "2026-03-20T15:19:58.419Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 129,
+    "fields": {
+        "key": "workspace.create_new",
+        "en": "Create New Workspace",
+        "da": "Opret Nyt Arbejdsrum",
+        "description": null,
+        "created_at": "2026-03-11T19:19:28.084Z",
+        "updated_at": "2026-03-20T15:19:58.481Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 130,
+    "fields": {
+        "key": "workspace.admin",
+        "en": "Admin Panel",
+        "da": "Administrationspanel",
+        "description": null,
+        "created_at": "2026-03-11T19:19:28.236Z",
+        "updated_at": "2026-03-20T15:19:58.542Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 131,
+    "fields": {
+        "key": "nav.flowchart",
+        "en": "Flowchart",
+        "da": "Flowchart",
+        "description": null,
+        "created_at": "2026-03-20T15:19:58.609Z",
+        "updated_at": "2026-03-20T15:19:58.609Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 132,
+    "fields": {
+        "key": "flowchart.new",
+        "en": "New Flowchart",
+        "da": "Nyt flowchart",
+        "description": null,
+        "created_at": "2026-03-20T15:19:58.758Z",
+        "updated_at": "2026-03-20T15:19:58.758Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 133,
+    "fields": {
+        "key": "flowchart.edit_mode",
+        "en": "Edit",
+        "da": "Rediger",
+        "description": null,
+        "created_at": "2026-03-20T15:19:58.895Z",
+        "updated_at": "2026-03-20T15:19:58.895Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 134,
+    "fields": {
+        "key": "flowchart.view_mode",
+        "en": "View",
+        "da": "Vis",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.029Z",
+        "updated_at": "2026-03-20T15:19:59.029Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 135,
+    "fields": {
+        "key": "flowchart.save",
+        "en": "Save",
+        "da": "Gem",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.162Z",
+        "updated_at": "2026-03-20T15:19:59.162Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 136,
+    "fields": {
+        "key": "flowchart.name",
+        "en": "Name",
+        "da": "Navn",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.299Z",
+        "updated_at": "2026-03-20T15:19:59.299Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 137,
+    "fields": {
+        "key": "flowchart.description",
+        "en": "Description",
+        "da": "Beskrivelse",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.444Z",
+        "updated_at": "2026-03-20T15:19:59.444Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 138,
+    "fields": {
+        "key": "flowchart.color",
+        "en": "Color",
+        "da": "Farve",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.572Z",
+        "updated_at": "2026-03-20T15:19:59.572Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 139,
+    "fields": {
+        "key": "flowchart.shape",
+        "en": "Shape",
+        "da": "Form",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.712Z",
+        "updated_at": "2026-03-20T15:19:59.712Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 140,
+    "fields": {
+        "key": "flowchart.shape.rectangle",
+        "en": "Rectangle",
+        "da": "Rektangel",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.854Z",
+        "updated_at": "2026-03-20T15:19:59.854Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 141,
+    "fields": {
+        "key": "flowchart.shape.diamond",
+        "en": "Diamond",
+        "da": "Diamant",
+        "description": null,
+        "created_at": "2026-03-20T15:19:59.997Z",
+        "updated_at": "2026-03-20T15:19:59.997Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 142,
+    "fields": {
+        "key": "flowchart.shape.oval",
+        "en": "Oval",
+        "da": "Oval",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.140Z",
+        "updated_at": "2026-03-20T15:20:00.141Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 143,
+    "fields": {
+        "key": "flowchart.delete_node",
+        "en": "Delete node",
+        "da": "Slet node",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.266Z",
+        "updated_at": "2026-03-20T15:20:00.266Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 144,
+    "fields": {
+        "key": "flowchart.delete_edge",
+        "en": "Delete connection",
+        "da": "Slet forbindelse",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.390Z",
+        "updated_at": "2026-03-20T15:20:00.390Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 145,
+    "fields": {
+        "key": "flowchart.add_shape",
+        "en": "Add shape",
+        "da": "Tilfj form",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.540Z",
+        "updated_at": "2026-03-20T15:20:00.540Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 146,
+    "fields": {
+        "key": "flowchart.properties",
+        "en": "Properties",
+        "da": "Egenskaber",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.682Z",
+        "updated_at": "2026-03-20T15:20:00.682Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 147,
+    "fields": {
+        "key": "flowchart.no_flowcharts",
+        "en": "No flowcharts yet",
+        "da": "Ingen flowcharts endnu",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.835Z",
+        "updated_at": "2026-03-20T15:20:00.835Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 148,
+    "fields": {
+        "key": "flowchart.select_hint",
+        "en": "Select a flowchart to view",
+        "da": "Vlg et flowchart for at se det",
+        "description": null,
+        "created_at": "2026-03-20T15:20:00.975Z",
+        "updated_at": "2026-03-20T15:20:00.975Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 149,
+    "fields": {
+        "key": "flowchart.team",
+        "en": "Team",
+        "da": "Team",
+        "description": null,
+        "created_at": "2026-03-20T15:20:01.122Z",
+        "updated_at": "2026-03-20T15:20:01.122Z"
+    }
+},
+{
+    "model": "core.uitranslation",
+    "pk": 150,
+    "fields": {
+        "key": "flowchart.team_all",
+        "en": "All (company-wide)",
+        "da": "Alle (hele virksomheden)",
+        "description": null,
+        "created_at": "2026-03-20T15:20:01.262Z",
+        "updated_at": "2026-03-20T15:20:01.262Z"
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test",
+        "beskrivelse": "<p>klkd&nbsp;&nbsp;kkllkd</p>",
+        "status": "IN_PROGRESS",
+        "prioritet": "MEDIUM",
+        "team": 1,
+        "deadline": null,
+        "oprettet_af": [
+            "admin"
+        ],
+        "oprettet": "2026-02-13T17:57:16.711Z",
+        "opdateret": "2026-03-31T12:48:44.506Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": -1,
+        "arkiveret": false,
+        "ansvarlige": [
+            [
+                "admin"
+            ],
+            [
+                "WC"
+            ]
+        ]
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test life",
+        "beskrivelse": "",
+        "status": "TODO",
+        "prioritet": "MEDIUM",
+        "team": 1,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T13:05:09.835Z",
+        "opdateret": "2026-03-31T12:48:15.007Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 1,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test",
+        "beskrivelse": "",
+        "status": "BACKLOG",
+        "prioritet": "MEDIUM",
+        "team": 1,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T13:14:20.136Z",
+        "opdateret": "2026-02-14T13:14:20.136Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 0,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test",
+        "beskrivelse": "",
+        "status": "BACKLOG",
+        "prioritet": "MEDIUM",
+        "team": 1,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T13:35:33.213Z",
+        "opdateret": "2026-02-14T13:35:33.213Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 0,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test 99",
+        "beskrivelse": "",
+        "status": "IN_PROGRESS",
+        "prioritet": "MEDIUM",
+        "team": 1,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T13:35:44.545Z",
+        "opdateret": "2026-02-15T18:27:50.742Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 1,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test 88",
+        "beskrivelse": "",
+        "status": "BACKLOG",
+        "prioritet": "MEDIUM",
+        "team": 1,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T13:47:21.118Z",
+        "opdateret": "2026-02-14T13:47:21.118Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 0,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test 77",
+        "beskrivelse": "",
+        "status": "IN_PROGRESS",
+        "prioritet": "MEDIUM",
+        "team": 2,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T16:56:25.936Z",
+        "opdateret": "2026-02-14T20:44:37.436Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 1,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Test 77",
+        "beskrivelse": "",
+        "status": "BACKLOG",
+        "prioritet": "MEDIUM",
+        "team": 3,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T16:56:59.386Z",
+        "opdateret": "2026-02-15T20:33:25.113Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 0,
+        "arkiveret": false,
+        "ansvarlige": [
+            [
+                "WC"
+            ],
+            [
+                "Rikke"
+            ]
+        ]
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "kdkkdl",
+        "beskrivelse": "",
+        "status": "TODO",
+        "prioritet": "MEDIUM",
+        "team": 4,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-16T08:15:44.210Z",
+        "opdateret": "2026-02-16T10:35:18.324Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 1,
+        "arkiveret": false,
+        "ansvarlige": []
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 10,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Srlig Forhold & vrige aktive 2026 klar",
+        "beskrivelse": "<p>Gre&nbsp;dokumentet&nbsp;2026&nbsp;klar.</p><p>Er&nbsp;der&nbsp;nske&nbsp;om&nbsp;flere&nbsp;eller&nbsp;nye&nbsp;funktioner?</p>",
+        "status": "IN_PROGRESS",
+        "prioritet": "MEDIUM",
+        "team": 6,
+        "deadline": "2026-02-18",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-16T11:20:45.409Z",
+        "opdateret": "2026-03-03T13:21:33.278Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 1,
+        "arkiveret": false,
+        "ansvarlige": [
+            [
+                "Paul"
+            ]
+        ]
+    }
+},
+{
+    "model": "opgaver.opgave",
+    "pk": 11,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Forberedt Opex-Dataark til 2026",
+        "beskrivelse": "<p>Opex-Dataark_Dev</p>",
+        "status": "IN_PROGRESS",
+        "prioritet": "MEDIUM",
+        "team": 6,
+        "deadline": null,
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-16T11:22:44.559Z",
+        "opdateret": "2026-02-16T11:24:05.491Z",
+        "index": 0,
+        "kommentar_antal": 0,
+        "status_direction": 1,
+        "arkiveret": false,
+        "ansvarlige": [
+            [
+                "WC"
+            ]
+        ]
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 1,
+    "fields": {
+        "opgave": 1,
+        "gammel_status": "BACKLOG",
+        "ny_status": "TODO",
+        "bruger": [
+            "admin"
+        ],
+        "tidspunkt": "2026-02-13T17:57:22.724Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 2,
+    "fields": {
+        "opgave": 1,
+        "gammel_status": "TODO",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "admin"
+        ],
+        "tidspunkt": "2026-02-13T17:57:25.155Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 3,
+    "fields": {
+        "opgave": 1,
+        "gammel_status": "IN_PROGRESS",
+        "ny_status": "TODO",
+        "bruger": [
+            "admin"
+        ],
+        "tidspunkt": "2026-02-13T17:57:26.694Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 4,
+    "fields": {
+        "opgave": 7,
+        "gammel_status": "BACKLOG",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-14T20:44:37.383Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 5,
+    "fields": {
+        "opgave": 5,
+        "gammel_status": "BACKLOG",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-15T18:27:50.678Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 6,
+    "fields": {
+        "opgave": 9,
+        "gammel_status": "BACKLOG",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T08:15:46.622Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 7,
+    "fields": {
+        "opgave": 9,
+        "gammel_status": "IN_PROGRESS",
+        "ny_status": "TEST",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T08:15:53.814Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 8,
+    "fields": {
+        "opgave": 9,
+        "gammel_status": "TEST",
+        "ny_status": "TODO",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T08:15:59.714Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 9,
+    "fields": {
+        "opgave": 9,
+        "gammel_status": "TODO",
+        "ny_status": "DONE",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T08:16:06.429Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 10,
+    "fields": {
+        "opgave": 9,
+        "gammel_status": "DONE",
+        "ny_status": "ON_HOLD",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T10:35:09.765Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 11,
+    "fields": {
+        "opgave": 9,
+        "gammel_status": "ON_HOLD",
+        "ny_status": "TODO",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T10:35:18.316Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 12,
+    "fields": {
+        "opgave": 10,
+        "gammel_status": "BACKLOG",
+        "ny_status": "TODO",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T11:20:51.321Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 13,
+    "fields": {
+        "opgave": 11,
+        "gammel_status": "BACKLOG",
+        "ny_status": "TODO",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T11:22:52.630Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 14,
+    "fields": {
+        "opgave": 10,
+        "gammel_status": "TODO",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T11:23:01.463Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 15,
+    "fields": {
+        "opgave": 10,
+        "gammel_status": "IN_PROGRESS",
+        "ny_status": "TODO",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T11:23:56.134Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 16,
+    "fields": {
+        "opgave": 11,
+        "gammel_status": "TODO",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-02-16T11:24:05.485Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 21,
+    "fields": {
+        "opgave": 10,
+        "gammel_status": "TODO",
+        "ny_status": "TEST",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-03-03T13:20:59.955Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 22,
+    "fields": {
+        "opgave": 10,
+        "gammel_status": "TEST",
+        "ny_status": "TODO",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-03-03T13:21:07.216Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 23,
+    "fields": {
+        "opgave": 10,
+        "gammel_status": "TODO",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "WC"
+        ],
+        "tidspunkt": "2026-03-03T13:21:33.270Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 26,
+    "fields": {
+        "opgave": 2,
+        "gammel_status": "BACKLOG",
+        "ny_status": "TODO",
+        "bruger": [
+            "wouter"
+        ],
+        "tidspunkt": "2026-03-31T12:48:14.993Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 27,
+    "fields": {
+        "opgave": 1,
+        "gammel_status": "TODO",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "wouter"
+        ],
+        "tidspunkt": "2026-03-31T12:48:28.991Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 28,
+    "fields": {
+        "opgave": 1,
+        "gammel_status": "IN_PROGRESS",
+        "ny_status": "TEST",
+        "bruger": [
+            "wouter"
+        ],
+        "tidspunkt": "2026-03-31T12:48:40.605Z"
+    }
+},
+{
+    "model": "opgaver.opgavestatuslog",
+    "pk": 29,
+    "fields": {
+        "opgave": 1,
+        "gammel_status": "TEST",
+        "ny_status": "IN_PROGRESS",
+        "bruger": [
+            "wouter"
+        ],
+        "tidspunkt": "2026-03-31T12:48:44.497Z"
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "min frste postit",
+        "beskrivelse": "dette er min frste post-it",
+        "oprettet_af": [
+            "WC"
+        ],
+        "team": 2,
+        "oprettet": "2026-02-27T18:23:11.596Z",
+        "opdateret": "2026-02-27T18:23:11.596Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "det er min anden",
+        "beskrivelse": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "team": 4,
+        "oprettet": "2026-02-27T18:23:29.746Z",
+        "opdateret": "2026-02-27T18:23:29.746Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "min 3e post it",
+        "beskrivelse": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "team": 4,
+        "oprettet": "2026-02-27T18:25:10.621Z",
+        "opdateret": "2026-02-27T18:25:10.621Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Sommerfest id?",
+        "beskrivelse": "Jeg har fundet en genvej i systemet.",
+        "oprettet_af": [
+            "Zarah"
+        ],
+        "team": 3,
+        "oprettet": "2026-02-27T18:39:27.258Z",
+        "opdateret": "2026-02-27T18:39:27.258Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Nye planter til kontoret",
+        "beskrivelse": "Jeg har fundet en ny bnne vi skal prve.",
+        "oprettet_af": [
+            "Rikke"
+        ],
+        "team": 2,
+        "oprettet": "2026-02-27T18:39:27.284Z",
+        "opdateret": "2026-02-27T18:39:27.284Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Projekt deadline rykket",
+        "beskrivelse": "Jeg har tnkt p om vi ikke skulle fejre ugens afslutning.",
+        "oprettet_af": [
+            "Paul"
+        ],
+        "team": 6,
+        "oprettet": "2026-02-27T18:39:27.314Z",
+        "opdateret": "2026-02-27T18:39:27.314Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Mde om strategi",
+        "beskrivelse": "Lad os finde p noget sjovt i r!",
+        "oprettet_af": [
+            "Zarah"
+        ],
+        "team": 5,
+        "oprettet": "2026-02-27T18:39:27.342Z",
+        "opdateret": "2026-02-27T18:39:27.342Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Husk at lukke vinduerne",
+        "beskrivelse": "Det trkker nr de str bne om natten.",
+        "oprettet_af": [
+            "admin"
+        ],
+        "team": 1,
+        "oprettet": "2026-02-27T18:39:27.371Z",
+        "opdateret": "2026-02-27T18:39:27.371Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Husk at lukke vinduerne",
+        "beskrivelse": "Der er et fedt kursus p Udemy jeg har set p.",
+        "oprettet_af": [
+            "Zarah"
+        ],
+        "team": 4,
+        "oprettet": "2026-02-27T18:39:27.407Z",
+        "opdateret": "2026-02-27T18:39:27.407Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 11,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Flles morgenmad",
+        "beskrivelse": "Jeg har fundet en genvej i systemet.",
+        "oprettet_af": [
+            "WC"
+        ],
+        "team": 6,
+        "oprettet": "2026-02-27T18:39:27.472Z",
+        "opdateret": "2026-02-27T18:39:27.472Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 13,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Design review kl 14",
+        "beskrivelse": "Skal vi hedde noget andet end 'Team Jura'?",
+        "oprettet_af": [
+            "Zarah"
+        ],
+        "team": 5,
+        "oprettet": "2026-02-27T18:39:27.538Z",
+        "opdateret": "2026-02-27T18:39:27.538Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 15,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Husk at tmme opvaskeren",
+        "beskrivelse": "Jeg har tnkt p om vi ikke skulle fejre ugens afslutning.",
+        "oprettet_af": [
+            "Rikke"
+        ],
+        "team": 5,
+        "oprettet": "2026-02-27T18:39:27.604Z",
+        "opdateret": "2026-02-27T18:39:27.604Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 16,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Flles morgenmad",
+        "beskrivelse": "Dagsorden er sendt ud p mail.",
+        "oprettet_af": [
+            "Paul"
+        ],
+        "team": 4,
+        "oprettet": "2026-02-27T18:39:27.634Z",
+        "opdateret": "2026-02-27T18:39:27.634Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 17,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Husk at lukke vinduerne",
+        "beskrivelse": "Skal vi hedde noget andet end 'Team Jura'?",
+        "oprettet_af": [
+            "admin"
+        ],
+        "team": 4,
+        "oprettet": "2026-02-27T18:39:27.675Z",
+        "opdateret": "2026-02-27T18:39:27.675Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 18,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Projekt deadline rykket",
+        "beskrivelse": "Skal vi hedde noget andet end 'Team Jura'?",
+        "oprettet_af": [
+            "admin"
+        ],
+        "team": 6,
+        "oprettet": "2026-02-27T18:39:27.706Z",
+        "opdateret": "2026-02-27T18:39:27.706Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 19,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Nyt team navn?",
+        "beskrivelse": "Jeg har tnkt p om vi ikke skulle fejre ugens afslutning.",
+        "oprettet_af": [
+            "Zarah"
+        ],
+        "team": 3,
+        "oprettet": "2026-02-27T18:39:27.738Z",
+        "opdateret": "2026-02-27T18:39:27.738Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 20,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Gode rd til tidsregistrering",
+        "beskrivelse": "Jeg har fundet en ny bnne vi skal prve.",
+        "oprettet_af": [
+            "Emil"
+        ],
+        "team": 2,
+        "oprettet": "2026-02-27T18:39:27.771Z",
+        "opdateret": "2026-02-27T18:39:27.771Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 22,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Hvem har min oplader?",
+        "beskrivelse": "Der er et fedt kursus p Udemy jeg har set p.",
+        "oprettet_af": [
+            "Rikke"
+        ],
+        "team": 2,
+        "oprettet": "2026-02-27T18:39:27.831Z",
+        "opdateret": "2026-02-27T18:39:27.831Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpost",
+    "pk": 28,
+    "fields": {
+        "company": null,
+        "titel": "test",
+        "beskrivelse": "",
+        "oprettet_af": [
+            "wouter"
+        ],
+        "team": 17,
+        "oprettet": "2026-03-31T12:55:09.503Z",
+        "opdateret": "2026-03-31T12:55:09.503Z",
+        "arkiveret": false
+    }
+},
+{
+    "model": "opgaver.pinboardpostevaluation",
+    "pk": 2,
+    "fields": {
+        "post": 6,
+        "bruger": [
+            "WC"
+        ],
+        "evaluering": "GOD_IDE",
+        "oprettet": "2026-02-27T19:12:05.481Z"
+    }
+},
+{
+    "model": "opgaver.pinboardpostevaluation",
+    "pk": 3,
+    "fields": {
+        "post": 20,
+        "bruger": [
+            "WC"
+        ],
+        "evaluering": "GOD_IDE",
+        "oprettet": "2026-02-27T20:05:04.756Z"
+    }
+},
+{
+    "model": "opgaver.pinboardpostevaluation",
+    "pk": 4,
+    "fields": {
+        "post": 22,
+        "bruger": [
+            "WC"
+        ],
+        "evaluering": "INGEN_MENING",
+        "oprettet": "2026-02-27T20:13:09.015Z"
+    }
+},
+{
+    "model": "opgaver.pinboardpostevaluation",
+    "pk": 5,
+    "fields": {
+        "post": 5,
+        "bruger": [
+            "WC"
+        ],
+        "evaluering": "GOD_IDE",
+        "oprettet": "2026-02-27T20:15:03.212Z"
+    }
+},
+{
+    "model": "opgaver.pinboardpostevaluation",
+    "pk": 6,
+    "fields": {
+        "post": 1,
+        "bruger": [
+            "WC"
+        ],
+        "evaluering": "INGEN_MENING",
+        "oprettet": "2026-02-27T20:15:14.961Z"
+    }
+},
+{
+    "model": "opgaver.pinboardpostcomment",
+    "pk": 1,
+    "fields": {
+        "post": 6,
+        "bruger": [
+            "WC"
+        ],
+        "tekst": "Ja. God ide. ",
+        "oprettet": "2026-02-27T20:07:08.266Z"
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Sagsbehandling",
+        "beskrivelse": "Hvordan man behandler sager",
+        "farve": "#d97706",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Brugsvejledning til Tavlen",
+        "beskrivelse": "",
+        "farve": "#7c3aed",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Tjekliste",
+        "beskrivelse": "",
+        "farve": "#16a34a",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Afgrelse",
+        "beskrivelse": "",
+        "farve": "#d97706",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Standardbrever",
+        "beskrivelse": "",
+        "farve": "#7c3aed",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Udvikling",
+        "beskrivelse": "Dokumenter ifm udvikling",
+        "farve": "#0891b2",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Mine dokumenter",
+        "beskrivelse": "",
+        "farve": "#4f46e5",
+        "er_privat": true
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Jura",
+        "beskrivelse": "",
+        "farve": "#be185d",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "konomi",
+        "beskrivelse": "",
+        "farve": "#65a30d",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 10,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Benchmarking",
+        "beskrivelse": "",
+        "farve": "#9333ea",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 18,
+    "fields": {
+        "company": "29e9b227-b876-4b7a-9478-b9993d578db4",
+        "navn": "Generelt",
+        "beskrivelse": null,
+        "farve": "#2563eb",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.videnskategori",
+    "pk": 19,
+    "fields": {
+        "company": "f155d525-231f-4b27-ba24-e55790444e5a",
+        "navn": "Generelt",
+        "beskrivelse": null,
+        "farve": "#16a34a",
+        "er_privat": false
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "R statusark",
+        "slug": null,
+        "kategori": 1,
+        "indhold": "<p>R_Projektstyring_Octopus.xltm</p><p><br></p><p>\\\\prod.sitad.dk\\dfs\\CU2204\\enheder\\VAND\\FS Drift\\Makroer\\Brugervrktjer til diverse sagsbehandlinger\\</p>",
+        "link": "\\\\prod.sitad.dk\\dfs\\CU2204\\enheder\\VAND\\FS Drift\\Makroer\\Brugervrktjer til diverse sagsbehandlinger\\",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T09:20:27.554Z",
+        "opdateret": "2026-02-16T07:03:14.501Z",
+        "arkiveret": false,
+        "slettet": false,
+        "favoritter": [
+            [
+                "WC"
+            ]
+        ]
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test arkiv",
+        "slug": null,
+        "kategori": 2,
+        "indhold": "<p><br></p>",
+        "link": "",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T09:32:25.334Z",
+        "opdateret": "2026-02-14T17:10:11.444Z",
+        "arkiveret": false,
+        "slettet": true,
+        "favoritter": []
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test",
+        "slug": null,
+        "kategori": 6,
+        "indhold": "<p>jd lld klkdk  keoip&lt;k   kek e kk</p>",
+        "link": "",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T10:21:25.908Z",
+        "opdateret": "2026-02-14T17:10:05.645Z",
+        "arkiveret": true,
+        "slettet": false,
+        "favoritter": []
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test",
+        "slug": null,
+        "kategori": 4,
+        "indhold": "<p><br></p>",
+        "link": "",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T13:04:27.601Z",
+        "opdateret": "2026-02-14T17:10:02.404Z",
+        "arkiveret": false,
+        "slettet": true,
+        "favoritter": []
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "test 77",
+        "slug": null,
+        "kategori": 9,
+        "indhold": "<p><br></p>",
+        "link": "",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-14T17:10:26.788Z",
+        "opdateret": "2026-02-16T07:01:05.719Z",
+        "arkiveret": false,
+        "slettet": true,
+        "favoritter": []
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Ngletal",
+        "slug": null,
+        "kategori": 1,
+        "indhold": "<p>E:\\VAND\\FS Drift\\Makroer\\Brugervrktjer til diverse sagsbehandlinger\\R_Ngletal.xltm</p><p><br></p><h1>Brugervejledning: R og BM Ngletal i Octopus</h1><p>Denne vejledning beskriver, hvordan du finder, henter og analyserer ngletal for konomiske Rammer (R) og Benchmark (BM) i Octopus-systemet.</p><p><br></p><h2><strong>1. Oversigt og Datagrundlag</strong></h2><p>Octopus samler centrale ngletal i n samlet tabel. Dette sikrer en ensartet datakilde p tvrs af organisationen.</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Historik:</strong> For visse ngletal findes der data helt tilbage til 2016.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Definitioner:</strong> I fanen <strong>\"Definitioner\"</strong> finder du en komplet oversigt over, hvilke kildedokumenter og specifikke kolonner de enkelte vrdier hentes fra.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Skalerbarhed:</strong> Tabellen er designet til at vre fleksibel. Hvis der opstr behov for nye ngletal, kan de hurtigt tilfjes til oversigten.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Kildedata og synkronisering:</strong> Fra arket kan du bne kildedata direkte eller foretage en manuel synkronisering. Du kan altid se tidspunktet for den seneste opdatering. Som udgangspunkt er det kun ndvendigt at synkronisere det seneste r, medmindre du har kendskab til, at der er foretaget rettelser i de historiske kildedata.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><br></li></ol><h3>Ngletal i tabellen</h3><p>I jeblikket indeholder tabellen flgende data:</p><table><tbody><tr><td data-row=\"1\">Kategori</td><td data-row=\"1\">Ngletal</td></tr><tr><td data-row=\"2\"><strong>R (konomiske Rammer)</strong></td><td data-row=\"2\">Rammer, Korrigeret ramme, Differencekonto</td></tr><tr><td data-row=\"3\"><strong>BM (Benchmark)</strong></td><td data-row=\"3\">Efficiensscorer (Generel, DEA, SFA), Effektivt Niveau, Korrigerede krav</td></tr></tbody></table><h2><br></h2><h2><strong>2. Sdan henter du data</strong></h2><p>G til fanen <strong>\"R Ngletal\"</strong> for at starte din dataudtrkning.</p><h3>Brug af \"Hent\"-knappen</h3><p>Nr du klikker p <strong>\"Hent\"</strong>, fr du adgang til alle tilgngelige tal. Du har flgende filtreringsmuligheder for at mlrette dit udtrk:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Virksomhed:</strong> Filtrer p Virksomheds-ID (Virk ID) eller virksomhedsnavn.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Periode:</strong> Vlg den nskede tidsperiode.</li></ol><blockquote><strong>Vigtigt vedrrende perioder:</strong> &gt; I Octopus refererer \"Periode\" til det r, hvor <strong>afgrelsen er truffet</strong>, og ikke det r, som rammen er gldende for. <em>Eksempel: Hvis du vlger 2025, henter du data for afgrelser truffet i 2025 (hvilket typisk svarer til R2026-rammen).</em></blockquote><h2><br></h2><h2><strong>3. Analyse og Pivot-visning</strong></h2><p>Hvis du nsker at se udviklingen i et bestemt ngletal over flere r eller p tvrs af virksomheder, kan du bruge pivot-funktionen.</p><h3>Brug af \"Lav pivot\"-knappen</h3><ol><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Marker en celle i den <strong>kolonne</strong>, som indeholder det ngletal, du nsker at lave en tabel over.</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Klik p knappen <strong>\"Lav Layout\"</strong>.</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Systemet genererer herefter automatisk en overskuelig tabelopstilling, der viser vrdierne for det valgte ngletal p tvrs af de valgte perioder.</li></ol><h2><br></h2><h2><strong>4. Support og ndringer</strong></h2><p>Hvis du har brug for at f tilfjet nye ngletal til tabellen, eller hvis du har sprgsml til de eksisterende definitioner, s sig til.</p><p><br></p><p><br></p>",
+        "link": "",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-16T07:29:16.571Z",
+        "opdateret": "2026-02-16T07:29:16.571Z",
+        "arkiveret": false,
+        "slettet": false,
+        "favoritter": []
+    }
+},
+{
+    "model": "vidensbank.viden",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "titel": "Srlig forhold & vrige aktiver",
+        "slug": null,
+        "kategori": 1,
+        "indhold": "<p>Filen SrligForhold_vrigeAktiver_Dev.xlsm ligger i mappen</p><p>E:\\VAND\\FS Drift\\Makroer\\Flles Udviklings Mappe\\BM</p>",
+        "link": "",
+        "fil": "",
+        "oprettet_af": [
+            "WC"
+        ],
+        "oprettet": "2026-02-16T11:17:24.453Z",
+        "opdateret": "2026-02-16T11:17:24.453Z",
+        "arkiveret": false,
+        "slettet": false,
+        "favoritter": []
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1001",
+        "beskrivelse": "Ministerbetjening (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1002",
+        "beskrivelse": "Departementsbetjening (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1003",
+        "beskrivelse": "Kontaktudvalg og ankenvnet (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1004",
+        "beskrivelse": "Lov og regelarbejde (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1005",
+        "beskrivelse": "EU og internationalt samarbejde (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1006",
+        "beskrivelse": "Projekter, analyser og redegrelser (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1007",
+        "beskrivelse": "Intern Information og videndeling (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1008",
+        "beskrivelse": "Interessenthndtering (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1009",
+        "beskrivelse": "Sagsgange og processer (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 10,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1020",
+        "beskrivelse": "Anmeldelse af fusion/spaltning (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 11,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1021",
+        "beskrivelse": "Sagsbehandling - Stoplov (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 12,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1022",
+        "beskrivelse": "Sagsbehandling - Anmeldelse af nye selskaber (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 13,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1024",
+        "beskrivelse": "Vejledning om benchmarking - indberetning og generelt (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 14,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1025",
+        "beskrivelse": "Sagsbehandling - Ankesager (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 15,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1026",
+        "beskrivelse": "Sagsbehandling - Retssager (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 16,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1030",
+        "beskrivelse": "Vejledning (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 17,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1040",
+        "beskrivelse": "Hringer (ikke partshring ifm. afgrelser ) (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 18,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1050",
+        "beskrivelse": "Teknisk Vand - Gebyrfinansiering (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 19,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1089",
+        "beskrivelse": "Forvaltningsretlige sager udenom afgrelser (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 20,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1090",
+        "beskrivelse": "Pressekontakt - konkurrence (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 21,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1091",
+        "beskrivelse": "Web - kommunikation (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 22,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1092",
+        "beskrivelse": "Web - vedligehold (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 23,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1093",
+        "beskrivelse": "Drift af faglige it-systemer (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 24,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1094",
+        "beskrivelse": "It-sikkerhed og persondata (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 25,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1098",
+        "beskrivelse": "Budgetter og kontering (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.kodergrupper",
+    "pk": 26,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "gruppe": "1099",
+        "beskrivelse": "Chefer - generel administration (VS)"
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "100",
+        "beskrivelse": "Ministerbetjening (VS)",
+        "mtime": "10010000000",
+        "gruppe": 1
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "101",
+        "beskrivelse": "Folketings- og udvalgssprgsml (VS)",
+        "mtime": "10010100000",
+        "gruppe": 1
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "102",
+        "beskrivelse": "Borgerbreve (VS)",
+        "mtime": "10010200000",
+        "gruppe": 1
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "103",
+        "beskrivelse": "Notater og talepapirer til ministeren (VS)",
+        "mtime": "10010300000",
+        "gruppe": 1
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "104",
+        "beskrivelse": "Presse til ministeren (VS)",
+        "mtime": "10010400000",
+        "gruppe": 1
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "200",
+        "beskrivelse": "Departementsbetjening (VS)",
+        "mtime": "10020000000",
+        "gruppe": 2
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "201",
+        "beskrivelse": "Notater i dep.faglige sager (VS)",
+        "mtime": "10020100000",
+        "gruppe": 2
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "202",
+        "beskrivelse": "Udvalg/arbejdsgrupper (VS)",
+        "mtime": "10020200000",
+        "gruppe": 2
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "203",
+        "beskrivelse": "Udvalg/arb.grupper i andre ministerier (VS)",
+        "mtime": "10020300000",
+        "gruppe": 2
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 10,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "205",
+        "beskrivelse": "Anden departementsbetjening (VS)",
+        "mtime": "10020500000",
+        "gruppe": 2
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 11,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "300",
+        "beskrivelse": "Kontaktudvalg og ankenvnet (VS)",
+        "mtime": "10030000000",
+        "gruppe": 3
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 12,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "306",
+        "beskrivelse": "Ankestatistik (VS)",
+        "mtime": "10030600000",
+        "gruppe": 3
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 13,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "400",
+        "beskrivelse": "Lov og regelarbejde (VS)",
+        "mtime": "10040000000",
+        "gruppe": 4
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 14,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "40102",
+        "beskrivelse": "Stoplovsrelateret (L) (VS)",
+        "mtime": "10040102000",
+        "gruppe": 4
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 15,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "40201",
+        "beskrivelse": "Vandsektorrelateret (B) (VS)",
+        "mtime": "10040201000",
+        "gruppe": 4
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 16,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "403",
+        "beskrivelse": "Vejledninger - love og regler (ikke indberetning) (VS)",
+        "mtime": "10040300000",
+        "gruppe": 4
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 17,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "500",
+        "beskrivelse": "EU og internationalt samarbejde (VS)",
+        "mtime": "10050000000",
+        "gruppe": 5
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 18,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "600",
+        "beskrivelse": "Projekter, analyser og redegrelser (VS)",
+        "mtime": "10060000000",
+        "gruppe": 6
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 19,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "601",
+        "beskrivelse": "Koncernprojekter (VS)",
+        "mtime": "10060100000",
+        "gruppe": 6
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 20,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "602",
+        "beskrivelse": "Styrelsesprojekter (VS)",
+        "mtime": "10060200000",
+        "gruppe": 6
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 21,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "603",
+        "beskrivelse": "Kontorprojekter (VS)",
+        "mtime": "10060300000",
+        "gruppe": 6
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 22,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "700",
+        "beskrivelse": "Intern Information og videndeling (VS)",
+        "mtime": "10070000000",
+        "gruppe": 7
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 23,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "701",
+        "beskrivelse": "Netvrksgrupper (VS)",
+        "mtime": "10070100000",
+        "gruppe": 7
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 24,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "730",
+        "beskrivelse": "Vidensdelings- og sagsforbe. mder (VS)",
+        "mtime": "10073000000",
+        "gruppe": 7
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 25,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "731",
+        "beskrivelse": "Centermder (VS)",
+        "mtime": "10073100000",
+        "gruppe": 7
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 26,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "740",
+        "beskrivelse": "Interne vejledninger og vidensnotater (VS)",
+        "mtime": "10074000000",
+        "gruppe": 7
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 27,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "750",
+        "beskrivelse": "Intranet - faglige vejledninger mv. (VS)",
+        "mtime": "10075000000",
+        "gruppe": 7
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 28,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "800",
+        "beskrivelse": "Interessenthndtering (VS)",
+        "mtime": "10080000000",
+        "gruppe": 8
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 29,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "801",
+        "beskrivelse": "Delt. i rsmder, generalfor. og konf. (VS)",
+        "mtime": "10080100000",
+        "gruppe": 8
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 30,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "802",
+        "beskrivelse": "Delt. i arb.grupper med private parter (VS)",
+        "mtime": "10080200000",
+        "gruppe": 8
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 31,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "900",
+        "beskrivelse": "Sagsgange og processer (VS)",
+        "mtime": "10090000000",
+        "gruppe": 9
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 32,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "904",
+        "beskrivelse": "Sekretr- og journalarbejde (VS)",
+        "mtime": "10090400000",
+        "gruppe": 9
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 33,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "20003",
+        "beskrivelse": "Anmeldelse af fusion/spaltning (VS)",
+        "mtime": "10200030000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 34,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2001",
+        "beskrivelse": "Forhndsgodkendelser (VS)",
+        "mtime": "10200100000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 35,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2002",
+        "beskrivelse": "konomiske rammer (VS)",
+        "mtime": "10200200000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 36,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2002011",
+        "beskrivelse": "Indberetningsvejledning om omkostningsbekendtgrelse (VS)",
+        "mtime": "10200201100",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 37,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "200203",
+        "beskrivelse": "Medfinansiering (VS)",
+        "mtime": "10200203000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 38,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2002041",
+        "beskrivelse": "Tillg (VS)",
+        "mtime": "10200204100",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 39,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "200206",
+        "beskrivelse": "R projektledelse (VS)",
+        "mtime": "10200206000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 40,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "200207",
+        "beskrivelse": "IPO'er (VS)",
+        "mtime": "10200207000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 41,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "200208",
+        "beskrivelse": "Klimatilpasning mv. efter omkostningsbekendtgrelsen (VS)",
+        "mtime": "10200208000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 42,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "200209",
+        "beskrivelse": "Indberetningsvejledning om konomiske rammer (VS)",
+        "mtime": "10200209000",
+        "gruppe": 10
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 43,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2100",
+        "beskrivelse": "Sagsbehandling - Stoplov (VS)",
+        "mtime": "10210000000",
+        "gruppe": 11
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 44,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2101",
+        "beskrivelse": "Stoplov (VS)",
+        "mtime": "10210100000",
+        "gruppe": 11
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 45,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2102",
+        "beskrivelse": "Tilknyttet virksomhed (VS)",
+        "mtime": "10210200000",
+        "gruppe": 11
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 46,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2103",
+        "beskrivelse": "Markedsmssighed (VS)",
+        "mtime": "10210300000",
+        "gruppe": 11
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 47,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2200",
+        "beskrivelse": "Sagsbehandling - Anmeldelse af nye selskaber (VS)",
+        "mtime": "10220000000",
+        "gruppe": 12
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 48,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2400",
+        "beskrivelse": "Vejledning om benchmarking - indberetning og generelt (VS)",
+        "mtime": "10240000000",
+        "gruppe": 13
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 49,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2401",
+        "beskrivelse": "Kvalitetssikring af data til benchmarking (VS)",
+        "mtime": "10240100000",
+        "gruppe": 13
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 50,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2402",
+        "beskrivelse": "Beregning af benchmarking (VS)",
+        "mtime": "10240200000",
+        "gruppe": 13
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 51,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2403",
+        "beskrivelse": "Srlige forhold og vrige aktiver (VS)",
+        "mtime": "10240300000",
+        "gruppe": 13
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 52,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2404",
+        "beskrivelse": "Metodepapir og afgrelser - benchmarking (VS)",
+        "mtime": "10240400000",
+        "gruppe": 13
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 53,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2405",
+        "beskrivelse": "Udvikling af BM-model (VS)",
+        "mtime": "10240500000",
+        "gruppe": 13
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 54,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2500",
+        "beskrivelse": "Sagsbehandling - Ankesager (VS)",
+        "mtime": "10250000000",
+        "gruppe": 14
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 55,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "2600",
+        "beskrivelse": "Sagsbehandling - Retssager (VS)",
+        "mtime": "10260000000",
+        "gruppe": 15
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 56,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "3001",
+        "beskrivelse": "Vejledning (VS)",
+        "mtime": "10300100000",
+        "gruppe": 16
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 57,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "3003",
+        "beskrivelse": "Publikationer - Forsyningssekretariat (VS)",
+        "mtime": "10300300000",
+        "gruppe": 16
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 58,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "3031",
+        "beskrivelse": "Publikationer- Velfungerende markeder (VS)",
+        "mtime": "10303100000",
+        "gruppe": 16
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 59,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "3041",
+        "beskrivelse": "Afholdelse af konferencer (VS)",
+        "mtime": "10304100000",
+        "gruppe": 16
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 60,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "4000",
+        "beskrivelse": "Hringer (ikke partshring ifm. afgrelser ) (VS)",
+        "mtime": "10400000000",
+        "gruppe": 17
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 61,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "5000",
+        "beskrivelse": "Teknisk Vand - Gebyrfinansiering (VS)",
+        "mtime": "10500000000",
+        "gruppe": 18
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 62,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "8900",
+        "beskrivelse": "Forvaltningsretlige sager udenom afgrelser (VS)",
+        "mtime": "10890000000",
+        "gruppe": 19
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 63,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9000",
+        "beskrivelse": "Pressekontakt - konkurrence (VS)",
+        "mtime": "10900000000",
+        "gruppe": 20
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 64,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9100",
+        "beskrivelse": "Web - kommunikation (VS)",
+        "mtime": "10910000000",
+        "gruppe": 21
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 65,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9201",
+        "beskrivelse": "Web - vedligehold (VS)",
+        "mtime": "10920100000",
+        "gruppe": 22
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 66,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9202",
+        "beskrivelse": "Web - udvikling (VS)",
+        "mtime": "10920200000",
+        "gruppe": 22
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 67,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9300",
+        "beskrivelse": "Drift af faglige it-systemer (VS)",
+        "mtime": "10930000000",
+        "gruppe": 23
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 68,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9301",
+        "beskrivelse": "Drift - generelle sagssystemer (VS)",
+        "mtime": "10930100000",
+        "gruppe": 23
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 69,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9302",
+        "beskrivelse": "Drift og udvikling - VandData (VS)",
+        "mtime": "10930200000",
+        "gruppe": 23
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 70,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9304",
+        "beskrivelse": "Udvikling af digital drift (VS)",
+        "mtime": "10930400000",
+        "gruppe": 23
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 71,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9400",
+        "beskrivelse": "It-sikkerhed og persondata (VS)",
+        "mtime": "10940000000",
+        "gruppe": 24
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 72,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9401",
+        "beskrivelse": "Compliance - It-sikkerhed (VS)",
+        "mtime": "10940100000",
+        "gruppe": 24
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 73,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9402",
+        "beskrivelse": "Compliance - persondataforordningen (VS)",
+        "mtime": "10940200000",
+        "gruppe": 24
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 74,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9801",
+        "beskrivelse": "Budgetter og kontering (VS)",
+        "mtime": "10980100000",
+        "gruppe": 25
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 75,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9802",
+        "beskrivelse": "Rejseadministration (VS)",
+        "mtime": "10980200000",
+        "gruppe": 25
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 76,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9901",
+        "beskrivelse": "Chefer - generel administration (VS)",
+        "mtime": "10990100000",
+        "gruppe": 26
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 77,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9910",
+        "beskrivelse": "Chefmder og seminarer mv. (VS)",
+        "mtime": "10991000000",
+        "gruppe": 26
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 78,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9930",
+        "beskrivelse": "Chefer - MUS- og resultatlnssamtaler (VS)",
+        "mtime": "10993000000",
+        "gruppe": 26
+    }
+},
+{
+    "model": "tidsregistrering.opgaverkode",
+    "pk": 79,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "kode_nr": "9931",
+        "beskrivelse": "Chefer - Stillingsbesttelser (VS)",
+        "mtime": "10993100000",
+        "gruppe": 26
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "fra_tid": "2025-12-17T18:19:00Z",
+        "til_tid": "2025-12-17T18:21:00Z",
+        "tid": "00:15",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 35,
+        "alias": "konomiske rammer (VS)",
+        "fra_tid": "2025-12-17T18:21:37.323Z",
+        "til_tid": "2025-12-17T18:23:23.840Z",
+        "tid": "00:02",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 35,
+        "alias": "konomiske rammer Sagsbehandling",
+        "fra_tid": "2025-12-17T18:23:23.860Z",
+        "til_tid": "2025-12-17T18:30:15.620Z",
+        "tid": "00:07",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 6,
+        "alias": "Departementsbetjening",
+        "fra_tid": "2025-12-16T18:30:00Z",
+        "til_tid": "2025-12-16T18:56:00Z",
+        "tid": "00:30",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 33,
+        "alias": "Anmeldelse af fusion/spaltning",
+        "fra_tid": "2025-12-17T18:56:52.767Z",
+        "til_tid": "2025-12-17T19:57:34.947Z",
+        "tid": "01:01",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 6,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 35,
+        "alias": "konomiske rammer Blanketter",
+        "fra_tid": "2025-12-17T19:57:34.983Z",
+        "til_tid": "2025-12-17T20:00:23.127Z",
+        "tid": "00:03",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 35,
+        "alias": "konomiske rammer (VS)",
+        "fra_tid": "2025-12-17T20:55:07.397Z",
+        "til_tid": "2025-12-17T21:09:58.407Z",
+        "tid": "00:14",
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "fra_tid": "2026-02-14T20:11:26.445Z",
+        "til_tid": "2026-02-14T20:12:11.761Z",
+        "tid": "00:00:45",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "fra_tid": "2026-02-14T20:12:15.458Z",
+        "til_tid": "2026-02-14T20:14:31.419Z",
+        "tid": "00:02:15",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 10,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "fra_tid": "2026-02-14T20:14:00Z",
+        "til_tid": "2026-02-14T20:29:00Z",
+        "tid": "00:15:00",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 11,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 33,
+        "alias": "Anmeldelse af fusion/spaltning",
+        "fra_tid": "2026-02-14T20:14:40.536Z",
+        "til_tid": "2026-02-14T20:15:21.411Z",
+        "tid": "00:00:40",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 12,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift R",
+        "fra_tid": "2026-02-14T20:15:21.616Z",
+        "til_tid": "2026-02-14T20:16:13.126Z",
+        "tid": "00:00:51",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 13,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "fra_tid": "2026-02-14T20:16:00Z",
+        "til_tid": "2026-02-14T20:26:00Z",
+        "tid": "00:10:32",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 14,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "fra_tid": "2026-02-14T20:17:46.177Z",
+        "til_tid": "2026-02-14T20:17:52.316Z",
+        "tid": "00:00:06",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 15,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "fra_tid": "2026-02-14T20:17:00Z",
+        "til_tid": "2026-02-14T20:25:00Z",
+        "tid": "00:07:37",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 16,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 33,
+        "alias": "Anmeldelse af fusion/spaltning",
+        "fra_tid": "2026-02-14T20:55:08.167Z",
+        "til_tid": "2026-02-14T20:58:31.009Z",
+        "tid": "00:03:22",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 17,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift R",
+        "fra_tid": "2026-02-15T18:00:00Z",
+        "til_tid": "2026-02-15T18:11:00Z",
+        "tid": "00:11:00",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 18,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 33,
+        "alias": "Anmeldelse af fusion/spaltning",
+        "fra_tid": "2026-02-15T18:11:37.797Z",
+        "til_tid": "2026-02-15T18:13:21.345Z",
+        "tid": "00:01:43",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 19,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift R",
+        "fra_tid": "2026-02-15T18:14:29.233Z",
+        "til_tid": "2026-02-15T20:31:37.887Z",
+        "tid": "02:17:08",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 20,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "fra_tid": "2026-02-24T09:20:37.186Z",
+        "til_tid": "2026-02-24T18:06:17.918Z",
+        "tid": "08:45:40",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 21,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift R",
+        "fra_tid": "2026-03-03T13:29:20.184Z",
+        "til_tid": "2026-03-03T13:29:29.407Z",
+        "tid": "00:00:09",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 22,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "fra_tid": "2026-03-03T13:29:29.471Z",
+        "til_tid": "2026-03-09T19:39:13.243Z",
+        "tid": "150:09:43",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 23,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift R",
+        "fra_tid": "2026-03-09T19:39:13.524Z",
+        "til_tid": "2026-03-09T22:12:16.312Z",
+        "tid": "02:33:02",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 39,
+    "fields": {
+        "company": null,
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "fra_tid": "2026-03-20T13:10:11.802Z",
+        "til_tid": "2026-03-20T13:10:17.635Z",
+        "tid": "00:00:05",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 40,
+    "fields": {
+        "company": null,
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 33,
+        "alias": "Anmeldelse af fusion/spaltning",
+        "fra_tid": "2026-03-20T13:10:17.700Z",
+        "til_tid": null,
+        "tid": null,
+        "kommentar": null,
+        "aktiv": true
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 41,
+    "fields": {
+        "company": null,
+        "bruger": [
+            "wouter"
+        ],
+        "opgave_kode": 40,
+        "alias": "IPO'er (VS)",
+        "fra_tid": "2026-03-31T12:51:17.589Z",
+        "til_tid": "2026-03-31T12:51:26.929Z",
+        "tid": "00:00:09",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 42,
+    "fields": {
+        "company": null,
+        "bruger": [
+            "wouter"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "fra_tid": "2026-03-31T12:51:27.043Z",
+        "til_tid": "2026-03-31T12:51:30.681Z",
+        "tid": "00:00:03",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.tidreg",
+    "pk": 43,
+    "fields": {
+        "company": null,
+        "bruger": [
+            "wouter"
+        ],
+        "opgave_kode": 40,
+        "alias": "IPO'er (VS)",
+        "fra_tid": "2026-03-31T12:51:30.779Z",
+        "til_tid": "2026-03-31T12:51:58.824Z",
+        "tid": "00:00:28",
+        "kommentar": null,
+        "aktiv": false
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 1,
+    "fields": {
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "sortering": 4
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 2,
+    "fields": {
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 33,
+        "alias": "Anmeldelse af fusion/spaltning",
+        "sortering": 3
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 3,
+    "fields": {
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 35,
+        "alias": "konomiske rammer Blanketter",
+        "sortering": 5
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 4,
+    "fields": {
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift (VS)",
+        "sortering": 1
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 5,
+    "fields": {
+        "bruger": [
+            "WC"
+        ],
+        "opgave_kode": 70,
+        "alias": "Udvikling af digital drift R",
+        "sortering": 2
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 8,
+    "fields": {
+        "bruger": [
+            "wouter"
+        ],
+        "opgave_kode": 3,
+        "alias": "Borgerbreve (VS)",
+        "sortering": 2
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 9,
+    "fields": {
+        "bruger": [
+            "wouter"
+        ],
+        "opgave_kode": 36,
+        "alias": "Indberetningsvejledning om omkostningsbekendtgrelse (VS)",
+        "sortering": 3
+    }
+},
+{
+    "model": "tidsregistrering.brugerprofiltime",
+    "pk": 10,
+    "fields": {
+        "bruger": [
+            "wouter"
+        ],
+        "opgave_kode": 40,
+        "alias": "IPO'er (VS)",
+        "sortering": 1
+    }
+},
+{
+    "model": "aarshjul.aarshjulgruppe",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Vand",
+        "raekkefoelge": 1,
+        "oprettet": "2026-02-24T17:17:39.952Z",
+        "teams": [
+            2
+        ]
+    }
+},
+{
+    "model": "aarshjul.aarshjulgruppe",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "R",
+        "raekkefoelge": 2,
+        "oprettet": "2026-02-24T17:18:19.844Z",
+        "teams": [
+            4,
+            2
+        ]
+    }
+},
+{
+    "model": "aarshjul.aarshjulgruppe",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Stoplov",
+        "raekkefoelge": 3,
+        "oprettet": "2026-02-24T17:18:52.758Z",
+        "teams": [
+            2
+        ]
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Sommerfest 2026!",
+        "beskrivelse": "Faelles hygge for alle medarbejdere",
+        "start_dato": "2026-07-15",
+        "slut_dato": "2026-07-15",
+        "farve": "#3b82f6",
+        "gruppe": 1,
+        "oprettet": "2026-02-23T19:38:47.845Z",
+        "opdateret": "2026-02-24T17:21:23.817Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Julefrokost",
+        "beskrivelse": "",
+        "start_dato": "2026-12-10",
+        "slut_dato": "2026-12-10",
+        "farve": "#bd0505",
+        "gruppe": 1,
+        "oprettet": "2026-02-23T19:41:54.029Z",
+        "opdateret": "2026-02-24T17:21:32.461Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Indberetning ben",
+        "beskrivelse": "bning til indberetning i Vanddata",
+        "start_dato": "2026-03-01",
+        "slut_dato": "2026-04-15",
+        "farve": "#cd720a",
+        "gruppe": 2,
+        "oprettet": "2026-02-23T19:44:54.972Z",
+        "opdateret": "2026-02-24T17:19:48.407Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 5,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Stoplov indberetning",
+        "beskrivelse": "",
+        "start_dato": "2026-08-07",
+        "slut_dato": "2026-09-05",
+        "farve": "#9841aa",
+        "gruppe": 3,
+        "oprettet": "2026-02-23T19:47:09.231Z",
+        "opdateret": "2026-02-24T17:20:07.462Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 7,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Indberetning ben",
+        "beskrivelse": "bning til indberetning i Vanddata",
+        "start_dato": "2027-03-01",
+        "slut_dato": "2027-04-15",
+        "farve": "#cd720a",
+        "gruppe": 2,
+        "oprettet": "2026-02-23T20:19:56.225Z",
+        "opdateret": "2026-02-24T17:42:21.096Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 8,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Centerdag",
+        "beskrivelse": "",
+        "start_dato": "2026-03-05",
+        "slut_dato": "2026-03-05",
+        "farve": "#0bb74d",
+        "gruppe": 1,
+        "oprettet": "2026-02-24T06:56:57.602Z",
+        "opdateret": "2026-02-24T17:20:58.910Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 9,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Debiteret vandmngde",
+        "beskrivelse": "Debiteret vandmngde - alle selskaber (pga fakturering og benchmarking og notat)",
+        "start_dato": "2026-04-20",
+        "slut_dato": "2026-05-15",
+        "farve": "#9ab512",
+        "gruppe": 2,
+        "oprettet": "2026-02-24T09:11:50.407Z",
+        "opdateret": "2026-02-24T17:20:19.154Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 10,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Fado",
+        "beskrivelse": "FADO - strre spildevand - to r",
+        "start_dato": "2026-07-22",
+        "slut_dato": "2026-08-16",
+        "farve": "#269009",
+        "gruppe": 2,
+        "oprettet": "2026-02-24T09:12:44.574Z",
+        "opdateret": "2026-03-03T13:32:36.447Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 11,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Finansieringsomkostninger",
+        "beskrivelse": "Finansieringsomkostninger - strre spildevand - to r",
+        "start_dato": "2026-04-20",
+        "slut_dato": "2026-05-15",
+        "farve": "#800fbd",
+        "gruppe": 2,
+        "oprettet": "2026-02-24T09:13:18.637Z",
+        "opdateret": "2026-02-24T17:20:38.132Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 12,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Sagsbehandling af udkast",
+        "beskrivelse": "Sagsbehandling af udkast til afgrelser",
+        "start_dato": "2026-05-18",
+        "slut_dato": "2026-09-07",
+        "farve": "#3b82f6",
+        "gruppe": 2,
+        "oprettet": "2026-02-24T09:14:35.745Z",
+        "opdateret": "2026-02-24T17:19:56.440Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 13,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "navn": "Overblik over indberetbning",
+        "beskrivelse": "Overblik over indberetbning af ndringer i mngder af anlgsaktiver i POLKA - omfang",
+        "start_dato": "2026-04-13",
+        "slut_dato": "2026-04-19",
+        "farve": "#f21707",
+        "gruppe": 2,
+        "oprettet": "2026-02-24T09:17:05.414Z",
+        "opdateret": "2026-02-24T17:21:11.239Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 23,
+    "fields": {
+        "company": null,
+        "navn": "vakantie",
+        "beskrivelse": "",
+        "start_dato": "2026-03-31",
+        "slut_dato": "2026-06-21",
+        "farve": "#3b82f6",
+        "gruppe": null,
+        "oprettet": "2026-03-31T12:53:31.072Z",
+        "opdateret": "2026-03-31T12:53:38.005Z"
+    }
+},
+{
+    "model": "aarshjul.aktivitet",
+    "pk": 24,
+    "fields": {
+        "company": null,
+        "navn": "Projekt A",
+        "beskrivelse": "",
+        "start_dato": "2026-06-17",
+        "slut_dato": "2026-08-09",
+        "farve": "#f73be7",
+        "gruppe": null,
+        "oprettet": "2026-03-31T12:54:22.748Z",
+        "opdateret": "2026-03-31T12:54:42.575Z"
+    }
+},
+{
+    "model": "applinks.apppurpose",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "name": "sagsbehandling"
+    }
+},
+{
+    "model": "applinks.apppurpose",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "name": "analyse"
+    }
+},
+{
+    "model": "applinks.apppurpose",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "name": "nyt forml"
+    }
+},
+{
+    "model": "applinks.applink",
+    "pk": 2,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "title": "MGLP",
+        "description": "ben mglerpartners sagsstyringsapp.",
+        "path": "https://ppflow.mglpartner.dk/",
+        "created_at": "2026-03-02T16:53:03.452Z",
+        "updated_at": "2026-03-02T17:17:29.643Z",
+        "teams": [
+            6,
+            3,
+            2
+        ],
+        "purposes": [
+            2
+        ]
+    }
+},
+{
+    "model": "applinks.applink",
+    "pk": 3,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "title": "Opex dataark DV",
+        "description": "Behandling af OPEX data til Drikkevand.\nForberedt indberetningsperioden 2026",
+        "path": "\"E:/VAND/FS Drift/Makroer/Brugervrktjer til diverse sagsbehandlinger/Opex-Dataark_DV.xltm\"",
+        "created_at": "2026-03-03T07:25:15.841Z",
+        "updated_at": "2026-03-03T07:44:04.872Z",
+        "teams": [
+            2
+        ],
+        "purposes": [
+            1
+        ]
+    }
+},
+{
+    "model": "applinks.applink",
+    "pk": 4,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "title": "Documents",
+        "description": "",
+        "path": "C://Users/b247214/Documents/",
+        "created_at": "2026-03-03T08:50:49.795Z",
+        "updated_at": "2026-03-03T08:51:16.988Z",
+        "teams": [],
+        "purposes": []
+    }
+},
+{
+    "model": "flowchart.flowchart",
+    "pk": 1,
+    "fields": {
+        "company": "8ea4bf48-86f1-4730-85e3-968dc7ce5bba",
+        "team": 2,
+        "navn": "Test",
+        "beskrivelse": "",
+        "oprettet": "2026-03-20T17:32:11.115Z",
+        "opdateret": "2026-03-20T17:32:11.115Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-02-13T17:46:20.962Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "WC",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-02-13T18:05:16.343Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "WC",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-02-13T20:02:27.921Z",
+        "user": [
+            "admin"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "WC",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-02-13T20:25:02.808Z",
+        "user": [
+            "WC"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "wouter",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Superuser status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-02-14T09:18:43.676Z",
+        "user": [
+            "WC"
+        ],
+        "content_type": [
+            "vidensbank",
+            "videnskategori"
+        ],
+        "object_id": "4",
+        "object_repr": "Afgrelse",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Navn\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-02-14T09:19:13.510Z",
+        "user": [
+            "WC"
+        ],
+        "content_type": [
+            "vidensbank",
+            "videnskategori"
+        ],
+        "object_id": "2",
+        "object_repr": "Brugsvejledning til Tavlen",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Navn\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-02-14T09:46:06.099Z",
+        "user": [
+            "WC"
+        ],
+        "content_type": [
+            "vidensbank",
+            "videnskategori"
+        ],
+        "object_id": "8",
+        "object_repr": "Jura",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-02-14T09:46:23.419Z",
+        "user": [
+            "WC"
+        ],
+        "content_type": [
+            "vidensbank",
+            "videnskategori"
+        ],
+        "object_id": "9",
+        "object_repr": "konomi",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-02-14T09:46:33.768Z",
+        "user": [
+            "WC"
+        ],
+        "content_type": [
+            "vidensbank",
+            "videnskategori"
+        ],
+        "object_id": "10",
+        "object_repr": "Benchmarking",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}
+]

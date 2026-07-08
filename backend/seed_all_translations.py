@@ -46,6 +46,39 @@ translations = [
     ('common.delete', 'Delete', 'Slet'),
     ('common.edit', 'Edit', 'Rediger'),
     ('common.close', 'Close', 'Luk'),
+    ('common.back', 'Back', 'Tilbage'),
+    ('common.copy_link', 'Copy Link', 'Kopiér link'),
+    
+    # Workspace
+    ('workspace.title', 'Workspace', 'Arbejdsrum'),
+    ('workspace.settings', 'Workspace Settings', 'Indstillinger'),
+    ('workspace.leave', 'Leave Workspace', 'Forlad arbejdsrum'),
+    ('workspace.remove_member', 'Remove Member', 'Fjern Medlem'),
+    ('workspace.switch', 'Switch Workspace', 'Skift Arbejdsrum'),
+    ('workspace.create_new', 'Create New Workspace', 'Opret Nyt Arbejdsrum'),
+    ('workspace.admin', 'Admin Panel', 'Administrationspanel'),
+
+    # Flowchart
+    ('nav.flowchart', 'Flowchart', 'Flowchart'),
+    ('flowchart.new', 'New Flowchart', 'Nyt flowchart'),
+    ('flowchart.edit_mode', 'Edit', 'Rediger'),
+    ('flowchart.view_mode', 'View', 'Vis'),
+    ('flowchart.save', 'Save', 'Gem'),
+    ('flowchart.name', 'Name', 'Navn'),
+    ('flowchart.description', 'Description', 'Beskrivelse'),
+    ('flowchart.color', 'Color', 'Farve'),
+    ('flowchart.shape', 'Shape', 'Form'),
+    ('flowchart.shape.rectangle', 'Rectangle', 'Rektangel'),
+    ('flowchart.shape.diamond', 'Diamond', 'Diamant'),
+    ('flowchart.shape.oval', 'Oval', 'Oval'),
+    ('flowchart.delete_node', 'Delete node', 'Slet node'),
+    ('flowchart.delete_edge', 'Delete connection', 'Slet forbindelse'),
+    ('flowchart.add_shape', 'Add shape', 'Tilføj form'),
+    ('flowchart.properties', 'Properties', 'Egenskaber'),
+    ('flowchart.no_flowcharts', 'No flowcharts yet', 'Ingen flowcharts endnu'),
+    ('flowchart.select_hint', 'Select a flowchart to view', 'Vælg et flowchart for at se det'),
+    ('flowchart.team', 'Team', 'Team'),
+    ('flowchart.team_all', 'All (company-wide)', 'Alle (hele virksomheden)'),
 ]
 
 for key, en_text, da_text in translations:

@@ -10,6 +10,7 @@ import {
     Trash2,
     Plus,
     UserPlus,
+    MailPlus,
     ArrowLeft,
     Palette,
     Shield,
@@ -63,6 +64,11 @@ const UsersPage: React.FC = () => {
         role: 'MEMBER' as UserRole,
         color: '#3b82f6',
         password: ''
+    });
+    const [isInviting, setIsInviting] = useState(false);
+    const [invitationForm, setInvitationForm] = useState({
+        email: '',
+        role: 'MEMBER' as UserRole
     });
 
     // Team States
@@ -145,6 +151,21 @@ const UsersPage: React.FC = () => {
         }
     };
 
+    const handleInvite = async () => {
+        try {
+            await api.post('/invitations/', invitationForm);
+            setIsInviting(false);
+            setInvitationForm({
+                email: '',
+                role: 'MEMBER'
+            });
+            showToast('Invitation er sendt! Tjek terminalen for linket.', 'success');
+        } catch (e: any) {
+            console.error(e);
+            showToast(`Kunne ikke sende invitation: ${e.message || 'Ukendt fejl'}`, 'error');
+        }
+    };
+
     const handleDelete = async (user: User) => {
         if (user.id === state.currentUser?.id) {
             showToast('Du kan ikke deaktivere eller slette dig selv mens du er logget ind.', 'error');
@@ -154,23 +175,19 @@ const UsersPage: React.FC = () => {
     };
 
     const confirmDelete = async () => {
-        if (!userToDelete) return;
+        if (!userToDelete || !state.activeWorkspaceId) return;
         const user = userToDelete;
 
         try {
-            if (user.is_active) {
-                // Deactivate instead of hard delete
-                await api.patch(`/users/${user.id}/`, { is_active: false });
-                showToast(`Bruger ${user.username} er deaktiveret`, 'success');
-            } else {
-                // Actual delete if already inactive
-                await api.delete(`/users/${user.id}/`);
-                showToast(`Bruger ${user.username} er slettet permanent`, 'success');
-            }
+            // Remove from current workspace instead of global delete/deactivate
+            await api.post(`/companies/${state.activeWorkspaceId}/remove_member/`, { 
+                user_id: user.id 
+            });
+            showToast(`Bruger ${user.username} er fjernet fra dette arbejdsrum`, 'success');
             await refreshUsers();
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
-            showToast('Kunne ikke udføre handling', 'error');
+            showToast(e.message || 'Kunne ikke fjerne bruger fra arbejdsrum', 'error');
         }
         setUserToDelete(null);
     };
@@ -514,10 +531,17 @@ const UsersPage: React.FC = () => {
                                 </button>
                                 <button
                                     onClick={() => setIsCreating(true)}
-                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-700 transition shadow-sm hover:shadow-md active:scale-95"
+                                    className="bg-white text-blue-600 border border-blue-200 px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-50 transition shadow-sm hover:shadow-md active:scale-95"
                                 >
                                     <UserPlus size={18} />
                                     Ny Bruger
+                                </button>
+                                <button
+                                    onClick={() => setIsInviting(true)}
+                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg font-black text-sm flex items-center gap-2 hover:bg-blue-700 transition shadow-sm hover:shadow-md active:scale-95"
+                                >
+                                    <MailPlus size={18} />
+                                    Inviter Medlem
                                 </button>
                             </>
                         )}
@@ -635,6 +659,52 @@ const UsersPage: React.FC = () => {
                                                 className="px-8 py-2 bg-blue-600 text-white rounded-xl font-black text-sm hover:bg-blue-700 shadow-lg shadow-blue-200 disabled:opacity-50 transition-all active:scale-95"
                                             >
                                                 Opret Bruger
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Invitation Modal */}
+                                {isInviting && (currentUserLevel >= ROLE_LEVELS.SUPERUSER) && (
+                                    <div className="bg-white border-2 border-indigo-500 rounded-2xl p-6 shadow-xl mb-8 slide-in-from-top-4 animate-in">
+                                        <div className="flex justify-between items-center mb-6">
+                                            <h3 className="text-lg font-black text-indigo-900 flex items-center gap-2">
+                                                <MailPlus className="text-indigo-600" /> Inviter nyt medlem via e-mail
+                                            </h3>
+                                            <button onClick={() => setIsInviting(false)} className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full"><X size={20} /></button>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-black text-indigo-600 uppercase">Email*</label>
+                                                <input
+                                                    type="email"
+                                                    value={invitationForm.email}
+                                                    onChange={e => setInvitationForm({ ...invitationForm, email: e.target.value })}
+                                                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition-all focus:bg-white"
+                                                    placeholder="bruger@eksempel.dk"
+                                                />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[10px] font-black text-indigo-600 uppercase">Fremtidig Rolle</label>
+                                                <select
+                                                    value={invitationForm.role}
+                                                    onChange={e => setInvitationForm({ ...invitationForm, role: e.target.value as UserRole })}
+                                                    className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition-all focus:bg-white cursor-pointer"
+                                                >
+                                                    <option value="MEMBER">Medlem</option>
+                                                    {currentUserLevel >= ROLE_LEVELS.SUPERUSER && <option value="SUPERUSER">Superbruger</option>}
+                                                    {currentUserLevel >= ROLE_LEVELS.ADMIN && <option value="ADMIN">Administrator</option>}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="mt-6 flex justify-end gap-3">
+                                            <button onClick={() => setIsInviting(false)} className="px-6 py-2 text-gray-500 hover:text-gray-700 font-bold text-sm">Annuller</button>
+                                            <button
+                                                onClick={handleInvite}
+                                                disabled={!invitationForm.email}
+                                                className="px-8 py-2 bg-indigo-600 text-white rounded-xl font-black text-sm hover:bg-indigo-700 shadow-lg shadow-indigo-200 disabled:opacity-50 transition-all active:scale-95"
+                                            >
+                                                Send Invitation
                                             </button>
                                         </div>
                                     </div>

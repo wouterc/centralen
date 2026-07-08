@@ -15,6 +15,7 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
         credentials: 'include',
         headers: {
             ...headers,
+            'X-Workspace-Id': localStorage.getItem('activeWorkspaceId') || '',
         },
         ...rest,
     };

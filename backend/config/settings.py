@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'tidsregistrering',
     'aarshjul',
     'applinks',
+    'flowchart',
 ]
 
 MIDDLEWARE = [
@@ -80,21 +81,40 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
-# Use MSSQL as requested
-DATABASES = {
-    'default': {
-        'ENGINE': 'mssql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
-        'OPTIONS': {
-            'driver': 'ODBC Driver 18 for SQL Server',
-            'extra_params': 'TrustServerCertificate=yes',
-        },
+DATABASE_ENGINE = env('DATABASE_ENGINE', default='mssql')
+
+if DATABASE_ENGINE == 'postgresql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('PG_DATABASE_NAME'),
+            'USER': env('PG_DATABASE_USER'),
+            'PASSWORD': env('PG_DATABASE_PASSWORD'),
+            'HOST': env('PG_DATABASE_HOST'),
+            'PORT': env('PG_DATABASE_PORT', default='5432'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'mssql',
+            'NAME': env('DATABASE_NAME'),
+            'USER': env('DATABASE_USER'),
+            'PASSWORD': env('DATABASE_PASSWORD'),
+            'HOST': env('DATABASE_HOST'),
+            'PORT': env('DATABASE_PORT'),
+            'OPTIONS': {
+                'driver': 'ODBC Driver 18 for SQL Server',
+                'extra_params': 'TrustServerCertificate=yes',
+            },
+        }
+    }
+
+# Authentication Backends
+AUTHENTICATION_BACKENDS = [
+    'core.backends.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = []
@@ -164,20 +184,31 @@ REST_FRAMEWORK = {
 }
 
 # CORS Settings
-CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=['http://localhost:5173'])
+CORS_ALLOW_ALL_ORIGINS = DEBUG
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
+    'http://localhost:5173',
+    'http://localhost:5180',
+    'http://127.0.0.1:5180'
+])
 # Force production domain into CORS allowed origins
 if 'https://centralen.bizyman.com' not in CORS_ALLOWED_ORIGINS:
     CORS_ALLOWED_ORIGINS.append('https://centralen.bizyman.com')
 
 CORS_ALLOW_CREDENTIALS = True
+from corsheaders.defaults import default_headers
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'x-workspace-id',
+]
 
 # CSRF Settings
 # Trust the same origins as CORS, plus any others needed
 CSRF_TRUSTED_ORIGINS = list(CORS_ALLOWED_ORIGINS)
+# Ensure protocol is correct for CSRF_TRUSTED_ORIGINS (must include http/https)
+CSRF_TRUSTED_ORIGINS = [o if o.startswith('http') else f'http://{o}' for o in CSRF_TRUSTED_ORIGINS]
 if 'https://centralen.bizyman.com' not in CSRF_TRUSTED_ORIGINS:
     CSRF_TRUSTED_ORIGINS.append('https://centralen.bizyman.com')
 
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG

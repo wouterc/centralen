@@ -5,7 +5,7 @@ import { API_BASE_URL } from './config';
 
 const fetchTranslations = async (lng: string) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/api/translations/?lang=${lng}`);
+        const response = await fetch(`${API_BASE_URL}/translations/?lang=${lng}`);
         if (!response.ok) throw new Error('Failed to fetch translations');
         return await response.json();
     } catch (error) {
@@ -14,17 +14,6 @@ const fetchTranslations = async (lng: string) => {
     }
 };
 
-const backendLoader = {
-    type: 'backend',
-    async read(language: string, namespace: string, callback: (err: any, data: any) => void) {
-        try {
-            const data = await fetchTranslations(language);
-            callback(null, data);
-        } catch (err) {
-            callback(err, null);
-        }
-    }
-};
 
 i18n
     .use(LanguageDetector)

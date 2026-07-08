@@ -9,7 +9,7 @@ from .serializers import (
     PinboardPostSerializer, PinboardPostEvaluationSerializer,
     PinboardPostListSerializer
 )
-from core.mixins import CompanyFilterMixin
+from core.mixins import CompanyFilterMixin, get_active_membership
 
 class OpgaveViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = Opgave.objects.all() # Required for router basename
@@ -26,9 +26,14 @@ class OpgaveViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         # Base query with common optimizations and company filtering from mixin
         qs = super().get_queryset().prefetch_related(
             'ansvarlige', 
+            'ansvarlige__profile',
+            'ansvarlige__memberships',
             'oprettet_af',
+            'oprettet_af__profile',
+            'oprettet_af__memberships',
             'team',
-            'team__medlemmer'
+            'team__medlemmer',
+            'team__medlemmer__memberships',
         )
 
         # Enforce membership: User can only see tasks for teams they are in
@@ -37,7 +42,8 @@ class OpgaveViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         # If it has NO team, it's visible to everyone authenticated (legacy).
         # Enforce membership unless Admin
         from django.db.models import Q
-        is_admin = user.is_superuser or (hasattr(user, 'profile') and user.profile.role == 'ADMIN')
+        membership = get_active_membership(self.request)
+        is_admin = user.is_superuser or (membership and membership.role == 'ADMIN')
         
         if not is_admin:
             qs = qs.filter(Q(team__medlemmer=user) | Q(team__isnull=True)).distinct()
@@ -64,7 +70,7 @@ class OpgaveViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         )
 
     def perform_create(self, serializer):
-        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        company = get_active_company(self.request)
         serializer.save(oprettet_af=self.request.user, company=company)
 
     def perform_update(self, serializer):
@@ -166,7 +172,8 @@ class PinboardPostViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        is_admin = user.is_superuser or (hasattr(user, 'profile') and user.profile.role == 'ADMIN')
+        membership = get_active_membership(self.request)
+        is_admin = user.is_superuser or (membership and membership.role == 'ADMIN')
         
         # Optimize fetch according to patterns.md
         # Annotate counts to avoid N+1 in evaluation_summary
@@ -181,14 +188,19 @@ class PinboardPostViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
             'oprettet_af__profile',
             'team'
         ).prefetch_related(
+            'oprettet_af__memberships',
             'evalueringer', 
             'evalueringer__bruger',
             'evalueringer__bruger__profile',
+            'evalueringer__bruger__memberships',
             'kommentarer',
             'kommentarer__bruger',
             'kommentarer__bruger__profile',
+            'kommentarer__bruger__memberships',
+            'team',
             'team__medlemmer',
-            'team__medlemmer__profile'
+            'team__medlemmer__profile',
+            'team__medlemmer__memberships'
         )
 
         # Filter by team if requested
@@ -218,14 +230,16 @@ class PinboardPostViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         return qs
 
     def perform_create(self, serializer):
-        company = self.request.user.profile.company if hasattr(self.request.user, 'profile') else None
+        from core.mixins import get_active_company
+        company = get_active_company(self.request)
         serializer.save(oprettet_af=self.request.user, company=company)
 
     @action(detail=True, methods=['post'])
     def archive(self, request, pk=None):
         instance = self.get_object()
         # Only creator or admin can archive
-        is_admin = request.user.is_superuser or (hasattr(request.user, 'profile') and request.user.profile.role == 'ADMIN')
+        membership = get_active_membership(request)
+        is_admin = request.user.is_superuser or (membership and membership.role == 'ADMIN')
         if instance.oprettet_af != request.user and not is_admin:
             return Response({'error': 'Kun opretteren kan arkivere dette opslag.'}, status=status.HTTP_403_FORBIDDEN)
         

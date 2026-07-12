@@ -58,6 +58,7 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
         }
         const error = new Error(errorData.detail || errorData.error || JSON.stringify(errorData) || 'API kald fejlede');
         (error as any).status = response.status;
+        (error as any).data = errorData;
         throw error;
     }
 

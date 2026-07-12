@@ -18,6 +18,8 @@ import {
     Search
 } from 'lucide-react';
 import Modal from '../components/Modal';
+import { useTranslation } from '../services/translationService';
+import type { Invitation } from '../types';
 
 const languages = [
     { code: 'da', label: 'Dansk', flag: '🇩🇰' },
@@ -26,9 +28,6 @@ const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
     { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
 ];
-
-import { useTranslation } from '../services/translationService';
-import type { Invitation } from '../types';
 
 const SettingsPage: React.FC = () => {
     const { state, refreshCurrentUser } = useAppState();
@@ -203,7 +202,7 @@ const SettingsPage: React.FC = () => {
             await api.post(`/companies/${state.activeWorkspaceId}/leave/`);
             window.location.href = '/login';
         } catch (err: any) {
-            setLeaveError(err.response?.data?.error || t('settings.leave.error_generic', 'Kunne ikke forlade arbejdsrum.'));
+            setLeaveError(err.message || t('settings.leave.error_generic', 'Kunne ikke forlade arbejdsrum.'));
         } finally {
             setIsLeaving(false);
         }

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(wsl scp -i '~/.ssh/id_wsl' /mnt/c/DEV/Centralen/backend/seed_signup_translations.py root@193.104.202.65:/var/www/opgaver/backend/seed_signup_translations.py)",
+      "PowerShell(wsl ssh -i '~/.ssh/id_wsl' root@193.104.202.65 \"cd /var/www/opgaver/backend && source venv/bin/activate && python seed_signup_translations.py\")",
+      "Bash(wsl python3 *)",
+      "PowerShell(wsl ssh -i '~/.ssh/id_wsl' root@193.104.202.65 \"echo '--- ENV ---'; grep -E '^\\(DEBUG|EMAIL_HOST|EMAIL_PORT|EMAIL_USE_TLS|EMAIL_HOST_USER|DEFAULT_FROM_EMAIL\\)=' /var/www/opgaver/backend/.env; echo '--- Django log tail ---'; tail -n 80 /var/www/opgaver/backend/logs/django.log 2>&1; echo '--- Gunicorn journal \\(mail/activation\\) ---'; journalctl -u opgaver -n 300 --no-pager | grep -i -E 'activation|mail|smtp' \")"
+    ]
+  }
+}

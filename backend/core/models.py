@@ -105,6 +105,19 @@ class WorkspaceRequest(models.Model):
     def __str__(self):
         return f"Anmodning: {self.company_name} af {self.email}"
 
+class PasswordResetRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='password_resets')
+    token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    used_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('Nulstilling af adgangskode anmodning')
+        verbose_name_plural = _('Nulstilling af adgangskode anmodninger')
+
+    def __str__(self):
+        return f"Reset for {self.user.email} (token: {self.token})"
+
 class UITranslation(models.Model):
     key = models.CharField(max_length=255, unique=True)
     en = models.TextField(verbose_name=_('Engelsk (Base)'))
@@ -141,3 +154,49 @@ def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
     else:
         UserProfile.objects.get_or_create(user=instance)
+
+
+def translate_text(text, target_lang, source_lang='en'):
+    if not text or text.strip() in ('', '-'):
+        return ''
+    import urllib.request
+    import urllib.parse
+    import json
+    try:
+        url = f"https://api.mymemory.translated.net/get?q={urllib.parse.quote(text)}&langpair={source_lang}|{target_lang}"
+        req = urllib.request.Request(
+            url, 
+            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+        )
+        with urllib.request.urlopen(req, timeout=5) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            translation = data.get('matches', [{}])[0].get('translation', '')
+            if not translation:
+                translation = data.get('responseData', {}).get('translatedText', '')
+            return translation.strip() if translation else ''
+    except Exception as e:
+        print(f"Auto-translation warning: {e}")
+        return ''
+
+
+from django.db.models.signals import pre_save
+
+@receiver(pre_save, sender=UITranslation)
+def auto_translate_fields(sender, instance, **kwargs):
+    if not instance.en or instance.en.strip() in ('', '-'):
+        return
+        
+    langs = {
+        'da': 'da',
+        'nl': 'nl',
+        'fr': 'fr',
+        'de': 'de'
+    }
+    
+    # Check each language field
+    for field_name, lang_code in langs.items():
+        val = getattr(instance, field_name)
+        if not val or val.strip() in ('', '-'):
+            translated = translate_text(instance.en, lang_code)
+            if translated:
+                setattr(instance, field_name, translated)

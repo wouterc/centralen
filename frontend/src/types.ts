@@ -96,6 +96,7 @@ export interface VidensKategori {
     beskrivelse: string | null;
     farve: string;
     artikler_count?: number;
+    total_artikler_count?: number;
     er_privat: boolean;
 }
 

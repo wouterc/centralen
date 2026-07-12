@@ -42,3 +42,6 @@ pnpm-debug.log*
 exclude_list.txt
 sync_log.txt
 backend/sync_log.txt
+
+# Claude Code lokal state
+.claude/settings.local.json

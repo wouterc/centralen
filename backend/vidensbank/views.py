@@ -1,5 +1,5 @@
 from django.db.models import Count
-from rest_framework import viewsets, filters, permissions
+from rest_framework import viewsets, filters, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
@@ -7,9 +7,24 @@ from .models import VidensKategori, Viden, HjaelpPunkt, HjaelpPunktViden
 from .serializers import VidensKategoriSerializer, VidenSerializer, HjaelpPunktSerializer
 from core.mixins import CompanyFilterMixin, get_active_membership
 
+class IsAdminOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return request.user and request.user.is_authenticated
+        
+        # Write operations require admin role
+        user = request.user
+        if not user or not user.is_authenticated:
+            return False
+        if user.is_superuser:
+            return True
+        membership = get_active_membership(request)
+        return bool(membership and membership.role in ['ADMIN', 'SUPERUSER'])
+
 class VidensKategoriViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = VidensKategori.objects.all()
     serializer_class = VidensKategoriSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         user = self.request.user
@@ -29,10 +44,47 @@ class VidensKategoriViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
             
         # 2. Annoter kategorier med sikker optælling
         qs = super().get_queryset().annotate(
-            artikler_count=Count('artikler', filter=article_filter)
+            artikler_count=Count('artikler', filter=article_filter),
+            total_artikler_count=Count('artikler')
         )
         
         return qs
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        
+        # Check if category has articles
+        has_articles = instance.artikler.exists()
+        if has_articles:
+            reassign_to_id = request.data.get('reassign_to') or request.query_params.get('reassign_to')
+            if not reassign_to_id:
+                return Response(
+                    {"detail": "Denne kategori indeholder artikler. Vælg venligst en anden kategori at flytte dem til."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            try:
+                from core.mixins import get_active_company
+                company = get_active_company(request)
+                target_kat = VidensKategori.objects.get(pk=reassign_to_id, company=company)
+            except VidensKategori.DoesNotExist:
+                return Response(
+                    {"detail": "Den valgte kategori til flytning af artikler eksisterer ikke."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+                
+            if target_kat == instance:
+                return Response(
+                    {"detail": "Du kan ikke flytte artikler til den samme kategori, du forsøger at slette."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+                
+            # Reassign articles to the new category
+            instance.artikler.update(kategori=target_kat)
+            
+        instance.delete()
+        return Response({"status": "Kategori slettet succesfuldt"}, status=status.HTTP_200_OK)
+
 
 class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     queryset = Viden.objects.all()

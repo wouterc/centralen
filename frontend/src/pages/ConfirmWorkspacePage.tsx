@@ -32,7 +32,7 @@ const ConfirmWorkspacePage: React.FC = () => {
                 setRequestInfo(info);
             } catch (err: any) {
                 console.error(err);
-                setError(err.response?.data?.error || t('confirm.error.invalid', 'Ugyldigt eller udløbet link.'));
+                setError(err.message || t('confirm.error.invalid', 'Ugyldigt eller udløbet link.'));
             } finally {
                 setLoading(false);
             }
@@ -72,23 +72,25 @@ const ConfirmWorkspacePage: React.FC = () => {
             window.location.href = '/board';
         } catch (err: any) {
             console.error(err);
-            setError(err.response?.data?.error || t('confirm.error.create_failed', 'Kunne ikke oprette arbejdsrum. Prøv igen.'));
+            setError(err.message || t('confirm.error.create_failed', 'Kunne ikke oprette arbejdsrum. Prøv igen.'));
             setSubmitting(false);
         }
     };
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-300 flex items-center justify-center">
-                <Loader2 className="animate-spin text-blue-600" size={40} />
+            <div className="h-screen bg-gray-300 flex flex-col p-6 overflow-y-auto">
+                <div className="my-auto mx-auto">
+                    <Loader2 className="animate-spin text-blue-600" size={40} />
+                </div>
             </div>
         );
     }
 
     if (error || !requestInfo) {
         return (
-            <div className="min-h-screen bg-gray-300 flex items-center justify-center p-6">
-                <div className="max-w-md w-full bg-white p-8 rounded-4xl shadow-xl text-center">
+            <div className="h-screen bg-gray-300 flex flex-col p-6 overflow-y-auto">
+                <div className="max-w-md w-full my-auto mx-auto bg-white p-8 rounded-4xl shadow-xl text-center">
                     <div className="w-16 h-16 bg-red-100 text-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
                         <CheckCircle2 size={32} className="rotate-45" /> 
                     </div>
@@ -103,8 +105,8 @@ const ConfirmWorkspacePage: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-300 flex items-center justify-center p-6">
-            <div className="w-full max-w-xl animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div className="h-screen bg-gray-300 flex flex-col p-6 overflow-y-auto">
+            <div className="w-full max-w-xl my-auto mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
                 <div className="text-center mb-8">
                     <div className="w-20 h-20 bg-emerald-500 rounded-2xl flex items-center justify-center text-white font-black text-4xl shadow-2xl mx-auto mb-6">
                         <CheckCircle2 size={40} />

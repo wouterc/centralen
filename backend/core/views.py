@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
-from rest_framework.decorators import action, authentication_classes
+from rest_framework.decorators import action, authentication_classes, throttle_classes
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from .models import Team, Invitation, WorkspaceMembership, Company, UITranslation, WorkspaceRequest
@@ -17,6 +17,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework import exceptions
 from django.db.models import Q
 import os
+from django.core import signing
+from django.core.mail import send_mail
+from rest_framework.throttling import AnonRateThrottle
 
 
 @csrf_exempt
@@ -28,10 +31,16 @@ def login_view(request):
     password = request.data.get('password')
     user = authenticate(request, email=email, password=password)
     if user is not None:
+        if not user.is_active:
+            return Response({
+                'detail': 'Kontoen er ikke godkendt endnu, skal mailen sendes igen?',
+                'code': 'not_activated',
+                'email': user.email
+            }, status=401)
         login(request, user)
         serializer = UserSerializer(user)
         return Response(serializer.data)
-    return Response({'detail': 'Ugyldigt email eller adgangskode'}, status=401)
+    return Response({'detail': 'Ugyldigt email eller adgangskode', 'code': 'invalid_credentials'}, status=401)
 
 @api_view(['POST'])
 def logout_view(request):
@@ -311,6 +320,38 @@ class InvitationViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         print(f"Link: {accept_url}")
         print(f"------------------------\n")
 
+        # Determine language (user if registered, otherwise sender)
+        target_user = User.objects.filter(email__iexact=inv.email).first()
+        if not target_user:
+            target_user = inv.invited_by
+
+        default_subject = f"Invitation til at deltage i {inv.company.navn} på Centralen"
+        default_body = (
+            f"Hej,\n\n"
+            f"Du er blevet inviteret af {inv.invited_by.first_name or inv.invited_by.username} til at deltage i arbejdsrummet \"{inv.company.navn}\" på Centralen.\n\n"
+            f"Du kan acceptere invitationen ved at klikke på følgende link:\n"
+            f"{accept_url}\n\n"
+            f"Med venlig hilsen,\n"
+            f"Centralen"
+        )
+        try:
+            send_localized_email(
+                user=target_user,
+                subject_key='email.invitation.subject',
+                body_key='email.invitation.body',
+                context={
+                    'sender': inv.invited_by.first_name or inv.invited_by.username,
+                    'workspace': inv.company.navn,
+                    'link': accept_url
+                },
+                request=self.request,
+                default_subject=default_subject,
+                default_body=default_body,
+                recipient_email=inv.email
+            )
+        except Exception as e:
+            print(f"Error sending invitation email: {e}")
+
     def perform_create(self, serializer):
         company = get_active_company(self.request)
         if not company:
@@ -435,8 +476,10 @@ def get_translations_view(request):
         # Fallback to English if the requested language is missing
         val = getattr(t, lang, None) or t.en
         data[t.key] = val
-        
-    return Response(data)
+
+    response = Response(data)
+    response['Cache-Control'] = 'no-store'
+    return response
 
 class WorkspaceRequestViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
@@ -531,3 +574,364 @@ class WorkspaceRequestViewSet(viewsets.ModelViewSet):
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
             return Response({'status': 'Arbejdsrum oprettet!', 'workspace_id': str(company.id)})
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+@throttle_classes([AnonRateThrottle])
+def register_user(request):
+    username = request.data.get('username', '').strip()
+    email = request.data.get('email', '').strip().lower()
+    password = request.data.get('password')
+    first_name = request.data.get('first_name', '').strip()
+    last_name = request.data.get('last_name', '').strip()
+    website = request.data.get('website', '') # Honeypot
+
+    # Honeypot validation: if filled, act as if it succeeded but do nothing
+    if website:
+        return Response({
+            'status': 'success',
+            'message': 'Bruger oprettet! Tjek din e-mail for et aktiveringslink.'
+        }, status=200)
+
+    if not email or not password or not username:
+        return Response({'error': 'Brugernavn, e-mail og adgangskode skal angives.', 'code': 'missing_fields'}, status=400)
+
+    if User.objects.filter(username__iexact=username).exists():
+        return Response({'error': 'Brugernavnet er allerede i brug.', 'code': 'username_taken'}, status=400)
+
+    existing_by_email = User.objects.filter(email__iexact=email).first()
+    if existing_by_email:
+        if existing_by_email.is_active:
+            return Response({'error': 'E-mailadressen er allerede registreret.', 'code': 'email_taken'}, status=400)
+        return Response({'error': 'E-mailadressen er allerede registreret, men kontoen er endnu ikke aktiveret.', 'code': 'email_pending_activation'}, status=400)
+
+    # Create the user but inactive
+    user = User.objects.create_user(
+        username=username,
+        email=email,
+        password=password,
+        first_name=first_name,
+        last_name=last_name
+    )
+    user.is_active = False
+    user.save()
+
+    # Save preferred language on the profile
+    language = request.data.get('language', 'da').strip().lower()
+    if hasattr(user, 'profile'):
+        user.profile.language = language
+        user.profile.save()
+
+    _send_activation_email(user, request)
+
+    return Response({
+        'status': 'success',
+        'message': 'Bruger oprettet! Tjek din e-mail for et aktiveringslink.'
+    })
+
+
+def send_localized_email(user, subject_key, body_key, context, request, default_subject, default_body, recipient_email=None):
+    from core.models import UITranslation
+    # Get user preferred language (defaults to 'da')
+    lang_code = 'da'
+    if hasattr(user, 'profile') and user.profile.language:
+        # Strip potential region tag (e.g. 'da-DK' -> 'da')
+        lang_code = user.profile.language.split('-')[0].lower()
+    
+    # Ensure lang_code is one of the supported columns
+    if lang_code not in ('en', 'da', 'nl', 'fr', 'de'):
+        lang_code = 'da'
+
+    # Retrieve subject
+    subject_obj = UITranslation.objects.filter(key=subject_key).first()
+    subject_text = default_subject
+    if subject_obj:
+        translated_subject = getattr(subject_obj, lang_code, None)
+        if translated_subject and translated_subject.strip() not in ('', '-'):
+            subject_text = translated_subject
+        elif subject_obj.en:
+            subject_text = subject_obj.en
+
+    # Retrieve body
+    body_obj = UITranslation.objects.filter(key=body_key).first()
+    body_text = default_body
+    if body_obj:
+        translated_body = getattr(body_obj, lang_code, None)
+        if translated_body and translated_body.strip() not in ('', '-'):
+            body_text = translated_body
+        elif body_obj.en:
+            body_text = body_obj.en
+
+    # Replace placeholders
+    for k, v in context.items():
+        placeholder = "{{" + k + "}}"
+        subject_text = subject_text.replace(placeholder, str(v))
+        body_text = body_text.replace(placeholder, str(v))
+
+    to_email = recipient_email or user.email
+    send_mail(
+        subject_text,
+        body_text,
+        None,
+        [to_email],
+        fail_silently=False
+    )
+
+
+def _send_activation_email(user, request):
+    token = signing.dumps({'user_id': user.id})
+
+    host = request.get_host()
+    proto = 'https' if request.is_secure() else 'http'
+    activate_url = f"{proto}://{host}/activate-account/{token}"
+    if 'localhost:8030' in host or '127.0.0.1:8030' in host:
+        activate_url = f"http://localhost:5180/activate-account/{token}"
+
+    print(f"DEBUG: ACTIVATION LINK FOR {user.email}: {activate_url}")
+
+    default_subject = "Aktiver din konto på Centralen"
+    default_body = (
+        f"Hej {user.first_name or user.username},\n\n"
+        f"Her er dit aktiveringslink til Centralen:\n"
+        f"{activate_url}\n\n"
+        f"Hvis du ikke har oprettet denne konto, kan du roligt ignorere denne e-mail.\n\n"
+        f"Med venlig hilsen,\n"
+        f"Centralen"
+    )
+    try:
+        send_localized_email(
+            user=user,
+            subject_key='email.activation.subject',
+            body_key='email.activation.body',
+            context={
+                'name': user.first_name or user.username,
+                'link': activate_url
+            },
+            request=request,
+            default_subject=default_subject,
+            default_body=default_body
+        )
+    except Exception as e:
+        print(f"Error sending activation email: {e}")
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+@throttle_classes([AnonRateThrottle])
+def resend_activation_view(request):
+    email = request.data.get('email', '').strip().lower()
+    if not email:
+        return Response({'error': 'E-mail skal angives.', 'code': 'email_required'}, status=400)
+
+    user = User.objects.filter(email__iexact=email, is_active=False).first()
+    if user:
+        _send_activation_email(user, request)
+
+    # Always return success, regardless of whether the account exists,
+    # to avoid leaking which email addresses are registered.
+    return Response({'status': 'success'})
+
+
+def _create_default_workspace(user):
+    lang = getattr(user, 'profile', None).language if hasattr(user, 'profile') else 'da'
+    
+    names = {
+        'da': 'Mit Lab',
+        'en': 'My Lab',
+        'nl': 'Mijn Lab',
+        'fr': 'Mon Lab',
+        'de': 'Mein Lab'
+    }
+    company_name = names.get(lang, 'Mit Lab')
+
+    # 1. Create company
+    company = Company.objects.create(navn=company_name)
+
+    # 2. Create membership
+    WorkspaceMembership.objects.create(
+        user=user,
+        company=company,
+        role='ADMIN',
+        alias=f"{user.first_name} {user.last_name}".strip() or user.username,
+        color='#3b82f6'
+    )
+
+    # 3. Create default General team
+    Team.objects.create(navn="Generelt", company=company, color="#3b82f6")
+
+    # 4. Create default General category
+    VidensKategori.objects.create(navn="Generelt", company=company, farve="#2563eb")
+    
+    return company
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+def activate_user(request, token):
+    try:
+        # Load token, max age of 24 hours (86400 seconds)
+        data = signing.loads(token, max_age=86400)
+        user_id = data['user_id']
+    except signing.SignatureExpired:
+        return Response({'error': 'Aktiveringslinket er udløbet (maks. 24 timer).', 'code': 'activation_link_expired'}, status=400)
+    except signing.BadSignature:
+        return Response({'error': 'Ugyldigt aktiveringslink.', 'code': 'activation_link_invalid'}, status=400)
+
+    user = User.objects.filter(id=user_id).first()
+    if not user:
+        return Response({'error': 'Brugeren blev ikke fundet.', 'code': 'user_not_found'}, status=404)
+
+    if not user.is_active:
+        user.is_active = True
+        user.save()
+        _create_default_workspace(user)
+
+    # Log user in
+    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+    
+    # Return user details
+    serializer = UserSerializer(user)
+    return Response({
+        'status': 'Konto aktiveret!',
+        'user': serializer.data
+    })
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def my_invitations_view(request):
+    user = request.user
+    invitations = Invitation.objects.filter(email__iexact=user.email, used_at__isnull=True)
+    results = []
+    for inv in invitations:
+        results.append({
+            'id': inv.id,
+            'company_name': inv.company.navn,
+            'role': inv.role,
+            'invited_by': inv.invited_by.username if inv.invited_by else 'System',
+            'token': str(inv.token)
+        })
+    return Response(results)
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def accept_my_invitation_view(request, pk):
+    user = request.user
+    inv = Invitation.objects.filter(id=pk, email__iexact=user.email, used_at__isnull=True).first()
+    if not inv:
+        return Response({'error': 'Invitationen blev ikke fundet eller er allerede accepteret.'}, status=404)
+
+    # Create workspace membership
+    WorkspaceMembership.objects.get_or_create(
+        user=user,
+        company=inv.company,
+        defaults={
+            'role': inv.role,
+            'alias': f"{user.first_name} {user.last_name}".strip() or user.username,
+            'color': '#3b82f6'
+        }
+    )
+
+    # Mark invitation as used
+    from django.utils import timezone
+    inv.used_at = timezone.now()
+    inv.save()
+
+    return Response({'status': 'success', 'workspace_id': str(inv.company.id)})
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+@throttle_classes([AnonRateThrottle])
+def request_password_reset_view(request):
+    from core.models import PasswordResetRequest
+    email = request.data.get('email', '').strip().lower()
+    if not email:
+        return Response({'error': 'E-mail skal angives.'}, status=400)
+
+    user = User.objects.filter(email__iexact=email).first()
+    if user:
+        # Create reset request
+        reset_req = PasswordResetRequest.objects.create(user=user)
+        
+        # Build reset url
+        host = request.get_host()
+        reset_url = f"https://{host}/reset-password/{reset_req.token}"
+        if 'localhost:8030' in host or '127.0.0.1:8030' in host:
+            reset_url = f"http://localhost:5180/reset-password/{reset_req.token}"
+
+        print(f"DEBUG: PASSWORD RESET LINK FOR {user.email}: {reset_url}")
+
+        default_subject = "Nulstil din adgangskode på Centralen"
+        default_body = (
+            f"Hej {user.first_name or user.username},\n\n"
+            f"Du har anmodet om at nulstille din adgangskode på Centralen.\n"
+            f"Du kan nulstille din adgangskode ved at klikke på følgende link:\n"
+            f"{reset_url}\n\n"
+            f"Dette link er aktivt i 24 timer.\n\n"
+            f"Hvis du ikke har anmodet om at nulstille din adgangskode, kan du roligt ignorere denne e-mail.\n\n"
+            f"Med venlig hilsen,\n"
+            f"Centralen"
+        )
+        try:
+            send_localized_email(
+                user=user,
+                subject_key='email.password_reset.subject',
+                body_key='email.password_reset.body',
+                context={
+                    'name': user.first_name or user.username,
+                    'link': reset_url
+                },
+                request=request,
+                default_subject=default_subject,
+                default_body=default_body
+            )
+        except Exception as e:
+            print(f"Error sending password reset email: {e}")
+
+    # Return success always to protect privacy (User Enumeration protection)
+    return Response({'status': 'success', 'message': 'Hvis din e-mailadresse findes i vores system, har vi sendt dig et link til at nulstille din adgangskode.'})
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+def reset_password_view(request):
+    from core.models import PasswordResetRequest
+    from django.utils import timezone
+    from datetime import timedelta
+    
+    token = request.data.get('token', '').strip()
+    password = request.data.get('password', '').strip()
+    
+    if not token or not password:
+        return Response({'error': 'Token og ny adgangskode skal angives.'}, status=400)
+        
+    try:
+        reset_req = PasswordResetRequest.objects.get(token=token, used_at__isnull=True)
+    except (PasswordResetRequest.DoesNotExist, ValueError):
+        return Response({'error': 'Nulstillingslinket er ugyldigt eller har allerede været brugt.', 'code': 'invalid_token'}, status=400)
+        
+    # Check expiration (24 hours)
+    if timezone.now() > reset_req.created_at + timedelta(hours=24):
+        return Response({'error': 'Nulstillingslinket er udløbet (maks. 24 timer).', 'code': 'expired_token'}, status=400)
+        
+    # Reset password
+    user = reset_req.user
+    user.set_password(password)
+    user.save()
+    
+    # Mark request as used
+    reset_req.used_at = timezone.now()
+    reset_req.save()
+    
+    return Response({'status': 'success', 'message': 'Din adgangskode er blevet nulstillet.'})

@@ -9,13 +9,16 @@ from core.models import UITranslation
 translations = [
     # Navigation
     ('nav.board', 'Board', 'Tavlen'),
+    ('nav.users', 'Users & Teams', 'Medlemmer'),
     ('nav.knowledge', 'Knowledge Base', 'Vidensbank'),
     ('nav.time', 'Time Tracking', 'Tidsregistrering'),
     ('nav.calendar', 'Annual Calendar', 'Årshjul'),
     ('nav.pinboard', 'Pinboard', 'Prikbord'),
-    ('nav.apps', 'Apps', 'Apps'),
-    ('nav.users', 'Users & Teams', 'Brugere & Teams'),
+    ('nav.apps', 'Apps', 'Værktøjer'),
+    ('nav.flowchart', 'Flowchart', 'Flowchart'),
+    ('nav.settings', 'Settings', 'Indstillinger'),
     ('nav.logout', 'Log Out', 'Log ud'),
+    ('navigation.invitations.title', 'Pending approval', 'Mangler godkendelse'),
     
     # Roles
     ('role.admin', 'Administrator', 'Administrator'),

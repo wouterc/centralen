@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Download, Calendar, Edit, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Download, Calendar, Edit, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import type { Tidreg } from '../../types/tidsregistrering';
 import { api } from '../../api';
 import EditRegistrationModal from './EditRegistrationModal';
 import { useTranslation } from '../../services/translationService';
 
 interface OverviewViewProps {
+    isAdmin: boolean;
 }
 
-const OverviewView: React.FC<OverviewViewProps> = () => {
+const OverviewView: React.FC<OverviewViewProps> = ({ isAdmin: _isAdmin }) => {
     const { t } = useTranslation();
+    
     // Utilities
     const getWeekNumber = (d: Date) => {
         const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -51,19 +53,13 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
     };
 
     const changeWeek = (delta: number) => {
-        // Use the current start date to find the target Monday
-        const { start } = getWeekRange(week, year);
+        const { start } = getWeekRange(tempWeek, tempYear);
         const currentMonday = new Date(start);
         currentMonday.setDate(currentMonday.getDate() + (delta * 7));
 
-        // Find new week and year from that Monday
         const newYear = currentMonday.getFullYear();
-        // Since getWeekNumber uses UTC, we should be careful. 
-        // But for UI navigation, we just need the ISO week of this specific Monday.
         const newWeek = getWeekNumber(currentMonday);
 
-        // Special case: if getWeekNumber returns 1 but we are in late December, 
-        // the year should be the next year.
         let targetYear = newYear;
         if (newWeek === 1 && currentMonday.getMonth() === 11) {
             targetYear = newYear + 1;
@@ -71,19 +67,21 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
             targetYear = newYear - 1;
         }
 
+        setTempYear(targetYear);
+        setTempWeek(newWeek);
         setYear(targetYear);
         setWeek(newWeek);
     };
 
     const minToHHMM = (minutes: number) => {
-        if (minutes === 0) return '';
+        if (minutes === 0) return '00:00';
         const h = Math.floor(minutes / 60);
         const m = Math.round(minutes % 60);
         return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
     };
 
     const minToDecimal = (minutes: number) => {
-        if (minutes === 0) return '';
+        if (minutes === 0) return '0,00';
         return (minutes / 60).toLocaleString('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     };
 
@@ -92,7 +90,6 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
         const parts = tid.split(':').map(val => parseFloat(val) || 0);
         if (parts.length < 2) return 0;
 
-        // HH:mm:ss or HH:mm
         let mins = parts[0] * 60 + parts[1];
         if (parts.length >= 3) {
             mins += parts[2] / 60;
@@ -105,24 +102,51 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
     const [registrations, setRegistrations] = useState<Tidreg[]>([]);
     const [loading, setLoading] = useState(false);
     const [editingReg, setEditingReg] = useState<Tidreg | null>(null);
+    const [showAllUsers, setShowAllUsers] = useState(false);
 
     // Weekly Filter
     const [week, setWeek] = useState(getWeekNumber(new Date()));
     const [year, setYear] = useState(new Date().getFullYear());
+    const [tempWeek, setTempWeek] = useState(week);
+    const [tempYear, setTempYear] = useState(year);
 
     // Period Filter
     const [startDate, setStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0]);
     const [endDate, setEndDate] = useState(new Date().toISOString().split('T')[0]);
+    const [tempStartDate, setTempStartDate] = useState(startDate);
+    const [tempEndDate, setTempEndDate] = useState(endDate);
+
+    const hasPendingChanges = useMemo(() => {
+        if (activeTab === 'weekly') {
+            return tempWeek !== week || tempYear !== year;
+        } else {
+            return tempStartDate !== startDate || tempEndDate !== endDate;
+        }
+    }, [activeTab, tempWeek, week, tempYear, year, tempStartDate, startDate, tempEndDate, endDate]);
+
+    const handleApplyFilters = () => {
+        if (activeTab === 'weekly') {
+            setWeek(tempWeek);
+            setYear(tempYear);
+        } else {
+            setStartDate(tempStartDate);
+            setEndDate(tempEndDate);
+        }
+    };
 
     const fetchData = React.useCallback(async (start: string, end: string) => {
         if (!start || !end) return;
         setLoading(true);
         try {
+            const params: Record<string, any> = {
+                fra_tid__gte: start,
+                fra_tid__lte: end + 'T23:59:59'
+            };
+            if (showAllUsers) {
+                params.all_users = 'true';
+            }
             const res = await api.get<Tidreg[]>('/tidsregistrering/registreringer/', {
-                params: {
-                    fra_tid__gte: start,
-                    fra_tid__lte: end + 'T23:59:59'
-                }
+                params
             });
             setRegistrations(res);
         } catch (e) {
@@ -130,25 +154,43 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [showAllUsers]);
 
+    // Initial setup or when switching tabs
+    useEffect(() => {
+        if (activeTab === 'weekly') {
+            setWeek(tempWeek);
+            setYear(tempYear);
+            const { start, end } = getWeekRange(tempWeek, tempYear);
+            setStartDate(start);
+            setEndDate(end);
+            setTempStartDate(start);
+            setTempEndDate(end);
+            fetchData(start, end);
+        } else {
+            setStartDate(tempStartDate);
+            setEndDate(tempEndDate);
+            fetchData(tempStartDate, tempEndDate);
+        }
+    }, [activeTab, fetchData]);
+
+    // React to changes to active values
     useEffect(() => {
         if (activeTab === 'weekly') {
             const { start, end } = getWeekRange(week, year);
-            // Always fetch when week/year/tab changes, 
-            // but update startDate/endDate for filters
             setStartDate(start);
             setEndDate(end);
+            setTempStartDate(start);
+            setTempEndDate(end);
             fetchData(start, end);
         } else {
             fetchData(startDate, endDate);
         }
-    }, [week, year, activeTab, fetchData]); // Removed startDate/endDate from dependencies to avoid loop
+    }, [week, year, startDate, endDate, activeTab, fetchData]);
 
     const processedWeekly = useMemo(() => {
         const map = new Map<string, any>();
         registrations.forEach(reg => {
-            // Group by kode_nr + mtime + gruppe to be unique
             const key = `${reg.kode_nr}-${reg.mtime}-${reg.gruppe}`;
             if (!map.has(key)) {
                 map.set(key, {
@@ -162,7 +204,7 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
             }
             const item = map.get(key);
             const date = new Date(reg.fra_tid);
-            const day = date.getDay() || 7; // ISO day
+            const day = date.getDay() || 7; 
             const mins = timeToMinutes(reg.tid);
             item.days[day] += mins;
             item.total += mins;
@@ -172,7 +214,32 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
             if (a.gruppe !== b.gruppe) return (a.gruppe || '').localeCompare(b.gruppe || '');
             return (a.kode_nr || '').localeCompare(b.kode_nr || '');
         });
-    }, [registrations]); // Removed startDate/endDate from dependencies
+    }, [registrations]);
+
+    const processedAllUsers = useMemo(() => {
+        const map = new Map<string, any>();
+        registrations.forEach(reg => {
+            const key = `${reg.bruger_name}-${reg.kode_nr}-${reg.gruppe}`;
+            if (!map.has(key)) {
+                map.set(key, {
+                    bruger_name: reg.bruger_name || '',
+                    gruppe: reg.gruppe || '',
+                    beskrivelse: reg.beskrivelse || reg.alias || '',
+                    kode_nr: reg.kode_nr,
+                    total: 0
+                });
+            }
+            const item = map.get(key);
+            const mins = timeToMinutes(reg.tid);
+            item.total += mins;
+        });
+
+        return Array.from(map.values()).sort((a, b) => {
+            if (a.bruger_name !== b.bruger_name) return a.bruger_name.localeCompare(b.bruger_name);
+            if (a.gruppe !== b.gruppe) return (a.gruppe || '').localeCompare(b.gruppe || '');
+            return (a.kode_nr || '').localeCompare(b.kode_nr || '');
+        });
+    }, [registrations]);
 
     const weekTotals = useMemo(() => {
         const totals: { [key: number]: number; all: number } = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, all: 0 };
@@ -185,7 +252,19 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
 
     const exportCSV = () => {
         let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-        if (activeTab === 'period') {
+        if (showAllUsers) {
+            csvContent += "Medarbejder;Gruppe;Kode;Beskrivelse;Total\n";
+            processedAllUsers.forEach(row => {
+                const line = [
+                    row.bruger_name,
+                    row.gruppe,
+                    row.kode_nr,
+                    `"${row.beskrivelse.replace(/"/g, '""')}"`,
+                    (row.total / 60).toFixed(2)
+                ].join(';');
+                csvContent += line + "\n";
+            });
+        } else if (activeTab === 'period') {
             csvContent += "Dato;Tid;Kode;Beskrivelse;Kommentar\n";
             registrations.forEach(row => {
                 const line = [
@@ -213,7 +292,7 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `tidsregistrering_export.csv`);
+        link.setAttribute("download", showAllUsers ? `medarbejdertotaler.csv` : `tidsregistrering_export.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -223,7 +302,7 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
         <div className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden flex flex-col h-[700px]">
             {/* Toolbar */}
             <div className="p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                     <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm">
                         <button
                             onClick={() => setActiveTab('weekly')}
@@ -239,73 +318,104 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
                         </button>
                     </div>
 
-                    <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm items-center">
-                        <Calendar size={14} className="text-gray-400 ml-2" />
-                        {activeTab === 'weekly' ? (
-                            <div className="flex items-center gap-1 px-2">
-                                <button
-                                    onClick={() => changeWeek(-1)}
-                                    className="p-1 hover:bg-gray-100 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
-                                >
-                                    <ChevronLeft size={16} />
-                                </button>
+                    {/* Mode selector: My overview vs All Users */}
+                    <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm">
+                        <button
+                            onClick={() => setShowAllUsers(false)}
+                            className={`px-3 py-2 text-xs font-black rounded-lg transition-all ${!showAllUsers ? 'bg-gray-800 text-white shadow-md' : 'text-gray-400 hover:text-gray-800'}`}
+                        >
+                            👤 {t('time.overview_my_hours', 'MINE TIMER')}
+                        </button>
+                        <button
+                            onClick={() => setShowAllUsers(true)}
+                            className={`px-3 py-2 text-xs font-black rounded-lg transition-all ${showAllUsers ? 'bg-gray-800 text-white shadow-md' : 'text-gray-400 hover:text-gray-800'}`}
+                        >
+                            👥 {t('time.overview_all_users', 'ALLE MEDARBEJDERE')}
+                        </button>
+                    </div>
 
-                                <input
-                                    type="number"
-                                    className="w-16 bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 text-center"
-                                    value={year || ''}
-                                    onChange={(e) => {
-                                        const val = parseInt(e.target.value);
-                                        if (!isNaN(val)) setYear(val);
-                                        else setYear(0);
-                                    }}
-                                />
-                                <span className="text-gray-300 font-bold">W</span>
-                                <input
-                                    type="number"
-                                    className="w-10 bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 text-center"
-                                    value={week || ''}
-                                    onChange={(e) => {
-                                        const val = parseInt(e.target.value);
-                                        if (!isNaN(val)) setWeek(val);
-                                        else setWeek(0);
-                                    }}
-                                />
+                    <div className="flex items-center gap-2">
+                        <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm items-center">
+                            <Calendar size={14} className="text-gray-400 ml-2" />
+                            {activeTab === 'weekly' ? (
+                                <div className="flex items-center gap-1 px-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => changeWeek(-1)}
+                                        className="p-1 hover:bg-gray-100 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+                                    >
+                                        <ChevronLeft size={16} />
+                                    </button>
 
-                                <button
-                                    onClick={() => changeWeek(1)}
-                                    className="p-1 hover:bg-gray-100 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
-                                >
-                                    <ChevronRight size={16} />
-                                </button>
+                                    <input
+                                        type="number"
+                                        className="w-16 bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 text-center"
+                                        value={tempYear || ''}
+                                        onChange={(e) => {
+                                            const val = parseInt(e.target.value);
+                                            if (!isNaN(val)) setTempYear(val);
+                                            else setTempYear(0);
+                                        }}
+                                    />
+                                    <span className="text-gray-300 font-bold">W</span>
+                                    <input
+                                        type="number"
+                                        className="w-10 bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 text-center"
+                                        value={tempWeek || ''}
+                                        onChange={(e) => {
+                                            const val = parseInt(e.target.value);
+                                            if (!isNaN(val)) setTempWeek(val);
+                                            else setTempWeek(0);
+                                        }}
+                                    />
 
-                                <div className="ml-2 px-3 py-1 bg-gray-100 rounded-lg text-[10px] font-black text-gray-500 uppercase tracking-tight whitespace-nowrap">
-                                    {formatDateDisplay(startDate)} - {formatDateDisplay(endDate)}
+                                    <button
+                                        type="button"
+                                        onClick={() => changeWeek(1)}
+                                        className="p-1 hover:bg-gray-100 rounded-md text-gray-400 hover:text-gray-600 transition-colors"
+                                    >
+                                        <ChevronRight size={16} />
+                                    </button>
+
+                                    <div className="ml-2 px-3 py-1 bg-gray-100 rounded-lg text-[10px] font-black text-gray-500 uppercase tracking-tight whitespace-nowrap">
+                                        {formatDateDisplay(startDate)} - {formatDateDisplay(endDate)}
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div className="flex items-center gap-2 px-2">
-                                <input
-                                    type="date"
-                                    className="bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 cursor-pointer"
-                                    value={startDate}
-                                    onChange={(e) => setStartDate(e.target.value)}
-                                />
-                                <span className="text-gray-300 font-bold">—</span>
-                                <input
-                                    type="date"
-                                    className="bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 cursor-pointer"
-                                    value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
-                                />
-                            </div>
+                            ) : (
+                                <div className="flex items-center gap-2 px-2">
+                                    <input
+                                        type="date"
+                                        className="bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 cursor-pointer"
+                                        value={tempStartDate}
+                                        onChange={(e) => setTempStartDate(e.target.value)}
+                                    />
+                                    <span className="text-gray-300 font-bold">—</span>
+                                    <input
+                                        type="date"
+                                        className="bg-transparent border-none p-0 text-xs font-black text-gray-600 focus:ring-0 cursor-pointer"
+                                        value={tempEndDate}
+                                        onChange={(e) => setTempEndDate(e.target.value)}
+                                    />
+                                </div>
+                            )}
+                        </div>
+
+                        {hasPendingChanges && (
+                            <button
+                                type="button"
+                                onClick={handleApplyFilters}
+                                className="flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black shadow-md transition-all duration-300 animate-pulse hover:animate-none active:scale-95 whitespace-nowrap"
+                            >
+                                <RefreshCw size={12} />
+                                {t('time.overview_hent', 'HENT')}
+                            </button>
                         )}
                     </div>
                 </div>
 
                 <button
                     onClick={exportCSV}
-                    className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md transition-all"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md transition-all shrink-0"
                 >
                     {loading ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Download size={16} />}
                     {t('time.overview_export_csv', 'EXPORT CSV')}
@@ -314,7 +424,52 @@ const OverviewView: React.FC<OverviewViewProps> = () => {
 
             {/* Table Content */}
             <div className="flex-1 overflow-auto scrollbar-thin scrollbar-thumb-gray-200">
-                {activeTab === 'period' ? (
+                {showAllUsers ? (
+                    <table className="w-full text-left border-collapse tabular-nums">
+                        <thead className="sticky top-0 bg-gray-50 border-b border-gray-100 z-10 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                            <tr>
+                                <th className="px-4 py-4">{t('time.overview_col_user', 'Medarbejder')}</th>
+                                <th className="px-4 py-4">{t('time.overview_col_group', 'Group')}</th>
+                                <th className="px-4 py-4">{t('time.overview_col_code', 'Code')}</th>
+                                <th className="px-4 py-4">{t('time.overview_col_desc', 'Description')}</th>
+                                <th className="px-4 py-4 text-right text-gray-800">{t('time.overview_col_total', 'Total')}</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-50 whitespace-nowrap">
+                            {processedAllUsers.map(row => (
+                                <tr
+                                    key={`${row.bruger_name}-${row.gruppe}-${row.kode_nr}`}
+                                    className="hover:bg-gray-50 group transition-all text-xs border-b border-transparent hover:border-blue-500 active:bg-blue-50 cursor-pointer"
+                                >
+                                    <td className="px-4 py-2 font-black text-gray-800">{row.bruger_name}</td>
+                                    <td className="px-4 py-2 font-black text-gray-500">{row.gruppe}</td>
+                                    <td className="px-4 py-2 font-mono text-gray-400">{row.kode_nr}</td>
+                                    <td className="px-4 py-2 font-black text-gray-700 max-w-[200px] truncate" title={row.beskrivelse}>{row.beskrivelse}</td>
+                                    <td className="px-4 py-2 text-right font-black text-emerald-600 whitespace-nowrap">
+                                        {minToDecimal(row.total)}
+                                        <span className="ml-2 text-[10px] text-gray-400 font-bold">({minToHHMM(row.total)})</span>
+                                    </td>
+                                </tr>
+                            ))}
+                            {processedAllUsers.length === 0 && (
+                                <tr>
+                                    <td colSpan={5} className="px-6 py-20 text-center">
+                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">{t('time.overview_no_data', 'No data for this selection')}</p>
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                        <tfoot className="sticky bottom-0 bg-gray-100 border-t-2 border-gray-200 font-black text-xs text-gray-700">
+                            <tr>
+                                <td colSpan={4} className="px-4 py-3 text-right uppercase tracking-widest text-[10px]">{t('time.overview_total_all_users', 'Total all medarbejdere:')}</td>
+                                <td className="px-4 py-3 text-right text-emerald-700 text-sm whitespace-nowrap">
+                                    {minToDecimal(processedAllUsers.reduce((sum, r) => sum + r.total, 0))}
+                                    <span className="ml-2 text-[11px] text-gray-400 font-bold">({minToHHMM(processedAllUsers.reduce((sum, r) => sum + r.total, 0))})</span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                ) : activeTab === 'period' ? (
                     <table className="w-full text-left border-collapse">
                         <thead className="sticky top-0 bg-gray-50 border-b border-gray-100 z-10">
                             <tr>

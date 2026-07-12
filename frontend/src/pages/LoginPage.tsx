@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../api';
 import { useAppState } from '../StateContext';
-import { User as UserIcon, Lock, Loader2, ArrowRight, Building2, Plus } from 'lucide-react';
+import { User as UserIcon, Lock, Loader2, ArrowRight, Building2, Plus, Mail, HelpCircle } from 'lucide-react';
 import { useTranslation } from '../services/translationService';
 import type { User, Team, WorkspaceMembership } from '../types';
+import LanguageSelector from '../components/LanguageSelector';
 
 const LoginPage: React.FC = () => {
-    const { setState } = useAppState();
+    const { state, setState } = useAppState();
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -16,6 +17,99 @@ const LoginPage: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState<'login' | 'select-workspace'>('login');
     const [tempUser, setTempUser] = useState<User | null>(null);
+
+    React.useEffect(() => {
+        if (state.currentUser && (!state.currentUser.memberships || state.currentUser.memberships.length === 0)) {
+            setTempUser(state.currentUser);
+            setStep('select-workspace');
+        }
+    }, [state.currentUser]);
+
+    const [newWorkspaceName, setNewWorkspaceName] = useState('');
+    const [workspaceSubmitting, setWorkspaceSubmitting] = useState(false);
+    const [showDirectCreation, setShowDirectCreation] = useState(false);
+
+    const handleCreateWorkspace = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newWorkspaceName.trim()) return;
+        setWorkspaceSubmitting(true);
+        setError(null);
+
+        try {
+            const newCompany = await api.post<{ id: string; navn: string }>('/companies/', {
+                navn: newWorkspaceName.trim()
+            });
+
+            localStorage.setItem('activeWorkspaceId', newCompany.id);
+
+            // Fetch refreshed data
+            const updatedUser = await api.get<any>('/users/me/');
+            const users = await api.get<any[]>('/users/');
+            const teams = await api.get<any[]>('/teams/');
+
+            setState(prev => ({
+                ...prev,
+                currentUser: updatedUser,
+                activeWorkspaceId: newCompany.id,
+                users,
+                teams
+            }));
+
+            navigate('/board');
+        } catch (err: any) {
+            console.error("Fejl ved oprettelse af arbejdsrum:", err);
+            setError(err.message || t('workspace.create.error', 'Kunne ikke oprette arbejdsrummet. Prøv igen.'));
+        } finally {
+            setWorkspaceSubmitting(false);
+        }
+    };
+
+    const [resendStatus, setResendStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
+
+    const handleResendActivation = async () => {
+        setResendStatus('sending');
+        try {
+            await api.post('/resend-activation/', { email });
+            setResendStatus('sent');
+        } catch (err) {
+            console.error("Resend error:", err);
+            setResendStatus('failed');
+        }
+    };
+
+    const [pendingInvitations, setPendingInvitations] = useState<any[]>([]);
+    const [showHelp, setShowHelp] = useState(false);
+
+    React.useEffect(() => {
+        if (step === 'select-workspace') {
+            fetchPendingInvitations();
+        }
+    }, [step]);
+
+    const fetchPendingInvitations = async () => {
+        try {
+            const data = await api.get<any[]>('/my-invitations/');
+            setPendingInvitations(data);
+        } catch (err) {
+            console.error("Kunne ikke hente invitationer:", err);
+        }
+    };
+
+    const handleAcceptInvitation = async (invId: number) => {
+        setLoading(true);
+        try {
+            const res = await api.post<{ status: string; workspace_id: string }>(`/my-invitations/${invId}/accept/`);
+            localStorage.setItem('activeWorkspaceId', res.workspace_id);
+            
+            // Re-fetch current user and navigate to board
+            const finalUser = await api.get<User>('/users/me/');
+            await finishLogin(finalUser);
+        } catch (err) {
+            console.error("Kunne ikke acceptere invitation:", err);
+            setError(t('login.error.accept_invitation', 'Kunne ikke acceptere invitationen'));
+            setLoading(false);
+        }
+    };
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,7 +142,13 @@ const LoginPage: React.FC = () => {
             }
         } catch (err: any) {
             console.error("Login fejl:", err);
-            setError(err.response?.data?.detail || err.message || t('login.error.default', 'Email eller adgangskode er forkert'));
+            const code = err.data?.code;
+            if (code === 'not_activated') {
+                setError('not_activated');
+                setResendStatus('idle');
+            } else {
+                setError(t('login.error.default', 'Email eller adgangskode er forkert'));
+            }
         } finally {
             setLoading(false);
         }
@@ -106,14 +206,19 @@ const LoginPage: React.FC = () => {
     const memberships = tempUser?.memberships || [];
 
     return (
-        <div className="min-h-screen bg-gray-300 flex items-center justify-center p-6 overflow-y-auto">
+        <div className="h-screen bg-gray-300 flex flex-col p-6 overflow-y-auto">
+            {/* Float Language Selector */}
+            <div className="fixed top-6 right-6 z-50">
+                <LanguageSelector />
+            </div>
+
             {/* Background Decorations */}
             <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-[120px] opacity-40 animate-pulse"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-100 rounded-full blur-[120px] opacity-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
             </div>
 
-            <div className="relative z-10 w-full max-w-md animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out">
+            <div className="relative z-10 w-full max-w-md my-auto mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out">
                 {/* Logo & Header */}
                 <div className="text-center mb-10">
                     <div className="relative inline-block">
@@ -136,9 +241,47 @@ const LoginPage: React.FC = () => {
                     )}
 
                     {error && (
-                        <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-sm font-bold flex items-center gap-3 animate-in shake duration-500">
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            {error}
+                        <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-sm font-bold animate-in shake duration-500">
+                            <div className="flex items-center gap-3">
+                                <div className="w-2 h-2 bg-red-500 rounded-full shrink-0"></div>
+                                <div>
+                                    {error === 'not_activated' ? (
+                                        <span>
+                                            {t('login.error.not_activated', 'Kontoen er ikke godkendt endnu. ')}
+                                            {resendStatus === 'idle' && (
+                                                <button
+                                                    type="button"
+                                                    onClick={handleResendActivation}
+                                                    className="underline hover:text-red-800 focus:outline-none ml-1 cursor-pointer font-black"
+                                                >
+                                                    {t('register.resend.button', 'Send aktiveringslink igen')}
+                                                </button>
+                                            )}
+                                            {resendStatus === 'sending' && (
+                                                <span className="text-gray-500 ml-1 font-medium italic animate-pulse">
+                                                    {t('login.error.resending', 'Sender...')}
+                                                </span>
+                                            )}
+                                            {resendStatus === 'sent' && (
+                                                <span className="text-emerald-600 ml-1 font-black animate-in fade-in duration-300">
+                                                    {t('login.error.resend_success', 'Aktiveringslinket er sendt igen!')}
+                                                </span>
+                                            )}
+                                            {resendStatus === 'failed' && (
+                                                <button
+                                                    type="button"
+                                                    onClick={handleResendActivation}
+                                                    className="underline hover:text-red-800 focus:outline-none ml-1 cursor-pointer font-black"
+                                                >
+                                                    {t('login.error.resend_failed', 'Kunne ikke sende. Prøv igen.')}
+                                                </button>
+                                            )}
+                                        </span>
+                                    ) : (
+                                        <span>{error}</span>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     )}
 
@@ -163,7 +306,12 @@ const LoginPage: React.FC = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('login.password_label', 'Adgangskode')}</label>
+                                <div className="flex justify-between items-center ml-1">
+                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('login.password_label', 'Adgangskode')}</label>
+                                    <Link to="/forgot-password" style={{ textDecoration: 'none' }} className="text-[11px] font-black text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
+                                        {t('login.button.forgot_password', 'Glemt adgangskode?')}
+                                    </Link>
+                                </div>
                                 <div className="relative group/input">
                                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none group-focus-within/input:text-blue-600 transition-colors">
                                         <Lock size={18} className="text-gray-400 group-focus-within/input:text-blue-600" />
@@ -195,17 +343,57 @@ const LoginPage: React.FC = () => {
                                 )}
                             </button>
 
-                            <div className="pt-4 text-center">
+                            <div className="pt-4 text-center space-y-2">
                                 <p className="text-sm font-medium text-gray-400">
-                                    {t('login.footer.new_workspace', 'Skal du bruge et nyt arbejdsrum? ')}
-                                    <Link to="/request-workspace" className="text-blue-600 font-bold hover:underline">
-                                        {t('login.footer.create_here', 'Opret det her')}
+                                    {t('login.footer.no_account', 'Ny på Centralen? ')}
+                                    <Link to="/register" className="text-blue-600 font-black hover:underline">
+                                        {t('login.footer.register_here', 'Opret din profil her')}
                                     </Link>
                                 </p>
+                                {email.trim() && (
+                                    <p className="text-xs font-medium text-gray-400 animate-in fade-in duration-300">
+                                        {t('login.footer.new_workspace', 'Skal du bruge et nyt arbejdsrum? ')}
+                                        <Link to="/request-workspace" className="text-blue-600 font-bold hover:underline">
+                                            {t('login.footer.create_here', 'Opret det her')}
+                                        </Link>
+                                    </p>
+                                )}
                             </div>
                         </form>
                     ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-4 animate-in fade-in duration-500">
+                            {/* Pending Invitations Widget */}
+                            {pendingInvitations.length > 0 && (
+                                <div className="space-y-3 p-4 bg-emerald-50 border border-emerald-100 rounded-3xl text-left animate-in zoom-in-95 duration-300">
+                                    <h3 className="text-xs font-black text-emerald-800 flex items-center gap-2">
+                                        <Mail size={16} className="text-emerald-600 animate-bounce" />
+                                        {t('login.invitations.title', 'Du har invitationer der venter!')}
+                                    </h3>
+                                    <p className="text-[11px] text-gray-500 font-medium">
+                                        {t('login.invitations.desc', 'Du er blevet inviteret til følgende arbejdsrum:')}
+                                    </p>
+                                    <div className="space-y-2 mt-1">
+                                        {pendingInvitations.map((inv) => (
+                                            <div key={inv.id} className="bg-white p-3 rounded-2xl border border-emerald-100/50 flex items-center justify-between gap-3 shadow-sm">
+                                                <div className="min-w-0">
+                                                    <h4 className="font-bold text-xs text-gray-800 truncate">{inv.company_name}</h4>
+                                                    <p className="text-[9px] text-gray-400 font-bold uppercase truncate">
+                                                        {inv.invited_by} • {t(`settings.invitations.role.${inv.role.toLowerCase()}`, inv.role)}
+                                                    </p>
+                                                </div>
+                                                <button
+                                                    onClick={() => handleAcceptInvitation(inv.id)}
+                                                    disabled={loading}
+                                                    className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black shadow-md shadow-emerald-100 active:scale-95 transition-all shrink-0 cursor-pointer"
+                                                >
+                                                    {t('login.invitations.accept', 'Accepter')}
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             {memberships.map((mem: WorkspaceMembership) => (
                                 <button
                                     key={mem.id}
@@ -227,40 +415,116 @@ const LoginPage: React.FC = () => {
                                 </button>
                             ))}
 
-                            {memberships.length === 0 && (
-                                <div className="text-center py-8">
-                                    <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
-                                        <Building2 size={32} />
+                            {memberships.length === 0 ? (
+                                        <div className="text-center py-4">
+                                            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                                                <Building2 size={32} />
+                                            </div>
+                                            <p className="text-gray-500 text-sm mb-6 font-medium">{t('login.workspace.none', 'Du er ikke medlem af nogen arbejdsrum endnu.')}</p>
+                                            
+                                            <form onSubmit={handleCreateWorkspace} className="space-y-3 p-5 bg-gray-50/50 rounded-3xl border border-gray-100 text-left">
+                                                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('workspace.create.title', 'Opret et nyt arbejdsrum')}</label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={newWorkspaceName}
+                                                    onChange={e => setNewWorkspaceName(e.target.value)}
+                                                    placeholder={t('workspace.create.placeholder', 'F.eks. Min Virksomhed')}
+                                                    className="w-full px-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all font-bold text-gray-800"
+                                                />
+                                                <button
+                                                    type="submit"
+                                                    disabled={!newWorkspaceName.trim() || workspaceSubmitting}
+                                                    className="w-full py-3.5 text-xs font-black text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
+                                                >
+                                                    {workspaceSubmitting ? <Loader2 size={16} className="animate-spin" /> : t('workspace.create.submit', 'Opret & Gå Til Tavlen')}
+                                                </button>
+                                            </form>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            {showDirectCreation ? (
+                                                <div className="space-y-4 p-5 bg-gray-50/50 rounded-3xl border border-gray-100 text-left">
+                                                    <h3 className="text-sm font-black text-gray-800 mb-1">{t('workspace.create.title', 'Opret nyt arbejdsrum')}</h3>
+                                                    <input
+                                                        type="text"
+                                                        value={newWorkspaceName}
+                                                        onChange={e => setNewWorkspaceName(e.target.value)}
+                                                        placeholder={t('workspace.create.placeholder', 'F.eks. Min Virksomhed')}
+                                                        className="w-full px-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all font-medium mb-3"
+                                                        autoFocus
+                                                    />
+                                                    <div className="flex gap-2">
+                                                        <button
+                                                            onClick={() => setShowDirectCreation(false)}
+                                                            className="flex-1 py-3 text-xs font-bold text-gray-500 hover:bg-white border border-gray-100 rounded-2xl transition-colors"
+                                                        >
+                                                            {t('common.cancel', 'Annuller')}
+                                                        </button>
+                                                        <button
+                                                            onClick={handleCreateWorkspace}
+                                                            disabled={!newWorkspaceName.trim() || workspaceSubmitting}
+                                                            className="flex-1 py-3 text-xs font-black text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
+                                                        >
+                                                            {workspaceSubmitting ? <Loader2 size={14} className="animate-spin" /> : t('workspace.create.submit', 'Opret')}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <button
+                                                    onClick={() => setShowDirectCreation(true)}
+                                                    className="w-full py-4 border-2 border-dashed border-gray-200 rounded-3xl text-gray-400 font-bold hover:border-blue-400 hover:text-blue-500 transition-all flex items-center justify-center gap-2"
+                                                >
+                                                    <Plus size={20} />
+                                                    {t('login.workspace.create_new', 'Opret nyt arbejdsrum')}
+                                                </button>
+                                            )}
+                                        </>
+                                    )}
+
+                                    {/* Collapsible Workspace Explanation Helper */}
+                                    <div className="mt-6 border-t border-gray-100 pt-4">
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowHelp(!showHelp)}
+                                            className="w-full flex items-center justify-between text-xs font-black text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider py-1 cursor-pointer"
+                                        >
+                                            <span className="flex items-center gap-2">
+                                                <HelpCircle size={14} />
+                                                {t('workspace.help.title', 'Forstå opbygningen')}
+                                            </span>
+                                            <span>{showHelp ? t('common.hide', 'Skjul') : t('common.show', 'Vis')}</span>
+                                        </button>
+
+                                        {showHelp && (
+                                            <div className="mt-3 p-4 bg-blue-50/50 border border-blue-100/50 rounded-3xl text-left animate-in slide-in-from-top-2 duration-300">
+                                                <ul className="space-y-2 text-[11px] font-medium text-gray-600">
+                                                    <li>
+                                                        <strong className="font-black text-gray-800">{t('workspace.help.workspace_label', 'Arbejdsrum:')}</strong> {t('workspace.help.workspace_desc', 'Det overordnede niveau for virksomheden. Data er 100% adskilt mellem arbejdsrum.')}
+                                                    </li>
+                                                    <li>
+                                                        <strong className="font-black text-gray-800">{t('workspace.help.teams_label', 'Teams:')}</strong> {t('workspace.help.teams_desc', 'Interne afdelinger eller arbejdsgrupper i arbejdsrummet (f.eks. Udvikling, Salg).')}
+                                                    </li>
+                                                    <li>
+                                                        <strong className="font-black text-gray-800">{t('workspace.help.members_label', 'Medlemmer:')}</strong> {t('workspace.help.members_desc', 'Medarbejdere, som har adgang til arbejdsrummet og kan tildeles roller og teams.')}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        )}
                                     </div>
-                                    <p className="text-gray-500 text-sm mb-6">{t('login.workspace.none', 'Du er ikke medlem af nogen arbejdsrum endnu.')}</p>
-                                </div>
-                            )}
 
-                            <div className="mt-6 flex flex-col gap-3">
-                                <button
-                                    onClick={() => navigate('/request-workspace')}
-                                    className="w-full py-4 border-2 border-dashed border-gray-200 rounded-3xl text-gray-400 font-bold hover:border-blue-400 hover:text-blue-500 transition-all flex items-center justify-center gap-2"
-                                >
-                                    <Plus size={20} />
-                                    {t('login.workspace.create_new', 'Opret nyt arbejdsrum')}
-                                </button>
-
-                                <button
-                                    onClick={logout}
-                                    className="w-full py-3 text-gray-400 font-bold text-xs uppercase tracking-widest hover:text-red-500 transition-colors"
-                                >
-                                    {t('login.button.logout', 'Log ud')}
-                                </button>
-                            </div>
+                                    <div className="mt-4 border-t border-gray-100 pt-2">
+                                        <button
+                                            onClick={logout}
+                                            className="w-full py-3 text-gray-400 font-bold text-xs uppercase tracking-widest hover:text-red-500 transition-colors"
+                                        >
+                                            {t('login.button.logout', 'Log ud')}
+                                        </button>
+                                    </div>
                         </div>
                     )}
                 </div>
 
-                {/* Footer Info */}
-                <p className="mt-8 text-center text-gray-400 text-sm font-medium">
-                    {t('login.footer.problems', 'Har du problemer med at logge ind?')} <br />
-                    <span className="text-blue-500 font-bold hover:underline cursor-help">{t('login.footer.contact_admin', 'Kontakt din administrator')}</span>
-                </p>
             </div>
 
             <style>{`

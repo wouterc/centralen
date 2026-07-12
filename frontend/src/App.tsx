@@ -15,6 +15,10 @@ import RequestWorkspacePage from './pages/RequestWorkspacePage';
 import ConfirmWorkspacePage from './pages/ConfirmWorkspacePage';
 import SettingsPage from './pages/SettingsPage';
 import FlowchartPage from './pages/FlowchartPage';
+import RegisterPage from './pages/RegisterPage';
+import ActivateAccountPage from './pages/ActivateAccountPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 
 const AppRoutes: React.FC = () => {
@@ -25,6 +29,10 @@ const AppRoutes: React.FC = () => {
   const isWorkspaceFlow = location.pathname.startsWith('/confirm-workspace') || 
                           location.pathname.startsWith('/request-workspace') || 
                           location.pathname.startsWith('/accept-invitation') ||
+                          location.pathname.startsWith('/activate-account') ||
+                          location.pathname.startsWith('/reset-password') ||
+                          location.pathname === '/forgot-password' ||
+                          location.pathname === '/register' ||
                           location.pathname === '/login';
 
   // While initializing session, show nothing or a loader
@@ -47,9 +55,13 @@ const AppRoutes: React.FC = () => {
     return (
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/activate-account/:token" element={<ActivateAccountPage />} />
         <Route path="/accept-invitation/:token" element={<AcceptInvitationPage />} />
         <Route path="/request-workspace" element={<RequestWorkspacePage />} />
         <Route path="/confirm-workspace/:token" element={<ConfirmWorkspacePage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
@@ -57,7 +69,7 @@ const AppRoutes: React.FC = () => {
 
   const lastPage = localStorage.getItem('lastVisitedPage');
   // Avoid redirecting back to workspace flow pages
-  const initialPage = (lastPage && !lastPage.includes('workspace') && !lastPage.includes('invitation')) ? lastPage : '/board';
+  const initialPage = (lastPage && !lastPage.includes('workspace') && !lastPage.includes('invitation') && !lastPage.includes('activate-account') && !lastPage.includes('register') && !lastPage.includes('password')) ? lastPage : '/board';
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gray-50">
@@ -75,9 +87,13 @@ const AppRoutes: React.FC = () => {
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/flowchart" element={<FlowchartPage />} />
           <Route path="/accept-invitation/:token" element={<AcceptInvitationPage />} />
+          <Route path="/register" element={<Navigate to={initialPage} replace />} />
+          <Route path="/activate-account/:token" element={<Navigate to={initialPage} replace />} />
           <Route path="/login" element={<Navigate to={initialPage} replace />} />
           <Route path="/request-workspace" element={<Navigate to={initialPage} replace />} />
           <Route path="/confirm-workspace/:token" element={<Navigate to={initialPage} replace />} />
+          <Route path="/forgot-password" element={<Navigate to={initialPage} replace />} />
+          <Route path="/reset-password/:token" element={<Navigate to={initialPage} replace />} />
           <Route path="*" element={<Navigate to={initialPage} replace />} />
         </Routes>
       </div>

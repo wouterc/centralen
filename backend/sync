@@ -50,6 +50,7 @@ rsync -avz -e "ssh -i $SSH_IDENTITY" --delete \
     --exclude='*.pyc' \
     --exclude='db.sqlite3' \
     --exclude='.env' \
+    --exclude='core/test_*.py' \
     ./ "${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_BACKEND_DIR}"
 
 echo "[Backend] Executing remote setup tasks..."

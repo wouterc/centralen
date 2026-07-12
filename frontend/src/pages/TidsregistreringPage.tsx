@@ -8,6 +8,7 @@ import EditRegistrationModal from '../components/tidsregistrering/EditRegistrati
 import { Edit } from 'lucide-react';
 import Toast, { type ToastType } from '../components/ui/Toast';
 import { useTranslation } from '../services/translationService';
+import { useAppState } from '../StateContext';
 
 type View = 'dashboard' | 'setup' | 'overview';
 
@@ -35,6 +36,8 @@ const ActiveTimer: React.FC<{ startTime: string }> = ({ startTime }) => {
 
 const TidsregistreringPage: React.FC = () => {
     const { t } = useTranslation();
+    const { state } = useAppState();
+    const isAdmin = state.currentUser?.role === 'ADMIN' || state.currentUser?.username === 'admin';
     const [view, setView] = useState<View>('dashboard');
     const [registreringer, setRegistreringer] = useState<Tidreg[]>([]);
     const [profiler, setProfiler] = useState<BrugerProfilTime[]>([]);
@@ -258,11 +261,11 @@ const TidsregistreringPage: React.FC = () => {
                     )}
 
                     {!loading && view === 'setup' && (
-                        <SetupView favorites={profiler} onRefresh={fetchData} />
+                        <SetupView favorites={profiler} onRefresh={fetchData} isAdmin={isAdmin} />
                     )}
 
                     {!loading && view === 'overview' && (
-                        <OverviewView />
+                        <OverviewView isAdmin={isAdmin} />
                     )}
 
                     <EditRegistrationModal

@@ -7,6 +7,12 @@ export interface OpgaverKode {
     gruppe_navn: string | null;
 }
 
+export interface KoderGrupper {
+    id: number;
+    gruppe: string;
+    beskrivelse: string | null;
+}
+
 export interface Tidreg {
     id: number;
     bruger: number;

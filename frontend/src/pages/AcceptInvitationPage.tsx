@@ -67,9 +67,9 @@ const AcceptInvitationPage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
-                <div className="flex flex-col items-center gap-4 text-white">
-                    <Loader2 className="animate-spin" size={48} />
+            <div className="h-screen bg-gray-300 flex flex-col p-4 overflow-y-auto">
+                <div className="flex flex-col items-center gap-4 text-gray-800 my-auto mx-auto">
+                    <Loader2 className="animate-spin text-blue-600" size={48} />
                     <p className="font-black animate-pulse">{t('invitation.loading', 'Henter din invitation...')}</p>
                 </div>
             </div>
@@ -78,8 +78,8 @@ const AcceptInvitationPage: React.FC = () => {
 
     if (error && !invitationInfo) {
         return (
-            <div className="min-h-screen bg-linear-to-br from-red-900 via-red-800 to-red-950 flex items-center justify-center p-4">
-                <div className="bg-white rounded-4xl p-8 max-w-md w-full shadow-2xl text-center">
+            <div className="h-screen bg-linear-to-br from-red-900 via-red-800 to-red-950 flex flex-col p-4 overflow-y-auto">
+                <div className="bg-white rounded-4xl p-8 max-w-md w-full my-auto mx-auto shadow-2xl text-center">
                     <div className="w-20 h-20 bg-red-100 rounded-3xl flex items-center justify-center text-red-600 mx-auto mb-6">
                         < ShieldCheck size={40} />
                     </div>
@@ -97,8 +97,8 @@ const AcceptInvitationPage: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-white rounded-4xl p-8 max-w-xl w-full shadow-2xl relative overflow-hidden my-8">
+        <div className="h-screen bg-gray-300 flex flex-col p-4 overflow-y-auto">
+            <div className="bg-white rounded-4xl p-8 max-w-xl w-full my-auto mx-auto shadow-2xl relative overflow-hidden">
 
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-8">

@@ -9,10 +9,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class VidensKategoriSerializer(serializers.ModelSerializer):
     artikler_count = serializers.IntegerField(read_only=True)
+    total_artikler_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = VidensKategori
-        fields = ['id', 'navn', 'beskrivelse', 'farve', 'artikler_count', 'er_privat']
+        fields = ['id', 'navn', 'beskrivelse', 'farve', 'artikler_count', 'total_artikler_count', 'er_privat']
 
 class VidenSerializer(serializers.ModelSerializer):
     kategori_details = VidensKategoriSerializer(source='kategori', read_only=True)

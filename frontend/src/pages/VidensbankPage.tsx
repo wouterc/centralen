@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
-import { Search, Plus, LibraryBig, Filter, Trash2, Edit, ExternalLink, Copy, FileText, Loader2, X, Archive, Star, ArchiveRestore, Lock, RotateCcw, AlertCircle, GripVertical } from 'lucide-react';
+import { Search, Plus, LibraryBig, Filter, Trash2, Edit, ExternalLink, Copy, FileText, Loader2, X, Archive, Star, ArchiveRestore, Lock, RotateCcw, AlertCircle, GripVertical, Settings } from 'lucide-react';
 import {
     DndContext,
     closestCenter,
@@ -185,7 +185,7 @@ const SortableCategoryItem: React.FC<{
                 <div
                     {...attributes}
                     {...listeners}
-                    className="cursor-grab active:cursor-grabbing p-1 -ml-2 text-gray-300 hover:text-gray-500 transition-colors shrink-0 outline-none"
+                    className="cursor-grab active:cursor-grabbing p-1 -ml-2 text-gray-500 hover:text-gray-700 transition-colors shrink-0 outline-none"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <GripVertical size={14} />
@@ -252,6 +252,20 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
     const [deletingViden, setDeletingViden] = useState<Viden | null>(null);
     const [archivingViden, setArchivingViden] = useState<Viden | null>(null);
     const [permanentDeletingViden, setPermanentDeletingViden] = useState<Viden | null>(null);
+
+    const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
+    const [isCategoryInfoOpen, setIsCategoryInfoOpen] = useState(false);
+    const [categorySearchTerm, setCategorySearchTerm] = useState('');
+
+    const handleCategorySettingsClick = () => {
+        if (isAdmin) {
+            setIsCategoryManagerOpen(true);
+        } else {
+            setIsCategoryInfoOpen(true);
+        }
+    };
+
+    const workspaceAdmins = state.users.filter(u => u.role === 'ADMIN' || u.username === 'admin');
 
     // Toast state
     const [toast, setToast] = useState<{ message: string; type: ToastType; isVisible: boolean }>({
@@ -607,7 +621,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
 
                     <div className="flex gap-6 flex-1 min-h-0">
                         <aside className="w-64 flex flex-col gap-6 shrink-0 min-h-0">
-                            <div className="bg-white p-4 rounded-xl shadow-md border border-gray-300 overflow-y-auto custom-scrollbar flex-1 flex flex-col">
+                            <div className="bg-white p-3 rounded-xl shadow-md border border-gray-300 overflow-y-auto custom-scrollbar flex-1 flex flex-col">
                                 <h2 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2">
                                     <Filter size={14} />
                                     {t('kb.filters', 'Filters')}
@@ -621,7 +635,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                     )}
                                 </h2>
 
-                                <div className="space-y-3 mb-4 pb-4 border-b border-gray-100">
+                                <div className="space-y-2 mb-2 pb-2 border-b border-gray-100">
                                     <label className="flex items-center gap-2 cursor-pointer group">
                                         <div className="relative">
                                             <input
@@ -630,8 +644,8 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                                 checked={showArchived}
                                                 onChange={() => { setShowArchived(!showArchived); if (!showArchived) setShowTrash(false); }}
                                             />
-                                            <div className={`block w-9 h-5 rounded-full transition-colors ${showArchived ? 'bg-amber-500' : 'bg-gray-300'}`}></div>
-                                            <div className={`absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-transform ${showArchived ? 'translate-x-4' : ''}`}></div>
+                                            <div className={`block w-7 h-4 rounded-full transition-colors ${showArchived ? 'bg-amber-500' : 'bg-gray-300'}`}></div>
+                                            <div className={`absolute left-0.5 top-0.5 bg-white w-3 h-3 rounded-full transition-transform ${showArchived ? 'translate-x-3' : ''}`}></div>
                                         </div>
                                         <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900 transition-colors">{t('kb.show_archived', 'Show archived')}</span>
                                     </label>
@@ -639,15 +653,46 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                     {isAdmin && (
                                         <button
                                             onClick={() => { setShowTrash(!showTrash); if (!showTrash) setShowArchived(false); }}
-                                            className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-lg transition-all border-2 ${showTrash ? 'bg-red-50 border-red-200 text-red-700 font-bold' : 'bg-white border-transparent text-gray-500 hover:bg-gray-50'}`}
+                                            className={`flex items-center gap-2 w-full px-2 py-1 rounded-lg transition-all border ${showTrash ? 'bg-red-50 border-red-200 text-red-700 font-bold' : 'bg-white border-transparent text-gray-500 hover:bg-gray-50'}`}
                                         >
-                                            <Trash2 size={16} className={showTrash ? 'text-red-600' : 'text-gray-400'} />
+                                            <Trash2 size={14} className={showTrash ? 'text-red-600' : 'text-gray-400'} />
                                             <span className="text-xs">{t('vidensbank.trash_deleted', 'Trash (Deleted)')}</span>
                                         </button>
                                     )}
                                 </div>
 
-                                <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-2">{t('kb.categories', 'Categories')}</h3>
+                                <div className="flex justify-between items-center mb-2 px-2">
+                                    <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t('kb.categories', 'Categories')}</h3>
+                                    <button
+                                        onClick={handleCategorySettingsClick}
+                                        className="p-1 text-gray-400 hover:text-gray-600 rounded hover:bg-gray-100 transition-colors"
+                                        title={t('kb.manage_categories', 'Administrer kategorier')}
+                                    >
+                                        <Settings size={14} />
+                                    </button>
+                                </div>
+
+                                <div className="mb-3 px-2">
+                                    <div className="relative">
+                                        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
+                                        <input
+                                            type="text"
+                                            placeholder={t('kb.category_search', 'Søg kategori...')}
+                                            value={categorySearchTerm}
+                                            onChange={(e) => setCategorySearchTerm(e.target.value)}
+                                            className="w-full pl-8 pr-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500/20 focus:border-blue-500 text-gray-700"
+                                        />
+                                        {categorySearchTerm && (
+                                            <button
+                                                onClick={() => setCategorySearchTerm('')}
+                                                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500"
+                                            >
+                                                <X size={12} />
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+
                                 <DndContext
                                     sensors={sensors}
                                     collisionDetection={closestCenter}
@@ -669,6 +714,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                         >
                                             {kategorier
                                                 .filter(kat => !kat.er_privat || (kat.artikler_count && kat.artikler_count > 0))
+                                                .filter(kat => kat.navn.toLowerCase().includes(categorySearchTerm.toLowerCase()))
                                                 .map(kat => (
                                                     <SortableCategoryItem
                                                         key={kat.id}
@@ -820,7 +866,424 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                         isVisible={toast.isVisible}
                         onClose={() => setToast(prev => ({ ...prev, isVisible: false }))}
                     />
+
+                    <VidensbankCategoryInfoModal
+                        isOpen={isCategoryInfoOpen}
+                        onClose={() => setIsCategoryInfoOpen(false)}
+                        admins={workspaceAdmins}
+                    />
+
+                    <VidensbankCategoryManagerModal
+                        isOpen={isCategoryManagerOpen}
+                        onClose={() => setIsCategoryManagerOpen(false)}
+                        kategorier={kategorier}
+                        onRefresh={loadInitialData}
+                        showToast={showToast}
+                    />
                 </div>
+            </div>
+        </div>
+    );
+};
+
+interface CategoryInfoModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    admins: any[];
+}
+
+const VidensbankCategoryInfoModal: React.FC<CategoryInfoModalProps> = ({ isOpen, onClose, admins }) => {
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onClose();
+            }
+        };
+        if (isOpen) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, onClose]);
+
+    if (!isOpen) return null;
+    return (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4 backdrop-blur-sm transition-opacity duration-200">
+            <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl border border-gray-100 flex flex-col relative max-h-[90vh]">
+                <button 
+                    onClick={onClose}
+                    className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors outline-none"
+                >
+                    <X size={20} />
+                </button>
+                <div className="flex flex-col items-center text-center mt-2">
+                    <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                        <Lock size={24} />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('kb.manage_categories', 'Administrer kategorier')}</h3>
+                    <p className="text-sm text-gray-500 mb-6">
+                        {t('kb.only_admins_categories', 'Kun administratorer har tilladelse til at oprette, redigere eller slette kategorier.')}
+                    </p>
+                </div>
+                
+                <div className="border-t border-gray-100 pt-4 flex-1 overflow-y-auto min-h-0">
+                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('kb.contact_admin', 'Kontakt en administrator')}</h4>
+                    {admins.length === 0 ? (
+                        <p className="text-sm text-gray-500 italic text-center">{t('kb.no_admins_found', 'Ingen administratorer fundet.')}</p>
+                    ) : (
+                        <ul className="space-y-3 max-h-[40vh] overflow-y-auto pr-1">
+                            {admins.map((admin, idx) => (
+                                <li key={idx} className="flex flex-col p-3 bg-gray-50 rounded-xl border border-gray-100 text-left">
+                                    <span className="font-semibold text-gray-800 text-sm">{admin.display_name || `${admin.first_name} ${admin.last_name}`.trim() || admin.username}</span>
+                                    {admin.email && (
+                                        <a href={`mailto:${admin.email}`} className="text-xs text-blue-600 hover:underline mt-0.5 break-all">
+                                            {admin.email}
+                                        </a>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+                
+                <button 
+                    onClick={onClose}
+                    className="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all"
+                >
+                    {t('common.close', 'Luk')}
+                </button>
+            </div>
+        </div>
+    );
+};
+
+interface CategoryManagerModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    kategorier: VidensKategori[];
+    onRefresh: () => void;
+    showToast: (msg: string, type?: ToastType) => void;
+}
+
+const AVAILABLE_COLORS = [
+    '#2563eb', // Blue
+    '#16a34a', // Green
+    '#dc2626', // Red
+    '#d97706', // Amber
+    '#7c3aed', // Violet
+    '#0891b2', // Cyan
+    '#4f46e5', // Indigo
+    '#be185d', // Pink
+    '#65a30d', // Lime
+    '#9333ea', // Purple
+];
+
+const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ isOpen, onClose, kategorier, onRefresh, showToast }) => {
+    const { t } = useTranslation();
+    const [editingKat, setEditingKat] = useState<VidensKategori | null>(null);
+    const [isCreating, setIsCreating] = useState(false);
+    
+    // Form states
+    const [navn, setNavn] = useState('');
+    const [farve, setFarve] = useState('#2563eb');
+    const [erPrivat, setErPrivat] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    
+    // Delete states
+    const [deletingKat, setDeletingKat] = useState<VidensKategori | null>(null);
+    const [reassignToId, setReassignToId] = useState<number | ''>('');
+
+    // Reset create/edit state
+    const resetForm = () => {
+        setNavn('');
+        setFarve('#2563eb');
+        setErPrivat(false);
+        setEditingKat(null);
+        setIsCreating(false);
+        setDeletingKat(null);
+        setReassignToId('');
+    };
+
+    useEffect(() => {
+        if (editingKat) {
+            setNavn(editingKat.navn);
+            setFarve(editingKat.farve);
+            setErPrivat(editingKat.er_privat);
+        }
+    }, [editingKat]);
+
+    // Escape key handler
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                if (deletingKat) {
+                    setDeletingKat(null);
+                } else if (editingKat || isCreating) {
+                    resetForm();
+                } else {
+                    onClose();
+                    resetForm();
+                }
+            }
+        };
+        if (isOpen) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isOpen, onClose, deletingKat, editingKat, isCreating]);
+
+    if (!isOpen) return null;
+
+    const handleSave = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!navn.trim()) {
+            showToast(t('kb.fill_category_name', 'Udfyld venligst kategoriens navn'), "info");
+            return;
+        }
+        setSubmitting(true);
+        try {
+            if (editingKat) {
+                await api.patch(`/vidensbank/kategorier/${editingKat.id}/`, {
+                    navn,
+                    farve,
+                    er_privat: erPrivat
+                });
+                showToast(t('kb.category_updated', 'Kategori opdateret succesfuldt'), "success");
+            } else {
+                await api.post('/vidensbank/kategorier/', {
+                    navn,
+                    farve,
+                    er_privat: erPrivat
+                });
+                showToast(t('kb.category_created', 'Kategori oprettet succesfuldt'), "success");
+            }
+            onRefresh();
+            resetForm();
+        } catch (error) {
+            console.error("Kunne ikke gemme kategori", error);
+            showToast(t('kb.category_save_error', 'Fejl ved gemning af kategori'), "error");
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    const handleDelete = async () => {
+        if (!deletingKat) return;
+        
+        // If it has articles, check if reassignToId is chosen
+        if (deletingKat.total_artikler_count && deletingKat.total_artikler_count > 0 && !reassignToId) {
+            showToast(t('kb.select_new_category_toast', 'Vælg venligst en ny kategori til de eksisterende artikler'), "info");
+            return;
+        }
+
+        setSubmitting(true);
+        try {
+            const config = reassignToId ? { params: { reassign_to: reassignToId } } : {};
+            await api.delete(`/vidensbank/kategorier/${deletingKat.id}/`, config);
+            showToast(t('kb.category_deleted', 'Kategori slettet succesfuldt'), "success");
+            onRefresh();
+            resetForm();
+        } catch (error) {
+            console.error("Kunne ikke slette kategori", error);
+            showToast(t('kb.category_delete_error', 'Fejl ved sletning af kategori'), "error");
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    return (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4 backdrop-blur-sm transition-opacity duration-200">
+            <div className="bg-white rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-gray-100 flex flex-col relative max-h-[90vh]">
+                <button 
+                    onClick={() => { onClose(); resetForm(); }}
+                    className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors outline-none"
+                >
+                    <X size={20} />
+                </button>
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">{t('kb.manage_categories', 'Administrer kategorier')}</h3>
+
+                {deletingKat ? (
+                    // Deletion confirmation / re-assignment interface
+                    <div className="flex-1 flex flex-col min-h-0 text-left">
+                        <div className="flex items-center gap-3 p-3 bg-red-50 text-red-800 rounded-xl border border-red-100 mb-4">
+                            <AlertCircle size={20} className="shrink-0" />
+                            <span className="text-sm font-semibold">{t('kb.delete_category_title', 'Slet kategori: {{name}}', { name: deletingKat.navn })}</span>
+                        </div>
+                        
+                        {deletingKat.total_artikler_count && deletingKat.total_artikler_count > 0 ? (
+                            <div className="flex-1 overflow-y-auto mb-4">
+                                <p className="text-sm text-gray-600 mb-4">
+                                    {t('kb.delete_category_has_articles', 'Denne kategori indeholder {{count}} artikler. For at slette kategorien skal du vælge en anden kategori at flytte artiklerne til:', { count: deletingKat.total_artikler_count })}
+                                </p>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('kb.category_name_label', 'Vælg ny kategori')}</label>
+                                <select 
+                                    value={reassignToId} 
+                                    onChange={(e) => setReassignToId(Number(e.target.value))}
+                                    className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-700 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                >
+                                    <option value="">{t('kb.select_category_placeholder', 'Vælg en kategori...')}</option>
+                                    {kategorier
+                                        .filter(k => k.id !== deletingKat.id)
+                                        .map(k => (
+                                            <option key={k.id} value={k.id}>{k.navn}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                        ) : (
+                            <p className="text-sm text-gray-600 mb-6">
+                                {t('kb.delete_category_confirm', 'Er du sikker på, at du vil slette denne kategori? Denne handling kan ikke fortrydes.')}
+                            </p>
+                        )}
+
+                        <div className="flex gap-3 mt-auto">
+                            <button
+                                type="button"
+                                onClick={() => setDeletingKat(null)}
+                                className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition-all"
+                            >
+                                {t('common.cancel', 'Annuller')}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={handleDelete}
+                                disabled={submitting || (!!deletingKat.total_artikler_count && deletingKat.total_artikler_count > 0 && !reassignToId)}
+                                className="flex-1 py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                            >
+                                {submitting && <Loader2 size={16} className="animate-spin" />}
+                                {t('kb.delete_category', 'Slet kategori')}
+                            </button>
+                        </div>
+                    </div>
+                ) : isCreating || editingKat ? (
+                    // Create / Edit Form
+                    <form onSubmit={handleSave} className="flex-1 flex flex-col min-h-0 text-left">
+                        <div className="space-y-4 flex-1 overflow-y-auto mb-4 pr-1">
+                            <div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('kb.category_name_label', 'Kategoriens navn')}</label>
+                                <input
+                                    type="text"
+                                    value={navn}
+                                    onChange={(e) => setNavn(e.target.value)}
+                                    placeholder="F.eks. Jura, Økonomi..."
+                                    className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-700 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('flowchart.color', 'Farve')}</label>
+                                <div className="flex flex-wrap gap-2.5">
+                                    {AVAILABLE_COLORS.map(c => (
+                                        <button
+                                            key={c}
+                                            type="button"
+                                            onClick={() => setFarve(c)}
+                                            className={`w-8 h-8 rounded-full border border-black/10 transition-all flex items-center justify-center ${farve === c ? 'scale-110 ring-2 ring-offset-2 ring-blue-500 font-bold' : 'hover:scale-105'}`}
+                                            style={{ backgroundColor: c }}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+                                <input
+                                    type="checkbox"
+                                    id="erPrivatCheckbox"
+                                    checked={erPrivat}
+                                    onChange={(e) => setErPrivat(e.target.checked)}
+                                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                />
+                                <label htmlFor="erPrivatCheckbox" className="flex flex-col cursor-pointer select-none">
+                                    <span className="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
+                                        <Lock size={14} className="text-gray-500" /> {t('kb.private_category', 'Privat kategori')}
+                                    </span>
+                                    <span className="text-xs text-gray-500 mt-0.5">
+                                        {t('kb.private_category_desc', 'Hvis markeret, kan artikler i denne kategori kun ses af opretteren.')}
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-3 mt-auto">
+                            <button
+                                type="button"
+                                onClick={resetForm}
+                                className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition-all"
+                            >
+                                {t('common.back', 'Tilbage')}
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={submitting}
+                                className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm transition-all flex items-center justify-center gap-2"
+                            >
+                                {submitting && <Loader2 size={16} className="animate-spin" />}
+                                {editingKat ? t('kb.save_changes', 'Gem ændringer') : t('kb.create_category', 'Opret kategori')}
+                            </button>
+                        </div>
+                    </form>
+                ) : (
+                    // List Categories view
+                    <div className="flex-1 flex flex-col min-h-0 text-left">
+                        <div className="flex justify-between items-center mb-3">
+                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{t('kb.existing_categories', 'Eksisterende kategorier')}</span>
+                            <button
+                                onClick={() => setIsCreating(true)}
+                                className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors"
+                            >
+                                <Plus size={16} /> {t('kb.create_new_category', 'Opret ny kategori')}
+                            </button>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto max-h-[40vh] border border-gray-100 rounded-xl divide-y divide-gray-100 mb-6 pr-1">
+                            {kategorier.length === 0 ? (
+                                <p className="p-4 text-sm text-gray-500 italic text-center">{t('kb.no_results', 'Ingen kategorier fundet.')}</p>
+                            ) : (
+                                kategorier.map(kat => (
+                                    <div key={kat.id} className="flex justify-between items-center p-3 hover:bg-gray-50 transition-colors">
+                                        <div className="flex items-center gap-2.5 min-w-0">
+                                            <span className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/10" style={{ backgroundColor: kat.farve }}></span>
+                                            <span className="text-sm font-semibold text-gray-700 truncate">{kat.navn}</span>
+                                            {kat.er_privat && <Lock size={12} className="text-gray-400 shrink-0" />}
+                                            <span className="text-[10px] bg-gray-100 text-gray-500 rounded px-1.5 py-0.5 font-bold shrink-0">
+                                                {kat.total_artikler_count || 0}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-1.5 shrink-0 ml-4">
+                                            <button
+                                                onClick={() => setEditingKat(kat)}
+                                                className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                                                title={t('kb.edit_category', 'Rediger kategori')}
+                                            >
+                                                <Edit size={16} />
+                                            </button>
+                                            <button
+                                                onClick={() => setDeletingKat(kat)}
+                                                className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                                                title={t('kb.delete_category', 'Slet kategori')}
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+
+                        <button
+                            onClick={() => { onClose(); resetForm(); }}
+                            className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all mt-auto"
+                        >
+                            {t('common.close', 'Luk')}
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

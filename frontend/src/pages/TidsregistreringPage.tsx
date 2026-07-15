@@ -158,7 +158,7 @@ const TidsregistreringPage: React.FC = () => {
                             onClick={() => setView('dashboard')}
                             className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${view === 'dashboard' ? 'bg-white text-blue-600 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-800'}`}
                         >
-                            ⏱️ {t('time.add_entry', 'Time')}
+                            ⏱️ {t('time.add_entry', 'Add Entry')}
                         </button>
                         <button
                             onClick={() => setView('setup')}

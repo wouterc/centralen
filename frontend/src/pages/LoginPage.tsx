@@ -17,6 +17,9 @@ const LoginPage: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState<'login' | 'select-workspace'>('login');
     const [tempUser, setTempUser] = useState<User | null>(null);
+    const [newWorkspaceName, setNewWorkspaceName] = useState('');
+    const [workspaceSubmitting, setWorkspaceSubmitting] = useState(false);
+    const [showDirectCreation, setShowDirectCreation] = useState(false);
 
     React.useEffect(() => {
         if (state.currentUser && (!state.currentUser.memberships || state.currentUser.memberships.length === 0)) {
@@ -25,9 +28,22 @@ const LoginPage: React.FC = () => {
         }
     }, [state.currentUser]);
 
-    const [newWorkspaceName, setNewWorkspaceName] = useState('');
-    const [workspaceSubmitting, setWorkspaceSubmitting] = useState(false);
-    const [showDirectCreation, setShowDirectCreation] = useState(false);
+    React.useEffect(() => {
+        if (tempUser && !newWorkspaceName) {
+            const rawName = (tempUser.first_name || tempUser.username || "").trim();
+            const name = rawName ? rawName.charAt(0).toUpperCase() + rawName.slice(1) : "User";
+            const lang = tempUser.language || 'da';
+            if (name.toLowerCase().endsWith('s') || name.toLowerCase().endsWith('x') || name.toLowerCase().endsWith('z')) {
+                if (lang === 'fr') setNewWorkspaceName(`Lab de ${name}`);
+                else if (lang === 'en') setNewWorkspaceName(`${name}'s Lab`);
+                else setNewWorkspaceName(`${name}' Lab`);
+            } else {
+                if (lang === 'fr') setNewWorkspaceName(`Lab de ${name}`);
+                else if (lang === 'en') setNewWorkspaceName(`${name}'s Lab`);
+                else setNewWorkspaceName(`${name}s Lab`);
+            }
+        }
+    }, [tempUser, newWorkspaceName]);
 
     const handleCreateWorkspace = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -58,7 +74,7 @@ const LoginPage: React.FC = () => {
             navigate('/board');
         } catch (err: any) {
             console.error("Fejl ved oprettelse af arbejdsrum:", err);
-            setError(err.message || t('workspace.create.error', 'Kunne ikke oprette arbejdsrummet. Prøv igen.'));
+            setError(err.message || t('workspace.create.error', 'Could not create the workspace. Please try again.'));
         } finally {
             setWorkspaceSubmitting(false);
         }
@@ -106,7 +122,7 @@ const LoginPage: React.FC = () => {
             await finishLogin(finalUser);
         } catch (err) {
             console.error("Kunne ikke acceptere invitation:", err);
-            setError(t('login.error.accept_invitation', 'Kunne ikke acceptere invitationen'));
+            setError(t('login.error.accept_invitation', 'Could not accept invitation'));
             setLoading(false);
         }
     };
@@ -147,7 +163,7 @@ const LoginPage: React.FC = () => {
                 setError('not_activated');
                 setResendStatus('idle');
             } else {
-                setError(t('login.error.default', 'Email eller adgangskode er forkert'));
+                setError(t('login.error.default', 'Email or password is incorrect'));
             }
         } finally {
             setLoading(false);
@@ -161,7 +177,7 @@ const LoginPage: React.FC = () => {
         try {
             await finishLogin(tempUser);
         } catch (err) {
-            setError(t('login.error.select_workspace', 'Kunne ikke vælge arbejdsrum'));
+            setError(t('login.error.select_workspace', 'Could not select workspace'));
             setLoading(false);
         }
     };
@@ -229,7 +245,7 @@ const LoginPage: React.FC = () => {
                     </div>
                     <h1 className="text-4xl font-black text-gray-900 tracking-tight mb-2">Centralen</h1>
                     <p className="text-gray-500 font-medium">
-                        {step === 'login' ? t('login.header.login', 'Log ind på dit personlige kontrolcenter') : t('login.header.select_workspace', 'Vælg et arbejdsrum')}
+                        {step === 'login' ? t('login.header.login', 'Log in to your personal control center') : t('login.header.select_workspace', 'Select a workspace')}
                     </p>
                 </div>
 
@@ -247,24 +263,24 @@ const LoginPage: React.FC = () => {
                                 <div>
                                     {error === 'not_activated' ? (
                                         <span>
-                                            {t('login.error.not_activated', 'Kontoen er ikke godkendt endnu. ')}
+                                            {t('login.error.not_activated', 'The account is not activated yet. Should we resend the email?')}
                                             {resendStatus === 'idle' && (
                                                 <button
                                                     type="button"
                                                     onClick={handleResendActivation}
                                                     className="underline hover:text-red-800 focus:outline-none ml-1 cursor-pointer font-black"
                                                 >
-                                                    {t('register.resend.button', 'Send aktiveringslink igen')}
+                                                    {t('register.resend.button', 'Resend activation link')}
                                                 </button>
                                             )}
                                             {resendStatus === 'sending' && (
                                                 <span className="text-gray-500 ml-1 font-medium italic animate-pulse">
-                                                    {t('login.error.resending', 'Sender...')}
+                                                    {t('login.error.resending', 'Sending...')}
                                                 </span>
                                             )}
                                             {resendStatus === 'sent' && (
                                                 <span className="text-emerald-600 ml-1 font-black animate-in fade-in duration-300">
-                                                    {t('login.error.resend_success', 'Aktiveringslinket er sendt igen!')}
+                                                    {t('login.error.resend_success', 'The activation link has been resent!')}
                                                 </span>
                                             )}
                                             {resendStatus === 'failed' && (
@@ -273,7 +289,7 @@ const LoginPage: React.FC = () => {
                                                     onClick={handleResendActivation}
                                                     className="underline hover:text-red-800 focus:outline-none ml-1 cursor-pointer font-black"
                                                 >
-                                                    {t('login.error.resend_failed', 'Kunne ikke sende. Prøv igen.')}
+                                                    {t('login.error.resend_failed', 'Could not resend the activation link. Please try again.')}
                                                 </button>
                                             )}
                                         </span>
@@ -298,7 +314,7 @@ const LoginPage: React.FC = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="block w-full pl-11 pr-4 py-4 bg-gray-50/50 border border-gray-100 rounded-2xl leading-5 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 focus:bg-white transition-all font-medium"
-                                        placeholder={t('login.email_placeholder', 'Indtast din email')}
+                                        placeholder={t('login.email_placeholder', 'Enter your email')}
                                         required
                                         autoComplete="email"
                                     />
@@ -307,9 +323,9 @@ const LoginPage: React.FC = () => {
 
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center ml-1">
-                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('login.password_label', 'Adgangskode')}</label>
+                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('login.password_label', 'Password')}</label>
                                     <Link to="/forgot-password" style={{ textDecoration: 'none' }} className="text-[11px] font-black text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
-                                        {t('login.button.forgot_password', 'Glemt adgangskode?')}
+                                        {t('login.button.forgot_password', 'Forgot password?')}
                                     </Link>
                                 </div>
                                 <div className="relative group/input">
@@ -337,7 +353,7 @@ const LoginPage: React.FC = () => {
                                     <Loader2 size={24} className="animate-spin" />
                                 ) : (
                                     <>
-                                        <span>{t('login.button.login', 'Log ind')}</span>
+                                        <span>{t('login.button.login', 'Log in')}</span>
                                         <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                                     </>
                                 )}
@@ -345,16 +361,16 @@ const LoginPage: React.FC = () => {
 
                             <div className="pt-4 text-center space-y-2">
                                 <p className="text-sm font-medium text-gray-400">
-                                    {t('login.footer.no_account', 'Ny på Centralen? ')}
+                                    {t('login.footer.no_account', 'New to Centralen? ')}
                                     <Link to="/register" className="text-blue-600 font-black hover:underline">
-                                        {t('login.footer.register_here', 'Opret din profil her')}
+                                        {t('login.footer.register_here', 'Register your profile here')}
                                     </Link>
                                 </p>
                                 {email.trim() && (
                                     <p className="text-xs font-medium text-gray-400 animate-in fade-in duration-300">
-                                        {t('login.footer.new_workspace', 'Skal du bruge et nyt arbejdsrum? ')}
+                                        {t('login.footer.new_workspace', 'Need a new workspace? ')}
                                         <Link to="/request-workspace" className="text-blue-600 font-bold hover:underline">
-                                            {t('login.footer.create_here', 'Opret det her')}
+                                            {t('login.footer.create_here', 'Create it here')}
                                         </Link>
                                     </p>
                                 )}
@@ -367,10 +383,10 @@ const LoginPage: React.FC = () => {
                                 <div className="space-y-3 p-4 bg-emerald-50 border border-emerald-100 rounded-3xl text-left animate-in zoom-in-95 duration-300">
                                     <h3 className="text-xs font-black text-emerald-800 flex items-center gap-2">
                                         <Mail size={16} className="text-emerald-600 animate-bounce" />
-                                        {t('login.invitations.title', 'Du har invitationer der venter!')}
+                                        {t('login.invitations.title', 'You have pending invitations!')}
                                     </h3>
                                     <p className="text-[11px] text-gray-500 font-medium">
-                                        {t('login.invitations.desc', 'Du er blevet inviteret til følgende arbejdsrum:')}
+                                        {t('login.invitations.desc', 'You have been invited to join the following workspaces:')}
                                     </p>
                                     <div className="space-y-2 mt-1">
                                         {pendingInvitations.map((inv) => (
@@ -386,7 +402,7 @@ const LoginPage: React.FC = () => {
                                                     disabled={loading}
                                                     className="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black shadow-md shadow-emerald-100 active:scale-95 transition-all shrink-0 cursor-pointer"
                                                 >
-                                                    {t('login.invitations.accept', 'Accepter')}
+                                                    {t('login.invitations.accept', 'Accept')}
                                                 </button>
                                             </div>
                                         ))}
@@ -420,16 +436,19 @@ const LoginPage: React.FC = () => {
                                             <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
                                                 <Building2 size={32} />
                                             </div>
-                                            <p className="text-gray-500 text-sm mb-6 font-medium">{t('login.workspace.none', 'Du er ikke medlem af nogen arbejdsrum endnu.')}</p>
+                                            <p className="text-gray-500 text-sm mb-2 font-medium">{t('login.workspace.none', 'You are not a member of any workspace yet.')}</p>
+                                            <p className="text-gray-400 text-xs mb-6 font-medium">
+                                                 {t('login.workspace.first_time_explanation', "To start, we need a workspace for you. Below, we've already pre-filled a personal name for your first workspace, which you can customize now (or rename at any time later).")}
+                                             </p>
                                             
                                             <form onSubmit={handleCreateWorkspace} className="space-y-3 p-5 bg-gray-50/50 rounded-3xl border border-gray-100 text-left">
-                                                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('workspace.create.title', 'Opret et nyt arbejdsrum')}</label>
+                                                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('workspace.create.title', 'Create new workspace')}</label>
                                                 <input
                                                     type="text"
                                                     required
                                                     value={newWorkspaceName}
                                                     onChange={e => setNewWorkspaceName(e.target.value)}
-                                                    placeholder={t('workspace.create.placeholder', 'F.eks. Min Virksomhed')}
+                                                    placeholder={t('workspace.create.placeholder', 'e.g. My Company')}
                                                     className="w-full px-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all font-bold text-gray-800"
                                                 />
                                                 <button
@@ -437,7 +456,7 @@ const LoginPage: React.FC = () => {
                                                     disabled={!newWorkspaceName.trim() || workspaceSubmitting}
                                                     className="w-full py-3.5 text-xs font-black text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
                                                 >
-                                                    {workspaceSubmitting ? <Loader2 size={16} className="animate-spin" /> : t('workspace.create.submit', 'Opret & Gå Til Tavlen')}
+                                                    {workspaceSubmitting ? <Loader2 size={16} className="animate-spin" /> : t('workspace.create.submit', 'Create workspace')}
                                                 </button>
                                             </form>
                                         </div>
@@ -445,12 +464,12 @@ const LoginPage: React.FC = () => {
                                         <>
                                             {showDirectCreation ? (
                                                 <div className="space-y-4 p-5 bg-gray-50/50 rounded-3xl border border-gray-100 text-left">
-                                                    <h3 className="text-sm font-black text-gray-800 mb-1">{t('workspace.create.title', 'Opret nyt arbejdsrum')}</h3>
+                                                    <h3 className="text-sm font-black text-gray-800 mb-1">{t('workspace.create.title', 'Create new workspace')}</h3>
                                                     <input
                                                         type="text"
                                                         value={newWorkspaceName}
                                                         onChange={e => setNewWorkspaceName(e.target.value)}
-                                                        placeholder={t('workspace.create.placeholder', 'F.eks. Min Virksomhed')}
+                                                        placeholder={t('workspace.create.placeholder', 'e.g. My Company')}
                                                         className="w-full px-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all font-medium mb-3"
                                                         autoFocus
                                                     />
@@ -459,14 +478,14 @@ const LoginPage: React.FC = () => {
                                                             onClick={() => setShowDirectCreation(false)}
                                                             className="flex-1 py-3 text-xs font-bold text-gray-500 hover:bg-white border border-gray-100 rounded-2xl transition-colors"
                                                         >
-                                                            {t('common.cancel', 'Annuller')}
+                                                            {t('common.cancel', 'Cancel')}
                                                         </button>
                                                         <button
                                                             onClick={handleCreateWorkspace}
                                                             disabled={!newWorkspaceName.trim() || workspaceSubmitting}
                                                             className="flex-1 py-3 text-xs font-black text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
                                                         >
-                                                            {workspaceSubmitting ? <Loader2 size={14} className="animate-spin" /> : t('workspace.create.submit', 'Opret')}
+                                                            {workspaceSubmitting ? <Loader2 size={14} className="animate-spin" /> : t('workspace.create.submit', 'Create workspace')}
                                                         </button>
                                                     </div>
                                                 </div>
@@ -476,7 +495,7 @@ const LoginPage: React.FC = () => {
                                                     className="w-full py-4 border-2 border-dashed border-gray-200 rounded-3xl text-gray-400 font-bold hover:border-blue-400 hover:text-blue-500 transition-all flex items-center justify-center gap-2"
                                                 >
                                                     <Plus size={20} />
-                                                    {t('login.workspace.create_new', 'Opret nyt arbejdsrum')}
+                                                    {t('login.workspace.create_new', 'Create new workspace')}
                                                 </button>
                                             )}
                                         </>
@@ -491,22 +510,22 @@ const LoginPage: React.FC = () => {
                                         >
                                             <span className="flex items-center gap-2">
                                                 <HelpCircle size={14} />
-                                                {t('workspace.help.title', 'Forstå opbygningen')}
+                                                {t('workspace.help.title', 'Understand the structure')}
                                             </span>
-                                            <span>{showHelp ? t('common.hide', 'Skjul') : t('common.show', 'Vis')}</span>
+                                            <span>{showHelp ? t('common.hide', 'Hide') : t('common.show', 'Show')}</span>
                                         </button>
 
                                         {showHelp && (
                                             <div className="mt-3 p-4 bg-blue-50/50 border border-blue-100/50 rounded-3xl text-left animate-in slide-in-from-top-2 duration-300">
                                                 <ul className="space-y-2 text-[11px] font-medium text-gray-600">
                                                     <li>
-                                                        <strong className="font-black text-gray-800">{t('workspace.help.workspace_label', 'Arbejdsrum:')}</strong> {t('workspace.help.workspace_desc', 'Det overordnede niveau for virksomheden. Data er 100% adskilt mellem arbejdsrum.')}
+                                                        <strong className="font-black text-gray-800">{t('workspace.help.workspace_label', 'Workspace:')}</strong> {t('workspace.help.workspace_desc', 'The top-level for the organization. All data is isolated per workspace.')}
                                                     </li>
                                                     <li>
-                                                        <strong className="font-black text-gray-800">{t('workspace.help.teams_label', 'Teams:')}</strong> {t('workspace.help.teams_desc', 'Interne afdelinger eller arbejdsgrupper i arbejdsrummet (f.eks. Udvikling, Salg).')}
+                                                        <strong className="font-black text-gray-800">{t('workspace.help.teams_label', 'Teams:')}</strong> {t('workspace.help.teams_desc', 'Internal departments or workgroups within the workspace (e.g., Sales, Dev).')}
                                                     </li>
                                                     <li>
-                                                        <strong className="font-black text-gray-800">{t('workspace.help.members_label', 'Medlemmer:')}</strong> {t('workspace.help.members_desc', 'Medarbejdere, som har adgang til arbejdsrummet og kan tildeles roller og teams.')}
+                                                        <strong className="font-black text-gray-800">{t('workspace.help.members_label', 'Members:')}</strong> {t('workspace.help.members_desc', 'Employees who have access to the workspace and can be assigned to roles/teams. A member can belong to different teams or organizations.')}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -518,7 +537,7 @@ const LoginPage: React.FC = () => {
                                             onClick={logout}
                                             className="w-full py-3 text-gray-400 font-bold text-xs uppercase tracking-widest hover:text-red-500 transition-colors"
                                         >
-                                            {t('login.button.logout', 'Log ud')}
+                                            {t('login.button.logout', 'Log out')}
                                         </button>
                                     </div>
                         </div>

@@ -89,7 +89,7 @@ const AcceptInvitationPage: React.FC = () => {
                         onClick={() => navigate('/login')}
                         className="w-full bg-gray-900 text-white py-4 rounded-2xl font-black hover:bg-black transition-all"
                     >
-                        {t('invitation.button.goto_login', 'Gå til Login')}
+                        {t('invitation.button.goto_login', 'Go to Login')}
                     </button>
                 </div>
             </div>
@@ -123,7 +123,7 @@ const AcceptInvitationPage: React.FC = () => {
                             </div>
                         </div>
                         <p className="text-xs text-gray-400 mt-4">
-                            {t('invitation.info.email_hint', 'Log ind med din email:')} <span className="font-bold text-gray-600">{invitationInfo.email}</span>
+                            {t('invitation.info.email_hint', 'Log in with your email:')} <span className="font-bold text-gray-600">{invitationInfo.email}</span>
                         </p>
                     </div>
 
@@ -156,7 +156,7 @@ const AcceptInvitationPage: React.FC = () => {
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('invitation.form.password', 'Vælg Adgangskode')}</label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('invitation.form.password', 'Choose Password')}</label>
                                     <input
                                         required
                                         type="password"
@@ -168,7 +168,7 @@ const AcceptInvitationPage: React.FC = () => {
                                 </div>
 
                                 <div className="space-y-1.5">
-                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('invitation.form.confirm_password', 'Bekræft Adgangskode')}</label>
+                                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t('invitation.form.confirm_password', 'Confirm Password')}</label>
                                     <input
                                         required
                                         type="password"
@@ -182,7 +182,7 @@ const AcceptInvitationPage: React.FC = () => {
                         ) : (
                             <div className="bg-blue-50 border border-blue-100 rounded-3xl p-6 text-center animate-in fade-in zoom-in duration-500">
                                 <p className="text-blue-700 font-bold mb-2">{t('invitation.form.already_logged_in', 'Du er allerede logget ind!')}</p>
-                                <p className="text-blue-600/70 text-sm">{t('invitation.form.already_logged_in_hint', 'Klik på knappen herunder for at blive tilføjet til {{name}} med din nuværende konto.', { name: invitationInfo.company_name })}</p>
+                                <p className="text-blue-600/70 text-sm">{t('invitation.form.already_logged_in_hint', 'Click the button below to be added to {{name}} with your current account.', { name: invitationInfo.company_name })}</p>
                             </div>
                         )}
 

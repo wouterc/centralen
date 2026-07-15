@@ -7,672 +7,3094 @@ django.setup()
 from core.models import UITranslation
 
 translation_map = {
-    "knowledge base": {
-        "nl": "Kennisbank",
-        "fr": "Base de connaissances",
-        "de": "Wissensdatenbank"
+    "aarshjul.loading": {
+        "en": 'Fetching activities...',
+        "da": 'Henter aktiviteter...',
+        "nl": 'Activiteiten ophalen...',
+        "fr": 'Chargement des activités...',
+        "de": 'Aktivitäten werden geladen...',
     },
-    "collection of knowledge, templates, and guides for case processing.": {
-        "nl": "Verzameling van kennis, sjablonen en handleidingen voor casebehandeling.",
-        "fr": "Collection de connaissances, de modèles et de guides pour le traitement des cas.",
-        "de": "Sammlung von Wissen, Vorlagen und Leitfäden für die Fallbearbeitung."
+    "aarshjul.new_activity": {
+        "en": 'New Activity',
+        "da": 'Ny Aktivitet',
+        "nl": 'Nieuwe activiteit',
+        "fr": 'Nouvelle activité',
+        "de": 'Neue Aktivität',
     },
-    "add new knowledge": {
-        "nl": "Nieuwe kennis toevoegen",
-        "fr": "Ajouter des connaissances",
-        "de": "Neues Wissen hinzufügen"
+    "aarshjul.next_month": {
+        "en": 'Next Month',
+        "da": 'Næste måned',
+        "nl": 'Volgende maand',
+        "fr": 'Mois suivant',
+        "de": 'Nächster Monat',
     },
-    "filters": {
-        "nl": "Filters",
-        "fr": "Filtres",
-        "de": "Filter"
+    "aarshjul.prev_month": {
+        "en": 'Previous Month',
+        "da": 'Forrige måned',
+        "nl": 'Vorige maand',
+        "fr": 'Mois précédent',
+        "de": 'Vorheriger Monat',
     },
-    "clear": {
-        "nl": "Wissen",
-        "fr": "Effacer",
-        "de": "Löschen"
+    "aarshjul.refresh_tooltip": {
+        "en": 'Refresh data',
+        "da": 'Opdater data',
+        "nl": 'Gegevens verversen',
+        "fr": 'Actualiser les données',
+        "de": 'Daten aktualisieren',
     },
-    "show archived": {
-        "nl": "Toon gearchiveerd",
-        "fr": "Afficher les archives",
-        "de": "Archivierte anzeigen"
+    "aarshjul.today": {
+        "en": 'Today',
+        "da": 'I dag',
+        "nl": 'Vandaag',
+        "fr": "Aujourd'hui",
+        "de": 'Heute',
     },
-    "trash (deleted)": {
-        "nl": "Prullenbak (Verwijderd)",
-        "fr": "Corbeille (Supprimé)",
-        "de": "Papierkorb (Gelöscht)"
+    "aarshjul.undo": {
+        "en": 'Undo ({{count}})',
+        "da": 'Fortryd ({{count}})',
+        "nl": 'Ongedaan maken ({{count}})',
+        "fr": 'Annuler ({{count}})',
+        "de": 'Rückgängig ({{count}})',
     },
-    "categories": {
-        "nl": "Categorieën",
-        "fr": "Catégories",
-        "de": "Kategorien"
+    "aarshjul.edit_activity": {
+        "en": 'Edit Activity',
+        "da": 'Rediger Aktivitet',
+        "nl": 'Activiteit bewerken',
+        "fr": "Modifier l'activité",
+        "de": 'Aktivität bearbeiten',
     },
-    "all categories": {
-        "nl": "Alle categorieën",
-        "fr": "Toutes les catégories",
-        "de": "Alle Kategorien"
+    "aarshjul.modal.name": {
+        "en": 'Name',
+        "da": 'Navn',
+        "nl": 'Naam',
+        "fr": 'Nom',
+        "de": 'Name',
     },
-    "search title or text...": {
-        "nl": "Zoek titel of tekst...",
-        "fr": "Rechercher titre ou texte...",
-        "de": "Titel oder Text suchen..."
+    "aarshjul.modal.name_placeholder": {
+        "en": 'Activity name',
+        "da": 'Aktivitetens navn',
+        "nl": 'Naam van de activiteit',
+        "fr": "Nom de l'activité",
+        "de": 'Aktivitätsname',
     },
-    "search in deleted articles...": {
-        "nl": "Zoek in verwijderde artikelen...",
-        "fr": "Rechercher dans les articles supprimés...",
-        "de": "In gelöschten Artikeln suchen..."
+    "aarshjul.modal.group": {
+        "en": 'Group',
+        "da": 'Gruppe',
+        "nl": 'Groep',
+        "fr": 'Groupe',
+        "de": 'Gruppe',
     },
-    "the trash is empty.": {
-        "nl": "De prullenbak is leeg.",
-        "fr": "La corbeille est vide.",
-        "de": "Der Papierkorb ist leer."
+    "aarshjul.modal.no_groups": {
+        "en": 'No groups created',
+        "da": 'Ingen grupper oprettet',
+        "nl": 'Geen groepen aangemaakt',
+        "fr": 'Aucun groupe créé',
+        "de": 'Keine Gruppen erstellt',
     },
-    "we found no results matching your search. try different keywords.": {
-        "nl": "Geen resultaten gevonden. Probeer andere trefwoorden.",
-        "fr": "Aucun résultat trouvé. Essayez d'autres mots-clés.",
-        "de": "Keine Ergebnisse gefunden. Versuchen Sie andere Schlüsselwörter."
+    "aarshjul.modal.description": {
+        "en": 'Description',
+        "da": 'Beskrivelse',
+        "nl": 'Beschrijving',
+        "fr": 'Description',
+        "de": 'Beschreibung',
     },
-    "clear all filters": {
-        "nl": "Wis alle filters",
-        "fr": "Effacer tous les filtres",
-        "de": "Alle Filter löschen"
+    "aarshjul.modal.description_placeholder": {
+        "en": 'Short description...',
+        "da": 'Kort beskrivelse...',
+        "nl": 'Korte beschrijving...',
+        "fr": 'Description courte...',
+        "de": 'Kurze Beschreibung...',
     },
-    "time tracking": {
-        "nl": "Tijdregistratie",
-        "fr": "Suivi du temps",
-        "de": "Zeiterfassung"
+    "aarshjul.modal.start_date": {
+        "en": 'Start date',
+        "da": 'Startdato',
+        "nl": 'Startdatum',
+        "fr": 'Date de début',
+        "de": 'Startdatum',
     },
-    "register your hours and track your time.": {
-        "nl": "Registreer uw uren en houd uw tijd bij.",
-        "fr": "Enregistrez vos heures et suivez votre temps.",
-        "de": "Registrieren Sie Ihre Stunden und verfolgen Sie Ihre Zeit."
+    "aarshjul.modal.end_date": {
+        "en": 'End date',
+        "da": 'Slutdato',
+        "nl": 'Einddatum',
+        "fr": 'Date de fin',
+        "de": 'Enddatum',
     },
-    "add entry": {
-        "nl": "Invoer toevoegen",
-        "fr": "Ajouter une entrée",
-        "de": "Eintrag hinzufügen"
+    "aarshjul.modal.color": {
+        "en": 'Color',
+        "da": 'Farve',
+        "nl": 'Kleur',
+        "fr": 'Couleur',
+        "de": 'Farbe',
     },
-    "annual calendar": {
-        "nl": "Jaarkalender",
-        "fr": "Calendrier annuel",
-        "de": "Jahreskalender"
+    "aarshjul.modal.delete": {
+        "en": 'Delete',
+        "da": 'Slet',
+        "nl": 'Verwijderen',
+        "fr": 'Supprimer',
+        "de": 'Löschen',
     },
-    "annual overview of activities and deadlines.": {
-        "nl": "Jaarlijks overzicht afspraken en deadlines.",
-        "fr": "Aperçu annuel des activités et des échéances.",
-        "de": "Jahresübersicht über Aktivitäten und Termine."
+    "aarshjul.modal.delete_confirm": {
+        "en": 'Are you sure you want to delete this activity?',
+        "da": 'Er du sikker på at du vil slette denne aktivitet?',
+        "nl": 'Weet u zeker dat u deze activiteit wilt verwijderen?',
+        "fr": 'Êtes-vous sûr de vouloir supprimer cette activité ?',
+        "de": 'Sind Sie sicher, dass Sie diese Aktivität löschen möchten?',
     },
-    "applications": {
-        "nl": "Applicaties",
-        "fr": "Applications",
-        "de": "Anwendungen"
+    "aarshjul.modal.cancel": {
+        "en": 'Cancel',
+        "da": 'Annuller',
+        "nl": 'Annuleren',
+        "fr": 'Annuler',
+        "de": 'Abbrechen',
     },
-    "links to external systems and tools.": {
-        "nl": "Links naar externe systemen en hulpmiddelen.",
-        "fr": "Liens vers des systèmes et outils externes.",
-        "de": "Links zu externen Systemen und Tools."
+    "aarshjul.modal.saving": {
+        "en": 'Saving...',
+        "da": 'Gemmer...',
+        "nl": 'Opslaan...',
+        "fr": 'Enregistrement...',
+        "de": 'Wird gespeichert...',
     },
-    "users & teams": {
-        "nl": "Gebruikers & Teams",
-        "fr": "Utilisateurs & Équipes",
-        "de": "Benutzer & Teams"
+    "aarshjul.modal.save": {
+        "en": 'Save Activity',
+        "da": 'Gem Aktivitet',
+        "nl": 'Activiteit opslaan',
+        "fr": "Enregistrer l'activité",
+        "de": 'Aktivität speichern',
     },
-    "manage users, roles, and teams.": {
-        "nl": "Beheer gebruikers, rollen en teams.",
-        "fr": "Gérer les utilisateurs, les rôles et les équipes.",
-        "de": "Verwalten Sie Benutzer, Rollen und Teams."
+    "action.create": {
+        "en": 'Create',
+        "da": 'Opret',
     },
-    "save": {
-        "nl": "Opslaan",
-        "fr": "Sauvegarder",
-        "de": "Speichern"
+    "activate.error.expired": {
+        "en": 'The activation link has expired (max 24 hours).',
+        "da": 'Aktiveringslinket er udløbet (maks. 24 timer).',
+        "nl": 'De activeringslink is verlopen (max. 24 uur).',
+        "fr": "Le lien d'activation a expiré (max. 24 heures).",
+        "de": 'Der Aktivierungslink ist abgelaufen (max. 24 Stunden).',
     },
-    "cancel": {
-        "nl": "Annuleren",
-        "fr": "Annuler",
-        "de": "Abbrechen"
+    "activate.error.failed": {
+        "en": 'Activation failed. The link may be invalid or expired.',
+        "da": 'Aktiveringen fejlede. Linket kan være ugyldigt eller udløbet.',
+        "nl": 'Activering mislukt. De link is mogelijk ongeldig of verlopen.',
+        "fr": "Échec de l'activation. Le lien est peut-être invalide ou expiré.",
+        "de": 'Aktivierung fehlgeschlagen. Der Link ist möglicherweise ungültig oder abgelaufen.',
     },
-    "delete": {
-        "nl": "Verwijderen",
-        "fr": "Supprimer",
-        "de": "Löschen"
+    "activate.error.invalid": {
+        "en": 'Invalid activation link.',
+        "da": 'Ugyldigt aktiveringslink.',
+        "nl": 'Ongeldige activeringslink.',
+        "fr": "Lien d'activation invalide.",
+        "de": 'Ungültiger Aktivierungslink.',
     },
-    "edit": {
-        "nl": "Bewerken",
-        "fr": "Modifier",
-        "de": "Bearbeiten"
+    "activate.error.user_not_found": {
+        "en": 'User not found.',
+        "da": 'Brugeren blev ikke fundet.',
+        "nl": 'Gebruiker niet gevonden.',
+        "fr": 'Utilisateur non trouvé.',
+        "de": 'Benutzer nicht gefunden.',
     },
-    "close": {
-        "nl": "Sluiten",
-        "fr": "Fermer",
-        "de": "Schließen"
+    "activate.error_title": {
+        "en": 'Activation failed',
+        "da": 'Aktivering mislykkedes',
+        "nl": 'Activering mislukt',
+        "fr": "Échec de l'activation",
+        "de": 'Aktivierung fehlgeschlagen',
     },
-    "back": {
-        "nl": "Terug",
-        "fr": "Retour",
-        "de": "Zurück"
+    "activate.loading": {
+        "en": 'Activating your account...',
+        "da": 'Aktiverer din konto...',
+        "nl": 'Uw account activeren...',
+        "fr": 'Activation de votre compte...',
+        "de": 'Konto wird aktiviert...',
     },
-    "copy link": {
-        "nl": "Link kopiëren",
-        "fr": "Copier le lien",
-        "de": "Link kopieren"
+    "apps.search_placeholder": {
+        "en": 'Search apps, teams, or purposes...',
+        "da": 'Søg i apps, teams eller formål...',
+        "nl": 'Zoek apps, teams of doelen...',
+        "fr": 'Rechercher des apps, équipes ou objectifs...',
+        "de": 'Nach Apps, Teams oder Zwecken suchen...',
     },
-    "workspace": {
-        "nl": "Werkruimte",
-        "fr": "Espace de travail",
-        "de": "Arbeitsbereich"
+    "apps.subtitle": {
+        "en": 'Links to external systems and tools.',
+        "da": 'Links til eksterne systemer og værktøjer.',
+        "nl": 'Links naar externe systemen en hulpmiddelen.',
+        "fr": 'Liens vers des systèmes et outils externes.',
+        "de": 'Links zu externen Systemen und Tools.',
     },
-    "workspace settings": {
-        "nl": "Werkruimte-instellingen",
-        "fr": "Paramètres de l'espace",
-        "de": "Arbeitsbereichs-Einstellungen"
+    "apps.teams.all_selected": {
+        "en": 'All teams selected',
+        "da": 'Alle teams er valgt',
+        "nl": 'Alle teams geselecteerd',
+        "fr": 'Toutes les équipes sélectionnées',
+        "de": 'Alle Teams ausgewählt',
     },
-    "leave workspace": {
-        "nl": "Werkruimte verlaten",
-        "fr": "Quitter l'espace",
-        "de": "Arbeitsbereich verlassen"
+    "apps.title": {
+        "en": 'Applications',
+        "da": 'Applikationer',
+        "nl": 'Applicaties',
+        "fr": 'Applications',
+        "de": 'Anwendungen',
     },
-    "remove member": {
-        "nl": "Lid verwijderen",
-        "fr": "Retirer le membre",
-        "de": "Mitglied entfernen"
+    "board.all_assignees": {
+        "en": 'All assignees',
+        "da": 'Alle tildelte',
+        "nl": 'Alle toegewezenen',
+        "fr": 'Tous les responsables',
+        "de": 'Alle Zuständigen',
     },
-    "switch workspace": {
-        "nl": "Wisselen af werkruimte",
-        "fr": "Changer d'espace",
-        "de": "Arbeitsbereich wechseln"
+    "board.column.backlog": {
+        "en": 'Backlog',
+        "da": 'Indbakke',
+        "nl": 'Backlog',
+        "fr": 'Backlog',
+        "de": 'Backlog',
     },
-    "create new workspace": {
-        "nl": "Nieuwe werkruimte maken",
-        "fr": "Créer un espace",
-        "de": "Neuen Arbeitsbereich erstellen"
+    "board.column.in_progress": {
+        "en": 'In progress',
+        "da": 'Igang',
+        "nl": 'In uitvoering',
+        "fr": 'En cours',
+        "de": 'In Bearbeitung',
     },
-    "admin panel": {
-        "nl": "Beheerpaneel",
-        "fr": "Panneau d'administration",
-        "de": "Admin-Panel"
+    "board.column.on_hold": {
+        "en": 'On Hold',
+        "da": 'On Hold',
+        "nl": 'On Hold',
+        "fr": 'En attente',
+        "de": 'Ausgesetzt',
     },
-    "flowchart": {
-        "nl": "Stroomdiagram",
-        "fr": "Organigramme",
-        "de": "Flussdiagramm"
+    "board.column.test": {
+        "en": 'Testing',
+        "da": 'Test',
+        "nl": 'Testen',
+        "fr": 'En test',
+        "de": 'Testen',
     },
-    "new flowchart": {
-        "nl": "Nieuw stroomdiagram",
-        "fr": "Nouvel organigramme",
-        "de": "Neues Flussdiagramm"
+    "board.column.todo": {
+        "en": 'Ready to start',
+        "da": 'Klar til start',
+        "nl": 'Klaar om te starten',
+        "fr": 'Prêt à démarrer',
+        "de": 'Bereit zum Starten',
     },
-    "view": {
-        "nl": "Weergave",
-        "fr": "Affichage",
-        "de": "Ansehen"
+    "board.hide_on_hold": {
+        "en": 'Hide On Hold',
+        "da": 'Skjul On Hold',
+        "nl": 'On Hold verbergen',
+        "fr": 'Masquer en attente',
+        "de": 'Ausgesetzt ausblenden',
     },
-    "name": {
-        "nl": "Naam",
-        "fr": "Nom",
-        "de": "Name"
+    "board.my_tasks": {
+        "en": 'My tasks',
+        "da": 'Mine opgaver',
     },
-    "description": {
-        "nl": "Beschrijving",
-        "fr": "Description",
-        "de": "Beschreibung"
+    "board.new_task": {
+        "en": 'New Task',
+        "da": 'Ny Opgave',
+        "nl": 'Nieuwe taak',
+        "fr": 'Nouvelle tâche',
+        "de": 'Neue Aufgabe',
     },
-    "color": {
-        "nl": "Kleur",
-        "fr": "Couleur",
-        "de": "Farbe"
+    "board.search_placeholder": {
+        "en": 'Search tasks...',
+        "da": 'Søg i opgaver...',
     },
-    "shape": {
-        "nl": "Vorm",
-        "fr": "Forme",
-        "de": "Form"
+    "board.show_on_hold": {
+        "en": 'Show On Hold',
+        "da": 'Vis On Hold',
+        "nl": 'On Hold tonen',
+        "fr": 'Afficher en attente',
+        "de": 'Ausgesetzt anzeigen',
     },
-    "rectangle": {
-        "nl": "Rechthoek",
-        "fr": "Rectangle",
-        "de": "Rechteck"
+    "board.subtitle": {
+        "en": 'Development and bug fixes',
+        "da": 'Udvikling og fejlrettelser',
+        "nl": 'Ontwikkeling en bugfixes',
+        "fr": 'Développement et corrections de bugs',
+        "de": 'Entwicklung und Bugfixes',
     },
-    "diamond": {
-        "nl": "Ruit",
-        "fr": "Losange",
-        "de": "Raute"
+    "calendar.subtitle": {
+        "en": 'Annual overview of activities and deadlines.',
+        "da": 'Årligt overblik over aktiviteter og deadlines.',
+        "nl": 'Jaarlijks overzicht afspraken en deadlines.',
+        "fr": 'Aperçu annuel des activités et des échéances.',
+        "de": 'Jahresübersicht über Aktivitäten und Termine.',
     },
-    "oval": {
-        "nl": "Ovaal",
-        "fr": "Ovale",
-        "de": "Oval"
+    "calendar.title": {
+        "en": 'Annual Calendar',
+        "da": 'Årshjul',
+        "nl": 'Jaarkalender',
+        "fr": 'Calendrier annuel',
+        "de": 'Jahreskalender',
     },
-    "delete node": {
-        "nl": "Knooppunt verwijderen",
-        "fr": "Supprimer le nœud",
-        "de": "Knoten löschen"
+    "common.all_teams": {
+        "en": 'ALL TEAMS',
+        "da": 'ALLE TEAMS',
+        "nl": 'Alle teams',
+        "fr": 'Toutes les équipes',
+        "de": 'Alle Teams',
     },
-    "delete connection": {
-        "nl": "Verbinding verwijderen",
-        "fr": "Supprimer la connexion",
-        "de": "Verbindung löschen"
+    "common.back": {
+        "en": 'Back',
+        "da": 'Tilbage',
+        "nl": 'Terug',
+        "fr": 'Retour',
+        "de": 'Zurück',
     },
-    "add shape": {
-        "nl": "Vorm toevoegen",
-        "fr": "Ajouter une forme",
-        "de": "Form hinzufügen"
+    "common.back_to_login": {
+        "en": 'Back to login',
+        "da": 'Tilbage til login',
+        "nl": 'Terug naar inloggen',
+        "fr": 'Retour à la connexion',
+        "de": 'Zurück zum Login',
     },
-    "properties": {
-        "nl": "Eigenschappen",
-        "fr": "Propriétés",
-        "de": "Eigenschaften"
+    "common.close": {
+        "en": 'Close',
+        "da": 'Luk',
+        "nl": 'Sluiten',
+        "fr": 'Fermer',
+        "de": 'Schließen',
     },
-    "no flowcharts yet": {
-        "nl": "Nog geen stroomdiagrammen",
-        "fr": "Aucun organigramme",
-        "de": "Noch keine Flussdiagramme"
+    "common.confirm": {
+        "en": 'Confirm',
+        "da": 'Bekræft',
+        "nl": 'Bevestigen',
+        "fr": 'Confirmer',
+        "de": 'Bestätigen',
     },
-    "select a flowchart to view": {
-        "nl": "Selecteer een stroomdiagram",
-        "fr": "Sélectionnez un organigramme",
-        "de": "Wählen Sie ein Flussdiagramm"
+    "common.copy_link": {
+        "en": 'Copy Link',
+        "da": 'Kopiér link',
+        "nl": 'Link kopiëren',
+        "fr": 'Copier le lien',
+        "de": 'Link kopieren',
     },
-    "team": {
-        "nl": "Team",
-        "fr": "Équipe",
-        "de": "Team"
+    "common.error_generic": {
+        "en": 'An error occurred. Try again later.',
+        "da": 'Der skete en fejl. Prøv igen senere.',
+        "nl": 'Er is een fout opgetreden. Probeer het later opnieuw.',
+        "fr": 'Une erreur est survenue. Réessayez plus tard.',
+        "de": 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.',
     },
-    "all (company-wide)": {
-        "nl": "Alle (bedrijf breed)",
+    "common.hide": {
+        "en": 'Hide',
+        "da": 'Skjul',
+        "nl": 'Verbergen',
+        "fr": 'Masquer',
+        "de": 'Ausblenden',
+    },
+    "common.only_mine": {
+        "en": 'Only mine',
+        "da": 'Kun mine',
+        "nl": 'Alleen de mijne',
+        "fr": 'Uniquement les miens',
+        "de": 'Nur meine',
+    },
+    "common.search_placeholder": {
+        "en": 'SEARCH...',
+        "da": 'SØG...',
+        "nl": 'Zoeken...',
+        "fr": 'Recherche...',
+        "de": 'Suche...',
+    },
+    "common.show": {
+        "en": 'Show',
+        "da": 'Vis',
+        "nl": 'Tonen',
+        "fr": 'Afficher',
+        "de": 'Anzeigen',
+    },
+    "common.whoops": {
+        "en": 'Whoops!',
+        "da": 'Hovsa!',
+        "nl": 'Oeps!',
+        "fr": 'Oups !',
+        "de": 'Hoppla!',
+    },
+    "confirm.button.confirm_exists": {
+        "en": 'Confirm & Create Workspace',
+        "da": 'Bekræft & Opret Arbejdsrum',
+        "nl": 'Bevestigen & Werkruimte Aanmaken',
+        "fr": "Confirmer et créer l'espace de travail",
+        "de": 'Bestätigen & Arbeitsbereich erstellen',
+    },
+    "confirm.button.finish": {
+        "en": 'Finish Creation',
+        "da": 'Færdiggør Oprettelse',
+        "nl": 'Oprichting Voltooien',
+        "fr": 'Finaliser la création',
+        "de": 'Erstellung abschließen',
+    },
+    "confirm.error.create_failed": {
+        "en": 'Could not create workspace. Try again.',
+        "da": 'Kunne ikke oprette arbejdsrum. Prøv igen.',
+        "nl": 'Kon werkruimte niet aanmaken. Probeer het opnieuw.',
+        "fr": "Impossible de créer l'espace de travail. Réessayez.",
+        "de": 'Arbeitsbereich konnte nicht erstellt werden. Erneut versuchen.',
+    },
+    "confirm.error.invalid": {
+        "en": 'Invalid or expired link.',
+        "da": 'Ugyldigt eller udløbet link.',
+        "nl": 'Ongeldige of verlopen link.',
+        "fr": 'Lien invalide ou expiré.',
+        "de": 'Ungültiger oder abgelaufener Link.',
+    },
+    "confirm.form.first_name": {
+        "en": 'First Name',
+        "da": 'Fornavn',
+        "nl": 'Voornaam',
+        "fr": 'Prénom',
+        "de": 'Vorname',
+    },
+    "confirm.form.last_name": {
+        "en": 'Last Name',
+        "da": 'Efternavn',
+        "nl": 'Achternaam',
+        "fr": 'Nom de famille',
+        "de": 'Nachname',
+    },
+    "confirm.form.password": {
+        "en": 'Choose a password',
+        "da": 'Vælg en adgangskode',
+        "nl": 'Kies een wachtwoord',
+        "fr": 'Choisissez un mot de passe',
+        "de": 'Passwort wählen',
+    },
+    "confirm.form.password_placeholder": {
+        "en": 'At least 6 characters',
+        "da": 'Mindst 6 tegn',
+        "nl": 'Minimaal 6 tekens',
+        "fr": 'Au moins 6 caractères',
+        "de": 'Mindestens 6 Zeichen',
+    },
+    "confirm.header.subtitle": {
+        "en": 'We are almost ready to create {{name}}',
+        "da": 'Vi er næsten klar til at oprette {{name}}',
+        "nl": 'We zijn bijna klaar om {{name}} aan te maken',
+        "fr": 'Nous sommes presque prêts à créer {{name}}',
+        "de": 'Wir sind fast bereit, {{name}} zu erstellen',
+    },
+    "confirm.header.title": {
+        "en": 'Welcome!',
+        "da": 'Velkommen!',
+        "nl": 'Welkom!',
+        "fr": 'Bienvenue !',
+        "de": 'Willkommen!',
+    },
+    "confirm.info.workspace": {
+        "en": 'Workspace',
+        "da": 'Arbejdsrum',
+        "nl": 'Werkruimte',
+        "fr": 'Espace de travail',
+        "de": 'Arbeitsbereich',
+    },
+    "confirm.user_exists.subtitle": {
+        "en": 'Click the button below to add this new workspace to your existing profile.',
+        "da": 'Klik på knappen nedenfor for at tilføje dette nye arbejdsrum til din eksisterende profil.',
+        "nl": 'Klik op de onderstaande knop om deze nieuwe werkruimte aan uw bestaande profiel toe te voegen.',
+        "fr": 'Cliquez sur le bouton ci-dessous pour ajouter ce nouvel espace de travail à votre profil existant.',
+        "de": 'Klicken Sie auf die Schaltfläche unten, um diesen neuen Arbeitsbereich zu Ihrem bestehenden Profil hinzuzufügen.',
+    },
+    "confirm.user_exists.title": {
+        "en": 'We can see that you already have an account with us.',
+        "da": 'Vi kan se, at du allerede har en konto hos os.',
+        "nl": 'We kunnen zien dat u al een account bij ons heeft.',
+        "fr": 'Nous constatons que vous possédez déjà un compte chez nous.',
+        "de": 'Wir können sehen, dass Sie bereits ein Konto bei uns haben.',
+    },
+    "email.activation.body": {
+        "en": 'Hello {{name}},\n\nHere is your activation link for Centralen:\n{{link}}\n\nIf you did not request this, you can safely ignore this email.\n\nBest regards,\nCentralen',
+        "da": 'Hej {{name}},\n\nHer er dit aktiveringslink til Centralen:\n{{link}}\n\nHvis du ikke har oprettet denne konto, kan du roligt ignorere denne e-mail.\n\nMed venlig hilsen,\nCentralen',
+        "nl": 'Hallo {{name}},\n\nHier is uw activeringslink voor Centralen:\n{{link}}\n\nAls u dit niet heeft aangevraagd, kunt u deze e-mail veilig negeren.\n\nMet vriendelijke groet,\nCentralen',
+        "fr": "Bonjour {{name}},\n\nVoici votre lien d'activation pour Centralen :\n{{link}}\n\nSi vous n'avez pas demandé cela, vous pouvez ignorer cet e-mail en toute sécurité.\n\nCordialement,\nCentralen",
+        "de": 'Hallo {{name}},\n\nhier ist Ihr Aktivierungslink für Centralen:\n{{link}}\n\nWenn Sie dies nicht angefordert haben, können Sie diese E-Mail einfach ignorieren.\n\nMit freundlichen Grüßen,\nCentralen',
+    },
+    "email.activation.subject": {
+        "en": 'Activate your account on Centralen',
+        "da": 'Aktiver din konto på Centralen',
+        "nl": 'Activeer uw account op Centralen',
+        "fr": 'Activez votre compte sur Centralen',
+        "de": 'Aktivieren Sie Ihr Konto auf Centralen',
+    },
+    "email.invitation.body": {
+        "en": 'Hello,\n\nYou have been invited by {{sender}} to join the workspace "{{workspace}}" on Centralen.\n\nYou can accept the invitation by clicking the following link:\n{{link}}\n\nBest regards,\nCentralen',
+        "da": 'Hej,\n\nDu er blevet inviteret af {{sender}} til at deltage i arbejdsrummet "{{workspace}}" på Centralen.\n\nDu kan acceptere invitationen ved at klikke på følgende link:\n{{link}}\n\nMed venlig hilsen,\nCentralen',
+        "nl": 'Hallo,\n\nU bent door {{sender}} uitgenodigd om deel te nemen aan de werkruimte "{{workspace}}" op Centralen.\n\nU kunt de uitnodiging accepteren door op de volgende link te klikken:\n{{link}}\n\nMet vriendelijke groet,\nCentralen',
+        "fr": 'Bonjour,\n\nVous avez été invité par {{sender}} à rejoindre l\'espace de travail "{{workspace}}" sur Centralen.\n\nVous pouvez accepter l\'invitation en cliquant sur le lien suivant :\n{{link}}\n\nCordialement,\nCentralen',
+        "de": 'Hallo,\n\nSie wurden von {{sender}} eingeladen, dem Arbeitsbereich "{{workspace}}" auf Centralen beizutreten.\n\nSie können die Einladung annehmen, indem Sie auf den folgenden Link klicken:\n{{link}}\n\nMit freundlichen Grüßen,\nCentralen',
+    },
+    "email.invitation.subject": {
+        "en": 'Invitation to join {{workspace}} on Centralen',
+        "da": 'Invitation til at deltage i {{workspace}} på Centralen',
+        "nl": 'Uitnodiging om deel te nemen aan {{workspace}} op Centralen',
+        "fr": 'Invitation à rejoindre {{workspace}} sur Centralen',
+        "de": 'Einladung, {{workspace}} auf Centralen beizutreten',
+    },
+    "email.password_reset.body": {
+        "en": 'Hello {{name}},\n\nYou requested to reset your password on Centralen.\nYou can reset your password by clicking the following link:\n{{link}}\n\nThis link is active for 24 hours.\n\nIf you did not request this, you can safely ignore this email.\n\nBest regards,\nCentralen',
+        "da": 'Hej {{name}},\n\nDu har anmodet om at nulstille din adgangskode på Centralen.\nDu kan nulstille din adgangskode ved at klikke på følgende link:\n{{link}}\n\nDette link er aktivt i 24 timer.\n\nHvis du ikke har anmodet om at nulstille din adgangskode, kan du roligt ignorere denne e-mail.\n\nMed venlig hilsen,\nCentralen',
+        "nl": 'Hallo {{name}},\n\nU heeft verzocht om uw wachtwoord opnieuw in te stellen op Centralen.\nU kunt uw wachtwoord opnieuw instellen door op de volgende link te klikken:\n{{link}}\n\nDeze link is 24 uur geldig.\n\nAls u dit niet heeft aangevraagd, kunt u deze e-mail veilig negeren.\n\nMet vriendelijke groet,\nCentralen',
+        "fr": "Bonjour {{name}},\n\nVous avez demandé à réinitialiser votre mot de passe sur Centralen.\nVous pouvez réinitialiser votre mot de passe en cliquant sur le lien suivant :\n{{link}}\n\nCe lien est actif pendant 24 heures.\n\nSi vous n'avez pas demandé cela, vous pouvez ignorer cet e-mail en toute sécurité.\n\nCordialement,\nCentralen",
+        "de": 'Hallo {{name}},\n\nSie haben beantragt, Ihr Passwort auf Centralen zurückzusetzen.\nSie können Ihr Passwort zurücksetzen, indem Sie auf den folgenden Link klicken:\n{{link}}\n\nDieser Link ist 24 Stunden lang gültig.\n\nWenn Sie dies nicht angefordert haben, können Sie diese E-Mail einfach ignorieren.\n\nMit freundlichen Grüßen,\nCentralen',
+    },
+    "email.password_reset.subject": {
+        "en": 'Reset your password on Centralen',
+        "da": 'Nulstil din adgangskode på Centralen',
+        "nl": 'Stel uw wachtwoord opnieuw in op Centralen',
+        "fr": 'Réinitialisez votre mot de passe sur Centralen',
+        "de": 'Setzen Sie Ihr Passwort auf Centralen zurück',
+    },
+    "flowchart.add_shape": {
+        "en": 'Add shape',
+        "da": 'Tilføj form',
+        "nl": 'Vorm toevoegen',
+        "fr": 'Ajouter une forme',
+        "de": 'Form hinzufügen',
+    },
+    "flowchart.delete_edge": {
+        "en": 'Delete connection',
+        "da": 'Slet forbindelse',
+        "nl": 'Verbinding verwijderen',
+        "fr": 'Supprimer la connexion',
+        "de": 'Verbindung löschen',
+    },
+    "flowchart.delete_node": {
+        "en": 'Delete node',
+        "da": 'Slet node',
+        "nl": 'Knooppunt verwijderen',
+        "fr": 'Supprimer le nœud',
+        "de": 'Knoten löschen',
+    },
+    "flowchart.edit_mode": {
+        "en": 'Edit',
+        "da": 'Rediger',
+        "nl": 'Bewerken',
+        "fr": 'Modifier',
+        "de": 'Bearbeiten',
+    },
+    "flowchart.name": {
+        "en": 'Name',
+        "da": 'Navn',
+        "nl": 'Naam',
+        "fr": 'Nom',
+        "de": 'Name',
+    },
+    "flowchart.new": {
+        "en": 'New Flowchart',
+        "da": 'Nyt flowchart',
+        "nl": 'Nieuw stroomdiagram',
+        "fr": 'Nouvel organigramme',
+        "de": 'Neues Flussdiagramm',
+    },
+    "flowchart.no_flowcharts": {
+        "en": 'No flowcharts yet',
+        "da": 'Ingen flowcharts endnu',
+        "nl": 'Nog geen stroomdiagrammen',
+        "fr": 'Aucun organigramme',
+        "de": 'Noch keine Flussdiagramme',
+    },
+    "flowchart.properties": {
+        "en": 'Properties',
+        "da": 'Egenskaber',
+        "nl": 'Eigenschappen',
+        "fr": 'Propriétés',
+        "de": 'Eigenschaften',
+    },
+    "flowchart.save": {
+        "en": 'Save',
+        "da": 'Gem',
+        "nl": 'Opslaan',
+        "fr": 'Sauvegarder',
+        "de": 'Speichern',
+    },
+    "flowchart.select_hint": {
+        "en": 'Select a flowchart to view',
+        "da": 'Vælg et flowchart for at se det',
+        "nl": 'Selecteer een stroomdiagram',
+        "fr": 'Sélectionnez un organigramme',
+        "de": 'Wählen Sie ein Flussdiagramm',
+    },
+    "flowchart.shape": {
+        "en": 'Shape',
+        "da": 'Form',
+        "nl": 'Vorm',
+        "fr": 'Forme',
+        "de": 'Form',
+    },
+    "flowchart.shape.diamond": {
+        "en": 'Diamond',
+        "da": 'Diamant',
+        "nl": 'Ruit',
+        "fr": 'Losange',
+        "de": 'Raute',
+    },
+    "flowchart.shape.oval": {
+        "en": 'Oval',
+        "da": 'Oval',
+        "nl": 'Ovaal',
+        "fr": 'Ovale',
+        "de": 'Oval',
+    },
+    "flowchart.shape.rectangle": {
+        "en": 'Rectangle',
+        "da": 'Rektangel',
+        "nl": 'Rechthoek',
+        "fr": 'Rectangle',
+        "de": 'Rechteck',
+    },
+    "flowchart.team": {
+        "en": 'Team',
+        "da": 'Team',
+        "nl": 'Team',
+        "fr": 'Équipe',
+        "de": 'Team',
+    },
+    "flowchart.team_all": {
+        "en": 'All (company-wide)',
+        "da": 'Alle (hele virksomheden)',
+        "nl": 'Alle (bedrijf breed)',
         "fr": "Tous (toute l'entreprise)",
-        "de": "Alle (unternehmensweit)"
+        "de": 'Alle (unternehmensweit)',
     },
-    "pinboard": {
-        "nl": "Prikbord",
+    "flowchart.view_mode": {
+        "en": 'View',
+        "da": 'Vis',
+        "nl": 'Weergave',
+        "fr": 'Affichage',
+        "de": 'Ansehen',
+    },
+    "global.error": {
+        "en": 'An error occurred',
+        "da": 'Der opstod en fejl',
+        "nl": 'Er is een fout opgetreden',
+        "fr": 'Une erreur est survenue',
+        "de": 'Ein Fehler ist aufgetreten',
+    },
+    "global.loading": {
+        "en": 'Loading...',
+        "da": 'Indlæser...',
+        "nl": 'Laden...',
+        "fr": 'Chargement...',
+        "de": 'Laden...',
+    },
+    "invitation.button.goto_login": {
+        "en": 'Go to login',
+        "da": 'Gå til login',
+        "nl": 'Ga naar inloggen',
+        "fr": 'Aller à la connexion',
+        "de": 'Gehe zum Login',
+    },
+    "invitation.form.already_logged_in_hint": {
+        "en": 'Click the button below to be added to {{name}} with your current account.',
+        "da": 'Klik på knappen herunder for at blive tilføjet til {{name}} med din nuværende konto.',
+        "nl": 'Klik op de onderstaande knop om met uw huidige account aan {{name}} te worden toegevoegd.',
+        "fr": 'Cliquez sur le bouton ci-dessous pour être ajouté à {{name}} avec votre compte actuel.',
+        "de": 'Klicken Sie auf die Schaltfläche unten, um mit Ihrem aktuellen Konto zu {{name}} hinzugefügt zu werden.',
+    },
+    "invitation.form.confirm_password": {
+        "en": 'Confirm Password',
+        "da": 'Bekræft Adgangskode',
+        "nl": 'Wachtwoord bevestigen',
+        "fr": 'Confirmer le mot de passe',
+        "de": 'Passwort bestätigen',
+    },
+    "invitation.form.password": {
+        "en": 'Choose Password',
+        "da": 'Vælg Adgangskode',
+        "nl": 'Wachtwoord kiezen',
+        "fr": 'Choisir le mot de passe',
+        "de": 'Passwort wählen',
+    },
+    "invitation.info.email_hint": {
+        "en": 'Log in with your email:',
+        "da": 'Log ind med din email:',
+        "nl": 'Log in met uw e-mail:',
+        "fr": 'Connectez-vous avec votre e-mail :',
+        "de": 'Mit Ihrer E-Mail anmelden:',
+    },
+    "kb.all_categories": {
+        "en": 'All categories',
+        "da": 'Alle kategorier',
+        "nl": 'Alle categorieën',
+        "fr": 'Toutes les catégories',
+        "de": 'Alle Kategorien',
+    },
+    "kb.categories": {
+        "en": 'Categories',
+        "da": 'Kategorier',
+        "nl": 'Categorieën',
+        "fr": 'Catégories',
+        "de": 'Kategorien',
+    },
+    "kb.category_created": {
+        "en": 'Category created successfully',
+        "da": 'Kategori oprettet succesfuldt',
+        "nl": 'Categorie succesvol aangemaakt',
+        "fr": 'Catégorie créée avec succès',
+        "de": 'Kategorie erfolgreich erstellt',
+    },
+    "kb.category_delete_error": {
+        "en": 'Error deleting category',
+        "da": 'Fejl ved sletning af kategori',
+        "nl": 'Fout bij verwijderen categorie',
+        "fr": 'Erreur lors de la suppression de la catégorie',
+        "de": 'Fehler beim Löschen der Kategorie',
+    },
+    "kb.category_deleted": {
+        "en": 'Category deleted successfully',
+        "da": 'Kategori slettet succesfuldt',
+        "nl": 'Categorie succesvol verwijderd',
+        "fr": 'Catégorie supprimée avec succès',
+        "de": 'Kategorie erfolgreich gelöscht',
+    },
+    "kb.category_name_label": {
+        "en": 'Category name',
+        "da": 'Kategoriens navn',
+        "nl": 'Categorienaam',
+        "fr": 'Nom de la catégorie',
+        "de": 'Kategoriename',
+    },
+    "kb.category_save_error": {
+        "en": 'Error saving category',
+        "da": 'Fejl ved gemning af kategori',
+        "nl": 'Fout bij opslaan categorie',
+        "fr": "Erreur lors de l'enregistrement de la catégorie",
+        "de": 'Fehler beim Speichern der Kategorie',
+    },
+    "kb.category_search": {
+        "en": 'Search category...',
+        "da": 'Søg kategori...',
+        "nl": 'Zoek categorie...',
+        "fr": 'Rechercher une catégorie...',
+        "de": 'Kategorie suchen...',
+    },
+    "kb.category_updated": {
+        "en": 'Category updated successfully',
+        "da": 'Kategori opdateret succesfuldt',
+        "nl": 'Categorie succesvol bijgewerkt',
+        "fr": 'Catégorie mise à jour avec succès',
+        "de": 'Kategorie erfolgreich aktualisiert',
+    },
+    "kb.clear_all_filters": {
+        "en": 'Clear all filters',
+        "da": 'Ryd alle filtre',
+        "nl": 'Wis alle filters',
+        "fr": 'Effacer tous les filtres',
+        "de": 'Alle Filter löschen',
+    },
+    "kb.clear_filters": {
+        "en": 'Clear',
+        "da": 'Ryd',
+        "nl": 'Wissen',
+        "fr": 'Effacer',
+        "de": 'Löschen',
+    },
+    "kb.create_category": {
+        "en": 'Create category',
+        "da": 'Opret kategori',
+        "nl": 'Categorie aanmaken',
+        "fr": 'Créer la catégorie',
+        "de": 'Kategorie erstellen',
+    },
+    "kb.create_new_category": {
+        "en": 'Create new category',
+        "da": 'Opret ny kategori',
+        "nl": 'Nieuwe categorie maken',
+        "fr": 'Créer une nouvelle catégorie',
+        "de": 'Neue Kategorie erstellen',
+    },
+    "kb.delete_category": {
+        "en": 'Delete category',
+        "da": 'Slet kategori',
+        "nl": 'Categorie verwijderen',
+        "fr": 'Supprimer la catégorie',
+        "de": 'Kategorie löschen',
+    },
+    "kb.delete_category_confirm": {
+        "en": 'Are you sure you want to delete this category? This action cannot be undone.',
+        "da": 'Er du sikker på, at du vil slette denne kategori? Denne handling kan ikke fortrydes.',
+        "nl": 'Weet u zeker dat u deze categorie wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.',
+        "fr": 'Êtes-vous sûr de vouloir supprimer cette catégorie ? Cette action est irréversible.',
+        "de": 'Sind Sie sicher, dass Sie diese Kategorie löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+    },
+    "kb.delete_category_has_articles": {
+        "en": 'This category contains {{count}} articles. To delete the category, you must select another category to move the articles to:',
+        "da": 'Denne kategori indeholder {{count}} artikler. For at slette kategorien skal du vælge en anden kategori at flytte artiklerne til:',
+        "nl": 'Deze categorie bevat {{count}} artikelen. Om de categorie te verwijderen, moet u een andere categorie selecteren om de artikelen naar te verhuizen:',
+        "fr": 'Cette catégorie contient {{count}} articles. Pour supprimer la catégorie, vous devez sélectionner une autre catégorie pour y déplacer les articles:',
+        "de": 'Diese Kategorie enthält {{count}} Artikel. Um die Kategorie zu löschen, müssen Sie eine andere Kategorie auswählen, in die die Artikel verschoben werden sollen:',
+    },
+    "kb.delete_category_title": {
+        "en": 'Delete category: {{name}}',
+        "da": 'Slet kategori: {{name}}',
+        "nl": 'Categorie verwijderen: {{name}}',
+        "fr": 'Supprimer la catégorie: {{name}}',
+        "de": 'Kategorie löschen: {{name}}',
+    },
+    "kb.edit_category": {
+        "en": 'Edit category',
+        "da": 'Rediger kategori',
+        "nl": 'Categorie bewerken',
+        "fr": 'Modifier la catégorie',
+        "de": 'Kategorie bearbeiten',
+    },
+    "kb.existing_categories": {
+        "en": 'Existing categories',
+        "da": 'Eksisterende kategorier',
+        "nl": 'Bestaande categorieën',
+        "fr": 'Catégories existantes',
+        "de": 'Bestehende Kategorien',
+    },
+    "kb.fill_category_name": {
+        "en": 'Please fill in the category name',
+        "da": 'Udfyld venligst kategoriens navn',
+        "nl": 'Vul de categorienaam in',
+        "fr": 'Veuillez saisir le nom de la catégorie',
+        "de": 'Bitte geben Sie den Kategorienamen ein',
+    },
+    "kb.filters": {
+        "en": 'Filters',
+        "da": 'Filtre',
+        "nl": 'Filters',
+        "fr": 'Filtres',
+        "de": 'Filter',
+    },
+    "kb.manage_categories": {
+        "en": 'Manage categories',
+        "da": 'Administrer kategorier',
+        "nl": 'Categorieën beheren',
+        "fr": 'Gérer les catégories',
+        "de": 'Kategorien verwalten',
+    },
+    "kb.no_results": {
+        "en": 'We found no results matching your search. Try different keywords.',
+        "da": 'Vi fandt ikke noget, der matchede din søgning. Prøv med andre søgeord.',
+        "nl": 'Geen resultaten gevonden. Probeer andere trefwoorden.',
+        "fr": "Aucun résultat trouvé. Essayez d'autres mots-clés.",
+        "de": 'Keine Ergebnisse gefunden. Versuchen Sie andere Schlüsselwörter.',
+    },
+    "kb.only_admins_categories": {
+        "en": 'Only administrators can create, edit, or delete categories.',
+        "da": 'Kun administratorer har tilladelse til at oprette, redigere eller slette kategorier.',
+        "nl": 'Alleen administrators kunnen categorieën maken, bewerken of verwijderen.',
+        "fr": 'Seuls les administrateurs peuvent créer, modifier ou supprimer des catégories.',
+        "de": 'Nur Administratoren können Kategorien erstellen, bearbeiten oder löschen.',
+    },
+    "kb.private_category": {
+        "en": 'Private category',
+        "da": 'Privat kategori',
+        "nl": 'Privé-categorie',
+        "fr": 'Catégorie privée',
+        "de": 'Private Kategorie',
+    },
+    "kb.private_category_desc": {
+        "en": 'If checked, articles in this category can only be seen by the creator.',
+        "da": 'Hvis markeret, kan artikler i denne kategori kun ses af opretteren.',
+        "nl": 'Indien aangevinkt, kunnen artikelen in deze categorie alleen door de maker worden gezien.',
+        "fr": 'Si coché, les articles de cette catégorie ne peuvent être vus que par leur créateur.',
+        "de": 'Wenn diese Option aktiviert ist, kunnen Artikel in dieser Kategorie nur vom Ersteller gesehen werden.',
+    },
+    "kb.save_changes": {
+        "en": 'Save changes',
+        "da": 'Gem ændringer',
+        "nl": 'Wijzigingen opslaan',
+        "fr": 'Enregistrer les modifications',
+        "de": 'Änderungen speichern',
+    },
+    "kb.search_deleted_placeholder": {
+        "en": 'Search in deleted articles...',
+        "da": 'Søg i slettede artikler...',
+        "nl": 'Zoek in verwijderde artikelen...',
+        "fr": 'Rechercher dans les articles supprimés...',
+        "de": 'In gelöschten Artikeln suchen...',
+    },
+    "kb.search_placeholder": {
+        "en": 'Search title or text...',
+        "da": 'Søg i titel eller tekst...',
+        "nl": 'Zoek titel of tekst...',
+        "fr": 'Rechercher titre ou texte...',
+        "de": 'Titel oder Text suchen...',
+    },
+    "kb.select_category_placeholder": {
+        "en": 'Select a category...',
+        "da": 'Vælg en kategori...',
+        "nl": 'Selecteer een categorie...',
+        "fr": 'Sélectionner une catégorie...',
+        "de": 'Kategorie auswählen...',
+    },
+    "kb.select_new_category_toast": {
+        "en": 'Please select a new category for existing articles',
+        "da": 'Vælg venligst en ny kategori til de eksisterende artikler',
+        "nl": 'Selecteer een nieuwe categorie voor bestaande artikelen',
+        "fr": 'Veuillez sélectionner une nouvelle catégorie pour de articles existants',
+        "de": 'Bitte wählen Sie eine neue Kategorie für bestehende Artikel',
+    },
+    "kb.show_archived": {
+        "en": 'Show archived',
+        "da": 'Vis arkiverede',
+        "nl": 'Toon gearchiveerd',
+        "fr": 'Afficher les archives',
+        "de": 'Archivierte anzeigen',
+    },
+    "kb.subtitle": {
+        "en": 'Collection of knowledge, templates, and guides for case processing.',
+        "da": 'Samling af viden, skabeloner og vejledninger til sagsbehandling.',
+        "nl": 'Verzameling van kennis, sjablonen en handleidingen voor casebehandeling.',
+        "fr": 'Collection de connaissances, de modèles et de guides pour le traitement des cas.',
+        "de": 'Sammlung von Wissen, Vorlagen und Leitfäden für die Fallbearbeitung.',
+    },
+    "kb.title": {
+        "en": 'Knowledge Base',
+        "da": 'Vidensbank',
+        "nl": 'Kennisbank',
+        "fr": 'Base de connaissances',
+        "de": 'Wissensdatenbank',
+    },
+    "kb.trash_empty": {
+        "en": 'The trash is empty.',
+        "da": 'Papirkurven er tom.',
+        "nl": 'De prullenbak is leeg.',
+        "fr": 'La corbeille est vide.',
+        "de": 'Der Papierkorb ist leer.',
+    },
+    "login.button.forgot_password": {
+        "en": 'Forgot password?',
+        "da": 'Glemt adgangskode?',
+        "nl": 'Wachtwoord vergeten?',
+        "fr": 'Mot de passe oublié ?',
+        "de": 'Passwort vergessen?',
+    },
+    "login.button.login": {
+        "en": 'Log in',
+        "da": 'Log ind',
+        "nl": 'Inloggen',
+        "fr": 'Se connecter',
+        "de": 'Anmelden',
+    },
+    "login.button.logout": {
+        "en": 'Log Out',
+        "da": 'Log ud',
+        "nl": 'Uitloggen',
+        "fr": 'Se déconnecter',
+        "de": 'Abmelden',
+    },
+    "login.email_label": {
+        "en": 'E-mail',
+        "da": 'E-mail',
+        "nl": 'E-mail',
+        "fr": 'E-mail',
+        "de": 'E-Mail',
+    },
+    "login.email_placeholder": {
+        "en": 'Enter your email',
+        "da": 'Indtast din email',
+        "nl": 'Voer uw e-mail in',
+        "fr": 'Entrez votre e-mail',
+        "de": 'Geben Sie Ihre E-Mail ein',
+    },
+    "login.error.accept_invitation": {
+        "en": 'Could not accept invitation',
+        "da": 'Kunne ikke acceptere invitation',
+        "nl": 'Kan uitnodiging niet accepteren',
+        "fr": "Impossible d'accepter l'invitation",
+        "de": 'Einladung konnte nicht akzeptiert werden',
+    },
+    "login.error.default": {
+        "en": 'Email or password is incorrect',
+        "da": 'Email eller adgangskode er forkert',
+        "nl": 'E-mail of wachtwoord is onjuist',
+        "fr": "L'e-mail ou le mot de passe est incorrect",
+        "de": 'E-Mail oder Passwort ist falsch',
+    },
+    "login.error.not_activated": {
+        "en": 'The account is not activated yet. Should we resend the email?',
+        "da": 'Kontoen er ikke godkendt endnu. Skal mailen sendes igen?',
+        "nl": 'Het account is nog niet geactiveerd. Moet de e-mail opnieuw worden verzonden?',
+        "fr": "Le compte n'est pas encore activé. Faut-il renvoyer l'e-mail ?",
+        "de": 'Das Konto ist noch nicht aktiviert. Soll die E-Mail erneut gesendet werden?',
+    },
+    "login.error.resend_failed": {
+        "en": 'Could not resend the activation link. Please try again.',
+        "da": 'Kunne ikke sende aktiveringslinket. Prøv igen.',
+        "nl": 'Kan activeringslink niet opnieuw verzenden. Probeer het opnieuw.',
+        "fr": "Impossible de renvoyer le lien d'activation. Veuillez réessayer.",
+        "de": 'Aktivierungslink konnte nicht erneut gesendet werden. Bitte versuchen Sie es erneut.',
+    },
+    "login.error.resend_success": {
+        "en": 'The activation link has been resent!',
+        "da": 'Aktiveringslinket er sendt igen!',
+        "nl": 'De activeringslink is opnieuw verzonden!',
+        "fr": "Le lien d'activation a été renvoyé !",
+        "de": 'Der Aktivierungslink wurde erneut gesendet!',
+    },
+    "login.error.resending": {
+        "en": 'Sending...',
+        "da": 'Sender...',
+        "nl": 'Verzenden...',
+        "fr": 'Envoi...',
+        "de": 'Wird gesendet...',
+    },
+    "login.error.select_workspace": {
+        "en": 'Could not select workspace',
+        "da": 'Kunne ikke vælge arbejdsrum',
+        "nl": 'Kon werkruimte niet selecteren',
+        "fr": "Impossible de sélectionner l'espace de travail",
+        "de": 'Arbeitsbereich konnte nicht ausgewählt werden',
+    },
+    "login.footer.contact_admin": {
+        "en": 'Contact your administrator',
+        "da": 'Kontakt din administrator',
+        "nl": 'Neem contact op met uw beheerder',
+        "fr": 'Contactez votre administrateur',
+        "de": 'Kontaktieren Sie Ihren Administrator',
+    },
+    "login.footer.create_here": {
+        "en": 'Create it here',
+        "da": 'Opret det her',
+        "nl": 'Maak het hier aan',
+        "fr": 'Créez-le ici',
+        "de": 'Hier erstellen',
+    },
+    "login.footer.new_workspace": {
+        "en": 'Need a new workspace? ',
+        "da": 'Skal du bruge et nyt arbejdsrum? ',
+        "nl": 'Heeft u een nieuwe werkruimte nodig? ',
+        "fr": "Besoin d'un nouvel espace de travail ? ",
+        "de": 'Benötigen Sie einen neuen Arbeitsbereich? ',
+    },
+    "login.footer.no_account": {
+        "en": 'New to Centralen? ',
+        "da": 'Ny på Centralen? ',
+        "nl": 'Nieuw op Centralen? ',
+        "fr": 'Nouveau sur Centralen ? ',
+        "de": 'Neu bei Centralen? ',
+    },
+    "login.footer.problems": {
+        "en": 'Having trouble logging in?',
+        "da": 'Har du problemer med at logge ind?',
+        "nl": 'Heeft u problemen met inloggen?',
+        "fr": 'Des problèmes pour vous connecter\xa0?',
+        "de": 'Probleme beim Anmelden?',
+    },
+    "login.footer.register_here": {
+        "en": 'Register your profile here',
+        "da": 'Opret din profil her',
+        "nl": 'Registreer uw profiel hier',
+        "fr": 'Enregistrez votre profil ici',
+        "de": 'Registrieren Sie Ihr Profil hier',
+    },
+    "login.header.login": {
+        "en": 'Log in to your personal control center',
+        "da": 'Log ind på dit personlige kontrolcenter',
+        "nl": 'Log in op uw persoonlijke controlecentrum',
+        "fr": 'Connectez-vous à votre centre de contrôle personnel',
+        "de": 'Melden Sie sich bei Ihrem persönlichen Kontrollzentrum an',
+    },
+    "login.header.select_workspace": {
+        "en": 'Select a workspace',
+        "da": 'Vælg et arbejdsrum',
+        "nl": 'Selecteer een werkruimte',
+        "fr": 'Sélectionnez un espace de travail',
+        "de": 'Wählen Sie einen Arbeitsbereich',
+    },
+    "login.invitations.accept": {
+        "en": 'Accept',
+        "da": 'Accepter',
+        "nl": 'Accepteren',
+        "fr": 'Accepter',
+        "de": 'Akzeptieren',
+    },
+    "login.invitations.desc": {
+        "en": 'You have been invited to join the following workspaces:',
+        "da": 'Du er blevet inviteret til følgende arbejdsrum:',
+        "nl": 'U bent uitgenodigd voor de volgende werkruimtes:',
+        "fr": 'Vous avez été invité à rejoindre les espaces de travail suivants :',
+        "de": 'Sie wurden in die folgenden Arbeitsbereiche eingeladen:',
+    },
+    "login.invitations.title": {
+        "en": 'You have pending invitations!',
+        "da": 'Du har invitationer der venter!',
+        "nl": 'U heeft openstaande uitnodigingen!',
+        "fr": 'Vous avez des invitations en attente !',
+        "de": 'Sie haben ausstehende Einladungen!',
+    },
+    "login.password_label": {
+        "en": 'Password',
+        "da": 'Adgangskode',
+        "nl": 'Wachtwoord',
+        "fr": 'Mot de passe',
+        "de": 'Passwort',
+    },
+    "login.password_placeholder": {
+        "en": '••••••••',
+        "da": '••••••••',
+        "nl": '••••••••',
+        "fr": '••••••••',
+        "de": '••••••••',
+    },
+    "login.workspace.create_new": {
+        "en": 'Create New Workspace',
+        "da": 'Opret Nyt Arbejdsrum',
+        "nl": 'Nieuwe werkruimte maken',
+        "fr": 'Créer un espace',
+        "de": 'Neuen Arbeitsbereich erstellen',
+    },
+    "login.workspace.none": {
+        "en": 'You are not a member of any workspace yet.',
+        "da": 'Du er ikke medlem af nogen arbejdsrum endnu.',
+        "nl": 'U bent nog geen lid van een werkruimte.',
+        "fr": "Vous n'êtes membre d'aucun espace de travail pour le moment.",
+        "de": 'Sie sind noch kein Mitglied eines Arbeitsbereichs.',
+    },
+    "nav.apps": {
+        "en": 'Apps',
+        "da": 'Apps',
+        "nl": 'Apps',
+        "fr": 'Applications',
+        "de": 'Apps',
+    },
+    "nav.board": {
+        "en": 'Board',
+        "da": 'Tavlen',
+        "nl": 'Bord',
+        "fr": 'Tableau',
+        "de": 'Board',
+    },
+    "nav.flowchart": {
+        "en": 'Flowchart',
+        "da": 'Flowchart',
+        "nl": 'Stroomdiagram',
+        "fr": 'Organigramme',
+        "de": 'Flussdiagramm',
+    },
+    "nav.pinboard": {
+        "en": 'PINBOARD',
+        "da": 'PRIKBORDET',
+        "nl": 'Prikbord',
         "fr": "Panneau d'affichage",
-        "de": "Pinnwand"
+        "de": 'Pinnwand',
     },
-    "ideas & dialogue": {
-        "nl": "Ideeën & dialoog",
-        "fr": "Idées & dialogue",
-        "de": "Ideen & Dialog"
+    "nav.settings": {
+        "en": 'Settings',
+        "da": 'Indstillinger',
+        "nl": 'Instellingen',
+        "fr": 'Paramètres',
+        "de": 'Einstellungen',
     },
-    "all teams": {
-        "nl": "Alle teams",
-        "fr": "Toutes les équipes",
-        "de": "Alle Teams"
+    "nav.time": {
+        "en": 'Time Tracking',
+        "da": 'Tidsregistrering',
+        "nl": 'Tijdregistratie',
+        "fr": 'Suivi du temps',
+        "de": 'Zeiterfassung',
     },
-    "only mine": {
-        "nl": "Alleen de mijne",
-        "fr": "Uniquement les miens",
-        "de": "Nur meine"
+    "navigation.invitations.title": {
+        "en": 'Pending approval',
+        "da": 'Mangler godkendelse',
+        "nl": 'Wacht op goedkeuring',
+        "fr": 'En attente de validation',
+        "de": 'Ausstehende Genehmigung',
     },
-    "search...": {
-        "nl": "Zoeken...",
-        "fr": "Recherche...",
-        "de": "Suche..."
+    "password_reset.error.invalid_token": {
+        "en": 'The password reset link is invalid or has expired.',
+        "da": 'Nulstillingslinket er ugyldigt eller udløbet.',
+        "nl": 'De herstellink is ongeldig of verlopen.',
+        "fr": 'Le lien de réinitialisation est invalide ou a expiré.',
+        "de": 'Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.',
     },
-    "search for users or teams...": {
-        "nl": "Zoek naar gebruikers of teams...",
-        "fr": "Rechercher des utilisateurs ou équipes...",
-        "de": "Nach Benutzern oder Teams suchen..."
+    "password_reset.request.button": {
+        "en": 'Send Reset Link',
+        "da": 'Send nulstillingslink',
+        "nl": 'Herstellink verzenden',
+        "fr": 'Envoyer le lien de réinitialisation',
+        "de": 'Link zum Zurücksetzen senden',
     },
-    "search for team...": {
-        "nl": "Zoek naar team...",
-        "fr": "Rechercher une équipe...",
-        "de": "Nach Team suchen..."
+    "password_reset.request.desc": {
+        "en": 'Enter your email address and we will send you a link to reset your password.',
+        "da": 'Indtast din e-mailadresse, og vi vil sende dig et link til at nulstille din adgangskode.',
+        "nl": 'Voer uw e-mailadres in en we sturen u een link om uw wachtwoord te herstellen.',
+        "fr": 'Saisissez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.',
+        "de": 'Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.',
     },
-    "search for group...": {
-        "nl": "Zoek naar groep...",
-        "fr": "Rechercher un groupe...",
-        "de": "Nach Gruppe suchen..."
+    "password_reset.request.success_desc": {
+        "en": 'If this email is registered in our system, you will receive instructions shortly.',
+        "da": 'Hvis denne e-mail er registreret i vores system, vil du modtage instruktioner inden længe.',
+        "nl": 'Als dit e-mailadres is geregistreerd in ons systeem, ontvangt u binnenkort instructies.',
+        "fr": 'Si cet e-mail est enregistré dans notre système, vous recevrez bientôt des instructions.',
+        "de": 'Wenn diese E-Mail in unserem System registriert ist, erhalten Sie in Kürze Anweisungen.',
     },
-    "search apps, teams, or purposes...": {
-        "nl": "Zoek apps, teams of doelen...",
-        "fr": "Rechercher des apps, équipes ou objectifs...",
-        "de": "Nach Apps, Teams oder Zwecken suchen..."
+    "password_reset.request.success_title": {
+        "en": 'Email Sent!',
+        "da": 'E-mail sendt!',
+        "nl": 'E-mail verzonden!',
+        "fr": 'E-mail envoyé !',
+        "de": 'E-Mail gesendet!',
     },
-    "all teams selected": {
-        "nl": "Alle teams geselecteerd",
-        "fr": "Toutes les équipes sélectionnées",
-        "de": "Alle Teams ausgewählt"
+    "password_reset.request.title": {
+        "en": 'Reset Password',
+        "da": 'Nulstil adgangskode',
+        "nl": 'Wachtwoord herstellen',
+        "fr": 'Réinitialiser le mot de passe',
+        "de": 'Passwort zurücksetzen',
     },
-    "annual cycle groups": {
-        "nl": "Jaarkalendergroepen",
-        "fr": "Groupes de calendrier annuel",
-        "de": "Jahreskalender-Gruppen"
+    "password_reset.reset.button": {
+        "en": 'Update Password',
+        "da": 'Opdater adgangskode',
+        "nl": 'Wachtwoord bijwerken',
+        "fr": 'Mettre à jour le mot de passe',
+        "de": 'Passwort aktualisieren',
     },
-    "back to board": {
-        "nl": "Terug naar bord",
-        "fr": "Retour au tableau",
-        "de": "Zurück zum Board"
+    "password_reset.reset.confirm_label": {
+        "en": 'Confirm New Password',
+        "da": 'Bekræft ny adgangskode',
+        "nl": 'Nieuw wachtwoord bevestigen',
+        "fr": 'Confirmer le nouveau mot de passe',
+        "de": 'Neues Passwort bestätigen',
     },
-    "trash": {
-        "nl": "Prullenbak",
-        "fr": "Corbeille",
-        "de": "Papierkorb"
+    "password_reset.reset.desc": {
+        "en": 'Please enter and confirm your new password below.',
+        "da": 'Indtast og bekræft din nye adgangskode nedenfor.',
+        "nl": 'Voer hieronder uw nieuwe wachtwoord in en bevestig dit.',
+        "fr": 'Veuillez saisir et confirmer votre nouveau mot de passe ci-dessous.',
+        "de": 'Bitte geben Sie unten Ihr neues Passwort ein und bestätigen Sie es.',
     },
-    "unknown category": {
-        "nl": "Onbekende categorie",
-        "fr": "Catégorie inconnue",
-        "de": "Unbekannte Kategorie"
+    "password_reset.reset.password_label": {
+        "en": 'New Password',
+        "da": 'Ny adgangskode',
+        "nl": 'Nieuw wachtwoord',
+        "fr": 'Nouveau mot de passe',
+        "de": 'Neues Passwort',
     },
-    "article is now moved to trash": {
-        "nl": "Artikel is verplaatst naar prullenbak",
-        "fr": "L'article est déplacé dans la corbeille",
-        "de": "Artikel wurde in den Papierkorb verschoben"
+    "password_reset.reset.success_desc": {
+        "en": 'Your password has been successfully updated. You can now log in.',
+        "da": 'Din adgangskode er blevet opdateret. Du kan nu logge ind.',
+        "nl": 'Uw wachtwoord is succesvol bijgewerkt. U kunt nu inloggen.',
+        "fr": 'Votre mot de passe a été mis à jour avec succès. Vous pouvez maintenant vous connecter.',
+        "de": 'Ihr Passwort wurde erfolgreich aktualisiert. Sie können sich jetzt anmelden.',
     },
-    "article restored from trash": {
-        "nl": "Artikel hersteld uit prullenbak",
-        "fr": "L'article est restauré de la corbeille",
-        "de": "Artikel aus dem Papierkorb wiederhergestellt"
+    "password_reset.reset.success_title": {
+        "en": 'Password Updated!',
+        "da": 'Adgangskode opdateret!',
+        "nl": 'Wachtwoord bijgewerkt!',
+        "fr": 'Mot de passe mis à jour !',
+        "de": 'Passwort aktualisiert!',
     },
-    "move to trash": {
-        "nl": "Verplaats naar prullenbak",
-        "fr": "Déplacer dans la corbeille",
-        "de": "In den Papierkorb verschieben"
+    "password_reset.reset.title": {
+        "en": 'Choose New Password',
+        "da": 'Vælg ny adgangskode',
+        "nl": 'Nieuw wachtwoord kiezen',
+        "fr": 'Choisir un nouveau mot de passe',
+        "de": 'Neues Passwort wählen',
     },
-    'are you sure you want to delete "{{title}}"? it will be moved to the trash and can be restored by an administrator.': {
+    "pin it! \ud83d\udccc": {
+        "en": 'PIN IT! 📌',
+        "da": 'HÆNG OP! 📌',
+        "nl": 'PIN HET! 📌',
+        "fr": 'ÉPINGLEZ ! 📌',
+        "de": 'PINNEN! 📌',
+    },
+    "pinboard.create_new": {
+        "en": 'Create new post',
+        "da": 'Opret nyt opslag',
+        "nl": 'Nieuw bericht maken',
+        "fr": 'Créer un nouveau message',
+        "de": 'Neuen Beitrag erstellen',
+    },
+    "pinboard.detail.archive_btn": {
+        "en": 'Archive',
+        "da": 'Arkivér',
+        "nl": 'Archiveren',
+        "fr": 'Archiver',
+        "de": 'Archivieren',
+    },
+    "pinboard.detail.archive_tooltip": {
+        "en": 'Archive post',
+        "da": 'Arkivér opslag',
+        "nl": 'Bericht archiveren',
+        "fr": 'Archiver le message',
+        "de": 'Eintrag archivieren',
+    },
+    "pinboard.detail.eval.dont_know": {
+        "en": "DON'T KNOW",
+        "da": 'VED IKKE',
+        "nl": 'WEET IK NIET',
+        "fr": 'JE NE SAIS PAS',
+        "de": 'WEISS NICHT',
+    },
+    "pinboard.detail.fetching_desc": {
+        "en": 'Fetching description...',
+        "da": 'Henter beskrivelse...',
+        "nl": 'Beschrijving ophalen...',
+        "fr": 'Récupération de la description...',
+        "de": 'Beschreibung abrufen...',
+    },
+    "pinboard.detail.fetching_names": {
+        "en": 'Fetching names...',
+        "da": 'Henter navne...',
+        "nl": 'Namen ophalen...',
+        "fr": 'Récupération des noms...',
+        "de": 'Namen abrufen...',
+    },
+    "pinboard.detail.good_idea": {
+        "en": 'Good idea',
+        "da": 'God idé',
+        "nl": 'Goed idee',
+        "fr": 'Bonne idée',
+        "de": 'Gute Idee',
+    },
+    "pinboard.detail.pending": {
+        "en": 'Pending',
+        "da": 'Venter',
+        "nl": 'In afwachting',
+        "fr": 'En attente',
+        "de": 'Ausstehend',
+    },
+    "pinboard.detail.post_label": {
+        "en": 'Pinboard Post',
+        "da": 'Prikbord Opslag',
+        "nl": 'Prikbord Bericht',
+        "fr": "Message du tableau d'affichage",
+        "de": 'Pinnwandeintrag',
+    },
+    "pinboard.detail.read": {
+        "en": 'Read',
+        "da": 'Læst',
+        "nl": 'Gelezen',
+        "fr": 'Lu',
+        "de": 'Gelesen',
+    },
+    "pinboard.detail.status_and_stats": {
+        "en": 'Status & Statistics',
+        "da": 'Status & Statistik',
+        "nl": 'Status & Statistieken',
+        "fr": 'Statut & Statistiques',
+        "de": 'Status & Statistiken',
+    },
+    "pinboard.detail.your_evaluation": {
+        "en": 'Your Evaluation',
+        "da": 'Din Vurdering',
+        "nl": 'Jouw Beoordeling',
+        "fr": 'Votre Évaluation',
+        "de": 'Ihre Bewertung',
+    },
+    "pinboard.empty_state": {
+        "en": 'The board is empty... Pin something up!',
+        "da": 'Tavlen er tom... Hæng noget op!',
+        "nl": 'Het bord is leeg... Hang iets op!',
+        "fr": 'Le tableau est vide... Épinglez quelque chose !',
+        "de": 'Die Pinnwand ist leer... Pinne etwas an!',
+    },
+    "pinboard.modal.desc_label": {
+        "en": 'Description',
+        "da": 'Beskrivelse',
+        "nl": 'Beschrijving',
+        "fr": 'Description',
+        "de": 'Beschreibung',
+    },
+    "pinboard.modal.desc_placeholder": {
+        "en": 'Tell us a bit more...',
+        "da": 'Fortæl lidt mere...',
+        "nl": 'Vertel ons wat meer...',
+        "fr": 'Dites-nous en un peu plus...',
+        "de": 'Erzählen Sie uns etwas mehr...',
+    },
+    "pinboard.modal.new_postit": {
+        "en": 'NEW POST-IT',
+        "da": 'NY POST-IT',
+        "nl": 'NIEUWE POST-IT',
+        "fr": 'NOUVEAU POST-IT',
+        "de": 'NEUER POST-IT',
+    },
+    "pinboard.modal.pinning": {
+        "en": 'Pinning...',
+        "da": 'Hænger op...',
+        "nl": 'Pinnen...',
+        "fr": 'Épinglage...',
+        "de": 'Pinnen...',
+    },
+    "pinboard.modal.select_team_label": {
+        "en": 'Select Team',
+        "da": 'Vælg Team',
+        "nl": 'Selecteer Team',
+        "fr": "Sélectionner l'équipe",
+        "de": 'Team auswählen',
+    },
+    "pinboard.modal.select_team_placeholder": {
+        "en": 'Select team...',
+        "da": 'Vælg team...',
+        "nl": 'Selecteer team...',
+        "fr": "Sélectionner l'équipe...",
+        "de": 'Team auswählen...',
+    },
+    "pinboard.modal.sub_text": {
+        "en": 'Pin your idea on the board',
+        "da": 'Hæng din idé op på tavlen',
+        "nl": 'Pin je idee op het bord',
+        "fr": 'Épinglez votre idée sur le tableau',
+        "de": 'Pinnen Sie Ihre Idee an die Tafel',
+    },
+    "pinboard.modal.title_label": {
+        "en": 'Title',
+        "da": 'Titel',
+        "nl": 'Titel',
+        "fr": 'Titre',
+        "de": 'Titel',
+    },
+    "pinboard.modal.title_placeholder": {
+        "en": 'A quick headline...',
+        "da": 'En hurtig overskrift...',
+        "nl": 'Een snelle kop...',
+        "fr": 'Un titre rapide...',
+        "de": 'Eine kurze Überschrift...',
+    },
+    "pinboard.subtitle": {
+        "en": 'Ideas & dialogue',
+        "da": 'Idéer & dialog',
+        "nl": 'Ideeën & dialoog',
+        "fr": 'Idées & dialogue',
+        "de": 'Ideen & Dialog',
+    },
+    "register.button.submit": {
+        "en": 'Create my profile',
+        "da": 'Opret min profil',
+        "nl": 'Maak mijn profiel aan',
+        "fr": 'Créer mon profil',
+        "de": 'Mein Profil erstellen',
+    },
+    "register.email_label": {
+        "en": 'Your Email*',
+        "da": 'Din E-mail*',
+        "nl": 'Uw e-mailadres*',
+        "fr": 'Votre e-mail*',
+        "de": 'Ihre E-Mail*',
+    },
+    "register.error.email_pending_activation": {
+        "en": "This email address is already registered, but the account hasn't been activated yet.",
+        "da": 'Denne e-mailadresse er allerede registreret, men kontoen er endnu ikke aktiveret.',
+        "nl": 'Dit e-mailadres is al geregistreerd, maar het account is nog niet geactiveerd.',
+        "fr": "Cette adresse e-mail est déjà enregistrée, mais le compte n'a pas encore été activé.",
+        "de": 'Diese E-Mail-Adresse ist bereits registriert, aber das Konto wurde noch nicht aktiviert.',
+    },
+    "register.error.email_taken": {
+        "en": 'This email address already has an active account. Try logging in instead.',
+        "da": 'Denne e-mailadresse har allerede en aktiv konto. Prøv at logge ind i stedet.',
+        "nl": 'Dit e-mailadres heeft al een actief account. Probeer in te loggen.',
+        "fr": 'Cette adresse e-mail possède déjà un compte actif. Essayez de vous connecter.',
+        "de": 'Diese E-Mail-Adresse hat bereits ein aktives Konto. Versuchen Sie, sich anzumelden.',
+    },
+    "register.error.failed": {
+        "en": 'An error occurred during creation. Try again.',
+        "da": 'Der skete en fejl under oprettelsen. Prøv igen.',
+        "nl": 'Er is een fout opgetreden tijdens het aanmaken. Probeer het opnieuw.',
+        "fr": 'Une erreur est survenue lors de la création. Réessayez.',
+        "de": 'Bei der Erstellung ist ein Fehler aufgetreten. Erneut versuchen.',
+    },
+    "register.error.missing_fields": {
+        "en": 'Username, email and password are required.',
+        "da": 'Brugernavn, e-mail og adgangskode skal angives.',
+        "nl": 'Gebruikersnaam, e-mail en wachtwoord zijn verplicht.',
+        "fr": "Le nom d'utilisateur, l'e-mail et le mot de passe sont requis.",
+        "de": 'Benutzername, E-Mail und Passwort sind erforderlich.',
+    },
+    "register.error.username_taken": {
+        "en": 'This username is already taken. Please choose another.',
+        "da": 'Brugernavnet er allerede i brug. Vælg et andet.',
+        "nl": 'Deze gebruikersnaam is al in gebruik. Kies een andere.',
+        "fr": "Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre.",
+        "de": 'Dieser Benutzername ist bereits vergeben. Bitte wählen Sie einen anderen.',
+    },
+    "register.password_label": {
+        "en": 'Choose a password*',
+        "da": 'Vælg en adgangskode*',
+        "nl": 'Kies een wachtwoord*',
+        "fr": 'Choisissez un mot de passe*',
+        "de": 'Wählen Sie ein Passwort*',
+    },
+    "register.resend.button": {
+        "en": 'Resend activation link',
+        "da": 'Send aktiveringslink igen',
+        "nl": 'Activeringslink opnieuw versturen',
+        "fr": "Renvoyer le lien d'activation",
+        "de": 'Aktivierungslink erneut senden',
+    },
+    "register.resend.sent": {
+        "en": 'A new activation link has been sent to your email.',
+        "da": 'Der er sendt et nyt aktiveringslink til din e-mail.',
+        "nl": 'Er is een nieuwe activeringslink naar uw e-mail gestuurd.',
+        "fr": "Un nouveau lien d'activation a été envoyé à votre e-mail.",
+        "de": 'Ein neuer Aktivierungslink wurde an Ihre E-Mail gesendet.',
+    },
+    "register.subtitle": {
+        "en": 'Create a profile on Centralen to get started',
+        "da": 'Opret en profil på Centralen for at komme i gang',
+        "nl": 'Maak een profiel aan op Centralen om te beginnen',
+        "fr": 'Créez un profil sur Centralen pour commencer',
+        "de": 'Erstellen Sie ein Profil auf Centralen, um loszulegen',
+    },
+    "register.success_message": {
+        "en": 'We have sent an activation link to {{email}}. Click the link in the email to activate your profile.',
+        "da": 'Vi har sendt et aktiveringslink til {{email}}. Klik på linket i e-mailen for at aktivere din profil.',
+        "nl": 'We hebben een activeringslink gestuurd naar {{email}}. Klik op de link in de e-mail om uw profiel te activeren.',
+        "fr": "Nous avons envoyé un lien d'activation à {{email}}. Cliquez sur le lien dans l'e-mail pour activer votre profil.",
+        "de": 'Wir haben einen Aktivierungslink an {{email}} gesendet. Klicken Sie auf den Link in der E-Mail, um Ihr Profil zu aktivieren.',
+    },
+    "register.success_title": {
+        "en": 'Check your email!',
+        "da": 'Tjek din e-mail!',
+        "nl": 'Controleer uw e-mail!',
+        "fr": 'Vérifiez vos e-mails !',
+        "de": 'Prüfen Sie Ihre E-Mails!',
+    },
+    "register.title": {
+        "en": 'Create Account',
+        "da": 'Opret Bruger',
+        "nl": 'Account aanmaken',
+        "fr": 'Créer un compte',
+        "de": 'Benutzerkonto erstellen',
+    },
+    "register.username_label": {
+        "en": 'Username*',
+        "da": 'Brugernavn*',
+        "nl": 'Gebruikersnaam*',
+        "fr": "Nom d'utilisateur*",
+        "de": 'Benutzername*',
+    },
+    "register.username_placeholder": {
+        "en": 'Choose a username',
+        "da": 'Vælg et brugernavn',
+        "nl": 'Kies een gebruikersnaam',
+        "fr": "Choisissez un nom d'utilisateur",
+        "de": 'Wählen Sie einen Benutzernamen',
+    },
+    "request_workspace.company_name_label": {
+        "en": 'Workspace Name',
+        "da": 'Arbejdsrummets Navn',
+        "nl": 'Naam werkruimte',
+        "fr": "Nom de l'espace de travail",
+        "de": 'Name des Arbeitsbereichs',
+    },
+    "request_workspace.continue": {
+        "en": 'Continue to verification',
+        "da": 'Fortsæt til bekræftelse',
+        "nl": 'Doorgaan naar verificatie',
+        "fr": 'Continuer vers la vérification',
+        "de": 'Weiter zur Verifizierung',
+    },
+    "request_workspace.email_label": {
+        "en": 'Your Email',
+        "da": 'Din E-mail',
+        "nl": 'Uw e-mailadres',
+        "fr": 'Votre e-mail',
+        "de": 'Ihre E-Mail',
+    },
+    "request_workspace.subtitle": {
+        "en": 'Start your journey with Centralen today',
+        "da": 'Start din rejse med Centralen i dag',
+        "nl": 'Begin vandaag uw reis met Centralen',
+        "fr": "Commencez votre voyage avec Centralen dès aujourd'hui",
+        "de": 'Beginnen Sie Ihre Reise mit Centralen noch heute',
+    },
+    "request_workspace.success_message": {
+        "en": 'We have sent a verification link to {{email}}. Click the link in the email to complete creating your workspace.',
+        "da": 'Vi har sendt et bekræftelseslink til {{email}}. Klik på linket i e-mailen for at færdiggøre oprettelsen af dit arbejdsrum.',
+        "nl": 'We hebben een verificatielink gestuurd naar {{email}}. Klik op de link in de e-mail om het maken van uw werkruimte te voltooien.',
+        "fr": "Nous avons envoyé un lien de vérification à {{email}}. Cliquez sur le lien dans l'e-mail pour terminer la création de votre espace de travail.",
+        "de": 'Wir haben einen Verifizierungslink an {{email}} gesendet. Klicken Sie auf den Link in der E-Mail, um die Erstellung Ihres Arbeitsbereichs abzuschließen.',
+    },
+    "request_workspace.success_title": {
+        "en": 'Request sent!',
+        "da": 'Forespørgsel sendt!',
+        "nl": 'Aanvraag verzonden!',
+        "fr": 'Demande envoyée !',
+        "de": 'Anfrage gesendet!',
+    },
+    "request_workspace.title": {
+        "en": 'New Workspace',
+        "da": 'Nyt Arbejdsrum',
+        "nl": 'Nieuwe werkruimte',
+        "fr": 'Nouvel espace de travail',
+        "de": 'Neuer Arbeitsbereich',
+    },
+    "settings.invitations.cancel_tooltip": {
+        "en": 'Cancel invitation',
+        "da": 'Træk invitation tilbage',
+        "nl": 'Uitnodiging intrekken',
+        "fr": "Annuler l'invitation",
+        "de": 'Einladung stornieren',
+    },
+    "settings.invitations.error_fetching": {
+        "en": 'Could not fetch invitations',
+        "da": 'Kunne ikke hente invitationer',
+        "nl": 'Kan uitnodigingen niet ophalen',
+        "fr": 'Impossible de récupérer les invitations',
+        "de": 'Einladungen konnten nicht geladen werden',
+    },
+    "settings.invitations.error_sending": {
+        "en": 'Could not send invitation.',
+        "da": 'Kunne ikke sende invitation.',
+        "nl": 'Kan uitnodiging niet verzenden.',
+        "fr": "Impossible d'envoyer l'invitation.",
+        "de": 'Einladung konnte ikke gesendet werden.',
+    },
+    "settings.invitations.fetching": {
+        "en": 'Fetching...',
+        "da": 'Henter...',
+        "nl": 'Ophalen...',
+        "fr": 'Chargement...',
+        "de": 'Laden...',
+    },
+    "settings.invitations.invite_label": {
+        "en": 'Invite new member',
+        "da": 'Inviter nyt medlem',
+        "nl": 'Nieuw lid uitnodigen',
+        "fr": 'Inviter un nouveau membre',
+        "de": 'Neues Mitglied einladen',
+    },
+    "settings.invitations.none": {
+        "en": 'No pending invitations',
+        "da": 'Ingen afventende invitationer',
+        "nl": 'Geen lopende uitnodigingen',
+        "fr": 'Aucune invitation en attente',
+        "de": 'Keine ausstehenden Einladungen',
+    },
+    "settings.invitations.pending_title": {
+        "en": 'Pending invitations',
+        "da": 'Afventende invitationer',
+        "nl": 'Lopende uitnodigingen',
+        "fr": 'Invitations en attente',
+        "de": 'Ausstehende Einladungen',
+    },
+    "settings.invitations.resend_tooltip": {
+        "en": 'Send invitation again',
+        "da": 'Send invitation igen',
+        "nl": 'Stuur uitnodiging opnieuw',
+        "fr": "Renvoyer l'invitation",
+        "de": 'Einladung erneut senden',
+    },
+    "settings.invitations.send": {
+        "en": 'Send',
+        "da": 'Send',
+        "nl": 'Verzenden',
+        "fr": 'Envoyer',
+        "de": 'Senden',
+    },
+    "settings.invitations.title": {
+        "en": 'Invitations',
+        "da": 'Invitationer',
+        "nl": 'Uitnodigingen',
+        "fr": 'Invitations',
+        "de": 'Einladungen',
+    },
+    "settings.leave.button": {
+        "en": 'Leave Workspace',
+        "da": 'Forlad arbejdsrum',
+        "nl": 'Werkruimte verlaten',
+        "fr": "Quitter l'espace",
+        "de": 'Arbeitsbereich verlassen',
+    },
+    "settings.leave.error_generic": {
+        "en": 'Could not leave workspace.',
+        "da": 'Kunne ikke forlade arbejdsrum.',
+        "nl": 'Kan werkruimte niet verlaten.',
+        "fr": "Impossible de quitter l'espace.",
+        "de": 'Arbeitsbereich konnte nicht verlassen werden.',
+    },
+    "settings.leave.modal.confirm": {
+        "en": 'Leave now',
+        "da": 'Forlad nu',
+        "nl": 'Nu verlaten',
+        "fr": 'Quitter maintenant',
+        "de": 'Jetzt verlassen',
+    },
+    "settings.leave.modal.description": {
+        "en": 'Are you sure you want to leave {{name}}? You will need to be invited again to regain access.',
+        "da": 'Er du sikker på, at du vil forlade {{name}}? Du skal inviteres igen for at få adgang på ny.',
+        "nl": 'Weet u zeker dat u {{name}} wilt verlaten? U moet opnieuw worden uitgenodigd.',
+        "fr": 'Êtes-vous sûr de vouloir quitter {{name}} ? Vous devrez être invité à nouveau.',
+        "de": 'Sind Sie sicher, dass Sie {{name}} verlassen möchten? Sie müssen erneut eingeladen werden.',
+    },
+    "settings.leave.modal.error_title": {
+        "en": 'Important notice',
+        "da": 'Vigtig besked',
+        "nl": 'Belangrijke mededeling',
+        "fr": 'Avis important',
+        "de": 'Wichtiger Hinweis',
+    },
+    "settings.leave.modal.forbidden_description": {
+        "en": 'There is a small obstacle before you can leave this workspace.',
+        "da": 'Der er en lille forhindring, før du kan forlade dette arbejdsrum.',
+        "nl": 'Er is een klein obstakel voordat u deze werkruimte kunt verlaten.',
+        "fr": 'Il y a un petit obstacle avant de pouvoir quitter cet espace.',
+        "de": 'Es gibt ein kleines Hindernis, bevor Sie diesen Arbeitsbereich verlassen können.',
+    },
+    "settings.leave.modal.forbidden_title": {
+        "en": 'Whoops, wait!',
+        "da": 'Hov, vent!',
+        "nl": 'Oeps, wacht!',
+        "fr": 'Oups, attendez !',
+        "de": 'Hoppla, warten!',
+    },
+    "settings.leave.modal.title": {
+        "en": 'Leave workspace?',
+        "da": 'Forlad arbejdsrum?',
+        "nl": 'Werkruimte verlaten?',
+        "fr": "Quitter l'espace de travail ?",
+        "de": 'Arbeitsbereich verlassen?',
+    },
+    "settings.leave.modal.understand": {
+        "en": 'I understand',
+        "da": 'Jeg forstår',
+        "nl": 'Ik begrijp het',
+        "fr": 'Je comprends',
+        "de": 'Ich verstehe',
+    },
+    "settings.profile.alias_help": {
+        "en": 'This name is only visible in the current workspace.',
+        "da": 'Dette navn vises kun i det nuværende arbejdsrum.',
+        "nl": 'Deze naam is alleen zichtbaar in de huidige werkruimte.',
+        "fr": "Ce nom est uniquement visible dans l'espace de travail actuel.",
+        "de": 'Dieser Name ist nur im aktuellen Arbeitsbereich sichtbar.',
+    },
+    "settings.profile.alias_label": {
+        "en": 'Your Alias',
+        "da": 'Dit Alias',
+        "nl": 'Uw alias',
+        "fr": 'Votre alias',
+        "de": 'Ihr Alias',
+    },
+    "settings.profile.alias_placeholder": {
+        "en": 'Enter your preferred name',
+        "da": 'Indtast dit foretrukne navn',
+        "nl": 'Voer uw voorkeursnaam in',
+        "fr": 'Entrez votre nom préféré',
+        "de": 'Geben Sie Ihren bevorzugten Namen ein',
+    },
+    "settings.profile.change_language": {
+        "en": 'Choose from list',
+        "da": 'Vælg fra liste',
+        "nl": 'Kies uit lijst',
+        "fr": 'Choisir dans la liste',
+        "de": 'Aus Liste wählen',
+    },
+    "settings.profile.color_label": {
+        "en": 'Your Color',
+        "da": 'Din Farve',
+        "nl": 'Uw kleur',
+        "fr": 'Votre couleur',
+        "de": 'Ihre Farbe',
+    },
+    "settings.profile.custom_color": {
+        "en": 'Choose custom color',
+        "da": 'Vælg egen farve',
+        "nl": 'Kies een eigen kleur',
+        "fr": 'Choisir sa propre couleur',
+        "de": 'Eigene Farbe wählen',
+    },
+    "settings.profile.global_section": {
+        "en": 'Global Settings',
+        "da": 'Globale Indstillinger',
+        "nl": 'Globale instellingen',
+        "fr": 'Paramètres globaux',
+        "de": 'Globale Einstellungen',
+    },
+    "settings.profile.language_label": {
+        "en": 'Language',
+        "da": 'Sprog',
+        "nl": 'Taal',
+        "fr": 'Langue',
+        "de": 'Sprache',
+    },
+    "settings.profile.language_modal_title": {
+        "en": 'Select Language',
+        "da": 'Vælg Sprog',
+        "nl": 'Selecteer taal',
+        "fr": 'Sélectionner la langue',
+        "de": 'Sprache auswählen',
+    },
+    "settings.profile.no_languages_found": {
+        "en": 'No languages found',
+        "da": 'Ingen sprog fundet',
+        "nl": 'Geen talen gevonden',
+        "fr": 'Aucune langue trouvée',
+        "de": 'Keine Sprachen gevonden',
+    },
+    "settings.profile.save": {
+        "en": 'Save all changes',
+        "da": 'Gem alle ændringer',
+        "nl": 'Sla alle wijzigingen op',
+        "fr": 'Enregistrer toutes les modifications',
+        "de": 'Alle Änderungen speichern',
+    },
+    "settings.profile.saved": {
+        "en": 'Saved!',
+        "da": 'Gemt!',
+        "nl": 'Opgeslagen!',
+        "fr": 'Enregistré !',
+        "de": 'Gespeichert!',
+    },
+    "settings.profile.search_languages": {
+        "en": 'Search languages...',
+        "da": 'Søg efter sprog...',
+        "nl": 'Talen zoeken...',
+        "fr": 'Rechercher des langues...',
+        "de": 'Sprachen suchen...',
+    },
+    "settings.profile.title": {
+        "en": 'Personal Profile',
+        "da": 'Personlig Profil',
+        "nl": 'Persoonlijk profiel',
+        "fr": 'Profil personnel',
+        "de": 'Persönliches Profil',
+    },
+    "settings.profile.workspace_section": {
+        "en": 'Workspace Profile',
+        "da": 'Arbejdsrum Profil',
+        "nl": 'Werkruimteprofiel',
+        "fr": "Profil de l'espace",
+        "de": 'Arbeitsbereichs-Profil',
+    },
+    "settings.subtitle": {
+        "en": 'Manage your profile and workspace',
+        "da": 'Administrer din profil og dit arbejdsrum',
+        "nl": 'Beheer uw profiel en werkruimte',
+        "fr": 'Gérez votre profil et votre espace de travail',
+        "de": 'Verwalten Sie Ihr Profil und Ihren Arbeitsbereich',
+    },
+    "settings.tab.profile": {
+        "en": 'My Profile',
+        "da": 'Min Profil',
+        "nl": 'Mijn profiel',
+        "fr": 'Mon profil',
+        "de": 'Mein Profil',
+    },
+    "settings.workspace.update": {
+        "en": 'Update workspace',
+        "da": 'Opdater arbejdsrum',
+        "nl": 'Werkruimte bijwerken',
+        "fr": "Mettre à jour l'espace",
+        "de": 'Arbeitsbereich aktualisieren',
+    },
+    "settings.workspace.updated": {
+        "en": 'Updated!',
+        "da": 'Opdateret!',
+        "nl": 'Bijgewerkt!',
+        "fr": 'Mis à jour !',
+        "de": 'Aktualisiert!',
+    },
+    "time.add_entry": {
+        "en": 'Add Entry',
+        "da": 'Tilføj registrering',
+        "nl": 'Invoer toevoegen',
+        "fr": 'Ajouter une entrée',
+        "de": 'Eintrag hinzufügen',
+    },
+    "time.contact_admin": {
+        "en": 'Contact an administrator',
+        "da": 'Kontakt en administrator',
+        "nl": 'Neem contact op met een beheerder',
+        "fr": 'Contacter un administrateur',
+        "de": 'Kontaktieren Sie einen Administrator',
+    },
+    "time.edit_time": {
+        "en": 'Edit time',
+        "da": 'Ret tid',
+        "nl": 'Tijd bewerken',
+        "fr": 'Modifier le temps',
+        "de": 'Zeit bearbeiten',
+    },
+    "time.existing_codes": {
+        "en": 'Existing codes',
+        "da": 'Eksisterende koder',
+        "nl": 'Bestaande koder',
+        "fr": 'Codes existants',
+        "de": 'Bestehende Codes',
+    },
+    "time.loading_tasks": {
+        "en": 'Fetching your tasks...',
+        "da": 'Henter dine opgaver...',
+        "nl": 'Taken ophalen...',
+        "fr": 'Récupération de vos tâches...',
+        "de": 'Aufgaben werden geladen...',
+    },
+    "time.manage_task_codes": {
+        "en": 'Manage task codes',
+        "da": 'Administrer taakkoder',
+        "nl": 'Taakkodes beheren',
+        "fr": 'Gérer les codes de tâche',
+        "de": 'Aufgabencodes verwalten',
+    },
+    "time.no_admins_found": {
+        "en": 'No administrators found.',
+        "da": 'Ingen administratorer fundet.',
+        "nl": 'Geen administrators gevonden.',
+        "fr": 'Aucun administrateur trouvé.',
+        "de": 'Keine Administratoren gefunden.',
+    },
+    "time.no_favorites_desc": {
+        "en": 'Go to "Setup" to add your most used task codes to your dashboard.',
+        "da": 'Gå til "Opsætning" for at tilføje dine mest brugte opgavekoder til din oversigt.',
+        "nl": 'Ga naar "Installatie" om favorieten toe te voegen.',
+        "fr": 'Allez dans "Configuration" pour ajouter des favoris.',
+        "de": 'Gehen Sie zu "Einrichtung", um Favoriten hinzuzufügen.',
+    },
+    "time.no_favorites_title": {
+        "en": 'No favorites yet',
+        "da": 'Ingen favoritter endnu',
+        "nl": 'Nog geen favorieten',
+        "fr": "Aucun favori pour l'instant",
+        "de": 'Noch keine Favoriten',
+    },
+    "time.only_admins_task_codes": {
+        "en": 'Only administrators can create, edit, or delete task codes.',
+        "da": 'Kun administratorer har tilladelse til at oprette, redigere eller slette taakkoder.',
+        "nl": 'Alleen administrators kunnen taakkodes maken, bewerken of verwijderen.',
+        "fr": 'Seuls les administrateurs peuvent créer, modifier ou supprimer des codes de tâche.',
+        "de": 'Nur Administratoren können Aufgabencodes erstellen, bearbeiten oder löschen.',
+    },
+    "time.overview_all_users": {
+        "en": 'ALLE MEDARBEJDERE',
+        "da": 'ALLE MEDARBEJDERE',
+        "nl": 'ALLE MEDEWERKERS',
+        "fr": 'TOUS LES EMPLOYÉS',
+        "de": 'ALLE MITARBEITER',
+    },
+    "time.overview_col_action": {
+        "en": 'Action',
+        "da": 'Handling',
+        "nl": 'Actie',
+        "fr": 'Action',
+        "de": 'Aktion',
+    },
+    "time.overview_col_code": {
+        "en": 'Code',
+        "da": 'Kode',
+        "nl": 'Code',
+        "fr": 'Code',
+        "de": 'Code',
+    },
+    "time.overview_col_date": {
+        "en": 'Date',
+        "da": 'Dato',
+        "nl": 'Datum',
+        "fr": 'Date',
+        "de": 'Datum',
+    },
+    "time.overview_col_fri": {
+        "en": 'Fri',
+        "da": 'Fre',
+        "nl": 'Vr',
+        "fr": 'Ven',
+        "de": 'Fr',
+    },
+    "time.overview_col_group": {
+        "en": 'Group',
+        "da": 'Gruppe',
+        "nl": 'Groep',
+        "fr": 'Groupe',
+        "de": 'Gruppe',
+    },
+    "time.overview_col_mon": {
+        "en": 'Mon',
+        "da": 'Man',
+        "nl": 'Ma',
+        "fr": 'Lun',
+        "de": 'Mo',
+    },
+    "time.overview_col_sat": {
+        "en": 'Sat',
+        "da": 'Lør',
+        "nl": 'Za',
+        "fr": 'Sam',
+        "de": 'Sa',
+    },
+    "time.overview_col_sun": {
+        "en": 'Sun',
+        "da": 'Søn',
+        "nl": 'Zo',
+        "fr": 'Dim',
+        "de": 'So',
+    },
+    "time.overview_col_thu": {
+        "en": 'Thu',
+        "da": 'Tor',
+        "nl": 'Do',
+        "fr": 'Jeu',
+        "de": 'Do',
+    },
+    "time.overview_col_time": {
+        "en": 'Time',
+        "da": 'Tid',
+        "nl": 'Tijd',
+        "fr": 'Temps',
+        "de": 'Zeit',
+    },
+    "time.overview_col_total": {
+        "en": 'Total',
+        "da": 'Total',
+        "nl": 'Totaal',
+        "fr": 'Total',
+        "de": 'Gesamt',
+    },
+    "time.overview_col_tue": {
+        "en": 'Tue',
+        "da": 'Tir',
+        "nl": 'Di',
+        "fr": 'Mar',
+        "de": 'Di',
+    },
+    "time.overview_col_user": {
+        "en": 'Employee',
+        "da": 'Medarbejder',
+        "nl": 'Medewerker',
+        "fr": 'Employé',
+        "de": 'Mitarbeiter',
+    },
+    "time.overview_col_wed": {
+        "en": 'Wed',
+        "da": 'Ons',
+        "nl": 'Wo',
+        "fr": 'Mer',
+        "de": 'Mi',
+    },
+    "time.overview_export_csv": {
+        "en": 'EXPORT CSV',
+        "da": 'EKSPORTER CSV',
+        "nl": 'CSV EXPORTEREN',
+        "fr": 'EXPORTER CSV',
+        "de": 'CSV EXPORTIEREN',
+    },
+    "time.overview_hent": {
+        "en": 'FETCH',
+        "da": 'Hent',
+        "nl": 'Haal op',
+        "fr": 'Charger',
+        "de": 'Laden',
+    },
+    "time.overview_my_hours": {
+        "en": 'MINE TIMER',
+        "da": 'MINE TIMER',
+        "nl": 'MIJN TIMER',
+        "fr": 'MES HEURES',
+        "de": 'MEINE STUNDEN',
+    },
+    "time.overview_no_data": {
+        "en": 'No data for this week',
+        "da": 'Ingen data for denne uge',
+        "nl": 'Geen gegevens voor deze week',
+        "fr": 'Aucune donnée pour cette semaine',
+        "de": 'Keine Daten für diese Woche',
+    },
+    "time.overview_no_registrations": {
+        "en": 'No registrations found for this period',
+        "da": 'Ingen registreringer fundet for denne periode',
+        "nl": 'Geen registraties gevonden voor deze periode',
+        "fr": 'Aucune inscription trouvée pour cette période',
+        "de": 'Keine Registrierungen für diesen Zeitraum gefunden',
+    },
+    "time.overview_period": {
+        "en": 'PERIOD',
+        "da": 'PERIODE',
+        "nl": 'PERIODE',
+        "fr": 'PÉRIODE',
+        "de": 'ZEITRAUM',
+    },
+    "time.overview_tab": {
+        "en": 'Overview',
+        "da": 'Oversigt',
+        "nl": 'Overzicht',
+        "fr": 'Aperçu',
+        "de": 'Übersicht',
+    },
+    "time.overview_total_all_users": {
+        "en": 'Total all employees:',
+        "da": 'Total alle medarbejdere:',
+        "nl": 'Totaal alle medewerkers:',
+        "fr": 'Total de tous les employés:',
+        "de": 'Gesamt alle Mitarbeiter:',
+    },
+    "time.overview_weekly": {
+        "en": 'WEEKLY OVERVIEW',
+        "da": 'UGEOVERSIGT',
+        "nl": 'WEKELIJKS OVERZICHT',
+        "fr": 'APERÇU HEBDOMADAIRE',
+        "de": 'WÖCHENTLICHE ÜBERSICHT',
+    },
+    "time.overview_weekly_total": {
+        "en": 'Weekly Total:',
+        "da": 'Ugentlig Total:',
+        "nl": 'Wekelijks Totaal:',
+        "fr": 'Total hebdomadaire :',
+        "de": 'Wöchentliche Summe:',
+    },
+    "time.setup_add_code": {
+        "en": 'Create code',
+        "da": 'Opret kode',
+        "nl": 'Code aanmaken',
+        "fr": 'Créer le code',
+        "de": 'Code erstellen',
+    },
+    "time.setup_add_hint": {
+        "en": 'Add codes from the left side',
+        "da": 'Tilføj koder fra venstre side',
+        "nl": 'Voeg codes toe vanaf de linkerkant',
+        "fr": 'Ajoutez des codes à partir de la gauche',
+        "de": 'Fügen Sie Codes von der linken Seite hinzu',
+    },
+    "time.setup_alias_placeholder": {
+        "en": 'Give the task a name...',
+        "da": 'Giv opgaven et navn...',
+        "nl": 'Geef de taak een naam...',
+        "fr": 'Donnez un nom à la tâche...',
+        "de": 'Geben Sie der Aufgabe einen Namen...',
+    },
+    "time.setup_all_codes": {
+        "en": 'All Task Codes',
+        "da": 'Alle Opgavekoder',
+        "nl": 'Alle taakcodes',
+        "fr": 'Tous les codes de tâche',
+        "de": 'Alle Aufgabencodes',
+    },
+    "time.setup_code_created": {
+        "en": 'Task code created successfully',
+        "da": 'Taakkode oprettet succesfuldt',
+        "nl": 'Taakcode succesvol aangemaakt',
+        "fr": 'Code de tâche créé avec succès',
+        "de": 'Aufgabencode erfolgreich erstellt',
+    },
+    "time.setup_code_deleted": {
+        "en": 'Task code deleted successfully',
+        "da": 'Taakkode slettet succesfuldt',
+        "nl": 'Taakcode succesvol verwijderd',
+        "fr": 'Code de tâche supprimé avec succès',
+        "de": 'Aufgabencode erfolgreich gelöscht',
+    },
+    "time.setup_code_updated": {
+        "en": 'Task code updated successfully',
+        "da": 'Taakkode opdateret succesfuldt',
+        "nl": 'Taakcode succesvol bijgewerkt',
+        "fr": 'Code de tâche mis à jour avec succès',
+        "de": 'Aufgabencode erfolgreich aktualisiert',
+    },
+    "time.setup_delete": {
+        "en": 'Delete',
+        "da": 'Slet',
+        "nl": 'Verwijderen',
+        "fr": 'Supprimer',
+        "de": 'Löschen',
+    },
+    "time.setup_delete_confirm": {
+        "en": 'Are you sure you want to delete this task code? This action cannot be undone.',
+        "da": 'Er du sikker på, at du vil slette denne taakkode? Denne handling kan ikke fortrydes.',
+        "nl": 'Weet u zeker dat u deze taakcode wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.',
+        "fr": 'Êtes-vous sûr de vouloir supprimer ce code de tâche ? Cette action est irréversible.',
+        "de": 'Sind Sie sicher, dass Sie diesen Aufgabencode löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.',
+    },
+    "time.setup_delete_error": {
+        "en": 'Could not delete task code',
+        "da": 'Kunne ikke slette taakkode',
+        "nl": 'Kon taakcode niet verwijderen',
+        "fr": 'Impossible de supprimer le code de tâche',
+        "de": 'Aufgabencode konnte nicht gelöscht werden',
+    },
+    "time.setup_delete_title": {
+        "en": 'Delete task code: {{code}}',
+        "da": 'Slet taakkode: {{code}}',
+        "nl": 'Taakcode verwijderen: {{code}}',
+        "fr": 'Supprimer le code de tâche: {{code}}',
+        "de": 'Aufgabencode löschen: {{code}}',
+    },
+    "time.setup_drag_info": {
+        "en": 'Drag codes to change the sorting order on your dashboard.',
+        "da": 'Flyt koderne for at ændre rækkefølgen på din forside.',
+        "nl": 'Sleep codes om de volgorde te wijzigen.',
+        "fr": "Faites glisser les codes pour modifier l'ordre.",
+        "de": 'Verschieben Sie Codes, um die Sortierung zu ändern.',
+    },
+    "time.setup_export_csv": {
+        "en": 'Eksporter CSV',
+        "da": 'Eksporter CSV',
+        "nl": 'CSV exporteren',
+        "fr": 'Exporter un CSV',
+        "de": 'CSV exportieren',
+    },
+    "time.setup_fill_code": {
+        "en": 'Please fill in the code number',
+        "da": 'Udfyld venligst kodens nummer',
+        "nl": 'Vul het codenummer in',
+        "fr": 'Veuillez saisir le numéro de code',
+        "de": 'Bitte geben Sie de Codenummer ein',
+    },
+    "time.setup_fill_desc": {
+        "en": 'Please fill in the code description',
+        "da": 'Udfyld venligst kodens beskrivelse',
+        "nl": 'Vul de codebeschrijving in',
+        "fr": 'Veuillez saisir la description du code',
+        "de": 'Bitte geben Sie die Codebeschreibung ein',
+    },
+    "time.setup_import_csv": {
+        "en": 'Import CSV',
+        "da": 'Importer CSV',
+        "nl": 'CSV importeren',
+        "fr": 'Importer un CSV',
+        "de": 'CSV importieren',
+    },
+    "time.setup_importing": {
+        "en": 'Importing...',
+        "da": 'Importerer...',
+        "nl": 'Importeren...',
+        "fr": 'Import en cours...',
+        "de": 'Importieren...',
+    },
+    "time.setup_my_favorites": {
+        "en": 'My Favorites (Dashboard)',
+        "da": 'Mine Favoritter (Dashboard)',
+        "nl": 'Mijn favorieten',
+        "fr": 'Mes favoris',
+        "de": 'Meine Favoriten',
+    },
+    "time.setup_new_code_title": {
+        "en": 'Create new task code',
+        "da": 'Opret ny taakkode',
+        "nl": 'Nieuwe taakcode maken',
+        "fr": 'Créer un nouveau code de tâche',
+        "de": 'Neuen Aufgabencode erstellen',
+    },
+    "time.setup_now": {
+        "en": 'SETUP NOW',
+        "da": 'OPSÆT NU',
+        "nl": 'NU INSTALLEREN',
+        "fr": 'CONFIGURER MAINTENANT',
+        "de": 'JETZT EINRICHTEN',
+    },
+    "time.setup_save_error": {
+        "en": 'Could not save task code',
+        "da": 'Kunne ikke gemme taakkode',
+        "nl": 'Kon taakcode niet opslaan',
+        "fr": "Impossible d'enregistrer le code de tâche",
+        "de": 'Aufgabencode konnte nicht gespeichert werden',
+    },
+    "time.setup_search_placeholder": {
+        "en": 'Search codes...',
+        "da": 'Søg i koder...',
+        "nl": 'Zoek codes...',
+        "fr": 'Rechercher des codes...',
+        "de": 'Codes suchen...',
+    },
+    "time.setup_tab": {
+        "en": 'Setup',
+        "da": 'Opsætning',
+        "nl": 'Installatie',
+        "fr": 'Configuration',
+        "de": 'Einrichtung',
+    },
+    "time.setup_task_code_label": {
+        "en": 'Task code number',
+        "da": 'Taakkodens nummer',
+        "nl": 'Taakcodenummer',
+        "fr": 'Numéro de code de tâche',
+        "de": 'Aufgabencodenummer',
+    },
+    "time.setup_task_code_placeholder": {
+        "en": 'E.g. 101, 9304...',
+        "da": 'F.eks. 101, 9304...',
+        "nl": 'Bijv. 101, 9304...',
+        "fr": 'Par ex. 101, 9304...',
+        "de": 'Z.B. 101, 9304...',
+    },
+    "time.setup_task_desc_placeholder": {
+        "en": 'E.g. Administration, Development...',
+        "da": 'F.eks. Administration, Udvikling...',
+        "nl": 'Bijv. Administratie, Ontwikkeling...',
+        "fr": 'Par ex. Administration, Développement...',
+        "de": 'Z.B. Verwaltung, Entwicklung...',
+    },
+    "time.setup_task_group_label": {
+        "en": 'Group (Optional)',
+        "da": 'Gruppe (Valgfri)',
+        "nl": 'Groep (Optioneel)',
+        "fr": 'Groupe (Optionnel)',
+        "de": 'Gruppe (Optional)',
+    },
+    "time.status_last_registered": {
+        "en": 'Last registered',
+        "da": 'Sidst registreret',
+        "nl": 'Laatst geregistreerd',
+        "fr": 'Dernièrement enregistré',
+        "de": 'Zuletzt registriert',
+    },
+    "time.status_ready": {
+        "en": 'Ready',
+        "da": 'Klar',
+        "nl": 'Gereed',
+        "fr": 'Prêt',
+        "de": 'Bereit',
+    },
+    "time.subtitle": {
+        "en": 'Register your hours and track your time.',
+        "da": 'Registrer dine timer og hold styr på din tid.',
+        "nl": 'Registreer uw uren en houd uw tijd bij.',
+        "fr": 'Enregistrez vos heures et suivez votre temps.',
+        "de": 'Registrieren Sie Ihre Stunden und verfolgen Sie Ihre Zeit.',
+    },
+    "users.back_to_board": {
+        "en": 'Back to Board',
+        "da": 'Tilbage til Tavlen',
+        "nl": 'Terug naar bord',
+        "fr": 'Retour au tableau',
+        "de": 'Zurück zum Board',
+    },
+    "users.button.cancel": {
+        "en": 'Cancel',
+        "da": 'Annuller',
+        "nl": 'Annuleren',
+        "fr": 'Annuler',
+        "de": 'Abbrechen',
+    },
+    "users.button.invite_member": {
+        "en": 'Invite Member',
+        "da": 'Inviter Medlem',
+        "nl": 'Lid uitnodigen',
+        "fr": 'Inviter un membre',
+        "de": 'Mitglied einladen',
+    },
+    "users.button.new_team": {
+        "en": 'New Team',
+        "da": 'Nyt Team',
+        "nl": 'Nieuw team',
+        "fr": 'Nouvelle équipe',
+        "de": 'Neues Team',
+    },
+    "users.button.new_user": {
+        "en": 'New User',
+        "da": 'Ny Bruger',
+        "nl": 'Nieuwe gebruiker',
+        "fr": 'Nouvel utilisateur',
+        "de": 'Neuer Benutzer',
+    },
+    "users.create_modal.color_label": {
+        "en": 'Color',
+        "da": 'Farve',
+        "nl": 'Kleur',
+        "fr": 'Couleur',
+        "de": 'Farbe',
+    },
+    "users.create_modal.email": {
+        "en": 'Email',
+        "da": 'Email',
+        "nl": 'E-mail',
+        "fr": 'E-mail',
+        "de": 'E-Mail',
+    },
+    "users.create_modal.level_label": {
+        "en": 'Level',
+        "da": 'Niveau',
+        "nl": 'Niveau',
+        "fr": 'Niveau',
+        "de": 'Ebene',
+    },
+    "users.create_modal.password_label": {
+        "en": 'Password*',
+        "da": 'Password*',
+        "nl": 'Wachtwoord*',
+        "fr": 'Mot de passe*',
+        "de": 'Passwort*',
+    },
+    "users.create_modal.submit": {
+        "en": 'Create User',
+        "da": 'Opret Bruger',
+        "nl": 'Gebruiker aanmaken',
+        "fr": "Créer l'utilisateur",
+        "de": 'Benutzer erstellen',
+    },
+    "users.create_modal.title": {
+        "en": 'Create New User',
+        "da": 'Opret Ny Bruger',
+        "nl": 'Nieuwe gebruiker aanmaken',
+        "fr": 'Créer un nouvel utilisateur',
+        "de": 'Neuen Benutzer erstellen',
+    },
+    "users.create_modal.username": {
+        "en": 'Username',
+        "da": 'Brugernavn',
+        "nl": 'Gebruikersnaam',
+        "fr": "Nom d'utilisateur",
+        "de": 'Benutzername',
+    },
+    "users.edit.change_password_placeholder": {
+        "en": 'Change?',
+        "da": 'Skift?',
+        "nl": 'Wijzigen?',
+        "fr": 'Modifier ?',
+        "de": 'Ändern?',
+    },
+    "users.filter.only_active": {
+        "en": 'Only Active',
+        "da": 'Kun Aktive',
+        "nl": 'Alleen actief',
+        "fr": 'Uniquement actifs',
+        "de": 'Nur aktive',
+    },
+    "users.filter.show_all": {
+        "en": 'Show All',
+        "da": 'Viser Alle',
+        "nl": 'Toon alles',
+        "fr": 'Afficher tout',
+        "de": 'Alle anzeigen',
+    },
+    "users.groups_menu": {
+        "en": 'Annual Cycle Groups',
+        "da": 'Årshjul Grupper',
+        "nl": 'Jaarkalendergroepen',
+        "fr": 'Groupes de calendrier annuel',
+        "de": 'Jahreskalender-Gruppen',
+    },
+    "users.invite_modal.send": {
+        "en": 'Send Invitation',
+        "da": 'Send Invitation',
+        "nl": 'Uitnodiging sturen',
+        "fr": "Envoyer l'invitation",
+        "de": 'Einladung senden',
+    },
+    "users.role.admin": {
+        "en": 'Administrator',
+        "da": 'Administrator',
+        "nl": 'Beheerder',
+        "fr": 'Administrateur',
+        "de": 'Administrator',
+    },
+    "users.role.member": {
+        "en": 'Member',
+        "da": 'Medlem',
+        "nl": 'Lid',
+        "fr": 'Membre',
+        "de": 'Mitglied',
+    },
+    "users.role.superuser": {
+        "en": 'Superuser',
+        "da": 'Superbruger',
+        "nl": 'Supergebruiker',
+        "fr": 'Superutilisateur',
+        "de": 'Superuser',
+    },
+    "users.search_groups": {
+        "en": 'Search for group...',
+        "da": 'Søg efter gruppe...',
+        "nl": 'Zoek naar groep...',
+        "fr": 'Rechercher un groupe...',
+        "de": 'Nach Gruppe suchen...',
+    },
+    "users.search_users": {
+        "en": 'Search for users or teams...',
+        "da": 'Søg efter navn eller team...',
+        "nl": 'Zoek naar gebruikers of teams...',
+        "fr": 'Rechercher des utilisateurs ou équipes...',
+        "de": 'Nach Benutzern oder Teams suchen...',
+    },
+    "users.status.active": {
+        "en": 'Active',
+        "da": 'Aktiv',
+        "nl": 'Actief',
+        "fr": 'Actif',
+        "de": 'Aktiv',
+    },
+    "users.status.deactivated": {
+        "en": 'DEACTIVATED',
+        "da": 'DEAKTIVERET',
+        "nl": 'GEDEACTIVEERD',
+        "fr": 'DÉSACTIVÉ',
+        "de": 'DEAKTIVIERT',
+    },
+    "users.subtitle": {
+        "en": 'Manage users, roles, and teams.',
+        "da": 'Administrer brugere, roller og teams.',
+        "nl": 'Beheer gebruikers, rollen en teams.',
+        "fr": 'Gérer les utilisateurs, les rôles et les équipes.',
+        "de": 'Verwalten Sie Benutzer, Rollen und Teams.',
+    },
+    "users.table.actions": {
+        "en": 'Actions',
+        "da": 'Handlinger',
+        "nl": 'Acties',
+        "fr": 'Actions',
+        "de": 'Aktionen',
+    },
+    "users.table.no_email": {
+        "en": 'No email',
+        "da": 'Ingen email',
+        "nl": 'Geen e-mail',
+        "fr": "Pas d'e-mail",
+        "de": 'Keine E-Mail',
+    },
+    "users.table.status": {
+        "en": 'Status',
+        "da": 'Status',
+        "nl": 'Status',
+        "fr": 'Statut',
+        "de": 'Status',
+    },
+    "users.table.teams": {
+        "en": 'Teams',
+        "da": 'Teams',
+        "nl": 'Teams',
+        "fr": 'Équipes',
+        "de": 'Teams',
+    },
+    "users.table.user": {
+        "en": 'User',
+        "da": 'Bruger',
+        "nl": 'Gebruiker',
+        "fr": 'Utilisateur',
+        "de": 'Benutzer',
+    },
+    "users.teams_modal.done": {
+        "en": 'Done',
+        "da": 'Færdig',
+        "nl": 'Klaar',
+        "fr": 'Terminé',
+        "de": 'Erledigt',
+    },
+    "users.teams_modal.no_teams_found": {
+        "en": 'No teams found',
+        "da": 'Ingen teams fundet',
+        "nl": 'Geen teams gevonden',
+        "fr": 'Aucune équipe trouvée',
+        "de": 'Keine Teams gefunden',
+    },
+    "users.teams_modal.search_placeholder": {
+        "en": 'Search for team...',
+        "da": 'Søg efter team...',
+        "nl": 'Zoek naar team...',
+        "fr": 'Rechercher une équipe...',
+        "de": 'Nach Team suchen...',
+    },
+    "users.teams_modal.subtitle": {
+        "en": 'For {{username}}',
+        "da": 'For {{username}}',
+        "nl": 'Voor {{username}}',
+        "fr": 'Pour {{username}}',
+        "de": 'Für {{username}}',
+    },
+    "users.teams_modal.title": {
+        "en": 'Assign Teams',
+        "da": 'Tildel Teams',
+        "nl": 'Teams toewijzen',
+        "fr": 'Attribuer des équipes',
+        "de": 'Teams zuweisen',
+    },
+    "users.title": {
+        "en": 'Users & Teams',
+        "da": 'Brugere & Teams',
+        "nl": 'Gebruikers & Teams',
+        "fr": 'Utilisateurs & Équipes',
+        "de": 'Benutzer & Teams',
+    },
+    "users.users_menu": {
+        "en": 'Users',
+        "da": 'Brugere',
+        "nl": 'Gebruikers',
+        "fr": 'Utilisateurs',
+        "de": 'Benutzer',
+    },
+    "vidensbank.modal.add_title": {
+        "en": 'Add new knowledge',
+        "da": 'Tilføj ny viden',
+        "nl": 'Nieuwe kennis toevoegen',
+        "fr": 'Ajouter des connaissances',
+        "de": 'Neues Wissen hinzufügen',
+    },
+    "vidensbank.modal.archived": {
+        "en": 'Archived',
+        "da": 'Arkiveret',
+        "nl": 'Gearchiveerd',
+        "fr": 'Archivé',
+        "de": 'Archiviert',
+    },
+    "vidensbank.modal.category_label": {
+        "en": 'Category',
+        "da": 'Kategori',
+        "nl": 'Categorie',
+        "fr": 'Catégorie',
+        "de": 'Kategorie',
+    },
+    "vidensbank.modal.content_label": {
+        "en": 'Content',
+        "da": 'Indhold',
+        "nl": 'Inhoud',
+        "fr": 'Contenu',
+        "de": 'Inhalt',
+    },
+    "vidensbank.modal.edit_title": {
+        "en": 'Edit knowledge',
+        "da": 'Rediger viden',
+        "nl": 'Kennis bewerken',
+        "fr": 'Modifier les connaissances',
+        "de": 'Wissen bearbeiten',
+    },
+    "vidensbank.modal.favorite": {
+        "en": 'Important / Favorite',
+        "da": 'Vigtig / Favorit',
+        "nl": 'Belangrijk / Favoriet',
+        "fr": 'Important / Favori',
+        "de": 'Wichtig / Favorit',
+    },
+    "vidensbank.modal.save": {
+        "en": 'Save article',
+        "da": 'Gem artikel',
+        "nl": 'Artikel opslaan',
+        "fr": "Enregistrer l'article",
+        "de": 'Artikel speichern',
+    },
+    "vidensbank.modal.select_category": {
+        "en": 'Select category...',
+        "da": 'Vælg kategori...',
+        "nl": 'Selecteer categorie...',
+        "fr": 'Sélectionner la catégorie...',
+        "de": 'Kategorie auswählen...',
+    },
+    "vidensbank.modal.table.add_col": {
+        "en": '+ Column',
+        "da": '+ Kolonne',
+        "nl": '+ Kolom',
+        "fr": '+ Colonne',
+        "de": '+ Spalte',
+    },
+    "vidensbank.modal.table.add_row": {
+        "en": '+ Row',
+        "da": '+ Række',
+        "nl": '+ Rij',
+        "fr": '+ Ligne',
+        "de": '+ Zeile',
+    },
+    "vidensbank.modal.table.delete_col": {
+        "en": 'Delete column',
+        "da": 'Slet kolonne',
+        "nl": 'Kolom verwijderen',
+        "fr": 'Supprimer la colonne',
+        "de": 'Spalte löschen',
+    },
+    "vidensbank.modal.table.delete_row": {
+        "en": 'Delete row',
+        "da": 'Slet række',
+        "nl": 'Rij verwijderen',
+        "fr": 'Supprimer la ligne',
+        "de": 'Zeile löschen',
+    },
+    "vidensbank.modal.table.delete_table": {
+        "en": 'Delete table',
+        "da": 'Slet tabel',
+        "nl": 'Tabel verwijderen',
+        "fr": 'Supprimer le tableau',
+        "de": 'Tabelle löschen',
+    },
+    "vidensbank.modal.table.delete_table_title": {
+        "en": 'DELETE ENTIRE TABLE',
+        "da": 'SLET HELE TABELLEN',
+        "nl": 'VERWIJDER HELE TABEL',
+        "fr": 'SUPPRIMER TOUT LE TABLEAU',
+        "de": 'GANZE TABELLE LÖSCHEN',
+    },
+    "vidensbank.modal.table.insert_col_right": {
+        "en": 'Insert column right',
+        "da": 'Indsæt kolonne til højre',
+        "nl": 'Kolom rechts invoegen',
+        "fr": 'Insérer une colonne à droite',
+        "de": 'Spalte rechts einfügen',
+    },
+    "vidensbank.modal.table.insert_row_below": {
+        "en": 'Insert row below',
+        "da": 'Indsæt række under',
+        "nl": 'Rij hieronder invoegen',
+        "fr": 'Insérer une ligne en dessous',
+        "de": 'Zeile unten einfügen',
+    },
+    "vidensbank.modal.table.remove_col": {
+        "en": '- Column',
+        "da": '- Kolonne',
+        "nl": '- Kolom',
+        "fr": '- Colonne',
+        "de": '- Spalte',
+    },
+    "vidensbank.modal.table.remove_row": {
+        "en": '- Row',
+        "da": '- Række',
+        "nl": '- Rij',
+        "fr": '- Ligne',
+        "de": '- Zeile',
+    },
+    "vidensbank.modal.table_tools": {
+        "en": 'Table tools:',
+        "da": 'Tabel værktøj:',
+        "nl": 'Tabel hulpmiddelen:',
+        "fr": 'Outils de tableau :',
+        "de": 'Tabellenwerkzeuge:',
+    },
+    "vidensbank.modal.title_placeholder": {
+        "en": 'Enter a descriptive title...',
+        "da": 'Indtast en sigende titel...',
+        "nl": 'Voer een beschrijvende titel in...',
+        "fr": 'Entrez un titre descriptif...',
+        "de": 'Geben Sie einen aussagekräftigen Titel ein...',
+    },
+    "vidensbank.modal_delete_button": {
+        "en": 'Delete (move to trash)',
+        "da": 'Slet (flyt til papirkurv)',
+        "nl": 'Verwijderen (prullenbak)',
+        "fr": 'Supprimer (corbeille)',
+        "de": 'Löschen (Papierkorb)',
+    },
+    "vidensbank.modal_delete_confirm": {
+        "en": 'Are you sure you want to delete "{{title}}"? It will be moved to the trash and can be restored by an administrator.',
+        "da": 'Er du sikker på at du vil slette "{{title}}"? Den vil blive flyttet til papirkurven og kan gendannes af en administrator.',
         "nl": 'Weet u zeker dat u "{{title}}" wilt verwijderen? Het wordt naar de prullenbak verplaatst.',
         "fr": 'Êtes-vous sûr de vouloir supprimer "{{title}}" ?',
-        "de": 'Sind Sie sicher, dass Sie "{{title}}" löschen möchten?'
+        "de": 'Sind Sie sicher, dass Sie "{{title}}" löschen möchten?',
     },
-    "delete (move to trash)": {
-        "nl": "Verwijderen (prullenbak)",
-        "fr": "Supprimer (corbeille)",
-        "de": "Löschen (Papierkorb)"
+    "vidensbank.modal_delete_title": {
+        "en": 'Move to trash',
+        "da": 'Flyt til papirkurv',
+        "nl": 'Verplaats naar prullenbak',
+        "fr": 'Déplacer dans la corbeille',
+        "de": 'In den Papierkorb verschieben',
     },
-    "setup": {
-        "nl": "Installatie",
-        "fr": "Configuration",
-        "de": "Einrichtung"
+    "vidensbank.toast_moved_to_trash": {
+        "en": 'Article is now moved to trash',
+        "da": 'Artikel er nu flyttet til papirkurven',
+        "nl": 'Artikel is verplaatst naar prullenbak',
+        "fr": "L'article est déplacé dans la corbeille",
+        "de": 'Artikel wurde in den Papierkorb verschoben',
     },
-    "overview": {
-        "nl": "Overzicht",
-        "fr": "Aperçu",
-        "de": "Übersicht"
+    "vidensbank.toast_restored": {
+        "en": 'Article restored from trash',
+        "da": 'Artikel er gendannet og flyttet fra papirkurven',
+        "nl": 'Artikel hersteld uit prullenbak',
+        "fr": "L'article est restauré de la corbeille",
+        "de": 'Artikel aus dem Papierkorb wiederhergestellt',
     },
-    "fetching your tasks...": {
-        "nl": "Taken ophalen...",
-        "fr": "Récupération de vos tâches...",
-        "de": "Aufgaben werden geladen..."
+    "vidensbank.trash": {
+        "en": 'Trash',
+        "da": 'Papirkurv',
+        "nl": 'Prullenbak',
+        "fr": 'Corbeille',
+        "de": 'Papierkorb',
     },
-    "edit time": {
-        "nl": "Tijd bewerken",
-        "fr": "Modifier le temps",
-        "de": "Zeit bearbeiten"
+    "vidensbank.trash_deleted": {
+        "en": 'Trash (Deleted)',
+        "da": 'Papirkurv (Slettede)',
+        "nl": 'Prullenbak (Verwijderd)',
+        "fr": 'Corbeille (Supprimé)',
+        "de": 'Papierkorb (Gelöscht)',
     },
-    "active": {
-        "nl": "Actief",
-        "fr": "Actif",
-        "de": "Aktiv"
+    "vidensbank.unknown_category": {
+        "en": 'Unknown category',
+        "da": 'Ukendt kategori',
+        "nl": 'Onbekende categorie',
+        "fr": 'Catégorie inconnue',
+        "de": 'Unbekannte Kategorie',
     },
-    "last registered": {
-        "nl": "Laatst geregistreerd",
-        "fr": "Dernièrement enregistré",
-        "de": "Zuletzt registriert"
+    "workspace.admin": {
+        "en": 'Admin Panel',
+        "da": 'Administrationspanel',
+        "nl": 'Beheerpaneel',
+        "fr": "Panneau d'administration",
+        "de": 'Admin-Panel',
     },
-    "ready": {
-        "nl": "Gereed",
-        "fr": "Prêt",
-        "de": "Bereit"
+    "workspace.create.error": {
+        "en": 'Could not create the workspace. Please try again.',
+        "da": 'Kunne ikke oprette arbejdsrummet. Prøv igen.',
+        "nl": 'Kon de werkruimte niet aanmaken. Probeer het opnieuw.',
+        "fr": "Impossible de créer l'espace de travail. Veuillez réessayer.",
+        "de": 'Der Arbeitsbereich konnte nicht erstellt werden. Bitte versuchen Sie es erneut.',
     },
-    "no favorites yet": {
-        "nl": "Nog geen favorieten",
-        "fr": "Aucun favori pour l'instant",
-        "de": "Noch keine Favoriten"
+    "workspace.create.placeholder": {
+        "en": 'e.g. My Company',
+        "da": 'F.eks. Min Virksomhed',
+        "nl": 'bijv. Mijn Bedrijf',
+        "fr": 'par ex. Mon Entreprise',
+        "de": 'z.B. Mein Unternehmen',
     },
-    "go to \"setup\" to add your most used task codes to your dashboard.": {
-        "nl": "Ga naar \"Installatie\" om favorieten toe te voegen.",
-        "fr": "Allez dans \"Configuration\" pour ajouter des favoris.",
-        "de": "Gehen Sie zu \"Einrichtung\", um Favoriten hinzuzufügen."
+    "workspace.create.submit": {
+        "en": 'Create workspace',
+        "da": 'Opret arbejdsrum',
+        "nl": 'Werkruimte aanmaken',
+        "fr": "Créer l'espace de travail",
+        "de": 'Arbeitsbereich erstellen',
     },
-    "setup now": {
-        "nl": "NU INSTALLEREN",
-        "fr": "CONFIGURER MAINTENANT",
-        "de": "JETZT EINRICHTEN"
+    "workspace.create.subtitle": {
+        "en": 'Enter the name of your new company or group.',
+        "da": 'Indtast navnet på din nye virksomhed eller gruppe.',
+        "nl": 'Voer de naam in van uw nieuwe bedrijf of groep.',
+        "fr": 'Entrez le nom de votre nouvelle entreprise ou groupe.',
+        "de": 'Geben Sie den Namen Ihres neuen Unternehmens oder Ihrer Gruppe ein.',
     },
-    "all task codes": {
-        "nl": "Alle taakcodes",
-        "fr": "Tous les codes de tâche",
-        "de": "Alle Aufgabencodes"
+    "workspace.help.members_desc": {
+        "en": 'Employees who have access to the workspace and can be assigned to roles/teams. A member can belong to different teams or organizations.',
+        "da": 'Medarbejdere, som har adgang til arbejdsrummet og kan tildeles roller og teams. Et medlem kan høre til forskellige teams eller organisationer.',
+        "nl": 'Medewerkers die toegang hebben tot de werkruimte en aan rollen/teams kunnen worden toegewezen. Een lid kan bij verschillende teams of organisaties horen.',
+        "fr": "Collaborateurs ayant accès à l'espace de travail et pouvant être affectés à des rôles/équipes. Un membre peut appartenir à plusieurs équipes ou organisations.",
+        "de": 'Mitarbeiter, die Zugriff auf den Arbeitsbereich haben und Rollen/Teams zugewiesen werden können. Ein Mitglied kann verschiedenen Teams oder Organisationen angehören.',
     },
-    "search codes...": {
-        "nl": "Zoek codes...",
-        "fr": "Rechercher des codes...",
-        "de": "Codes suchen..."
+    "workspace.help.members_label": {
+        "en": 'Members:',
+        "da": 'Medlemmer:',
+        "nl": 'Leden:',
+        "fr": 'Membres :',
+        "de": 'Mitglieder:',
     },
-    "my favorites (dashboard)": {
-        "nl": "Mijn favorieten",
-        "fr": "Mes favoris",
-        "de": "Meine Favoriten"
+    "workspace.help.teams_desc": {
+        "en": 'Internal departments or workgroups within the workspace (e.g., Sales, Dev).',
+        "da": 'Interne afdelinger eller arbejdsgrupper i arbejdsrummet (f.eks. Udvikling, Salg).',
+        "nl": 'Interne afdelingen of werkgroepen binnen de werkruimte (bijv. Verkoop, Ontwikkeling).',
+        "fr": "Départements ou groupes de travail internes à l'espace (ex. Ventes, Dév).",
+        "de": 'Interne Abteilungen oder Arbeitsgruppen im Arbeitsbereich (z.B. Vertrieb, Entwicklung).',
     },
-    "drag codes to change the sorting order on your dashboard.": {
-        "nl": "Sleep codes om de volgorde te wijzigen.",
-        "fr": "Faites glisser les codes pour modifier l'ordre.",
-        "de": "Verschieben Sie Codes, um die Sortierung zu ändern."
+    "workspace.help.teams_label": {
+        "en": 'Teams:',
+        "da": 'Teams:',
+        "nl": 'Teams:',
+        "fr": 'Équipes :',
+        "de": 'Teams:',
     },
-    "give the task a name...": {
-        "nl": "Geef de taak een naam...",
-        "fr": "Donnez un nom à la tâche...",
-        "de": "Geben Sie der Aufgabe einen Namen..."
+    "workspace.help.title": {
+        "en": 'Understand the structure',
+        "da": 'Forstå opbygningen',
+        "nl": 'Begrijp de structuur',
+        "fr": 'Comprendre la structure',
+        "de": 'Struktur verstehen',
     },
-    "add codes from the left side": {
-        "nl": "Voeg codes toe vanaf de linkerkant",
-        "fr": "Ajoutez des codes à partir de la gauche",
-        "de": "Fügen Sie Codes von der linken Seite hinzu"
+    "workspace.help.workspace_desc": {
+        "en": 'The top-level for the organization. All data is isolated per workspace.',
+        "da": 'Det overordnede niveau for virksomheden. Data er 100% adskilt mellem arbejdsrum.',
+        "nl": 'Het hoogste niveau voor de organisatie. Gegevens zijn per werkruimte geïsoleerd.',
+        "fr": "Le niveau supérieur pour l'organisation. Les données sont isolées par espace.",
+        "de": 'Die oberste Ebene für das Unternehmen. Daten sind pro Arbeitsbereich isoliert.',
     },
-    "weekly overview": {
-        "nl": "WEKELIJKS OVERZICHT",
-        "fr": "APERÇU HEBDOMADAIRE",
-        "de": "WÖCHENTLICHE ÜBERSICHT"
+    "workspace.help.workspace_label": {
+        "en": 'Workspace:',
+        "da": 'Arbejdsrum:',
+        "nl": 'Werkruimte:',
+        "fr": 'Espace de travail :',
+        "de": 'Arbeitsbereich:',
     },
-    "period": {
-        "nl": "PERIODE",
-        "fr": "PÉRIODE",
-        "de": "ZEITRAUM"
+    "workspace.remove_member": {
+        "en": 'Remove Member',
+        "da": 'Fjern Medlem',
+        "nl": 'Lid verwijderen',
+        "fr": 'Retirer le membre',
+        "de": 'Mitglied entfernen',
     },
-    "export csv": {
-        "nl": "CSV EXPORTEREN",
-        "fr": "EXPORTER CSV",
-        "de": "CSV EXPORTIEREN"
+    "workspace.settings": {
+        "en": 'Workspace Settings',
+        "da": 'Indstillinger',
+        "nl": 'Werkruimte-instellingen',
+        "fr": "Paramètres de l'espace",
+        "de": 'Arbeitsbereichs-Einstellungen',
     },
-    "date": {
-        "nl": "Datum",
-        "fr": "Date",
-        "de": "Datum"
+    "workspace.switch": {
+        "en": 'Switch Workspace',
+        "da": 'Skift Arbejdsrum',
+        "nl": 'Wisselen af werkruimte',
+        "fr": "Changer d'espace",
+        "de": 'Arbeitsbereich wechseln',
     },
-    "time": {
-        "nl": "Tijd",
-        "fr": "Temps",
-        "de": "Zeit"
+    "settings.account.title": {
+        "en": "Account Settings",
+        "da": "Kontoindstillinger",
+        "nl": "Accountinstellingen",
+        "fr": "Parametres du compte",
+        "de": "Kontoeinstellungen",
     },
-    "code": {
-        "nl": "Code",
-        "fr": "Code",
-        "de": "Code"
+    "settings.account.subtitle": {
+        "en": "Manage your personal profile and security settings",
+        "da": "Administrer din personlige profil og sikkerhedsindstillinger",
+        "nl": "Beheer uw persoonlijke profiel- en beveiligingsinstellingen",
+        "fr": "Gerez votre profil personnel et vos parametres de securite",
+        "de": "Verwalten Sie Ihr personliches Profil und Ihre Sicherheitseinstellungen",
     },
-    "action": {
-        "nl": "Actie",
-        "fr": "Action",
-        "de": "Aktion"
+    "settings.tab.account_profile": {
+        "en": "My Account",
+        "da": "Min konto",
+        "nl": "Mijn account",
+        "fr": "Mon compte",
+        "de": "Mein Konto",
     },
-    "group": {
-        "nl": "Groep",
-        "fr": "Groupe",
-        "de": "Gruppe"
+    "settings.tab.account_security": {
+        "en": "Security",
+        "da": "Sikkerhed",
+        "nl": "Beveiliging",
+        "fr": "Securite",
+        "de": "Sicherheit",
     },
-    "mon": {
-        "nl": "Ma",
-        "fr": "Lun",
-        "de": "Mo"
+    "settings.profile.firstname_label": {
+        "en": "First Name",
+        "da": "Fornavn",
+        "nl": "Voornaam",
+        "fr": "Prenom",
+        "de": "Vorname",
     },
-    "tue": {
-        "nl": "Di",
-        "fr": "Mar",
-        "de": "Di"
+    "settings.profile.lastname_label": {
+        "en": "Last Name",
+        "da": "Efternavn",
+        "nl": "Achternaam",
+        "fr": "Nom de famille",
+        "de": "Nachname",
     },
-    "wed": {
-        "nl": "Wo",
-        "fr": "Mer",
-        "de": "Mi"
+    "settings.profile.email_label": {
+        "en": "Email Address",
+        "da": "E-mailadresse",
+        "nl": "E-mailadres",
+        "fr": "Adresse e-mail",
+        "de": "E-Mail-Adresse",
     },
-    "thu": {
-        "nl": "Do",
-        "fr": "Jeu",
-        "de": "Do"
+    "settings.security.new_password": {
+        "en": "New Password",
+        "da": "Nyt password",
+        "nl": "Nieuw wachtwoord",
+        "fr": "Nouveau mot de passe",
+        "de": "Neues Passwort",
     },
-    "fri": {
-        "nl": "Vr",
-        "fr": "Ven",
-        "de": "Fr"
+    "settings.security.confirm_password": {
+        "en": "Confirm New Password",
+        "da": "Bekræft nyt password",
+        "nl": "Bevestig nieuw wachtwoord",
+        "fr": "Confirmer le nouveau mot de passe",
+        "de": "Neues Passwort bestatigen",
     },
-    "sat": {
-        "nl": "Za",
-        "fr": "Sam",
-        "de": "Sa"
+    "settings.security.update": {
+        "en": "Update Password",
+        "da": "Opdater password",
+        "nl": "Wachtwoord bijwerken",
+        "fr": "Mettre a jour le mot de passe",
+        "de": "Passwort aktualisieren",
     },
-    "sun": {
-        "nl": "Zo",
-        "fr": "Dim",
-        "de": "So"
+    "settings.security.updated": {
+        "en": "Password Updated!",
+        "da": "Password opdateret!",
+        "nl": "Wachtwoord bijgewerkt!",
+        "fr": "Mot de passe mis a jour !",
+        "de": "Passwort aktualisiert!",
     },
-    "total": {
-        "nl": "Totaal",
-        "fr": "Total",
-        "de": "Gesamt"
+    "settings.security.password_mismatch": {
+        "en": "Passwords do not match.",
+        "da": "Adgangskoderne er ikke ens.",
+        "nl": "Wachtwoorden komen niet overeen.",
+        "fr": "Les mots de passe ne correspondent pas.",
+        "de": "Passworter stimmen nicht uberein.",
     },
-    "no registrations found for this period": {
-        "nl": "Geen registraties gevonden voor deze periode",
-        "fr": "Aucune inscription trouvée pour cette période",
-        "de": "Keine Registrierungen für diesen Zeitraum gefunden"
+    "settings.workspace.modal_title": {
+        "en": "Settings for",
+        "da": "Indstillinger for",
+        "nl": "Instellingen voor",
+        "fr": "Parametres pour",
+        "de": "Einstellungen fur",
     },
-    "no data for this week": {
-        "nl": "Geen gegevens voor deze week",
-        "fr": "Aucune donnée pour cette semaine",
-        "de": "Keine Daten für diese Woche"
+    "settings.tab.profile_short": {
+        "en": "My Profile",
+        "da": "Min profil",
+        "nl": "Mijn profiel",
+        "fr": "Mon profil",
+        "de": "Mein Profil",
     },
-    "weekly total:": {
-        "nl": "Wekelijks Totaal:",
-        "fr": "Total hebdomadaire :",
-        "de": "Wöchentliche Summe:"
+    "settings.tab.workspace_short": {
+        "en": "Workspace",
+        "da": "Arbejdsrum",
+        "nl": "Werkruimte",
+        "fr": "Espace",
+        "de": "Arbeitsbereich",
     },
-    "board": {
-        "nl": "Bord",
-        "fr": "Tableau",
-        "de": "Board"
+    "settings.tab.invitations_short": {
+        "en": "Invitations",
+        "da": "Invitationer",
+        "nl": "Uitnodigingen",
+        "fr": "Invitations",
+        "de": "Einladungen",
     },
-    "development and bug fixes": {
-        "nl": "Ontwikkeling en bugfixes",
-        "fr": "Développement et corrections de bugs",
-        "de": "Entwicklung und Bugfixes"
+    "settings.workspace.title": {
+        "en": "Workspace Settings",
+        "da": "Arbejdsrum indstillinger",
+        "nl": "Werkruimte-instellingen",
+        "fr": "Parametres de l'espace",
+        "de": "Arbeitsbereichs-Einstellungen",
     },
-    "all assignees": {
-        "nl": "Alle toegewiesenen",
-        "fr": "Tous les responsables",
-        "de": "Alle Zuständigen"
+    "settings.workspace.name_label": {
+        "en": "Workspace Name",
+        "da": "Arbejdsrum navn",
+        "nl": "Werkruimte naam",
+        "fr": "Nom de l'espace",
+        "de": "Name des Arbeitsbereichs",
     },
-    "new task": {
-        "nl": "Nieuwe taak",
-        "fr": "Nouvelle tâche",
-        "de": "Neue Aufgabe"
+    "settings.workspace.update": {
+        "en": "Update workspace",
+        "da": "Opdater arbejdsrum",
+        "nl": "Werkruimte bijwerken",
+        "fr": "Mettre a jour l'espace",
+        "de": "Arbeitsbereich aktualisieren",
     },
-    "backlog": {
-        "nl": "Backlog",
-        "fr": "Backlog",
-        "de": "Backlog"
+    "settings.workspace.updated": {
+        "en": "Updated!",
+        "da": "Opdateret!",
+        "nl": "Bijgewerkt!",
+        "fr": "Mis a jour !",
+        "de": "Aktualisiert!",
     },
-    "ready to start": {
-        "nl": "Klaar om te starten",
-        "fr": "Prêt à démarrer",
-        "de": "Bereit zum Starten"
+    "settings.workspace.button_tooltip": {
+        "en": "Workspace settings",
+        "da": "Arbejdsrum indstillinger",
+        "nl": "Werkruimte-instellingen",
+        "fr": "Parametres de l'espace",
+        "de": "Arbeitsbereichs-Einstellungen",
     },
-    "in progress": {
-        "nl": "In uitvoering",
-        "fr": "En cours",
-        "de": "In Bearbeitung"
+    "settings.workspace.administrators": {
+        "en": "Administrators",
+        "da": "Administratorer",
+        "nl": "Beheerders",
+        "fr": "Administrateurs",
+        "de": "Administratoren",
     },
-    "testing": {
-        "nl": "Testen",
-        "fr": "En test",
-        "de": "Testen"
+    "settings.workspace.manage_members_link": {
+        "en": "Manage members & teams",
+        "da": "Administrer medlemmer & teams",
+        "nl": "Leden & teams beheren",
+        "fr": "Gerer les membres & equipes",
+        "de": "Mitglieder & Teams verwalten",
     },
-    "done": {
-        "nl": "Klaar",
-        "fr": "Terminé",
-        "de": "Erledigt"
+    "login.workspace.first_time_explanation": {
+        "en": "To start, we need a workspace for you. Below, we've already pre-filled a personal name for your first workspace, which you can customize now (or rename at any time later).",
+        "da": "For at komme i gang skal du bruge et arbejdsrum. Nedenfor har vi forudfyldt et personligt navn til dit forste arbejdsrum, som du kan tilpasse nu (eller omdøbe nar som helst senere).",
+        "nl": "Om te beginnen hebben we een werkruimte voor je nodig. Hieronder hebben we alvast een persoonlijke naam ingevuld, maar je kunt deze nu aanpassen (of later op elk moment wijzigen).",
+        "fr": "Pour commencer, nous avons besoin d'un espace de travail. Ci-dessous, nous avons pre-rempli un nom personnel pour votre premier espace, que vous pouvez personnaliser maintenant (ou renommer a tout moment plus tard).",
+        "de": "Um zu beginnen, benotigen wir einen Arbeitsbereich fur Sie. Unten haben wir bereits einen personlichen Namen fur Ihren ersten Arbeitsbereich vorausgefullt, den Sie jetzt anpassen (oder später jederzeit umbenennen) konnen.",
     },
-    "on hold": {
-        "nl": "On Hold",
-        "fr": "En attente",
-        "de": "Ausgesetzt"
-    },
-    "hide on hold": {
-        "nl": "On Hold verbergen",
-        "fr": "Masquer en attente",
-        "de": "Ausgesetzt ausblenden"
-    },
-    "show on hold": {
-        "nl": "On Hold tonen",
-        "fr": "Afficher en attente",
-        "de": "Ausgesetzt anzeigen"
-    },
-    "users": {
-        "nl": "Gebruikers",
-        "fr": "Utilisateurs",
-        "de": "Benutzer"
-    },
-    "teams": {
-        "nl": "Teams",
-        "fr": "Équipes",
-        "de": "Teams"
-    },
-    "log out": {
-        "nl": "Uitloggen",
-        "fr": "Se déconnecter",
-        "de": "Abmelden"
-    },
-    "administrator": {
-        "nl": "Beheerder",
-        "fr": "Administrateur",
-        "de": "Administrator"
-    },
-    "superuser": {
-        "nl": "Supergebruiker",
-        "fr": "Superutilisateur",
-        "de": "Superuser"
-    },
-    "member": {
-        "nl": "Lid",
-        "fr": "Membre",
-        "de": "Mitglied"
-    },
-    "loading...": {
-        "nl": "Laden...",
-        "fr": "Chargement...",
-        "de": "Laden..."
-    },
-    "an error occurred": {
-        "nl": "Er is een fout opgetreden",
-        "fr": "Une erreur est survenue",
-        "de": "Ein Fehler ist aufgetreten"
-    }
 }
 
 count = 0
+
+# 1. Update/Create all keys defined in translation_map
+for key, match in translation_map.items():
+    try:
+        obj, created = UITranslation.objects.get_or_create(key=key)
+        if "en" in match: obj.en = match["en"]
+        if "da" in match: obj.da = match["da"]
+        if "nl" in match: obj.nl = match["nl"]
+        if "fr" in match: obj.fr = match["fr"]
+        if "de" in match: obj.de = match["de"]
+        obj.save()
+        count += 1
+    except Exception as e:
+        print(f"Error on key: {repr(key)}: {e}")
+
+# 2. For other existing database records, apply fallback mapping from translation_map
 for obj in UITranslation.objects.all():
-    en_val = obj.en.strip().lower()
-    
-    # Try direct match
-    match = translation_map.get(en_val)
-    
-    # Try exact string match if not lowercased
-    if not match:
-        for k, v in translation_map.items():
-            if k == en_val:
-                match = v
-                break
-                
+    if obj.key in translation_map:
+        continue
+        
+    match = translation_map.get(obj.en.strip().lower())
     if match:
-        obj.nl = match["nl"]
-        obj.fr = match["fr"]
-        obj.de = match["de"]
+        if "en" in match: obj.en = match["en"]
+        if "da" in match: obj.da = match["da"]
+        if "nl" in match: obj.nl = match["nl"]
+        if "fr" in match: obj.fr = match["fr"]
+        if "de" in match: obj.de = match["de"]
         obj.save()
         count += 1
 
-print(f"Automatically translated {count} database records into Nederlands, Français, and Deutsch.")
+print(f"Automatically translated {count} database records into English, Dansk, Nederlands, Français, and Deutsch.")

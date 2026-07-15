@@ -23,7 +23,7 @@ const ForgotPasswordPage: React.FC = () => {
             setSuccess(true);
         } catch (err: any) {
             console.error("Password reset error:", err);
-            setError(err.data?.error || t('login.error.default', 'Der skete en fejl. Prøv igen.'));
+            setError(err.data?.error || t('login.error.default', 'Email or password is incorrect'));
         } finally {
             setLoading(false);
         }
@@ -37,17 +37,17 @@ const ForgotPasswordPage: React.FC = () => {
                         <CheckCircle2 size={40} />
                     </div>
                     <h1 className="text-3xl font-black text-gray-900 mb-4 tracking-tight">
-                        {t('password_reset.request.success_title', 'E-mail sendt!')}
+                        {t('password_reset.request.success_title', 'Email Sent!')}
                     </h1>
                     <p className="text-gray-600 mb-8 font-medium leading-relaxed">
-                        {t('password_reset.request.success_desc', 'Hvis denne e-mail er registreret i vores system, vil du modtage instruktioner inden længe.')}
+                        {t('password_reset.request.success_desc', 'If this email is registered in our system, you will receive instructions shortly.')}
                     </p>
                     <Link 
                         to="/login" 
                         className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white py-3.5 px-6 rounded-2xl font-black text-sm hover:bg-blue-700 active:scale-[0.98] transition-all hover:shadow-2xl hover:shadow-blue-200"
                     >
                         <ArrowLeft size={16} />
-                        {t('request_workspace.back_to_login', 'Tilbage til login')}
+                        {t('request_workspace.back_to_login', 'Back to login')}
                     </Link>
                 </div>
             </div>
@@ -69,10 +69,10 @@ const ForgotPasswordPage: React.FC = () => {
                         <Mail size={28} />
                     </div>
                     <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">
-                        {t('password_reset.request.title', 'Nulstil adgangskode')}
+                        {t('password_reset.request.title', 'Reset Password')}
                     </h1>
                     <p className="text-sm text-gray-500 font-medium max-w-xs mx-auto">
-                        {t('password_reset.request.desc', 'Indtast din e-mailadresse, og vi vil sende dig et link til at nulstille din adgangskode.')}
+                        {t('password_reset.request.desc', 'Enter your email address and we will send you a link to reset your password.')}
                     </p>
                 </div>
 
@@ -106,14 +106,14 @@ const ForgotPasswordPage: React.FC = () => {
                             disabled={loading || !email}
                             className="w-full bg-blue-600 text-white py-3 rounded-2xl font-black text-base flex items-center justify-center gap-3 hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-200 active:scale-[0.98] transition-all disabled:opacity-50 mt-2"
                         >
-                            {loading ? <Loader2 className="animate-spin" size={20} /> : t('password_reset.request.button', 'Send nulstillingslink')}
+                            {loading ? <Loader2 className="animate-spin" size={20} /> : t('password_reset.request.button', 'Send Reset Link')}
                         </button>
                     </form>
 
                     <div className="mt-4 border-t border-gray-100 pt-4 text-center">
                         <Link to="/login" className="text-gray-400 font-bold text-xs uppercase tracking-wider hover:text-blue-600 transition-colors inline-flex items-center gap-2">
                             <ArrowLeft size={14} />
-                            {t('request_workspace.back_to_login', 'Tilbage til login')}
+                            {t('request_workspace.back_to_login', 'Back to login')}
                         </Link>
                     </div>
                 </div>

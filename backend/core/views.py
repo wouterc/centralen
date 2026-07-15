@@ -462,13 +462,19 @@ def accept_invitation(request, token):
             'user_id': user.id,
             'company_id': str(inv.company.id)
         })
-    
-    return Response(results[:30])
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_translations_view(request):
-    lang = request.query_params.get('lang', 'da')
+    lang = request.query_params.get('lang', 'en')
+    
+    # Strip potential region tag (e.g. 'en-US' -> 'en')
+    if lang:
+        lang = lang.split('-')[0].lower()
+    
+    # Ensure lang is one of the supported columns
+    if lang not in ('en', 'da', 'nl', 'fr', 'de'):
+        lang = 'en'
+
     translations = UITranslation.objects.all()
     
     data = {}
@@ -620,7 +626,11 @@ def register_user(request):
     user.save()
 
     # Save preferred language on the profile
-    language = request.data.get('language', 'da').strip().lower()
+    raw_lang = request.data.get('language', 'da').strip().lower()
+    language = raw_lang.split('-')[0] if raw_lang else 'da'
+    if language not in ('en', 'da', 'nl', 'fr', 'de'):
+        language = 'da'
+
     if hasattr(user, 'profile'):
         user.profile.language = language
         user.profile.save()
@@ -740,14 +750,28 @@ def resend_activation_view(request):
 def _create_default_workspace(user):
     lang = getattr(user, 'profile', None).language if hasattr(user, 'profile') else 'da'
     
-    names = {
-        'da': 'Mit Lab',
-        'en': 'My Lab',
-        'nl': 'Mijn Lab',
-        'fr': 'Mon Lab',
-        'de': 'Mein Lab'
-    }
-    company_name = names.get(lang, 'Mit Lab')
+    # Capitalize user's first name or username
+    raw_name = (user.first_name or "").strip() or user.username
+    name = raw_name[0].upper() + raw_name[1:] if raw_name else "User"
+
+    if name.lower().endswith(('s', 'x', 'z')):
+        names = {
+            'da': f"{name}' Lab",
+            'en': f"{name}'s Lab",
+            'nl': f"{name}' Lab",
+            'fr': f"Lab de {name}",
+            'de': f"{name}' Lab"
+        }
+    else:
+        names = {
+            'da': f"{name}s Lab",
+            'en': f"{name}'s Lab",
+            'nl': f"{name}s Lab",
+            'fr': f"Lab de {name}",
+            'de': f"{name}s Lab"
+        }
+        
+    company_name = names.get(lang, f"{name}s Lab")
 
     # 1. Create company
     company = Company.objects.create(navn=company_name)
@@ -791,7 +815,6 @@ def activate_user(request, token):
     if not user.is_active:
         user.is_active = True
         user.save()
-        _create_default_workspace(user)
 
     # Log user in
     login(request, user, backend='django.contrib.auth.backends.ModelBackend')

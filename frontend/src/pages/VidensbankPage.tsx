@@ -666,7 +666,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                     <button
                                         onClick={handleCategorySettingsClick}
                                         className="p-1 text-gray-400 hover:text-gray-600 rounded hover:bg-gray-100 transition-colors"
-                                        title={t('kb.manage_categories', 'Administrer kategorier')}
+                                        title={t('kb.manage_categories', 'Manage categories')}
                                     >
                                         <Settings size={14} />
                                     </button>
@@ -677,7 +677,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                         <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
                                         <input
                                             type="text"
-                                            placeholder={t('kb.category_search', 'Søg kategori...')}
+                                            placeholder={t('kb.category_search', 'Search category...')}
                                             value={categorySearchTerm}
                                             onChange={(e) => setCategorySearchTerm(e.target.value)}
                                             className="w-full pl-8 pr-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs outline-none focus:ring-1 focus:ring-blue-500/20 focus:border-blue-500 text-gray-700"
@@ -923,16 +923,16 @@ const VidensbankCategoryInfoModal: React.FC<CategoryInfoModalProps> = ({ isOpen,
                     <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                         <Lock size={24} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('kb.manage_categories', 'Administrer kategorier')}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('kb.manage_categories', 'Manage categories')}</h3>
                     <p className="text-sm text-gray-500 mb-6">
-                        {t('kb.only_admins_categories', 'Kun administratorer har tilladelse til at oprette, redigere eller slette kategorier.')}
+                        {t('kb.only_admins_categories', 'Only administrators can create, edit, or delete categories.')}
                     </p>
                 </div>
                 
                 <div className="border-t border-gray-100 pt-4 flex-1 overflow-y-auto min-h-0">
-                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('kb.contact_admin', 'Kontakt en administrator')}</h4>
+                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('kb.contact_admin', 'Contact an administrator')}</h4>
                     {admins.length === 0 ? (
-                        <p className="text-sm text-gray-500 italic text-center">{t('kb.no_admins_found', 'Ingen administratorer fundet.')}</p>
+                        <p className="text-sm text-gray-500 italic text-center">{t('kb.no_admins_found', 'No administrators found.')}</p>
                     ) : (
                         <ul className="space-y-3 max-h-[40vh] overflow-y-auto pr-1">
                             {admins.map((admin, idx) => (
@@ -953,7 +953,7 @@ const VidensbankCategoryInfoModal: React.FC<CategoryInfoModalProps> = ({ isOpen,
                     onClick={onClose}
                     className="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all"
                 >
-                    {t('common.close', 'Luk')}
+                    {t('common.close', 'Close')}
                 </button>
             </div>
         </div>
@@ -1042,7 +1042,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!navn.trim()) {
-            showToast(t('kb.fill_category_name', 'Udfyld venligst kategoriens navn'), "info");
+            showToast(t('kb.fill_category_name', 'Please fill in the category name'), "info");
             return;
         }
         setSubmitting(true);
@@ -1053,20 +1053,20 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                     farve,
                     er_privat: erPrivat
                 });
-                showToast(t('kb.category_updated', 'Kategori opdateret succesfuldt'), "success");
+                showToast(t('kb.category_updated', 'Category updated successfully'), "success");
             } else {
                 await api.post('/vidensbank/kategorier/', {
                     navn,
                     farve,
                     er_privat: erPrivat
                 });
-                showToast(t('kb.category_created', 'Kategori oprettet succesfuldt'), "success");
+                showToast(t('kb.category_created', 'Category created successfully'), "success");
             }
             onRefresh();
             resetForm();
         } catch (error) {
             console.error("Kunne ikke gemme kategori", error);
-            showToast(t('kb.category_save_error', 'Fejl ved gemning af kategori'), "error");
+            showToast(t('kb.category_save_error', 'Error saving category'), "error");
         } finally {
             setSubmitting(false);
         }
@@ -1077,7 +1077,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
         
         // If it has articles, check if reassignToId is chosen
         if (deletingKat.total_artikler_count && deletingKat.total_artikler_count > 0 && !reassignToId) {
-            showToast(t('kb.select_new_category_toast', 'Vælg venligst en ny kategori til de eksisterende artikler'), "info");
+            showToast(t('kb.select_new_category_toast', 'Please select a new category for existing articles'), "info");
             return;
         }
 
@@ -1085,12 +1085,12 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
         try {
             const config = reassignToId ? { params: { reassign_to: reassignToId } } : {};
             await api.delete(`/vidensbank/kategorier/${deletingKat.id}/`, config);
-            showToast(t('kb.category_deleted', 'Kategori slettet succesfuldt'), "success");
+            showToast(t('kb.category_deleted', 'Category deleted successfully'), "success");
             onRefresh();
             resetForm();
         } catch (error) {
             console.error("Kunne ikke slette kategori", error);
-            showToast(t('kb.category_delete_error', 'Fejl ved sletning af kategori'), "error");
+            showToast(t('kb.category_delete_error', 'Error deleting category'), "error");
         } finally {
             setSubmitting(false);
         }
@@ -1106,28 +1106,28 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                     <X size={20} />
                 </button>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">{t('kb.manage_categories', 'Administrer kategorier')}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">{t('kb.manage_categories', 'Manage categories')}</h3>
 
                 {deletingKat ? (
                     // Deletion confirmation / re-assignment interface
                     <div className="flex-1 flex flex-col min-h-0 text-left">
                         <div className="flex items-center gap-3 p-3 bg-red-50 text-red-800 rounded-xl border border-red-100 mb-4">
                             <AlertCircle size={20} className="shrink-0" />
-                            <span className="text-sm font-semibold">{t('kb.delete_category_title', 'Slet kategori: {{name}}', { name: deletingKat.navn })}</span>
+                            <span className="text-sm font-semibold">{t('kb.delete_category_title', 'Delete category: {{name}}', { name: deletingKat.navn })}</span>
                         </div>
                         
                         {deletingKat.total_artikler_count && deletingKat.total_artikler_count > 0 ? (
                             <div className="flex-1 overflow-y-auto mb-4">
                                 <p className="text-sm text-gray-600 mb-4">
-                                    {t('kb.delete_category_has_articles', 'Denne kategori indeholder {{count}} artikler. For at slette kategorien skal du vælge en anden kategori at flytte artiklerne til:', { count: deletingKat.total_artikler_count })}
+                                    {t('kb.delete_category_has_articles', 'This category contains {{count}} articles. To delete the category, you must select another category to move the articles to:', { count: deletingKat.total_artikler_count })}
                                 </p>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('kb.category_name_label', 'Vælg ny kategori')}</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('kb.category_name_label', 'Category name')}</label>
                                 <select 
                                     value={reassignToId} 
                                     onChange={(e) => setReassignToId(Number(e.target.value))}
                                     className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-700 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
                                 >
-                                    <option value="">{t('kb.select_category_placeholder', 'Vælg en kategori...')}</option>
+                                    <option value="">{t('kb.select_category_placeholder', 'Select a category...')}</option>
                                     {kategorier
                                         .filter(k => k.id !== deletingKat.id)
                                         .map(k => (
@@ -1138,7 +1138,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                             </div>
                         ) : (
                             <p className="text-sm text-gray-600 mb-6">
-                                {t('kb.delete_category_confirm', 'Er du sikker på, at du vil slette denne kategori? Denne handling kan ikke fortrydes.')}
+                                {t('kb.delete_category_confirm', 'Are you sure you want to delete this category? This action cannot be undone.')}
                             </p>
                         )}
 
@@ -1148,7 +1148,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                                 onClick={() => setDeletingKat(null)}
                                 className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition-all"
                             >
-                                {t('common.cancel', 'Annuller')}
+                                {t('common.cancel', 'Cancel')}
                             </button>
                             <button
                                 type="button"
@@ -1157,7 +1157,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                                 className="flex-1 py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                             >
                                 {submitting && <Loader2 size={16} className="animate-spin" />}
-                                {t('kb.delete_category', 'Slet kategori')}
+                                {t('kb.delete_category', 'Delete category')}
                             </button>
                         </div>
                     </div>
@@ -1166,7 +1166,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                     <form onSubmit={handleSave} className="flex-1 flex flex-col min-h-0 text-left">
                         <div className="space-y-4 flex-1 overflow-y-auto mb-4 pr-1">
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('kb.category_name_label', 'Kategoriens navn')}</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('kb.category_name_label', 'Category name')}</label>
                                 <input
                                     type="text"
                                     value={navn}
@@ -1177,7 +1177,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                             </div>
                             
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('flowchart.color', 'Farve')}</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('flowchart.color', 'Color')}</label>
                                 <div className="flex flex-wrap gap-2.5">
                                     {AVAILABLE_COLORS.map(c => (
                                         <button
@@ -1201,10 +1201,10 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                                 />
                                 <label htmlFor="erPrivatCheckbox" className="flex flex-col cursor-pointer select-none">
                                     <span className="text-sm font-semibold text-gray-800 flex items-center gap-1.5">
-                                        <Lock size={14} className="text-gray-500" /> {t('kb.private_category', 'Privat kategori')}
+                                        <Lock size={14} className="text-gray-500" /> {t('kb.private_category', 'Private category')}
                                     </span>
                                     <span className="text-xs text-gray-500 mt-0.5">
-                                        {t('kb.private_category_desc', 'Hvis markeret, kan artikler i denne kategori kun ses af opretteren.')}
+                                        {t('kb.private_category_desc', 'If checked, articles in this category can only be seen by the creator.')}
                                     </span>
                                 </label>
                             </div>
@@ -1216,7 +1216,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                                 onClick={resetForm}
                                 className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition-all"
                             >
-                                {t('common.back', 'Tilbage')}
+                                {t('common.back', 'Back')}
                             </button>
                             <button
                                 type="submit"
@@ -1224,7 +1224,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                                 className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm transition-all flex items-center justify-center gap-2"
                             >
                                 {submitting && <Loader2 size={16} className="animate-spin" />}
-                                {editingKat ? t('kb.save_changes', 'Gem ændringer') : t('kb.create_category', 'Opret kategori')}
+                                {editingKat ? t('kb.save_changes', 'Save changes') : t('kb.create_category', 'Create category')}
                             </button>
                         </div>
                     </form>
@@ -1232,18 +1232,18 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                     // List Categories view
                     <div className="flex-1 flex flex-col min-h-0 text-left">
                         <div className="flex justify-between items-center mb-3">
-                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{t('kb.existing_categories', 'Eksisterende kategorier')}</span>
+                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{t('kb.existing_categories', 'Existing categories')}</span>
                             <button
                                 onClick={() => setIsCreating(true)}
                                 className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors"
                             >
-                                <Plus size={16} /> {t('kb.create_new_category', 'Opret ny kategori')}
+                                <Plus size={16} /> {t('kb.create_new_category', 'Create new category')}
                             </button>
                         </div>
 
                         <div className="flex-1 overflow-y-auto max-h-[40vh] border border-gray-100 rounded-xl divide-y divide-gray-100 mb-6 pr-1">
                             {kategorier.length === 0 ? (
-                                <p className="p-4 text-sm text-gray-500 italic text-center">{t('kb.no_results', 'Ingen kategorier fundet.')}</p>
+                                <p className="p-4 text-sm text-gray-500 italic text-center">{t('kb.no_results', 'We found no results matching your search. Try different keywords.')}</p>
                             ) : (
                                 kategorier.map(kat => (
                                     <div key={kat.id} className="flex justify-between items-center p-3 hover:bg-gray-50 transition-colors">
@@ -1259,14 +1259,14 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                                             <button
                                                 onClick={() => setEditingKat(kat)}
                                                 className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                                                title={t('kb.edit_category', 'Rediger kategori')}
+                                                title={t('kb.edit_category', 'Edit category')}
                                             >
                                                 <Edit size={16} />
                                             </button>
                                             <button
                                                 onClick={() => setDeletingKat(kat)}
                                                 className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
-                                                title={t('kb.delete_category', 'Slet kategori')}
+                                                title={t('kb.delete_category', 'Delete category')}
                                             >
                                                 <Trash2 size={16} />
                                             </button>
@@ -1280,7 +1280,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
                             onClick={() => { onClose(); resetForm(); }}
                             className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all mt-auto"
                         >
-                            {t('common.close', 'Luk')}
+                            {t('common.close', 'Close')}
                         </button>
                     </div>
                 )}

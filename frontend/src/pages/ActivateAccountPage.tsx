@@ -52,11 +52,11 @@ const ActivateAccountPage: React.FC = () => {
                 console.error(err);
                 const code = err.data?.code;
                 const errorMessages: Record<string, string> = {
-                    activation_link_expired: t('activate.error.expired', 'Aktiveringslinket er udløbet (maks. 24 timer).'),
-                    activation_link_invalid: t('activate.error.invalid', 'Ugyldigt aktiveringslink.'),
-                    user_not_found: t('activate.error.user_not_found', 'Brugeren blev ikke fundet.'),
+                    activation_link_expired: t('activate.error.expired', 'The activation link has expired (max 24 hours).'),
+                    activation_link_invalid: t('activate.error.invalid', 'Invalid activation link.'),
+                    user_not_found: t('activate.error.user_not_found', 'User not found.'),
                 };
-                setError((code && errorMessages[code]) || t('activate.error.failed', 'Aktiveringen fejlede. Linket kan være ugyldigt eller udløbet.'));
+                setError((code && errorMessages[code]) || t('activate.error.failed', 'Activation failed. The link may be invalid or expired.'));
             } finally {
                 setLoading(false);
             }
@@ -72,7 +72,7 @@ const ActivateAccountPage: React.FC = () => {
             <div className="h-screen bg-gray-300 flex flex-col p-6 overflow-y-auto">
                 <div className="flex flex-col items-center gap-4 text-gray-800 my-auto mx-auto">
                     <Loader2 className="animate-spin text-blue-600" size={48} />
-                    <p className="font-black animate-pulse text-lg">{t('activate.loading', 'Aktiverer din konto...')}</p>
+                    <p className="font-black animate-pulse text-lg">{t('activate.loading', 'Activating your account...')}</p>
                 </div>
             </div>
         );
@@ -85,14 +85,14 @@ const ActivateAccountPage: React.FC = () => {
                     <div className="w-20 h-20 bg-red-100 text-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
                         <AlertTriangle size={40} />
                     </div>
-                    <h1 className="text-2xl font-black text-gray-900 mb-2">{t('activate.error_title', 'Aktivering mislykkedes')}</h1>
+                    <h1 className="text-2xl font-black text-gray-900 mb-2">{t('activate.error_title', 'Activation failed')}</h1>
                     <p className="text-gray-500 mb-8 font-medium">{error}</p>
                     <Link 
                         to="/login" 
                         className="inline-flex items-center gap-2 text-blue-600 font-black hover:underline"
                     >
                         <ArrowLeft size={18} />
-                        {t('activate.back_to_login', 'Gå til login')}
+                        {t('activate.back_to_login', 'Go to login')}
                     </Link>
                 </div>
             </div>

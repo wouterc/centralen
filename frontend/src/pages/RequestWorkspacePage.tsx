@@ -26,7 +26,7 @@ const RequestWorkspacePage: React.FC = () => {
             setSuccess(true);
         } catch (err: any) {
             console.error(err);
-            setError(err.message || t('common.error_generic', 'Der skete en fejl. Prøv igen senere.'));
+            setError(err.message || t('common.error_generic', 'An error occurred. Try again later.'));
         } finally {
             setLoading(false);
         }
@@ -39,16 +39,16 @@ const RequestWorkspacePage: React.FC = () => {
                     <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
                         <CheckCircle2 size={40} />
                     </div>
-                    <h1 className="text-3xl font-black text-gray-900 mb-4">{t('request_workspace.success_title', 'Forespørgsel sendt!')}</h1>
+                    <h1 className="text-3xl font-black text-gray-900 mb-4">{t('request_workspace.success_title', 'Request sent!')}</h1>
                     <p className="text-gray-600 mb-8 font-medium">
-                        {t('request_workspace.success_message', 'Vi har sendt et bekræftelseslink til {{email}}. Klik på linket i e-mailen for at færdiggøre oprettelsen af dit arbejdsrum.', { email })}
+                        {t('request_workspace.success_message', 'We have sent a verification link to {{email}}. Click the link in the email to complete creating your workspace.', { email })}
                     </p>
                     <Link 
                         to="/login" 
                         className="inline-flex items-center gap-2 text-blue-600 font-black hover:underline"
                     >
                         <ArrowLeft size={18} />
-                        {t('request_workspace.back_to_login', 'Tilbage til login')}
+                        {t('request_workspace.back_to_login', 'Back to login')}
                     </Link>
                 </div>
             </div>
@@ -65,8 +65,8 @@ const RequestWorkspacePage: React.FC = () => {
                         <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-3xl shadow-2xl mx-auto mb-3 transform rotate-6">
                             <Building2 size={28} />
                         </div>
-                        <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">{t('request_workspace.title', 'Nyt Arbejdsrum')}</h1>
-                        <p className="text-sm text-gray-500 font-medium">{t('request_workspace.subtitle', 'Start din rejse med Centralen i dag')}</p>
+                        <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">{t('request_workspace.title', 'New Workspace')}</h1>
+                        <p className="text-sm text-gray-500 font-medium">{t('request_workspace.subtitle', 'Start your journey with Centralen today')}</p>
                     </div>
 
                     <div className="bg-white/85 backdrop-blur-xl p-6 rounded-4xl shadow-2xl border border-white">
@@ -78,7 +78,7 @@ const RequestWorkspacePage: React.FC = () => {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-1">
-                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('request_workspace.email_label', 'Din E-mail')}</label>
+                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('request_workspace.email_label', 'Your Email')}</label>
                                 <div className="relative group">
                                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
                                     <input
@@ -93,7 +93,7 @@ const RequestWorkspacePage: React.FC = () => {
                             </div>
 
                             <div className="space-y-1">
-                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('request_workspace.company_name_label', 'Arbejdsrummets Navn')}</label>
+                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('request_workspace.company_name_label', 'Workspace Name')}</label>
                                 <div className="relative group">
                                     <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
                                     <input
@@ -112,14 +112,14 @@ const RequestWorkspacePage: React.FC = () => {
                                 disabled={loading || !email || !companyName}
                                 className="w-full bg-blue-600 text-white py-3 rounded-2xl font-black text-base flex items-center justify-center gap-3 hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-200 active:scale-[0.98] transition-all disabled:opacity-50 mt-2"
                             >
-                                {loading ? <Loader2 className="animate-spin" size={20} /> : t('request_workspace.continue', 'Fortsæt til bekræftelse')}
+                                {loading ? <Loader2 className="animate-spin" size={20} /> : t('request_workspace.continue', 'Continue to verification')}
                             </button>
                         </form>
 
                         <div className="mt-4 border-t border-gray-100 pt-4 flex items-center justify-between">
                             <Link to="/login" className="text-gray-400 font-bold text-xs uppercase tracking-wider hover:text-blue-600 transition-colors flex items-center gap-2">
                                 <ArrowLeft size={14} />
-                                {t('request_workspace.back_to_login', 'Tilbage til login')}
+                                {t('request_workspace.back_to_login', 'Back to login')}
                             </Link>
 
                             <button
@@ -128,7 +128,7 @@ const RequestWorkspacePage: React.FC = () => {
                                 className="flex items-center gap-2 text-xs font-black text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider cursor-pointer"
                             >
                                 <HelpCircle size={14} />
-                                {showHelp ? t('common.hide', 'Skjul') : t('common.show', 'Vis')}
+                                {showHelp ? t('common.hide', 'Hide') : t('common.show', 'Show')}
                             </button>
                         </div>
                     </div>
@@ -139,20 +139,20 @@ const RequestWorkspacePage: React.FC = () => {
                     <div className="w-full max-w-sm bg-white/90 backdrop-blur-xl p-5 rounded-4xl shadow-2xl border border-white md:self-stretch flex flex-col justify-center animate-in slide-in-from-left-4 fade-in duration-300">
                         <h4 className="font-black text-blue-700 mb-4 uppercase tracking-wider text-[11px] flex items-center gap-2 border-b border-blue-50 pb-2">
                             <HelpCircle size={16} />
-                            {t('workspace.help.title', 'Forstå opbygningen')}
+                            {t('workspace.help.title', 'Understand the structure')}
                         </h4>
                         <ul className="space-y-3 text-[11px] font-medium text-gray-600">
                             <li>
-                                <strong className="font-black text-gray-800 block mb-0.5">{t('workspace.help.workspace_label', 'Arbejdsrum:')}</strong> 
-                                <span className="text-gray-500 leading-relaxed">{t('workspace.help.workspace_desc', 'Det overordnede niveau for virksomheden. Data er 100% adskilt mellem arbejdsrum.')}</span>
+                                <strong className="font-black text-gray-800 block mb-0.5">{t('workspace.help.workspace_label', 'Workspace:')}</strong> 
+                                <span className="text-gray-500 leading-relaxed">{t('workspace.help.workspace_desc', 'The top-level for the organization. All data is isolated per workspace.')}</span>
                             </li>
                             <li>
                                 <strong className="font-black text-gray-800 block mb-0.5">{t('workspace.help.teams_label', 'Teams:')}</strong> 
-                                <span className="text-gray-500 leading-relaxed">{t('workspace.help.teams_desc', 'Interne afdelinger eller arbejdsgrupper i arbejdsrummet (f.eks. Udvikling, Salg).')}</span>
+                                <span className="text-gray-500 leading-relaxed">{t('workspace.help.teams_desc', 'Internal departments or workgroups within the workspace (e.g., Sales, Dev).')}</span>
                             </li>
                             <li>
-                                <strong className="font-black text-gray-800 block mb-0.5">{t('workspace.help.members_label', 'Medlemmer:')}</strong> 
-                                <span className="text-gray-500 leading-relaxed">{t('workspace.help.members_desc', 'Medarbejdere, som har adgang til arbejdsrummet og kan tildeles roller og teams.')}</span>
+                                <strong className="font-black text-gray-800 block mb-0.5">{t('workspace.help.members_label', 'Members:')}</strong> 
+                                <span className="text-gray-500 leading-relaxed">{t('workspace.help.members_desc', 'Employees who have access to the workspace and can be assigned to roles/teams. A member can belong to different teams or organizations.')}</span>
                             </li>
                         </ul>
                     </div>

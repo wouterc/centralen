@@ -116,7 +116,7 @@ const AarshjulPage: React.FC = () => {
                         <button
                             onClick={() => navigateMonth('prev')}
                             className="p-2 hover:bg-white hover:shadow-sm rounded-xl text-slate-600 transition-all active:scale-95"
-                            title={t('aarshjul.prev_month', 'Forrige måned')}
+                            title={t('aarshjul.prev_month', 'Previous Month')}
                         >
                             <ChevronLeft size={20} />
                         </button>
@@ -128,7 +128,7 @@ const AarshjulPage: React.FC = () => {
                         <button
                             onClick={() => navigateMonth('next')}
                             className="p-2 hover:bg-white hover:shadow-sm rounded-xl text-slate-600 transition-all active:scale-95"
-                            title={t('aarshjul.next_month', 'Næste måned')}
+                            title={t('aarshjul.next_month', 'Next Month')}
                         >
                             <ChevronRight size={20} />
                         </button>
@@ -144,7 +144,7 @@ const AarshjulPage: React.FC = () => {
                             onChange={(e) => setCurrentTeamId(Number(e.target.value))}
                             className="bg-transparent text-sm font-bold text-slate-600 outline-none cursor-pointer pr-2"
                         >
-                            <option value={0}>{t('common.all_teams', 'All teams')}</option>
+                            <option value={0}>{t('common.all_teams', 'ALL TEAMS')}</option>
                             {state.teams.map(team => (
                                 <option key={team.id} value={team.id}>{team.navn}</option>
                             ))}
@@ -159,7 +159,7 @@ const AarshjulPage: React.FC = () => {
                                 className="flex items-center gap-2 px-4 py-2 text-[11px] font-black text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-95 uppercase tracking-wider relative overflow-hidden group/undo whitespace-nowrap"
                             >
                                 <RotateCcw size={14} strokeWidth={3} className="group-hover/undo:-rotate-45 transition-transform" />
-                                {t('aarshjul.undo', 'Fortryd ({{count}})', { count: undoStack.length })}
+                                {t('aarshjul.undo', 'Undo ({{count}})', { count: undoStack.length })}
                             </button>
                         </div>
                     )}
@@ -171,12 +171,12 @@ const AarshjulPage: React.FC = () => {
                         className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-blue-600 hover:bg-blue-50 rounded-xl transition-all active:scale-95 whitespace-nowrap"
                     >
                         <Target size={16} />
-                        {t('aarshjul.today', 'I dag')}
+                        {t('aarshjul.today', 'Today')}
                     </button>
                     <button
                         onClick={() => fetchData()}
                         className={`p-2.5 rounded-xl border transition-all ${isLoading ? 'bg-blue-50 border-blue-100 text-blue-600' : 'bg-white border-slate-200 text-slate-400 hover:text-blue-600 hover:border-blue-200 hover:shadow-sm'}`}
-                        title={t('aarshjul.refresh_tooltip', 'Opdater data')}
+                        title={t('aarshjul.refresh_tooltip', 'Refresh data')}
                     >
                         <RefreshCw size={20} className={isLoading ? 'animate-spin' : ''} />
                     </button>
@@ -185,7 +185,7 @@ const AarshjulPage: React.FC = () => {
                         className="flex items-center gap-3 bg-linear-to-r from-blue-600 to-blue-500 text-white px-7 py-3 rounded-[20px] font-black shadow-[0_8px_20px_-4px_rgba(37,99,235,0.4)] hover:shadow-[0_12px_24px_-4px_rgba(37,99,235,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all whitespace-nowrap"
                     >
                         <Plus size={20} strokeWidth={3} />
-                        {t('aarshjul.new_activity', 'Ny Aktivitet')}
+                        {t('aarshjul.new_activity', 'New Activity')}
                     </button>
                 </div>
             </div>
@@ -198,7 +198,7 @@ const AarshjulPage: React.FC = () => {
                             <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
                                 <div className="flex flex-col items-center gap-4">
                                     <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                                    <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">{t('aarshjul.loading', 'Henter aktiviteter...')}</p>
+                                    <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">{t('aarshjul.loading', 'Fetching activities...')}</p>
                                 </div>
                             </div>
                         ) : (

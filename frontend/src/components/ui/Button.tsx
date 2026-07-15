@@ -33,7 +33,7 @@ function Button({
       className={`${baseStyle} ${variantStyles[variant]} ${className}`}
       {...props}
     >
-      {Ikon && <Ikon size={18} className="flex-shrink-0" />}
+      {Ikon && <Ikon size={18} className="shrink-0" />}
       <span>{children}</span>
     </button>
   );

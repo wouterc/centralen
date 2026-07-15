@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, LogOut, LibraryBig, Clock, Calendar, Pin, Briefcase, Building2, ChevronRight, Check, Settings, GitBranch, Plus, Loader2 } from 'lucide-react';
+import { LayoutDashboard, Users, LogOut, LibraryBig, Clock, Calendar, Pin, Briefcase, Building2, Check, Settings, GitBranch, Plus, Loader2 } from 'lucide-react';
 import { useAppState } from '../StateContext';
 import GlobalSearch from './GlobalSearch';
 import { useTranslation } from '../services/translationService';
 import { api } from '../api';
+import WorkspaceSettingsModal from './WorkspaceSettingsModal';
+import type { WorkspaceMembership } from '../types';
 
 interface Invitation {
     id: number;
@@ -26,6 +28,7 @@ const Navigation: React.FC = () => {
     const [newWorkspaceName, setNewWorkspaceName] = React.useState('');
     const [workspaceSubmitting, setWorkspaceSubmitting] = React.useState(false);
     const [invitations, setInvitations] = React.useState<Invitation[]>([]);
+    const [settingsWorkspace, setSettingsWorkspace] = React.useState<WorkspaceMembership | null>(null);
 
     React.useEffect(() => {
         if (state.currentUser) {
@@ -83,7 +86,7 @@ const Navigation: React.FC = () => {
             navigate('/board');
         } catch (err) {
             console.error("Fejl ved oprettelse af arbejdsrum:", err);
-            alert(t('workspace.create.error', 'Kunne ikke oprette arbejdsrummet. Prøv igen.'));
+            alert(t('workspace.create.error', 'Could not create the workspace. Please try again.'));
         } finally {
             setWorkspaceSubmitting(false);
         }
@@ -108,8 +111,8 @@ const Navigation: React.FC = () => {
 
     return (
         <nav className="bg-white border-b px-6 py-0 h-14 flex items-center justify-between shadow-sm z-30">
-            <div className="flex items-center gap-8 h-full">
-                <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4 lg:gap-8 h-full flex-1 min-w-0">
+                <div className="flex items-center gap-2 shrink-0">
                     <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-lg shadow-sm">C</div>
                     <div className="flex flex-col">
                         <span className="font-black text-gray-800 tracking-tight leading-none">CENTRALEN</span>
@@ -121,91 +124,91 @@ const Navigation: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="flex gap-1 h-full">
+                <div className="flex gap-0.5 h-full flex-1 min-w-0 justify-between sm:justify-start">
                     <NavLink
                         to="/board"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <LayoutDashboard size={18} />
-                        {t('nav.board', 'Board')}
+                        <LayoutDashboard size={18} className="shrink-0" />
+                        <span>{t('nav.board', 'Board')}</span>
                     </NavLink>
                     <NavLink
                         to="/users"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <Users size={18} />
-                        {t('nav.users', 'Medlemmer')}
+                        <Users size={18} className="shrink-0" />
+                        <span>{t('nav.users', 'Users & Teams')}</span>
                     </NavLink>
                     <NavLink
                         to="/vidensbank"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <LibraryBig size={18} />
-                        {t('nav.knowledge', 'Vidensbank')}
+                        <LibraryBig size={18} className="shrink-0" />
+                        <span>{t('nav.knowledge', 'Knowledge Base')}</span>
                     </NavLink>
                     <NavLink
                         to="/tidsregistrering"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <Clock size={18} />
-                        {t('nav.time', 'Tidsregistrering')}
+                        <Clock size={18} className="shrink-0" />
+                        <span>{t('nav.time', 'Time Tracking')}</span>
                     </NavLink>
                     <NavLink
                         to="/aarshjul"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <Calendar size={18} />
-                        {t('nav.calendar', 'Årshjul')}
+                        <Calendar size={18} className="shrink-0" />
+                        <span>{t('nav.calendar', 'Annual Calendar')}</span>
                     </NavLink>
                     <NavLink
                         to="/prikbord"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <Pin size={18} />
-                        {t('nav.pinboard', 'Prikbord')}
+                        <Pin size={18} className="shrink-0" />
+                        <span>{t('nav.pinboard', 'Pinboard')}</span>
                     </NavLink>
                     <NavLink
                         to="/apps"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <Briefcase size={18} />
-                        {t('nav.apps', 'Værktøjer')}
+                        <Briefcase size={18} className="shrink-0" />
+                        <span>{t('nav.apps', 'Apps')}</span>
                     </NavLink>
                     <NavLink
                         to="/flowchart"
                         className={({ isActive }) => `
-                            flex items-center gap-2 px-4 h-full text-sm font-bold transition-all border-b-2
+                            flex flex-col xl:flex-row items-center justify-center gap-1 xl:gap-2 px-1 sm:px-2 lg:px-4 h-full text-[10px] sm:text-xs lg:text-sm font-bold transition-all border-b-2 text-center leading-tight wrap-break-word
                             ${isActive ? 'text-blue-600 border-blue-600 bg-blue-50/50' : 'text-gray-500 border-transparent hover:text-red-600 hover:bg-red-50 hover:border-red-200'}
                         `}
                     >
-                        <GitBranch size={18} />
-                        {t('nav.flowchart', 'Flowchart')}
+                        <GitBranch size={18} className="shrink-0" />
+                        <span>{t('nav.flowchart', 'Flowchart')}</span>
                     </NavLink>
                 </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0 pl-2">
                 <GlobalSearch />
 
                 {state.currentUser && (
@@ -254,32 +257,44 @@ const Navigation: React.FC = () => {
                                 <div className="p-2 border-b border-gray-50 max-h-56 overflow-y-auto">
                                     <div className="px-4 py-1.5 text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                                         <Building2 size={12} />
-                                        {t('settings.tab.workspace', 'Arbejdsrum')}
+                                        {t('settings.tab.workspace', 'Workspace')}
                                     </div>
                                     {state.currentUser.memberships?.map(mem => (
-                                        <button
+                                        <div
                                             key={mem.id}
-                                            onClick={() => {
-                                                setActiveWorkspaceId(mem.company.id);
-                                                setShowUserDropdown(false);
-                                            }}
                                             className={`
-                                                w-full flex items-center justify-between px-4 py-2 text-xs font-bold rounded-xl transition-all mb-0.5
+                                                w-full flex items-center justify-between px-4 py-2 text-xs font-bold rounded-xl transition-all mb-0.5 group
                                                 ${state.activeWorkspaceId === mem.company.id
-                                                    ? 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                                                    ? 'bg-blue-50 text-blue-600'
                                                     : 'text-gray-500 hover:text-blue-600 hover:bg-gray-50'}
                                             `}
                                         >
-                                            <div className="flex items-center gap-2">
+                                            <button
+                                                onClick={() => {
+                                                    setActiveWorkspaceId(mem.company.id);
+                                                    setShowUserDropdown(false);
+                                                }}
+                                                className="flex-1 flex items-center gap-2 text-left min-w-0"
+                                            >
                                                 <div
-                                                    className="w-2 h-2 rounded-full shadow-sm"
+                                                    className="w-2 h-2 rounded-full shadow-sm shrink-0"
                                                     style={{ backgroundColor: mem.color }}
                                                 ></div>
-                                                <span className="truncate max-w-[120px]">{mem.company.navn}</span>
-                                            </div>
-                                            {state.activeWorkspaceId === mem.company.id && <Check size={12} className="text-blue-600" />}
-                                            {state.activeWorkspaceId !== mem.company.id && <ChevronRight size={12} className="opacity-0 group-hover:opacity-100" />}
-                                        </button>
+                                                <span className="truncate max-w-[110px]">{mem.company.navn}</span>
+                                                {state.activeWorkspaceId === mem.company.id && <Check size={12} className="text-blue-600 shrink-0 ml-1" />}
+                                            </button>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setSettingsWorkspace(mem);
+                                                    setShowUserDropdown(false);
+                                                }}
+                                                className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-100 rounded-md transition-colors ml-1 shrink-0"
+                                                title={t('settings.workspace.button_tooltip', 'Workspace settings')}
+                                            >
+                                                <Settings size={13} />
+                                            </button>
+                                        </div>
                                     ))}
                                     <button
                                         onClick={() => {
@@ -289,7 +304,7 @@ const Navigation: React.FC = () => {
                                         className="w-full flex items-center gap-3 px-4 py-2 text-xs font-bold text-blue-600 hover:bg-blue-50 rounded-xl transition-all mt-1 border-t border-dashed border-gray-100 pt-2"
                                     >
                                         <Plus size={14} />
-                                        {t('navigation.workspace.create_new', 'Opret nyt arbejdsrum')}
+                                        {t('navigation.workspace.create_new', 'Create new workspace')}
                                     </button>
 
                                     {/* Pending invitations list inside dropdown */}
@@ -300,7 +315,7 @@ const Navigation: React.FC = () => {
                                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                                                 </span>
-                                                {t('navigation.invitations.title', 'Mangler godkendelse')}
+                                                {t('navigation.invitations.title', 'Pending approval')}
                                             </div>
                                             {invitations.map(inv => (
                                                 <div
@@ -315,7 +330,7 @@ const Navigation: React.FC = () => {
                                                         }}
                                                         className="px-2 py-0.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded text-[10px] font-black uppercase transition-colors cursor-pointer"
                                                     >
-                                                        {t('login.invitations.accept', 'Accepter')}
+                                                        {t('login.invitations.accept', 'Accept')}
                                                     </button>
                                                 </div>
                                             ))}
@@ -330,7 +345,7 @@ const Navigation: React.FC = () => {
                                         className="w-full flex items-center gap-3 px-4 py-3 text-sm font-bold text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all mb-1"
                                     >
                                         <Settings size={18} />
-                                        {t('nav.settings', 'Indstillinger')}
+                                        {t('nav.settings', 'Settings')}
                                     </NavLink>
                                     <button
                                         onClick={() => {
@@ -351,14 +366,14 @@ const Navigation: React.FC = () => {
             {isCreatingWorkspace && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm" onClick={() => setIsCreatingWorkspace(false)}>
                     <div className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl p-6 border border-gray-100 animate-in zoom-in-95 duration-200" onClick={e => e.stopPropagation()}>
-                        <h3 className="text-lg font-black text-gray-800 mb-2">{t('workspace.create.title', 'Opret nyt arbejdsrum')}</h3>
-                        <p className="text-xs text-gray-500 mb-4">{t('workspace.create.subtitle', 'Indtast navnet på din nye virksomhed eller gruppe.')}</p>
+                        <h3 className="text-lg font-black text-gray-800 mb-2">{t('workspace.create.title', 'Create new workspace')}</h3>
+                        <p className="text-xs text-gray-500 mb-4">{t('workspace.create.subtitle', 'Enter the name of your new company or group.')}</p>
                         
                         <input
                             type="text"
                             value={newWorkspaceName}
                             onChange={e => setNewWorkspaceName(e.target.value)}
-                            placeholder={t('workspace.create.placeholder', 'F.eks. Min Virksomhed')}
+                            placeholder={t('workspace.create.placeholder', 'e.g. My Company')}
                             className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl text-sm focus:ring-2 focus:ring-blue-500/20 outline-none transition-all mb-4 font-medium"
                             autoFocus
                         />
@@ -368,18 +383,25 @@ const Navigation: React.FC = () => {
                                 onClick={() => setIsCreatingWorkspace(false)}
                                 className="flex-1 py-3 text-xs font-bold text-gray-500 hover:bg-gray-50 border border-gray-100 rounded-2xl transition-colors"
                             >
-                                {t('common.cancel', 'Annuller')}
+                                {t('common.cancel', 'Cancel')}
                             </button>
                             <button
                                 onClick={handleCreateWorkspace}
                                 disabled={!newWorkspaceName.trim() || workspaceSubmitting}
                                 className="flex-1 py-3 text-xs font-black text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
                             >
-                                {workspaceSubmitting ? <Loader2 size={14} className="animate-spin" /> : t('workspace.create.submit', 'Opret arbejdsrum')}
+                                {workspaceSubmitting ? <Loader2 size={14} className="animate-spin" /> : t('workspace.create.submit', 'Create workspace')}
                             </button>
                         </div>
                     </div>
                 </div>
+            )}
+            {settingsWorkspace && (
+                <WorkspaceSettingsModal
+                    isOpen={settingsWorkspace !== null}
+                    onClose={() => setSettingsWorkspace(null)}
+                    membership={settingsWorkspace}
+                />
             )}
         </nav >
     );

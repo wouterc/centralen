@@ -35,9 +35,9 @@ const ResetPasswordPage: React.FC = () => {
             console.error("Password reset update error:", err);
             const errCode = err.data?.code;
             if (errCode === 'invalid_token' || errCode === 'expired_token') {
-                setError(t('password_reset.error.invalid_token', 'Nulstillingslinket er ugyldigt eller udløbet.'));
+                setError(t('password_reset.error.invalid_token', 'The password reset link is invalid or has expired.'));
             } else {
-                setError(err.data?.error || t('login.error.default', 'Der skete en fejl. Prøv igen.'));
+                setError(err.data?.error || t('login.error.default', 'Email or password is incorrect'));
             }
         } finally {
             setLoading(false);
@@ -52,16 +52,16 @@ const ResetPasswordPage: React.FC = () => {
                         <CheckCircle2 size={40} />
                     </div>
                     <h1 className="text-3xl font-black text-gray-900 mb-4 tracking-tight">
-                        {t('password_reset.reset.success_title', 'Adgangskode opdateret!')}
+                        {t('password_reset.reset.success_title', 'Password Updated!')}
                     </h1>
                     <p className="text-gray-600 mb-8 font-medium leading-relaxed">
-                        {t('password_reset.reset.success_desc', 'Din adgangskode er blevet opdateret. Du kan nu logge ind.')}
+                        {t('password_reset.reset.success_desc', 'Your password has been successfully updated. You can now log in.')}
                     </p>
                     <Link 
                         to="/login" 
                         className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white py-3.5 px-6 rounded-2xl font-black text-sm hover:bg-blue-700 active:scale-[0.98] transition-all hover:shadow-2xl hover:shadow-blue-200"
                     >
-                        <span>{t('login.button.login', 'Log ind')}</span>
+                        <span>{t('login.button.login', 'Log in')}</span>
                         <ArrowRight size={16} />
                     </Link>
                 </div>
@@ -84,10 +84,10 @@ const ResetPasswordPage: React.FC = () => {
                         <Lock size={28} />
                     </div>
                     <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">
-                        {t('password_reset.reset.title', 'Vælg ny adgangskode')}
+                        {t('password_reset.reset.title', 'Choose New Password')}
                     </h1>
                     <p className="text-sm text-gray-500 font-medium max-w-xs mx-auto">
-                        {t('password_reset.reset.desc', 'Indtast og bekræft din nye adgangskode nedenfor.')}
+                        {t('password_reset.reset.desc', 'Please enter and confirm your new password below.')}
                     </p>
                 </div>
 
@@ -102,7 +102,7 @@ const ResetPasswordPage: React.FC = () => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="space-y-1">
                             <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">
-                                {t('password_reset.reset.password_label', 'Ny adgangskode')}
+                                {t('password_reset.reset.password_label', 'New Password')}
                             </label>
                             <div className="relative group">
                                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
@@ -119,7 +119,7 @@ const ResetPasswordPage: React.FC = () => {
 
                         <div className="space-y-1">
                             <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">
-                                {t('password_reset.reset.confirm_label', 'Bekræft ny adgangskode')}
+                                {t('password_reset.reset.confirm_label', 'Confirm New Password')}
                             </label>
                             <div className="relative group">
                                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
@@ -139,7 +139,7 @@ const ResetPasswordPage: React.FC = () => {
                             disabled={loading || !password || !confirmPassword}
                             className="w-full bg-blue-600 text-white py-3 rounded-2xl font-black text-base flex items-center justify-center gap-3 hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-200 active:scale-[0.98] transition-all disabled:opacity-50 mt-2"
                         >
-                            {loading ? <Loader2 className="animate-spin" size={20} /> : t('password_reset.reset.button', 'Opdater adgangskode')}
+                            {loading ? <Loader2 className="animate-spin" size={20} /> : t('password_reset.reset.button', 'Update Password')}
                         </button>
                     </form>
                 </div>

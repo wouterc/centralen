@@ -32,7 +32,7 @@ const ConfirmWorkspacePage: React.FC = () => {
                 setRequestInfo(info);
             } catch (err: any) {
                 console.error(err);
-                setError(err.message || t('confirm.error.invalid', 'Ugyldigt eller udløbet link.'));
+                setError(err.message || t('confirm.error.invalid', 'Invalid or expired link.'));
             } finally {
                 setLoading(false);
             }
@@ -72,7 +72,7 @@ const ConfirmWorkspacePage: React.FC = () => {
             window.location.href = '/board';
         } catch (err: any) {
             console.error(err);
-            setError(err.message || t('confirm.error.create_failed', 'Kunne ikke oprette arbejdsrum. Prøv igen.'));
+            setError(err.message || t('confirm.error.create_failed', 'Could not create workspace. Try again.'));
             setSubmitting(false);
         }
     };
@@ -94,10 +94,10 @@ const ConfirmWorkspacePage: React.FC = () => {
                     <div className="w-16 h-16 bg-red-100 text-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
                         <CheckCircle2 size={32} className="rotate-45" /> 
                     </div>
-                    <h1 className="text-2xl font-black text-gray-900 mb-2">{t('common.whoops', 'Hovsa!')}</h1>
+                    <h1 className="text-2xl font-black text-gray-900 mb-2">{t('common.whoops', 'Whoops!')}</h1>
                     <p className="text-gray-500 mb-8 font-medium">{error}</p>
                     <button onClick={() => navigate('/login')} className="bg-blue-600 text-white px-8 py-3 rounded-2xl font-black transition-all hover:bg-blue-700">
-                        {t('common.back_to_login', 'Tilbage til login')}
+                        {t('common.back_to_login', 'Back to login')}
                     </button>
                 </div>
             </div>
@@ -111,8 +111,8 @@ const ConfirmWorkspacePage: React.FC = () => {
                     <div className="w-20 h-20 bg-emerald-500 rounded-2xl flex items-center justify-center text-white font-black text-4xl shadow-2xl mx-auto mb-6">
                         <CheckCircle2 size={40} />
                     </div>
-                    <h1 className="text-4xl font-black text-gray-900 tracking-tight mb-2">{t('confirm.header.title', 'Velkommen!')}</h1>
-                    <p className="text-gray-500 font-medium">{t('confirm.header.subtitle', 'Vi er næsten klar til at oprette {{name}}', { name: requestInfo.company_name })}</p>
+                    <h1 className="text-4xl font-black text-gray-900 tracking-tight mb-2">{t('confirm.header.title', 'Welcome!')}</h1>
+                    <p className="text-gray-500 font-medium">{t('confirm.header.subtitle', 'We are almost ready to create {{name}}', { name: requestInfo.company_name })}</p>
                 </div>
 
                 <div className="bg-white p-10 rounded-5xl shadow-2xl border border-gray-100">
@@ -121,7 +121,7 @@ const ConfirmWorkspacePage: React.FC = () => {
                             <Building2 size={24} />
                         </div>
                         <div>
-                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('confirm.info.workspace', 'Arbejdsrum')}</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('confirm.info.workspace', 'Workspace')}</p>
                             <p className="text-lg font-black text-gray-900 leading-none">{requestInfo.company_name}</p>
                         </div>
                         <div className="ml-auto text-right">
@@ -133,14 +133,14 @@ const ConfirmWorkspacePage: React.FC = () => {
                     <form onSubmit={handleConfirm} className="space-y-6">
                         {requestInfo.user_exists ? (
                             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl text-blue-900 font-medium">
-                                <p className="mb-2">{t('confirm.user_exists.title', 'Vi kan se, at du allerede har en konto hos os.')}</p>
-                                <p className="text-sm opacity-80">{t('confirm.user_exists.subtitle', 'Klik på knappen nedenfor for at tilføje dette nye arbejdsrum til din eksisterende profil.')}</p>
+                                <p className="mb-2">{t('confirm.user_exists.title', 'We can see that you already have an account with us.')}</p>
+                                <p className="text-sm opacity-80">{t('confirm.user_exists.subtitle', 'Click the button below to add this new workspace to your existing profile.')}</p>
                             </div>
                         ) : (
                             <>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirm.form.first_name', 'Fornavn')}</label>
+                                        <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirm.form.first_name', 'First Name')}</label>
                                         <input
                                             required
                                             type="text"
@@ -150,7 +150,7 @@ const ConfirmWorkspacePage: React.FC = () => {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirm.form.last_name', 'Efternavn')}</label>
+                                        <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirm.form.last_name', 'Last Name')}</label>
                                         <input
                                             required
                                             type="text"
@@ -161,7 +161,7 @@ const ConfirmWorkspacePage: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirm.form.password', 'Vælg en adgangskode')}</label>
+                                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('confirm.form.password', 'Choose a password')}</label>
                                     <div className="relative group">
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-indigo-600 transition-colors" size={18} />
                                         <input
@@ -170,7 +170,7 @@ const ConfirmWorkspacePage: React.FC = () => {
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
                                             className="block w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-indigo-600/10 focus:border-indigo-600 focus:bg-white transition-all font-medium"
-                                            placeholder={t('confirm.form.password_placeholder', 'Mindst 6 tegn')}
+                                            placeholder={t('confirm.form.password_placeholder', 'At least 6 characters')}
                                             minLength={6}
                                         />
                                     </div>
@@ -186,8 +186,8 @@ const ConfirmWorkspacePage: React.FC = () => {
                             {submitting ? <Loader2 className="animate-spin" /> : (
                                 <>
                                     {requestInfo.user_exists 
-                                      ? t('confirm.button.confirm_exists', 'Bekræft & Opret Arbejdsrum') 
-                                      : t('confirm.button.finish', 'Færdiggør Oprettelse')}
+                                      ? t('confirm.button.confirm_exists', 'Confirm & Create Workspace') 
+                                      : t('confirm.button.finish', 'Finish Creation')}
                                     <ChevronRight size={24} />
                                 </>
                             )}

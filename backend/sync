@@ -85,6 +85,9 @@ ssh -i "$SSH_IDENTITY" "${REMOTE_USER}@${REMOTE_HOST}" "bash -s" <<EOF
     echo "Running database migrations..."
     python manage.py migrate --noinput
 
+    echo "Running translation synchronization..."
+    python auto_translate_all.py || echo "Warning: Translation sync failed."
+
     echo "Running collectstatic..."
     python manage.py collectstatic --noinput --clear
 

@@ -106,23 +106,23 @@ translations = [
     ('email.invitation.body', 'Hello,\n\nYou have been invited by {{sender}} to join the workspace "{{workspace}}" on Centralen.\n\nYou can accept the invitation by clicking the following link:\n{{link}}\n\nBest regards,\nCentralen', 'Hej,\n\nDu er blevet inviteret af {{sender}} til at deltage i arbejdsrummet "{{workspace}}" på Centralen.\n\nDu kan acceptere invitationen ved at klikke på følgende link:\n{{link}}\n\nMed venlig hilsen,\nCentralen', 'Hallo,\n\nU bent door {{sender}} uitgenodigd om deel te nemen aan de werkruimte "{{workspace}}" op Centralen.\n\nU kunt de uitnodiging accepteren door op de volgende link te klikken:\n{{link}}\n\nMet vriendelijke groet,\nCentralen', 'Bonjour,\n\nVous avez été invité par {{sender}} à rejoindre l\'espace de travail "{{workspace}}" sur Centralen.\n\nVous pouvez accepter l\'invitation en cliquant sur le lien suivant :\n{{link}}\n\nCordialement,\nCentralen', 'Hallo,\n\nSie wurden von {{sender}} eingeladen, dem Arbeitsbereich "{{workspace}}" auf Centralen beizutreten.\n\nSie können die Einladung annehmen, indem Sie auf den folgenden Link klicken:\n{{link}}\n\nMit freundlichen Grüßen,\nCentralen'),
 ]
 
-for key, en_text, da_text, nl_text, fr_text, de_text in translations:
-    obj, created = UITranslation.objects.get_or_create(
-        key=key,
-        defaults={
-            'en': en_text,
-            'da': da_text,
-            'nl': nl_text,
-            'fr': fr_text,
-            'de': de_text
-        }
-    )
-    if not created:
-        obj.en = en_text
-        obj.da = da_text
-        obj.nl = nl_text
-        obj.fr = fr_text
-        obj.de = de_text
-        obj.save()
+# for key, en_text, da_text, nl_text, fr_text, de_text in translations:
+#     obj, created = UITranslation.objects.get_or_create(
+#         key=key,
+#         defaults={
+#             'en': en_text,
+#             'da': da_text,
+#             'nl': nl_text,
+#             'fr': fr_text,
+#             'de': de_text
+#         }
+#     )
+#     if not created:
+#         obj.en = en_text
+#         obj.da = da_text
+#         obj.nl = nl_text
+#         obj.fr = fr_text
+#         obj.de = de_text
+#         obj.save()
 
-print(f"Successfully seeded {len(translations)} signup and workspace creation translations into the database.")
+# print(f"Successfully seeded {len(translations)} signup and workspace creation translations into the database.")

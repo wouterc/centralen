@@ -44,13 +44,13 @@ const RegisterPage: React.FC = () => {
             console.error(err);
             const code = err.data?.code as string | undefined;
             const errorMessages: Record<string, string> = {
-                missing_fields: t('register.error.missing_fields', 'Brugernavn, e-mail og adgangskode skal angives.'),
-                username_taken: t('register.error.username_taken', 'Brugernavnet er allerede i brug. Vælg et andet.'),
-                email_taken: t('register.error.email_taken', 'Denne e-mailadresse har allerede en aktiv konto. Prøv at logge ind i stedet.'),
-                email_pending_activation: t('register.error.email_pending_activation', 'Denne e-mailadresse er allerede registreret, men kontoen er endnu ikke aktiveret.'),
+                missing_fields: t('register.error.missing_fields', 'Username, email and password are required.'),
+                username_taken: t('register.error.username_taken', 'This username is already taken. Please choose another.'),
+                email_taken: t('register.error.email_taken', 'This email address already has an active account. Try logging in instead.'),
+                email_pending_activation: t('register.error.email_pending_activation', 'This email address is already registered, but the account hasn\'t been activated yet.'),
             };
             setErrorCode(code || null);
-            setError((code && errorMessages[code]) || t('register.error.failed', 'Der skete en fejl under oprettelsen. Prøv igen.'));
+            setError((code && errorMessages[code]) || t('register.error.failed', 'An error occurred during creation. Try again.'));
         } finally {
             setLoading(false);
         }
@@ -74,16 +74,16 @@ const RegisterPage: React.FC = () => {
                     <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
                         <CheckCircle2 size={40} />
                     </div>
-                    <h1 className="text-3xl font-black text-gray-900 mb-4">{t('register.success_title', 'Tjek din e-mail!')}</h1>
+                    <h1 className="text-3xl font-black text-gray-900 mb-4">{t('register.success_title', 'Check your email!')}</h1>
                     <p className="text-gray-600 mb-8 font-medium">
-                        {t('register.success_message', 'Vi har sendt et aktiveringslink til {{email}}. Klik på linket i e-mailen for at aktivere din profil.', { email })}
+                        {t('register.success_message', 'We have sent an activation link to {{email}}. Click the link in the email to activate your profile.', { email })}
                     </p>
                     <Link 
                         to="/login" 
                         className="inline-flex items-center gap-2 text-blue-600 font-black hover:underline"
                     >
                         <ArrowLeft size={18} />
-                        {t('register.back_to_login', 'Tilbage til login')}
+                        {t('register.back_to_login', 'Back to login')}
                     </Link>
                 </div>
             </div>
@@ -109,8 +109,8 @@ const RegisterPage: React.FC = () => {
                     <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-3xl shadow-2xl mx-auto mb-3 transform hover:rotate-6 transition-transform cursor-default">
                         <UserPlus size={28} />
                     </div>
-                    <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">{t('register.title', 'Opret Bruger')}</h1>
-                    <p className="text-sm text-gray-500 font-medium">{t('register.subtitle', 'Opret en profil på Centralen for at komme i gang')}</p>
+                    <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-1">{t('register.title', 'Create Account')}</h1>
+                    <p className="text-sm text-gray-500 font-medium">{t('register.subtitle', 'Create a profile on Centralen to get started')}</p>
                 </div>
 
                 {/* Register Card */}
@@ -124,7 +124,7 @@ const RegisterPage: React.FC = () => {
                             {errorCode === 'email_pending_activation' && (
                                 resendStatus === 'sent' ? (
                                     <p className="mt-2 pl-5 text-emerald-600 font-medium text-xs">
-                                        {t('register.resend.sent', 'Der er sendt et nyt aktiveringslink til din e-mail.')}
+                                        {t('register.resend.sent', 'A new activation link has been sent to your email.')}
                                     </p>
                                 ) : (
                                     <button
@@ -134,8 +134,8 @@ const RegisterPage: React.FC = () => {
                                         className="mt-2 ml-5 text-xs font-black text-blue-600 hover:underline disabled:opacity-50"
                                     >
                                         {resendStatus === 'sending'
-                                            ? t('register.resend.sending', 'Sender...')
-                                            : t('register.resend.button', 'Send aktiveringslink igen')}
+                                            ? t('register.resend.sending', 'Sending...')
+                                            : t('register.resend.button', 'Resend activation link')}
                                     </button>
                                 )
                             )}
@@ -157,7 +157,7 @@ const RegisterPage: React.FC = () => {
                         </div>
 
                         <div className="space-y-1">
-                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.username_label', 'Brugernavn*')}</label>
+                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.username_label', 'Username*')}</label>
                             <div className="relative group">
                                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
                                 <input
@@ -165,14 +165,14 @@ const RegisterPage: React.FC = () => {
                                     required
                                     value={username}
                                     onChange={e => setUsername(e.target.value)}
-                                    placeholder={t('register.username_placeholder', 'Vælg et brugernavn')}
+                                    placeholder={t('register.username_placeholder', 'Choose a username')}
                                     className="block w-full pl-12 pr-4 py-2.5 bg-gray-50/50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 focus:bg-white transition-all font-medium text-sm"
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-1">
-                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.email_label', 'Din E-mail*')}</label>
+                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.email_label', 'Your Email*')}</label>
                             <div className="relative group">
                                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
                                 <input
@@ -188,29 +188,29 @@ const RegisterPage: React.FC = () => {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-1">
-                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.first_name_label', 'Fornavn')}</label>
+                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.first_name_label', 'First Name')}</label>
                                 <input
                                     type="text"
                                     value={firstName}
                                     onChange={e => setFirstName(e.target.value)}
-                                    placeholder={t('register.first_name_placeholder', 'Fornavn')}
+                                    placeholder={t('register.first_name_placeholder', 'First Name')}
                                     className="block w-full px-4 py-2.5 bg-gray-50/50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 focus:bg-white transition-all font-medium text-sm"
                                 />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.last_name_label', 'Efternavn')}</label>
+                                <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.last_name_label', 'Last Name')}</label>
                                 <input
                                     type="text"
                                     value={lastName}
                                     onChange={e => setLastName(e.target.value)}
-                                    placeholder={t('register.last_name_placeholder', 'Efternavn')}
+                                    placeholder={t('register.last_name_placeholder', 'Last Name')}
                                     className="block w-full px-4 py-2.5 bg-gray-50/50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-blue-600/10 focus:border-blue-600 focus:bg-white transition-all font-medium text-sm"
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-1">
-                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.password_label', 'Vælg en adgangskode*')}</label>
+                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">{t('register.password_label', 'Choose a password*')}</label>
                             <div className="relative group">
                                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors" size={18} />
                                 <input
@@ -230,14 +230,14 @@ const RegisterPage: React.FC = () => {
                             disabled={loading || !username || !email || !password}
                             className="w-full bg-blue-600 text-white py-3 rounded-2xl font-black text-base flex items-center justify-center gap-3 hover:bg-blue-700 hover:shadow-2xl hover:shadow-blue-200 active:scale-[0.98] transition-all disabled:opacity-50 mt-2"
                         >
-                            {loading ? <Loader2 className="animate-spin" size={24} /> : t('register.button.submit', 'Opret min profil')}
+                            {loading ? <Loader2 className="animate-spin" size={24} /> : t('register.button.submit', 'Create my profile')}
                         </button>
                     </form>
 
                     <div className="mt-6 pt-6 border-t border-gray-100 text-center">
                         <Link to="/login" className="text-gray-400 font-bold text-sm hover:text-blue-600 transition-colors flex items-center justify-center gap-2">
                             <ArrowLeft size={16} />
-                            {t('register.back_to_login', 'Tilbage til login')}
+                            {t('register.back_to_login', 'Back to login')}
                         </Link>
                     </div>
                 </div>

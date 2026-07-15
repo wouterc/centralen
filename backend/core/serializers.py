@@ -120,6 +120,10 @@ class UserSerializer(serializers.ModelSerializer):
         role = profile_data.get('role')
         vidensbank_category_order = profile_data.get('vidensbank_category_order')
         language = profile_data.get('language')
+        if language:
+            language = language.split('-')[0].lower()
+            if language not in ('en', 'da', 'nl', 'fr', 'de'):
+                language = 'da'
         
         if color or role or vidensbank_category_order is not None or language:
             profile, _ = UserProfile.objects.get_or_create(user=user)
@@ -191,6 +195,10 @@ class UserSerializer(serializers.ModelSerializer):
         color = profile_data.get('color')
         vidensbank_category_order = profile_data.get('vidensbank_category_order')
         language = profile_data.get('language')
+        if language:
+            language = language.split('-')[0].lower()
+            if language not in ('en', 'da', 'nl', 'fr', 'de'):
+                language = 'da'
         
         if color or role or vidensbank_category_order is not None or language:
             # Check if we should update a specific membership

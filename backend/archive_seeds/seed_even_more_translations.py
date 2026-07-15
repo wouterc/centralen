@@ -25,11 +25,11 @@ translations = [
     ('vidensbank.modal_delete_button', 'Delete (move to trash)', 'Slet (flyt til papirkurv)'),
 ]
 
-for key, en_text, da_text in translations:
-    obj, created = UITranslation.objects.get_or_create(key=key, defaults={'en': en_text, 'da': da_text})
-    if not created:
-        obj.en = en_text
-        obj.da = da_text
-        obj.save()
+# for key, en_text, da_text in translations:
+#     obj, created = UITranslation.objects.get_or_create(key=key, defaults={'en': en_text, 'da': da_text})
+#     if not created:
+#         obj.en = en_text
+#         obj.da = da_text
+#         obj.save()
 
-print(f"Seeded {len(translations)} new translations into the database.")
+# print(f"Seeded {len(translations)} new translations into the database.")

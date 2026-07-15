@@ -9,6 +9,7 @@ import { api } from '../../api';
 import Modal from '../Modal';
 import { X, Upload, Link as LinkIcon, FileText, Loader2, Save, Star, Archive } from 'lucide-react';
 import { Quill } from 'react-quill-new';
+import { useTranslation } from '../../services/translationService';
 
 // @# 2024-03-20 - Tving Quill til at acceptere 'style' og 'width' på tabel-celler
 const Style = Quill.import('attributors/style/width') as any;
@@ -42,6 +43,7 @@ interface VidensbankModalProps {
 }
 
 const VidensbankModal: React.FC<VidensbankModalProps> = ({ isOpen, onClose, onSave, editingViden, kategorier, showToast }) => {
+    const { t } = useTranslation();
     const [titel, setTitel] = useState('');
     const [kategori, setKategori] = useState<number | ''>('');
     const [indhold, setIndhold] = useState('');
@@ -134,7 +136,7 @@ const VidensbankModal: React.FC<VidensbankModalProps> = ({ isOpen, onClose, onSa
                 className="px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg font-medium text-sm transition-colors"
                 disabled={isSaving}
             >
-                Annuller
+                {t('common.cancel', 'Cancel')}
             </button>
             <button
                 onClick={handleSave}
@@ -142,7 +144,7 @@ const VidensbankModal: React.FC<VidensbankModalProps> = ({ isOpen, onClose, onSa
                 className="bg-blue-600 text-white px-4 py-1.5 rounded-lg hover:bg-blue-700 shadow-md font-bold flex items-center gap-2 disabled:bg-blue-400 text-sm transition-all"
             >
                 {isSaving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
-                Gem artikel
+                {t('vidensbank.modal.save', 'Save article')}
             </button>
         </div>
     );
@@ -197,32 +199,32 @@ const VidensbankModal: React.FC<VidensbankModalProps> = ({ isOpen, onClose, onSa
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            title={editingViden ? 'Rediger viden' : 'Tilføj ny viden'}
+            title={editingViden ? t('vidensbank.modal.edit_title', 'Edit knowledge') : t('vidensbank.modal.add_title', 'Add new knowledge')}
             wide
             headerActions={headerActions}
         >
             <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1 text-left">
-                        <label htmlFor="modal-titel" className="text-xs font-bold text-gray-500 uppercase">Titel</label>
+                        <label htmlFor="modal-titel" className="text-xs font-bold text-gray-500 uppercase">{t('vidensbank.modal.title_label', 'Title')}</label>
                         <input
                             id="modal-titel"
                             type="text"
                             value={titel}
                             onChange={(e) => setTitel(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none text-sm"
-                            placeholder="Indtast en sigende titel..."
+                            placeholder={t('vidensbank.modal.title_placeholder', 'Enter a descriptive title...')}
                         />
                     </div>
                     <div className="flex flex-col gap-1 text-left">
-                        <label htmlFor="modal-kategori" className="text-xs font-bold text-gray-500 uppercase">Kategori</label>
+                        <label htmlFor="modal-kategori" className="text-xs font-bold text-gray-500 uppercase">{t('vidensbank.modal.category_label', 'Category')}</label>
                         <select
                             id="modal-kategori"
                             value={kategori}
                             onChange={(e) => setKategori(Number(e.target.value))}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none bg-white text-sm"
                         >
-                            <option value="">Vælg kategori...</option>
+                            <option value="">{t('vidensbank.modal.select_category', 'Select category...')}</option>
                             {kategorier.map(kat => (
                                 <option key={kat.id} value={kat.id}>{kat.navn}</option>
                             ))}
@@ -240,7 +242,7 @@ const VidensbankModal: React.FC<VidensbankModalProps> = ({ isOpen, onClose, onSa
                         />
                         <div className="flex items-center gap-1.5">
                             <Star size={16} className={favorit ? "text-amber-500 fill-amber-500" : "text-gray-400"} />
-                            <span className="text-sm font-bold text-gray-700 group-hover:text-amber-600 transition-colors">Vigtig / Favorit</span>
+                            <span className="text-sm font-bold text-gray-700 group-hover:text-amber-600 transition-colors">{t('vidensbank.modal.favorite', 'Important / Favorite')}</span>
                         </div>
                     </label>
 
@@ -253,51 +255,51 @@ const VidensbankModal: React.FC<VidensbankModalProps> = ({ isOpen, onClose, onSa
                         />
                         <div className="flex items-center gap-1.5">
                             <Archive size={16} className={arkiveret ? "text-blue-600" : "text-gray-400"} />
-                            <span className="text-sm font-bold text-gray-700 group-hover:text-blue-600 transition-colors">Arkiveret</span>
+                            <span className="text-sm font-bold text-gray-700 group-hover:text-blue-600 transition-colors">{t('vidensbank.modal.archived', 'Archived')}</span>
                         </div>
                     </label>
                 </div>
 
                 <div className="flex flex-col gap-1 text-left">
                     <div className="flex justify-between items-end mb-1 sticky top-[-24px] bg-white z-20 py-1 border-b border-gray-100">
-                        <label className="text-xs font-bold text-gray-500 uppercase">Indhold</label>
+                        <label className="text-xs font-bold text-gray-500 uppercase">{t('vidensbank.modal.content_label', 'Content')}</label>
                         <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-md border border-gray-200 shadow-sm">
-                            <span className="text-[10px] font-bold text-gray-400 px-2 uppercase">Tabel værktøj:</span>
+                            <span className="text-[10px] font-bold text-gray-400 px-2 uppercase">{t('vidensbank.modal.table_tools', 'Table tools:')}</span>
                             <button
                                 onClick={() => handleTableAction('insert-row-below')}
                                 className="px-2 py-1 text-[10px] bg-white border border-gray-300 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors font-bold"
-                                title="Indsæt række under"
+                                title={t('vidensbank.modal.table.insert_row_below', 'Insert row below')}
                             >
-                                + Række
+                                {t('vidensbank.modal.table.add_row', '+ Row')}
                             </button>
                             <button
                                 onClick={() => handleTableAction('insert-column-right')}
                                 className="px-2 py-1 text-[10px] bg-white border border-gray-300 rounded hover:bg-blue-50 hover:text-blue-600 transition-colors font-bold"
-                                title="Indsæt kolonne til højre"
+                                title={t('vidensbank.modal.table.insert_col_right', 'Insert column right')}
                             >
-                                + Kolonne
+                                {t('vidensbank.modal.table.add_col', '+ Column')}
                             </button>
                             <div className="w-px h-4 bg-gray-300 mx-1"></div>
                             <button
                                 onClick={() => handleTableAction('delete-row')}
                                 className="px-2 py-1 text-[10px] bg-white border border-gray-300 rounded hover:bg-red-50 hover:text-red-600 transition-colors font-bold"
-                                title="Slet række"
+                                title={t('vidensbank.modal.table.delete_row', 'Delete row')}
                             >
-                                - Række
+                                {t('vidensbank.modal.table.remove_row', '- Row')}
                             </button>
                             <button
                                 onClick={() => handleTableAction('delete-column')}
                                 className="px-2 py-1 text-[10px] bg-white border border-gray-300 rounded hover:bg-red-50 hover:text-red-600 transition-colors font-bold"
-                                title="Slet kolonne"
+                                title={t('vidensbank.modal.table.delete_col', 'Delete column')}
                             >
-                                - Kolonne
+                                {t('vidensbank.modal.table.remove_col', '- Column')}
                             </button>
                             <button
                                 onClick={() => handleTableAction('delete-table')}
                                 className="px-2 py-1 text-[10px] bg-red-600 text-white rounded hover:bg-red-700 transition-colors font-bold ml-2"
-                                title="SLET HELE TABELLEN"
+                                title={t('vidensbank.modal.table.delete_table_title', 'DELETE ENTIRE TABLE')}
                             >
-                                Slet tabel
+                                {t('vidensbank.modal.table.delete_table', 'Delete table')}
                             </button>
                         </div>
                     </div>

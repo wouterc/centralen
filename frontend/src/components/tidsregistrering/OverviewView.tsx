@@ -407,7 +407,7 @@ const OverviewView: React.FC<OverviewViewProps> = ({ isAdmin: _isAdmin }) => {
                                 className="flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black shadow-md transition-all duration-300 animate-pulse hover:animate-none active:scale-95 whitespace-nowrap"
                             >
                                 <RefreshCw size={12} />
-                                {t('time.overview_hent', 'HENT')}
+                                {t('time.overview_hent', 'FETCH')}
                             </button>
                         )}
                     </div>
@@ -428,7 +428,7 @@ const OverviewView: React.FC<OverviewViewProps> = ({ isAdmin: _isAdmin }) => {
                     <table className="w-full text-left border-collapse tabular-nums">
                         <thead className="sticky top-0 bg-gray-50 border-b border-gray-100 z-10 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                             <tr>
-                                <th className="px-4 py-4">{t('time.overview_col_user', 'Medarbejder')}</th>
+                                <th className="px-4 py-4">{t('time.overview_col_user', 'Employee')}</th>
                                 <th className="px-4 py-4">{t('time.overview_col_group', 'Group')}</th>
                                 <th className="px-4 py-4">{t('time.overview_col_code', 'Code')}</th>
                                 <th className="px-4 py-4">{t('time.overview_col_desc', 'Description')}</th>
@@ -454,14 +454,14 @@ const OverviewView: React.FC<OverviewViewProps> = ({ isAdmin: _isAdmin }) => {
                             {processedAllUsers.length === 0 && (
                                 <tr>
                                     <td colSpan={5} className="px-6 py-20 text-center">
-                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">{t('time.overview_no_data', 'No data for this selection')}</p>
+                                        <p className="font-black text-gray-300 text-sm uppercase tracking-widest">{t('time.overview_no_data', 'No data for this week')}</p>
                                     </td>
                                 </tr>
                             )}
                         </tbody>
                         <tfoot className="sticky bottom-0 bg-gray-100 border-t-2 border-gray-200 font-black text-xs text-gray-700">
                             <tr>
-                                <td colSpan={4} className="px-4 py-3 text-right uppercase tracking-widest text-[10px]">{t('time.overview_total_all_users', 'Total all medarbejdere:')}</td>
+                                <td colSpan={4} className="px-4 py-3 text-right uppercase tracking-widest text-[10px]">{t('time.overview_total_all_users', 'Total all employees:')}</td>
                                 <td className="px-4 py-3 text-right text-emerald-700 text-sm whitespace-nowrap">
                                     {minToDecimal(processedAllUsers.reduce((sum, r) => sum + r.total, 0))}
                                     <span className="ml-2 text-[11px] text-gray-400 font-bold">({minToHHMM(processedAllUsers.reduce((sum, r) => sum + r.total, 0))})</span>

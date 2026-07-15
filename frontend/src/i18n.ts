@@ -37,8 +37,8 @@ i18n
 
 // Initial load
 const loadInitialTranslations = async () => {
-    const lng = i18n.language || 'da';
-    const dayjsLng = lng ? lng.split('-')[0].toLowerCase() : 'da';
+    const lng = i18n.language || 'en';
+    const dayjsLng = lng ? lng.split('-')[0].toLowerCase() : 'en';
     dayjs.locale(dayjsLng);
     const translations = await fetchTranslations(lng);
     i18n.addResourceBundle(lng, 'translation', translations, true, true);
@@ -47,7 +47,7 @@ const loadInitialTranslations = async () => {
 loadInitialTranslations();
 
 i18n.on('languageChanged', async (lng) => {
-    const dayjsLng = lng ? lng.split('-')[0].toLowerCase() : 'da';
+    const dayjsLng = lng ? lng.split('-')[0].toLowerCase() : 'en';
     dayjs.locale(dayjsLng);
     const translations = await fetchTranslations(lng);
     i18n.addResourceBundle(lng, 'translation', translations, true, true);

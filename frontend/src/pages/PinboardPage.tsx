@@ -226,7 +226,7 @@ const PinboardPage: React.FC = () => {
                     <button
                         onClick={() => setShowCreateModal(true)}
                         className="flex items-center justify-center w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl shadow-xl shadow-blue-500/20 transition-all hover:-translate-y-1 active:scale-95 group"
-                        title="Opret nyt opslag"
+                        title={t('pinboard.create_new', 'Create new post')}
                     >
                         <Plus size={24} className="group-hover:rotate-90 transition-transform" />
                     </button>
@@ -242,7 +242,7 @@ const PinboardPage: React.FC = () => {
                             <div className="bg-white/20 p-12 rounded-full inline-block mb-6">
                                 <Pin size={64} className="text-gray-400/50 rotate-45" />
                             </div>
-                            <p className="text-gray-500 font-black text-xl italic drop-shadow-sm">{t('pinboard.empty_state', 'Tavlen er tom... Hæng noget op!')}</p>
+                            <p className="text-gray-500 font-black text-xl italic drop-shadow-sm">{t('pinboard.empty_state', 'The board is empty... Pin something up!')}</p>
                         </div>
                     ) : (
                         posts.map((post, idx) => {
@@ -276,8 +276,8 @@ const PinboardPage: React.FC = () => {
                     <div className="bg-white rounded-4xl shadow-2xl w-full max-w-md overflow-hidden">
                         <div className="p-8 bg-blue-600 text-white flex justify-between items-center">
                             <div>
-                                <h2 className="text-2xl font-black italic tracking-tighter">NY POST-IT</h2>
-                                <p className="text-blue-100 text-xs font-bold uppercase tracking-widest">Hæng din idé op på tavlen</p>
+                                <h2 className="text-2xl font-black italic tracking-tighter">{t('pinboard.modal.new_postit', 'NEW POST-IT')}</h2>
+                                <p className="text-blue-100 text-xs font-bold uppercase tracking-widest">{t('pinboard.modal.sub_text', 'Pin your idea on the board')}</p>
                             </div>
                             <button onClick={() => setShowCreateModal(false)} className="hover:rotate-90 transition-transform p-2 bg-white/10 rounded-full">
                                 <X size={24} />
@@ -285,34 +285,34 @@ const PinboardPage: React.FC = () => {
                         </div>
                         <form onSubmit={handleCreate} className="p-8 flex flex-col gap-6">
                             <div>
-                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Titel</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">{t('pinboard.modal.title_label', 'Title')}</label>
                                 <input
                                     type="text"
                                     required
                                     className="w-full border-2 border-gray-100 rounded-2xl px-5 py-3 focus:border-blue-500 focus:outline-none transition-all font-bold text-gray-800"
-                                    placeholder="En hurtig overskrift..."
+                                    placeholder={t('pinboard.modal.title_placeholder', 'A quick headline...')}
                                     value={newPost.titel}
                                     onChange={e => setNewPost({ ...newPost, titel: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Beskrivelse</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">{t('pinboard.modal.desc_label', 'Description')}</label>
                                 <textarea
                                     className="w-full border-2 border-gray-100 rounded-2xl px-5 py-3 focus:border-blue-500 focus:outline-none transition-all font-bold text-gray-800 min-h-[120px]"
-                                    placeholder="Fortæl lidt mere..."
+                                    placeholder={t('pinboard.modal.desc_placeholder', 'Tell us a bit more...')}
                                     value={newPost.beskrivelse}
                                     onChange={e => setNewPost({ ...newPost, beskrivelse: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Vælg Team</label>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">{t('pinboard.modal.select_team_label', 'Select Team')}</label>
                                 <select
                                     required
                                     className="w-full border-2 border-gray-100 rounded-2xl px-5 py-3 focus:border-blue-500 focus:outline-none transition-all font-bold text-gray-800"
                                     value={newPost.team}
                                     onChange={e => setNewPost({ ...newPost, team: e.target.value })}
                                 >
-                                    <option value="">Vælg team...</option>
+                                    <option value="">{t('pinboard.modal.select_team_placeholder', 'Select team...')}</option>
                                     {state.teams.map(t => (
                                         <option key={t.id} value={t.id}>{t.navn}</option>
                                     ))}
@@ -323,7 +323,7 @@ const PinboardPage: React.FC = () => {
                                 disabled={creating}
                                 className="w-full py-5 bg-blue-600 text-white font-black rounded-2xl transition-all"
                             >
-                                {creating ? 'HÆNGER OP...' : 'HÆNG OP! 📌'}
+                                {creating ? t('pinboard.modal.pinning', 'Pinning...') : t('pinboard.modal.pin', 'PIN IT! 📌')}
                             </button>
                         </form>
                     </div>
@@ -343,7 +343,7 @@ const PinboardPage: React.FC = () => {
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="flex items-center gap-2 text-[9px] font-black text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                                         <Pin size={10} />
-                                        <span>Prikbord Opslag</span>
+                                        <span>{t('pinboard.detail.post_label', 'Pinboard Post')}</span>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <div className="text-[9px] font-black text-gray-400 uppercase bg-gray-100/50 px-2 py-1 rounded-lg">
@@ -353,10 +353,10 @@ const PinboardPage: React.FC = () => {
                                             <button
                                                 onClick={() => handleArchive(selectedPost.id)}
                                                 className="flex items-center gap-1.5 text-[9px] font-black text-red-400 hover:text-red-600 uppercase transition-colors"
-                                                title="Arkivér opslag"
+                                                title={t('pinboard.detail.archive_tooltip', 'Archive post')}
                                             >
                                                 <Archive size={12} />
-                                                <span>Arkivér</span>
+                                                <span>{t('pinboard.detail.archive_btn', 'Archive')}</span>
                                             </button>
                                         )}
                                     </div>
@@ -367,14 +367,14 @@ const PinboardPage: React.FC = () => {
                                 </h2>
 
                                 <div className="text-base text-gray-700 whitespace-pre-wrap italic leading-relaxed font-medium mb-6 bg-white/40 p-5 rounded-2xl border border-white shadow-sm">
-                                    {selectedPost.beskrivelse || selectedPost.teaser_text || 'Henter beskrivelse...'}
+                                    {selectedPost.beskrivelse || selectedPost.teaser_text || t('pinboard.detail.fetching_desc', 'Fetching description...')}
                                 </div>
 
                                 <div className="flex-1 flex flex-col justify-between gap-6">
                                     {selectedPost.evaluation_summary && (
                                         <div className="group">
                                             <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                                                Status & Statistik
+                                                {t('pinboard.detail.status_and_stats', 'Status & Statistics')}
                                                 <span className="h-px bg-gray-100 flex-1" />
                                             </h4>
                                             <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-white shadow-sm flex flex-wrap items-center gap-6">
@@ -384,7 +384,7 @@ const PinboardPage: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <p className="text-lg font-black text-gray-800 leading-none">{selectedPost.evaluation_summary.GOD_IDE}</p>
-                                                        <p className="text-[8px] font-black text-gray-400 uppercase">God idé</p>
+                                                        <p className="text-[8px] font-black text-gray-400 uppercase">{t('pinboard.detail.good_idea', 'Good idea')}</p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-2">
@@ -393,7 +393,7 @@ const PinboardPage: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <p className="text-lg font-black text-gray-800 leading-none">{selectedPost.evaluation_summary.LÆST}</p>
-                                                        <p className="text-[8px] font-black text-gray-400 uppercase">Læst</p>
+                                                        <p className="text-[8px] font-black text-gray-400 uppercase">{t('pinboard.detail.read', 'Read')}</p>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-2">
@@ -402,14 +402,14 @@ const PinboardPage: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <p className="text-lg font-black text-gray-800 leading-none">{selectedPost.evaluation_summary.PENDING}</p>
-                                                        <p className="text-[8px] font-black text-gray-400 uppercase">Venter</p>
+                                                        <p className="text-[8px] font-black text-gray-400 uppercase">{t('pinboard.detail.pending', 'Pending')}</p>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div className="mt-3 flex flex-wrap gap-2">
                                                 {loadingDetail && !selectedPost.evalueringer ? (
-                                                    <p className="text-[7px] font-black text-gray-400 uppercase italic">Henter navne...</p>
+                                                    <p className="text-[7px] font-black text-gray-400 uppercase italic">{t('pinboard.detail.fetching_names', 'Fetching names...')}</p>
                                                 ) : (
                                                     (selectedPost.evalueringer || []).slice(0, 12).map(ev => (
                                                         <div key={ev.id} className="flex items-center gap-1.5 bg-white/40 px-2 py-1 rounded-lg border border-white shadow-sm">
@@ -425,28 +425,28 @@ const PinboardPage: React.FC = () => {
                                     )}
 
                                     <div className="mt-auto pt-6 border-t border-gray-100">
-                                        <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-4">Din Vurdering</h4>
+                                        <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-4">{t('pinboard.detail.your_evaluation', 'Your Evaluation')}</h4>
                                         <div className="grid grid-cols-3 gap-3">
                                             <button
                                                 onClick={() => handleEvaluate(selectedPost.id, 'GOD_IDE')}
                                                 className={`flex items-center justify-center gap-2 px-4 py-3 rounded-2xl border transition-all ${selectedPost.user_evaluation === 'GOD_IDE' ? 'bg-green-600 text-white' : 'bg-white hover:bg-green-50 text-green-700'}`}
                                             >
                                                 <ThumbsUp size={18} />
-                                                <span className="text-[10px] font-black">GOD IDÉ</span>
+                                                <span className="text-[10px] font-black">{t('pinboard.detail.eval.good_idea', 'GOOD IDEA')}</span>
                                             </button>
                                             <button
                                                 onClick={() => handleEvaluate(selectedPost.id, 'INGEN_MENING')}
                                                 className={`flex items-center justify-center gap-2 px-4 py-3 rounded-2xl border transition-all ${selectedPost.user_evaluation === 'INGEN_MENING' ? 'bg-blue-600 text-white' : 'bg-white hover:bg-blue-50 text-blue-700'}`}
                                             >
                                                 <HelpCircle size={18} />
-                                                <span className="text-[10px] font-black">VED IKKE</span>
+                                                <span className="text-[10px] font-black">{t('pinboard.detail.eval.dont_know', "DON'T KNOW")}</span>
                                             </button>
                                             <button
                                                 onClick={() => handleEvaluate(selectedPost.id, 'LÆST')}
                                                 className={`flex items-center justify-center gap-2 px-4 py-3 rounded-2xl border transition-all ${selectedPost.user_evaluation === 'LÆST' ? 'bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-700'}`}
                                             >
                                                 <CheckCircle size={18} />
-                                                <span className="text-[10px] font-black">LÆST</span>
+                                                <span className="text-[10px] font-black">{t('pinboard.detail.eval.read', 'READ')}</span>
                                             </button>
                                         </div>
                                     </div>

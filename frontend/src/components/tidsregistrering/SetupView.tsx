@@ -214,7 +214,7 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh, isAdmin }) 
                                         }
                                     }}
                                     className="p-1 hover:bg-gray-100 rounded text-blue-600 hover:text-blue-800 transition-all shrink-0"
-                                    title={t('common.edit', 'Rediger')}
+                                    title={t('common.edit', 'Edit')}
                                 >
                                     <Pencil size={12} />
                                 </button>
@@ -296,16 +296,16 @@ const TaskCodeInfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, admins }
                     <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                         <Lock size={24} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('time.manage_task_codes', 'Administrer taakkoder')}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('time.manage_task_codes', 'Manage task codes')}</h3>
                     <p className="text-sm text-gray-500 mb-6">
-                        {t('time.only_admins_task_codes', 'Kun administratorer har tilladelse til at oprette, redigere eller slette taakkoder.')}
+                        {t('time.only_admins_task_codes', 'Only administrators can create, edit, or delete task codes.')}
                     </p>
                 </div>
                 
                 <div className="border-t border-gray-100 pt-4 flex-1 overflow-y-auto min-h-0">
-                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('time.contact_admin', 'Kontakt en administrator')}</h4>
+                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">{t('time.contact_admin', 'Contact an administrator')}</h4>
                     {admins.length === 0 ? (
-                        <p className="text-sm text-gray-500 italic text-center">{t('time.no_admins_found', 'Ingen administratorer fundet.')}</p>
+                        <p className="text-sm text-gray-500 italic text-center">{t('time.no_admins_found', 'No administrators found.')}</p>
                     ) : (
                         <ul className="space-y-3 max-h-[40vh] overflow-y-auto pr-1">
                             {admins.map((admin, idx) => (
@@ -326,7 +326,7 @@ const TaskCodeInfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, admins }
                     onClick={onClose}
                     className="mt-6 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all"
                 >
-                    {t('common.close', 'Luk')}
+                    {t('common.close', 'Close')}
                 </button>
             </div>
         </div>
@@ -404,11 +404,11 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
     const handleSave = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!kodeNr.trim()) {
-            showToast(t('time.setup_fill_code', 'Udfyld venligst kodens nummer'), "info");
+            showToast(t('time.setup_fill_code', 'Please fill in the code number'), "info");
             return;
         }
         if (!beskrivelse.trim()) {
-            showToast(t('time.setup_fill_desc', 'Udfyld venligst kodens beskrivelse'), "info");
+            showToast(t('time.setup_fill_desc', 'Please fill in the code description'), "info");
             return;
         }
 
@@ -422,16 +422,16 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
 
             if (editingKode) {
                 await api.patch(`/tidsregistrering/koder/${editingKode.id}/`, body);
-                showToast(t('time.setup_code_updated', 'Taakkode opdateret succesfuldt'), "success");
+                showToast(t('time.setup_code_updated', 'Task code updated successfully'), "success");
             } else {
                 await api.post('/tidsregistrering/koder/', body);
-                showToast(t('time.setup_code_created', 'Taakkode oprettet succesfuldt'), "success");
+                showToast(t('time.setup_code_created', 'Task code created successfully'), "success");
             }
             onRefresh();
             resetForm();
         } catch (err: any) {
             console.error("Save code error:", err);
-            showToast(err.message || t('time.setup_save_error', 'Kunne ikke gemme taakkode'), "error");
+            showToast(err.message || t('time.setup_save_error', 'Could not save task code'), "error");
         } finally {
             setSubmitting(false);
         }
@@ -442,12 +442,12 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
         setSubmitting(true);
         try {
             await api.delete(`/tidsregistrering/koder/${deletingKode.id}/`);
-            showToast(t('time.setup_code_deleted', 'Taakkode slettet succesfuldt'), "success");
+            showToast(t('time.setup_code_deleted', 'Task code deleted successfully'), "success");
             onRefresh();
             resetForm();
         } catch (err: any) {
             console.error("Delete code error:", err);
-            showToast(err.message || t('time.setup_delete_error', 'Kunne ikke slette taakkode'), "error");
+            showToast(err.message || t('time.setup_delete_error', 'Could not delete task code'), "error");
         } finally {
             setSubmitting(false);
         }
@@ -502,16 +502,16 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                     <X size={20} />
                 </button>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">{t('time.manage_task_codes', 'Administrer taakkoder')}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-left">{t('time.manage_task_codes', 'Manage task codes')}</h3>
 
                 {deletingKode ? (
                     <div className="flex-1 flex flex-col min-h-0 text-left">
                         <div className="flex items-center gap-3 p-3 bg-red-50 text-red-800 rounded-xl border border-red-100 mb-4">
                             <AlertCircle size={20} className="shrink-0" />
-                            <span className="text-sm font-semibold">{t('time.setup_delete_title', 'Slet taakkode: {{code}}', { code: deletingKode.kode_nr })}</span>
+                            <span className="text-sm font-semibold">{t('time.setup_delete_title', 'Delete task code: {{code}}', { code: deletingKode.kode_nr })}</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-6">
-                            {t('time.setup_delete_confirm', 'Er du sikker på, at du vil slette deze taakkode? Deze actie kan niet ongedaan worden gemaakt.')}
+                            {t('time.setup_delete_confirm', 'Are you sure you want to delete this task code? This action cannot be undone.')}
                         </p>
                         <div className="flex gap-3 mt-auto">
                             <button
@@ -519,7 +519,7 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                                 onClick={() => setDeletingKode(null)}
                                 className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition-all"
                             >
-                                {t('common.cancel', 'Annuller')}
+                                {t('common.cancel', 'Cancel')}
                             </button>
                             <button
                                 type="button"
@@ -528,7 +528,7 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                                 className="flex-1 py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                             >
                                 {submitting && <Loader2 size={16} className="animate-spin" />}
-                                {t('time.setup_delete', 'Slet')}
+                                {t('time.setup_delete', 'Delete')}
                             </button>
                         </div>
                     </div>
@@ -536,29 +536,29 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                     <form onSubmit={handleSave} className="flex-1 flex flex-col min-h-0 text-left">
                         <div className="space-y-4 flex-1 overflow-y-auto mb-4 pr-1">
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('time.setup_task_code_label', 'Taakkodens nummer')}</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('time.setup_task_code_label', 'Task code number')}</label>
                                 <input
                                     type="text"
                                     value={kodeNr}
                                     onChange={(e) => setKodeNr(e.target.value)}
-                                    placeholder={t('time.setup_task_code_placeholder', 'F.eks. 101, 9304...')}
+                                    placeholder={t('time.setup_task_code_placeholder', 'E.g. 101, 9304...')}
                                     className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-700 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('time.setup_task_desc_label', 'Beskrivelse')}</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('time.setup_task_desc_label', 'Description')}</label>
                                 <input
                                     type="text"
                                     value={beskrivelse}
                                     onChange={(e) => setBeskrivelse(e.target.value)}
-                                    placeholder={t('time.setup_task_desc_placeholder', 'F.eks. Administration, Udvikling...')}
+                                    placeholder={t('time.setup_task_desc_placeholder', 'E.g. Administration, Development...')}
                                     className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm text-gray-700 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('time.setup_task_group_label', 'Gruppe (Valgfri)')}</label>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{t('time.setup_task_group_label', 'Group (Optional)')}</label>
                                 <select
                                     value={gruppeId}
                                     onChange={(e) => setGruppeId(e.target.value ? Number(e.target.value) : '')}
@@ -578,7 +578,7 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                                 onClick={resetForm}
                                 className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-sm transition-all"
                             >
-                                {t('common.back', 'Tilbage')}
+                                {t('common.back', 'Back')}
                             </button>
                             <button
                                 type="submit"
@@ -586,19 +586,19 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                                 className="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm transition-all flex items-center justify-center gap-2"
                             >
                                 {submitting && <Loader2 size={16} className="animate-spin" />}
-                                {editingKode ? t('time.setup_edit_code', 'Gem ændringer') : t('time.setup_add_code', 'Opret kode')}
+                                {editingKode ? t('time.setup_edit_code', 'Save changes') : t('time.setup_add_code', 'Create code')}
                             </button>
                         </div>
                     </form>
                 ) : (
                     <div className="flex-1 flex flex-col min-h-0 text-left">
                         <div className="flex justify-between items-center mb-3">
-                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{t('time.existing_codes', 'Eksisterende koder')}</span>
+                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{t('time.existing_codes', 'Existing codes')}</span>
                             <button
                                 onClick={() => setIsCreating(true)}
                                 className="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors"
                             >
-                                <Plus size={16} /> {t('time.setup_new_code_title', 'Opret ny taakkode')}
+                                <Plus size={16} /> {t('time.setup_new_code_title', 'Create new task code')}
                             </button>
                         </div>
 
@@ -621,14 +621,14 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                                             <button
                                                 onClick={() => setEditingKode(kode)}
                                                 className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-all"
-                                                title={t('common.edit', 'Rediger')}
+                                                title={t('common.edit', 'Edit')}
                                             >
                                                 <Pencil size={14} />
                                             </button>
                                             <button
                                                 onClick={() => setDeletingKode(kode)}
                                                 className="p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-all"
-                                                title={t('common.delete', 'Slet')}
+                                                title={t('common.delete', 'Delete')}
                                             >
                                                 <Trash2 size={14} />
                                             </button>
@@ -653,7 +653,7 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                                 ) : (
                                     <Upload size={14} />
                                 )}
-                                <span>{importing ? t('time.setup_importing', 'Importerer...') : t('time.setup_import_csv', 'Importer CSV')}</span>
+                                <span>{importing ? t('time.setup_importing', 'Importing...') : t('time.setup_import_csv', 'Import CSV')}</span>
                                 <input
                                     type="file"
                                     accept=".csv"
@@ -668,7 +668,7 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
                             onClick={() => { onClose(); resetForm(); }}
                             className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all mt-auto"
                         >
-                            {t('common.close', 'Luk')}
+                            {t('common.close', 'Close')}
                         </button>
                     </div>
                 )}

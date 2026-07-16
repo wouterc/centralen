@@ -72,7 +72,7 @@ const TidsregistreringPage: React.FC = () => {
 
     useEffect(() => {
         fetchData(true);
-    }, [fetchData]);
+    }, [fetchData, state.activeWorkspaceId]);
 
     const activeRegistration = useMemo(() =>
         registreringer.find(r => r.til_tid === null),

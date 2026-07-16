@@ -122,6 +122,9 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh, isAdmin }) 
     };
 
     const workspaceAdmins = state.users.filter(u => u.role === 'ADMIN' || u.username === 'admin');
+    const activeWorkspaceName = state.currentUser?.memberships?.find(
+        m => m.company.id === state.activeWorkspaceId
+    )?.company.navn || '';
 
     return (
         <div className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden flex h-[700px]">
@@ -131,7 +134,9 @@ const SetupView: React.FC<SetupViewProps> = ({ favorites, onRefresh, isAdmin }) 
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2">
                             <div className="w-1 h-4 bg-blue-600 rounded-full" />
-                            <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest">{t('time.setup_all_codes', 'All Task Codes')}</h3>
+                            <h3 className="font-bold text-gray-800 text-sm uppercase tracking-widest">
+                                {t('time.setup_all_codes_for_workspace', 'All Task Codes for {{workspace}}', { workspace: activeWorkspaceName })}
+                            </h3>
                         </div>
                         <button
                             onClick={handleManageCodesClick}
@@ -284,7 +289,7 @@ const TaskCodeInfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, admins }
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4 backdrop-blur-sm transition-opacity duration-200">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-100 p-4 backdrop-blur-sm transition-opacity duration-200">
             <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl border border-gray-100 flex flex-col relative max-h-[90vh]">
                 <button 
                     onClick={onClose}
@@ -493,7 +498,7 @@ const TaskCodeManagerModal: React.FC<ManagerModalProps> = ({ isOpen, onClose, ko
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4 backdrop-blur-sm transition-opacity duration-200">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-100 p-4 backdrop-blur-sm transition-opacity duration-200">
             <div className="bg-white rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-gray-100 flex flex-col relative max-h-[90vh]">
                 <button 
                     onClick={() => { onClose(); resetForm(); }}

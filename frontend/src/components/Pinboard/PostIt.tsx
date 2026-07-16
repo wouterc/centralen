@@ -1,6 +1,7 @@
 import React from 'react';
 import type { PinboardPost } from '../../types';
 import { ThumbsUp, HelpCircle, CheckCircle, User, Users } from 'lucide-react';
+import { useTranslation } from '../../services/translationService';
 
 interface PostItProps {
     post: PinboardPost;
@@ -9,6 +10,7 @@ interface PostItProps {
 }
 
 const PostIt: React.FC<PostItProps> = ({ post, onClick, scale = 1 }) => {
+    const { t } = useTranslation();
     // Random decoration logic based on post ID (consistent per post)
     const decoration = React.useMemo(() => {
         const id = post.id || 0;
@@ -111,8 +113,8 @@ const PostIt: React.FC<PostItProps> = ({ post, onClick, scale = 1 }) => {
             {/* Summary Stats - Only if not mini */}
             {(!isMini || isHovered) && post.evaluation_summary && (
                 <div className="mt-1 text-[8px] font-bold text-gray-500/80 italic flex flex-wrap gap-x-2">
-                    {post.evaluation_summary.GOD_IDE > 0 && <span>{post.evaluation_summary.GOD_IDE} synes det er en god idé</span>}
-                    {post.evaluation_summary.PENDING > 0 && <span className="text-blue-500/60">{post.evaluation_summary.PENDING} mangler at vurdere</span>}
+                    {post.evaluation_summary.GOD_IDE > 0 && <span>{post.evaluation_summary.GOD_IDE} {t('pinboard.postit.likes_count', 'synes det er en god idé')}</span>}
+                    {post.evaluation_summary.PENDING > 0 && <span className="text-blue-500/60">{post.evaluation_summary.PENDING} {t('pinboard.postit.pending_evaluations', 'mangler at vurdere')}</span>}
                 </div>
             )}
 
@@ -142,15 +144,15 @@ const PostIt: React.FC<PostItProps> = ({ post, onClick, scale = 1 }) => {
                             {post.user_evaluation === 'INGEN_MENING' && <HelpCircle size={10} />}
                             {post.user_evaluation === 'LÆST' && <CheckCircle size={10} />}
                             <span className="text-[9px] font-black uppercase">
-                                {post.user_evaluation === 'GOD_IDE' ? 'GOD IDÉ' :
-                                    post.user_evaluation === 'INGEN_MENING' ? 'VED IKKE' : 'LÆST'}
+                                {post.user_evaluation === 'GOD_IDE' ? t('pinboard.detail.good_idea', 'GOD IDÉ') :
+                                    post.user_evaluation === 'INGEN_MENING' ? t('pinboard.detail.eval.dont_know', 'VED IKKE') : t('pinboard.detail.read', 'LÆST')}
                             </span>
                         </div>
                     )}
 
-                    {isUnread && isHovered && (
+                    {isUnread && (
                         <div className="text-[9px] font-black text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100 animate-pulse shadow-sm">
-                            VURDÉR NU
+                            {t('pinboard.postit.evaluate_now', 'VURDÉR NU')}
                         </div>
                     )}
                 </div>

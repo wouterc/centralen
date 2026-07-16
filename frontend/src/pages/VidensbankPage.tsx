@@ -219,6 +219,11 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
     );
 
     const [vidensbank, setVidensbank] = useState<Viden[]>([]);
+    const vidensbankRef = React.useRef<Viden[]>([]);
+    useEffect(() => {
+        vidensbankRef.current = vidensbank;
+    }, [vidensbank]);
+
     const [kategorier, setKategorier] = useState<VidensKategori[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -354,7 +359,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
             }
 
             params.limit = ARTICLES_PER_PAGE.toString();
-            const currentOffset = isLoadMore ? vidensbank.length : 0;
+            const currentOffset = isLoadMore ? vidensbankRef.current.length : 0;
             params.offset = currentOffset.toString();
 
             const videnRes = await api.get<Viden[]>('/vidensbank/artikler/', { params });
@@ -373,7 +378,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
             setLoading(false);
             setLoadingMore(false);
         }
-    }, [searchTerm, valgtKategoriId, showArchived, showTrash, vidensbank.length, showToast]);
+    }, [searchTerm, valgtKategoriId, showArchived, showTrash, showToast]);
 
     useEffect(() => {
         localStorage.setItem('vidensbankSearch', searchTerm);
@@ -765,7 +770,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                 onScroll={handleScroll}
                                 className="flex-1 overflow-y-auto pr-2 custom-scrollbar"
                             >
-                                {loading ? (
+                                {loading && vidensbank.length === 0 ? (
                                     <div className="flex justify-center items-center h-64">
                                         <Loader2 className="animate-spin text-blue-600" size={48} />
                                     </div>
@@ -789,7 +794,7 @@ const VidensbankPage: React.FC<VidensbankPageProps> = ({ standalone = false }) =
                                         )}
                                     </div>
                                 ) : (
-                                    <div className="grid grid-cols-1 gap-3">
+                                    <div className={`grid grid-cols-1 gap-3 transition-opacity duration-200 ${loading ? 'opacity-60 pointer-events-none' : 'opacity-100'}`}>
                                         {vidensbank.map(v => (
                                             <DraggableArticleCard
                                                 key={v.id}
@@ -911,7 +916,7 @@ const VidensbankCategoryInfoModal: React.FC<CategoryInfoModalProps> = ({ isOpen,
 
     if (!isOpen) return null;
     return (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4 backdrop-blur-sm transition-opacity duration-200">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-100 p-4 backdrop-blur-sm transition-opacity duration-200">
             <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl border border-gray-100 flex flex-col relative max-h-[90vh]">
                 <button 
                     onClick={onClose}
@@ -1097,7 +1102,7 @@ const VidensbankCategoryManagerModal: React.FC<CategoryManagerModalProps> = ({ i
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[100] p-4 backdrop-blur-sm transition-opacity duration-200">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-100 p-4 backdrop-blur-sm transition-opacity duration-200">
             <div className="bg-white rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-gray-100 flex flex-col relative max-h-[90vh]">
                 <button 
                     onClick={() => { onClose(); resetForm(); }}

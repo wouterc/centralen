@@ -110,7 +110,7 @@ const Navigation: React.FC = () => {
     }, []);
 
     return (
-        <nav className="bg-white border-b px-6 py-0 h-14 flex items-center justify-between shadow-sm z-30">
+        <nav className="bg-white border-b px-6 py-0 h-14 flex items-center justify-between shadow-sm z-50">
             <div className="flex items-center gap-4 lg:gap-8 h-full flex-1 min-w-0">
                 <div className="flex items-center gap-2 shrink-0">
                     <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-lg shadow-sm">C</div>

@@ -22,6 +22,7 @@ interface TimelineProps {
     onRefresh: (silent?: boolean) => void;
     viewStartDate: dayjs.Dayjs;
     onAction: (action: LastAction | null) => void;
+    onNavigate?: (direction: 'prev' | 'next') => void;
 }
 
 interface InteractionState {
@@ -37,7 +38,7 @@ interface ContextMenuState {
     aktivitet: Aktivitet;
 }
 
-const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, grupper, onAktivitetClick, onRefresh, viewStartDate, onAction }) => {
+const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, grupper, onAktivitetClick, onRefresh, viewStartDate, onAction, onNavigate }) => {
     const { i18n } = useTranslation();
     const containerRef = useRef<HTMLDivElement>(null);
     const [interaction, setInteraction] = useState<InteractionState | null>(null);
@@ -147,6 +148,71 @@ const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, gruppe
         window.addEventListener('click', closeMenu);
         return () => window.removeEventListener('click', closeMenu);
     }, []);
+
+    // Support horizontal wheel/trackpad scrolling to navigate months
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container || !onNavigate) return;
+
+        let lastTrigger = 0;
+        const handleWheel = (e: WheelEvent) => {
+            // Check if it's primarily a horizontal scroll
+            if (Math.abs(e.deltaX) < 15) return;
+            
+            const now = Date.now();
+            if (now - lastTrigger < 600) return; // rate limit to once every 600ms to prevent high-sensitivity trackpad jumps
+
+            if (e.deltaX > 0) {
+                onNavigate('next');
+            } else {
+                onNavigate('prev');
+            }
+            lastTrigger = now;
+        };
+
+        container.addEventListener('wheel', handleWheel, { passive: true });
+        return () => {
+            container.removeEventListener('wheel', handleWheel);
+        };
+    }, [onNavigate]);
+
+    // Support touch swipe to navigate months
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container || !onNavigate) return;
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        const handleTouchStart = (e: TouchEvent) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        };
+
+        const handleTouchEnd = (e: TouchEvent) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+
+            // Only trigger if horizontal swipe is dominant and large enough
+            if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > 0) {
+                    onNavigate('prev'); // Swipe right -> previous month
+                } else {
+                    onNavigate('next'); // Swipe left -> next month
+                }
+            }
+        };
+
+        container.addEventListener('touchstart', handleTouchStart, { passive: true });
+        container.addEventListener('touchend', handleTouchEnd, { passive: true });
+        return () => {
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [onNavigate]);
 
     // Handle interaction
     useEffect(() => {
@@ -454,7 +520,7 @@ const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, gruppe
                                     <div key={rowIndex} className="relative w-full h-9 flex items-center">
                                         {/* Inline Group Label (only on first row) */}
                                         {rowIndex === 0 && (
-                                            <div className="sticky left-0 z-40 h-full flex items-center pointer-events-none pr-8">
+                                            <div className="sticky left-0 z-50 h-full flex items-center pointer-events-none pr-8">
                                                 <div className="bg-slate-900 pl-5 pr-4 py-1.5 -ml-8 rounded-r-2xl shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)] flex items-center gap-2.5 pointer-events-auto transition-all hover:scale-105 group/label border-y border-r border-white/10">
                                                     <div className="p-1 bg-slate-800 rounded-lg text-indigo-400 group-hover/label:text-indigo-300 transition-colors">
                                                         <Layers size={10} strokeWidth={3} />
@@ -520,7 +586,7 @@ const Timeline: React.FC<TimelineProps> = ({ aktiviteter, setAktiviteter, gruppe
                                                             setHoveredGroupId(akt.gruppe ?? null);
                                                         }}
                                                     >
-                                                        <span className="text-[10px] font-[950] truncate text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] uppercase tracking-[0.05em]">
+                                                        <span className="text-[10px] font-[950] truncate text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)] uppercase tracking-wider">
                                                             {akt.navn}
                                                         </span>
                                                     </div>

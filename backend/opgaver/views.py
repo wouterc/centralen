@@ -218,10 +218,10 @@ class PinboardPostViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         if search:
             qs = qs.filter(Q(titel__icontains=search) | Q(beskrivelse__icontains=search))
 
-        # Hide archived by default
-        include_archived = self.request.query_params.get('include_archived') == 'true'
-        if not include_archived:
-            qs = qs.filter(arkiveret=False)
+        # Filter by archive status (show archived only if show_archived=true, else only active)
+        if self.action == 'list':
+            show_archived = self.request.query_params.get('show_archived') == 'true'
+            qs = qs.filter(arkiveret=show_archived)
 
         if not is_admin:
             # For privacy/logic, regular users only see posts for teams they are in

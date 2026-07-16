@@ -39,12 +39,12 @@ function Modal({ isOpen, onClose, title, children, footer, headerActions, maxWid
   if (!isOpen) return null;
 
   const classes = isMaximized
-    ? "bg-white shadow-xl w-full h-full m-0 flex flex-col fixed inset-0 z-50 rounded-none"
+    ? "bg-white shadow-xl w-full h-full m-0 flex flex-col fixed inset-0 z-100 rounded-none"
     : `bg-white rounded-lg shadow-xl w-full ${resolvedMaxWidth} m-4 max-h-[95vh] flex flex-col transition-all duration-200`;
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50"
+      className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-100"
       onClick={onClose}
     >
       <div

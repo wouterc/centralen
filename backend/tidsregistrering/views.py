@@ -163,7 +163,7 @@ class TidregViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     }
 
     def get_queryset(self):
-        qs = super().get_queryset().select_related('bruger', 'opgave_kode')
+        qs = super().get_queryset().select_related('bruger', 'opgave_kode', 'opgave_kode__gruppe')
         user = self.request.user
         
         membership = get_active_membership(self.request)
@@ -187,7 +187,11 @@ class BrugerProfilTimeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return BrugerProfilTime.objects.select_related('bruger', 'opgave_kode').filter(bruger=self.request.user)
+        company = get_active_company(self.request)
+        return BrugerProfilTime.objects.select_related('bruger', 'opgave_kode').filter(
+            bruger=self.request.user,
+            opgave_kode__company=company
+        )
 
     def perform_create(self, serializer):
         serializer.save(bruger=self.request.user)

@@ -10,7 +10,7 @@ import {
     Plus,
     UserPlus,
     MailPlus,
-    Palette,
+    Pencil,
     Shield,
     ChevronLeft,
     ChevronRight,
@@ -951,20 +951,20 @@ const UsersPage: React.FC = () => {
                                                             <div className="flex justify-end items-center gap-1">
                                                                 {isEditing ? (
                                                                     <div className="flex gap-1 animate-in zoom-in-50 duration-200">
-                                                                        <button onClick={handleEditCancel} className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"><X size={18} /></button>
+                                                                        <button onClick={handleEditCancel} className="p-2 text-gray-500 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"><X size={18} /></button>
                                                                         <button onClick={handleEditSave} className="p-2 bg-blue-600 text-white rounded-lg shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all"><Save size={18} /></button>
                                                                     </div>
                                                                 ) : (
                                                                     <div className="flex gap-1">
                                                                         {canEditThisUser && (
-                                                                            <button onClick={() => handleEditStart(user)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" title="Rediger">
-                                                                                <Palette size={18} />
+                                                                            <button onClick={() => handleEditStart(user)} className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" title="Rediger">
+                                                                                <Pencil size={18} />
                                                                             </button>
                                                                         )}
                                                                         {currentUserLevel >= ROLE_LEVELS.SUPERUSER && (
                                                                             <button
                                                                                 onClick={() => handleDelete(user)}
-                                                                                className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                                                                                className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
                                                                                 title={user.is_active ? 'Deaktiver' : 'Slet permanent'}
                                                                             >
                                                                                 {user.is_active ? <UserX size={18} /> : <Trash2 size={18} />}
@@ -1055,9 +1055,9 @@ const UsersPage: React.FC = () => {
                                                         {isEditing ? (
                                                             <button onClick={handleTeamEditSave} className="p-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700"><Save size={14} /></button>
                                                         ) : (
-                                                            <button onClick={() => { setEditingTeamId(team.id); setEditTeamForm(team); }} className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-white rounded-lg transition-all"><Palette size={14} /></button>
+                                                            <button onClick={() => { setEditingTeamId(team.id); setEditTeamForm(team); }} className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-white rounded-lg transition-all"><Pencil size={14} /></button>
                                                         )}
-                                                        <button onClick={() => handleTeamDelete(team)} className="p-2 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-all"><Trash2 size={14} /></button>
+                                                        <button onClick={() => handleTeamDelete(team)} className="p-2 text-gray-500 hover:text-red-500 hover:bg-white rounded-lg transition-all"><Trash2 size={14} /></button>
                                                     </div>
                                                 </div>
                                                 <div
@@ -1066,8 +1066,8 @@ const UsersPage: React.FC = () => {
                                                 >
                                                     <div className="flex justify-between items-center mb-4">
                                                         <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Medlemmer</div>
-                                                        <div className="text-gray-300 group-hover/members:text-indigo-500 transition-colors">
-                                                            <Palette size={14} />
+                                                        <div className="text-gray-500 group-hover/members:text-indigo-500 transition-colors">
+                                                            <Pencil size={14} />
                                                         </div>
                                                     </div>
                                                     <div className="flex flex-wrap gap-2">
@@ -1313,7 +1313,7 @@ const UsersPage: React.FC = () => {
                                                             <div className="flex gap-1">
                                                                 {isEditing ? (
                                                                     <>
-                                                                        <button onClick={() => setEditingGroupId(null)} className="p-2 text-gray-400 hover:text-gray-600"><X size={20} /></button>
+                                                                        <button onClick={() => setEditingGroupId(null)} className="p-2 text-gray-500 hover:text-gray-600"><X size={20} /></button>
                                                                         <button onClick={handleGroupEditSave} className="p-2 bg-emerald-600 text-white rounded-xl shadow-lg shadow-emerald-200"><Save size={20} /></button>
                                                                     </>
                                                                 ) : (
@@ -1323,13 +1323,13 @@ const UsersPage: React.FC = () => {
                                                                                 setEditingGroupId(group.id);
                                                                                 setEditGroupForm({ ...group });
                                                                             }}
-                                                                            className="p-2 text-gray-300 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all"
+                                                                            className="p-2 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all"
                                                                         >
-                                                                            <Palette size={20} />
+                                                                            <Pencil size={20} />
                                                                         </button>
                                                                         <button
                                                                             onClick={() => handleGroupDelete(group)}
-                                                                            className="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
+                                                                            className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
                                                                         >
                                                                             <Trash2 size={20} />
                                                                         </button>

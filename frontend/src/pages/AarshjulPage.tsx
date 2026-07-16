@@ -69,7 +69,7 @@ const AarshjulPage: React.FC = () => {
     };
 
     const resetToToday = () => {
-        setViewStartDate(dayjs().startOf('month'));
+        setViewStartDate(dayjs().subtract(1, 'month').startOf('month'));
     };
 
     const handleUndo = async () => {
@@ -210,6 +210,7 @@ const AarshjulPage: React.FC = () => {
                                 onRefresh={(silent?: boolean) => { fetchData(silent); }}
                                 viewStartDate={viewStartDate}
                                 onAction={(action) => setUndoStack(prev => action ? [...prev, action] : [])}
+                                onNavigate={navigateMonth}
                             />
                         )}
                     </div>

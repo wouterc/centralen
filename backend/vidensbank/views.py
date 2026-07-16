@@ -100,7 +100,7 @@ class VidenViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
         from django.db.models import Q, Exists, OuterRef
         
         # 1. Start med alle, derfra hvor Mixin lader os se dem
-        qs = super().get_queryset().select_related('kategori', 'oprettet_af').prefetch_related('oprettet_af__memberships')
+        qs = super().get_queryset().select_related('kategori', 'oprettet_af').prefetch_related('oprettet_af__memberships', 'hjaelp_punkter')
         
         # 2. Hårdt filter på artikler (Privacy & Slettede)
         if user.is_authenticated:

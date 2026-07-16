@@ -9,7 +9,7 @@ class AarshjulGruppeViewSet(CompanyFilterMixin, viewsets.ModelViewSet):
     serializer_class = AarshjulGruppeSerializer
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().prefetch_related('teams')
         team_id = self.request.query_params.get('team_id')
         user = self.request.user
         

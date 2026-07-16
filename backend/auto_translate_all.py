@@ -1,6 +1,6 @@
 import os
 import django
-
+# CTRL ALT U, python auto_translate_all.py
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
@@ -1314,12 +1314,33 @@ translation_map = {
         "fr": 'Archiver le message',
         "de": 'Eintrag archivieren',
     },
+    "pinboard.detail.by": {
+        "en": 'By',
+        "da": 'Af',
+        "nl": 'Door',
+        "fr": 'Par',
+        "de": 'Von',
+    },
     "pinboard.detail.eval.dont_know": {
-        "en": "DON'T KNOW",
-        "da": 'VED IKKE',
-        "nl": 'WEET IK NIET',
-        "fr": 'JE NE SAIS PAS',
-        "de": 'WEISS NICHT',
+        "en": "Don't know",
+        "da": 'Ved ikke',
+        "nl": 'Weet ik niet',
+        "fr": 'Je ne sais pas',
+        "de": 'Weiß nicht',
+    },
+    "pinboard.detail.eval.good_idea": {
+        "en": 'Good idea',
+        "da": 'God idé',
+        "nl": 'Goed idee',
+        "fr": 'Bonne idée',
+        "de": 'Gute Idee',
+    },
+    "pinboard.detail.eval.read": {
+        "en": 'Read',
+        "da": 'Læst',
+        "nl": 'Gelezen',
+        "fr": 'Lu',
+        "de": 'Gelesen',
     },
     "pinboard.detail.fetching_desc": {
         "en": 'Fetching description...',
@@ -1341,6 +1362,20 @@ translation_map = {
         "nl": 'Goed idee',
         "fr": 'Bonne idée',
         "de": 'Gute Idee',
+    },
+    "pinboard.detail.info_dialog": {
+        "en": 'INFO / Dialogue',
+        "da": 'INFO / Dialog',
+        "nl": 'INFO / Dialoog',
+        "fr": 'INFO / Dialogue',
+        "de": 'INFO / Dialog',
+    },
+    "pinboard.detail.no_comments": {
+        "en": 'No info yet',
+        "da": 'Ingen info endnu',
+        "nl": 'Nog geen info',
+        "fr": "Pas encore d'info",
+        "de": 'Noch keine Info',
     },
     "pinboard.detail.pending": {
         "en": 'Pending',
@@ -1369,6 +1404,13 @@ translation_map = {
         "nl": 'Status & Statistieken',
         "fr": 'Statut & Statistiques',
         "de": 'Status & Statistiken',
+    },
+    "pinboard.detail.write_comment_placeholder": {
+        "en": 'Write info...',
+        "da": 'Skriv info...',
+        "nl": 'Schrijf info...',
+        "fr": 'Écrire des informations...',
+        "de": 'Info schreiben...',
     },
     "pinboard.detail.your_evaluation": {
         "en": 'Your Evaluation',
@@ -1446,6 +1488,27 @@ translation_map = {
         "nl": 'Een snelle kop...',
         "fr": 'Un titre rapide...',
         "de": 'Eine kurze Überschrift...',
+    },
+    "pinboard.postit.evaluate_now": {
+        "en": 'EVALUATE NOW',
+        "da": 'VURDÉR NU',
+        "nl": 'BEOORDEEL NU',
+        "fr": 'ÉVALUER MAINTENANT',
+        "de": 'JETZT BEWERTEN',
+    },
+    "pinboard.postit.likes_count": {
+        "en": "think it is a good idea",
+        "da": 'synes det er en god idé',
+        "nl": 'vindt het een goed idee',
+        "fr": "pense que c'est une bonne idée",
+        "de": 'findet es eine gute Idee',
+    },
+    "pinboard.postit.pending_evaluations": {
+        "en": 'yet to evaluate',
+        "da": 'mangler at vurdere',
+        "nl": 'moet nog beoordelen',
+        "fr": 'reste à évaluer',
+        "de": 'müssen noch bewerten',
     },
     "pinboard.subtitle": {
         "en": 'Ideas & dialogue',
@@ -2154,6 +2217,13 @@ translation_map = {
         "fr": 'Tous les codes de tâche',
         "de": 'Alle Aufgabencodes',
     },
+    "time.setup_all_codes_for_workspace": {
+        "en": 'All Task Codes for {{workspace}}',
+        "da": 'Alle opgavekoder for {{workspace}}',
+        "nl": 'Alle taakcodes voor {{workspace}}',
+        "fr": 'Tous les codes de tâche pour {{workspace}}',
+        "de": 'Alle Aufgabencodes für {{workspace}}',
+    },
     "time.setup_code_created": {
         "en": 'Task code created successfully',
         "da": 'Taakkode oprettet succesfuldt',
@@ -2283,7 +2353,7 @@ translation_map = {
     "time.setup_tab": {
         "en": 'Setup',
         "da": 'Opsætning',
-        "nl": 'Installatie',
+        "nl": 'Instellen',
         "fr": 'Configuration',
         "de": 'Einrichtung',
     },
